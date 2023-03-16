@@ -2,9 +2,6 @@
 **/__pycache__
 code/backend/env
 
-code/backend/server_example/mysite/__pycache__
-
-code/frontend/mission2/node_modules 
 .idea
 
 # dependencies
