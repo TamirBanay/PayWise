@@ -18,19 +18,13 @@ $axios.interceptors.response.use(
   }
 );
 
-//class charInStringService {
-    // static getCharInString(id) {
-    //   return $axios
-    //     .get(`charInString/get-charInString/${id}`)
-    //     .then((response) => response.data);
-    // }
-  //  static example(expmale1, expmale2) {
-    //  return $axios
-      //  .get(`charInString/data_from_client/${expmale1}/${expmale2}`)
-       // .then((response) => response.data);
-    //}
-
-
+class getVoucherService {
+    static getVoucher (voucherID,walletID) {
+        return $axios
+        .get(`get_Vouchers/${int}/${int}`)
+        .then((response) => response.data);
+    }
+}
 
 
 
@@ -39,7 +33,7 @@ $axios.interceptors.response.use(
 
 
 const service = {
-
+    getVoucher
   };
   
   export default service;
