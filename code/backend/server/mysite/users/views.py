@@ -7,6 +7,15 @@ from .models import User
 import jwt
 import datetime
 
+import base64
+import hashlib
+import hmac
+import json
+from rest_framework.exceptions import AuthenticationFailed
+from rest_framework.views import APIView
+from rest_framework.response import Response
+
+
 # Create your views here.
 
 
@@ -47,3 +56,58 @@ class LoginView(APIView):
             'jwt': token}
 
         return response
+
+# class UserView(APIView):
+
+#     def get(self, request):
+#            token= request.COOKIES.get('jwt')
+
+#            if not token:
+#                raise AuthenticationFailed('Unauthenticated!')
+
+#            try:
+#                payload =jwt.decode(token, 'secret', algorithm=['HS256'])
+#            except jwt.ExpiredSignatureError:
+#                raise AuthenticationFailed('Unauthenticated!')
+
+#            user = User.objects.filter(id=payload['id']).first()
+#            serializer = UserSerializers(user)
+
+#            return Response(serializer.data)
+
+
+class UserView(APIView):
+    def get(self, request):
+        token = request.COOKIES.get('jwt')
+        if not token:
+            raise AuthenticationFailed('Unauthenticated!', code=401)
+
+        try:
+            header_b64, payload_b64, signature_b64 = token.split('.')
+            header = json.loads(base64.b64decode(
+                header_b64 + '==').decode('utf-8'))
+            payload = json.loads(base64.b64decode(
+                payload_b64 + '==').decode('utf-8'))
+            secret = 'secret'
+            expected_signature = hmac.new(secret.encode(
+                'utf-8'), (header_b64 + '.' + payload_b64).encode('utf-8'), hashlib.sha256).digest()
+            signature = base64.b64decode(signature_b64 + '==')
+            if not hmac.compare_digest(signature, expected_signature):
+                raise AuthenticationFailed('Unauthenticated!', code=401)
+
+            user = User.objects.filter(id=payload['id']).first()
+            serializer = UserSerializers(user)
+            return Response(serializer.data)
+
+        except (ValueError, KeyError, TypeError, AuthenticationFailed):
+            raise AuthenticationFailed('Unauthenticated!', code=401)
+
+
+class LogoutView(APIView):
+     def post(self, request):
+        response= Response()
+        response.delete_cookie('jwt')
+        response.data={
+            'message':'success'
+            }
+        return response        
