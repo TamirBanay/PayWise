@@ -6,11 +6,6 @@ from rest_framework.exceptions import AuthenticationFailed
 from .models import User
 import jwt
 import datetime
-
-import base64
-import hashlib
-import hmac
-import json
 from rest_framework.exceptions import AuthenticationFailed
 from rest_framework.views import APIView
 from rest_framework.response import Response
