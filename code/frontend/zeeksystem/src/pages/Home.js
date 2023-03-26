@@ -13,7 +13,7 @@ function Home() {
       headers: { "Content-Type": "application/json" },
       credentials: "include",
     });
-    
+
     return <Redirect to="/login" />;
   };
   useEffect(() => {
@@ -37,12 +37,19 @@ function Home() {
 
   return (
     <div>
-      <h1>hi {name} welcome home</h1>
-      <Link href="/login" variant="body2">
-        <Button variant="contained" onClick={logOut}>
-          Logout
-        </Button>
-      </Link>
+      {redirect ? 
+        <></>
+       : (
+        <div>
+          {" "}
+          <h1>hi {name} welcome home</h1>
+          <Link href="/login" variant="body2">
+            <Button variant="contained" onClick={logOut}>
+              Logout
+            </Button>
+          </Link>{" "}
+        </div>
+      )}
     </div>
   );
 }
