@@ -23,9 +23,9 @@ function Home() {
         credentials: "include",
       });
       const content = await response.json();
-      setName(content.name);
+      setName(content.first_name);
       console.log();
-      if (content.detail == "Unauthenticated!") {
+      if (content.detail === "Unauthenticated!") {
         setRedirect(true);
       }
     })();
