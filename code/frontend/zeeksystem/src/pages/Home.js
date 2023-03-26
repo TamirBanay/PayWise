@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Button } from "@mui/material";
 import Link from "@mui/material/Link";
 import { Redirect } from "react-router-dom";
-
+import Dashbord from '../components/Dashboard'
 function Home() {
   const [name, setName] = useState(null);
   const [redirect, setRedirect] = React.useState(false);
@@ -48,7 +48,11 @@ function Home() {
               Logout
             </Button>
           </Link>{" "}
+          <p></p>
+          <div> <Dashbord/> </div>
         </div>
+
+   
       )}
     </div>
   );

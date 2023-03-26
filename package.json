@@ -1,5 +1,7 @@
 {
   "dependencies": {
+    "react-apexcharts": "^1.4.0",
+    "react-minimal-pie-chart": "^8.4.0",
     "react-router-dom": "^5.3.4"
   }
 }

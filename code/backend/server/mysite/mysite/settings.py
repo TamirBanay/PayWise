@@ -84,7 +84,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'zeekSchema',
         'USER': 'root',
-        'PASSWORD': 'Oz18357295',
+        'PASSWORD': 'tamirsapir055',
         'HOST': 'localhost',   # Or an IP Address that your DB is hosted on
         'PORT': '3306',
     }
@@ -136,5 +136,5 @@ AUTH_USER_MODEL = 'users.User'
 CORS_ORIGIN_WHITELIST = [
     'http://localhost:3000',
 ]
-CROS_ORIGIN_ALLOW_ALL=True
+CROS_ORIGIN_ALLOW_ALL = True
 CORS_ALLOW_CREDENTIALS = True
