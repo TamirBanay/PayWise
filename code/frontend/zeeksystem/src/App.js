@@ -5,7 +5,7 @@ import Home from "./pages/Home";
 import NoPage from "./pages/NoPage";
 import Registration from "./pages/Registration";
 import ComponentLibery from './pages/ComponentLibery'
-import SignIn from './pages/SignIn';
+import Login from './pages/Login';
 
 function App() {
   return (
@@ -14,8 +14,8 @@ function App() {
         <Route exact path="/">
           <Home />
         </Route>
-        <Route path="/SignIn">
-          <SignIn />
+        <Route path="/login">
+          <Login />
         </Route>
         <Route path="/Registration">
           <Registration />

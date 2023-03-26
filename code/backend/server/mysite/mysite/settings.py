@@ -133,5 +133,8 @@ STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 AUTH_USER_MODEL = 'users.User'
 
-CROSS_ORIGIN_ALLOW_ALL=True
-CROSS_ALLOW_CREDENTIALS = True
+CORS_ORIGIN_WHITELIST = [
+    'http://localhost:3000',
+]
+CROS_ORIGIN_ALLOW_ALL=True
+CORS_ALLOW_CREDENTIALS = True
