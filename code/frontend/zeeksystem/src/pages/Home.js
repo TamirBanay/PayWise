@@ -2,7 +2,8 @@ import React, { useEffect, useState } from "react";
 import { Button } from "@mui/material";
 import Link from "@mui/material/Link";
 import { Redirect } from "react-router-dom";
-import Dashbord from '../components/Dashboard'
+import Dashboard from "../components/dashboard/Dashboard";
+import Navbar from "../components/Navbar";
 function Home() {
   const [name, setName] = useState(null);
   const [redirect, setRedirect] = React.useState(false);
@@ -23,9 +24,9 @@ function Home() {
         credentials: "include",
       });
       const content = await response.json();
-      setName(content.first_name);
+      setName(content.name);
       console.log();
-      if (content.detail === "Unauthenticated!") {
+      if (content.detail == "Unauthenticated!") {
         setRedirect(true);
       }
     })();
@@ -37,22 +38,18 @@ function Home() {
 
   return (
     <div>
-      {redirect ? 
+      {redirect ? (
         <></>
-       : (
+      ) : (
         <div>
-          {" "}
-          <h1>hi {name} welcome home</h1>
+          <Navbar />
           <Link href="/login" variant="body2">
-            <Button variant="contained" onClick={logOut}>
+            {/* <Button variant="contained" onClick={logOut}>
               Logout
-            </Button>
+            </Button> */}
           </Link>{" "}
-          <p></p>
-          <div> <Dashbord/> </div>
+          <Dashboard />
         </div>
-
-   
       )}
     </div>
   );
