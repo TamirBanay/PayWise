@@ -1,8 +1,5 @@
 import React, { Component } from "react";
 import Chart from "react-apexcharts";
-import Select from "./Select";
-import AddRefundButton from "./AddRefundButton";
-
 class Dashboard extends Component {
   render() {
     const seriesData = [20, 43, 50, 54];
@@ -31,11 +28,7 @@ class Dashboard extends Component {
           style={{ position: "fixed", left: "400px", marginTop: "100px" }}
         />
 
-        <div style={{ textAlign: "center" }}>
-          <AddRefundButton />
-
-          {/* <SoppingIcon array={seriesData} /> */}
-        </div>
+        <div style={{ textAlign: "center" }}></div>
       </div>
     );
   }

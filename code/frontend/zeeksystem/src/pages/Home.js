@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from "react";
-import { Button } from "@mui/material";
 import Link from "@mui/material/Link";
 import { Redirect } from "react-router-dom";
 import Dashboard from "../components/dashboard/Dashboard";
 import Navbar from "../components/Navbar";
+
+import { Button } from "@mui/material";
+
 function Home() {
   const [name, setName] = useState(null);
   const [redirect, setRedirect] = React.useState(false);
-
   const logOut = async () => {
     await fetch("http://localhost:8000/api/logout", {
       method: "POST",
@@ -44,11 +45,10 @@ function Home() {
         <div>
           <Navbar />
           <Link href="/login" variant="body2">
-            {/* <Button variant="contained" onClick={logOut}>
+            <Button variant="contained" onClick={logOut}>
               Logout
-            </Button> */}
-          </Link>{" "}
-          <Dashboard />
+            </Button>
+          </Link>
         </div>
       )}
     </div>
