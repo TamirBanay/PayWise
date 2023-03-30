@@ -1,6 +1,6 @@
+import navbar from "../components/navbar.css";
 import * as React from "react";
 import { styled, alpha, useTheme } from "@mui/material/styles";
-// import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
 import IconButton from "@mui/material/IconButton";
@@ -13,7 +13,6 @@ import MenuIcon from "@mui/icons-material/Menu";
 import SearchIcon from "@mui/icons-material/Search";
 import AccountCircle from "@mui/icons-material/AccountCircle";
 import MailIcon from "@mui/icons-material/Mail";
-import NotificationsIcon from "@mui/icons-material/Notifications";
 import MoreIcon from "@mui/icons-material/MoreVert";
 import AccountBalanceWalletOutlinedIcon from "@mui/icons-material/AccountBalanceWalletOutlined";
 import MuiDrawer from "@mui/material/Drawer";
@@ -27,8 +26,11 @@ import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
-import InboxIcon from "@mui/icons-material/MoveToInbox";
-
+import HomeIcon from "@mui/icons-material/Home";
+import Person2Icon from "@mui/icons-material/Person2";
+import AccountBalanceWalletIcon from "@mui/icons-material/AccountBalanceWallet";
+import SettingsIcon from "@mui/icons-material/Settings";
+import { Redirect } from "react-router-dom";
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
   borderRadius: theme.shape.borderRadius,
@@ -36,11 +38,10 @@ const Search = styled("div")(({ theme }) => ({
   "&:hover": {
     backgroundColor: alpha(theme.palette.common.white, 0.25),
   },
-  marginRight: theme.spacing(2),
-  marginLeft: 0,
+
   width: "100%",
   [theme.breakpoints.up("sm")]: {
-    marginLeft: theme.spacing(3),
+    marginRight: theme.spacing(3),
     width: "auto",
   },
 }));
@@ -110,7 +111,7 @@ const AppBar = styled(MuiAppBar, {
     duration: theme.transitions.duration.leavingScreen,
   }),
   ...(open && {
-    marginLeft: drawerWidth,
+    marginRight: drawerWidth,
     width: `calc(100% - ${drawerWidth}px)`,
     transition: theme.transitions.create(["width", "margin"], {
       easing: theme.transitions.easing.sharp,
@@ -173,20 +174,21 @@ export default function MiniDrawer() {
     <Menu
       anchorEl={anchorEl}
       anchorOrigin={{
-        vertical: "top",
-        horizontal: "right",
+        vertical: "bottom",
+        horizontal: "center",
       }}
       id={menuId}
       keepMounted
       transformOrigin={{
         vertical: "top",
-        horizontal: "right",
+        horizontal: "lfet",
       }}
       open={isMenuOpen}
       onClose={handleMenuClose}
     >
-      <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
-      <MenuItem onClick={handleMenuClose}>My account</MenuItem>
+      <MenuItem onClick={handleMenuClose}>פרופיל</MenuItem>
+      <MenuItem onClick={handleMenuClose}>החשבון שלי </MenuItem>
+      <MenuItem onClick={handleMenuClose}>התנתקות</MenuItem>
     </Menu>
   );
 
@@ -225,15 +227,15 @@ export default function MiniDrawer() {
         >
           <AccountCircle />
         </IconButton>
-        <p>Profile</p>
+        <p>פרופיל</p>
       </MenuItem>
     </Menu>
   );
 
   return (
-    <Box sx={{ display: "flex" }}>
+    <Box sx={{ display: "flex" }} class="boxClass">
       <CssBaseline />
-      <AppBar position="fixed" open={open}>
+      <AppBar position="relative" open={open}>
         <Toolbar>
           <IconButton
             color="inherit"
@@ -241,7 +243,7 @@ export default function MiniDrawer() {
             onClick={handleDrawerOpen}
             edge="start"
             sx={{
-              marginRight: 5,
+              marginLeft: 5,
               ...(open && { display: "none" }),
             }}
           >
@@ -255,13 +257,14 @@ export default function MiniDrawer() {
               <SearchIcon />
             </SearchIconWrapper>
             <StyledInputBase
-              placeholder="Search…"
+              sx={{ marginRight: 4.5 }}
+              placeholder="חיפוש..."
               inputProps={{ "aria-label": "search" }}
             />
           </Search>
           <Box sx={{ flexGrow: 1 }} />
           <Box sx={{ display: { xs: "none", md: "flex" } }}>
-            <IconButton size="small" color="inherit">
+            <IconButton size="large" color="inherit">
               <Badge badgeContent={4} color="error">
                 <AccountBalanceWalletOutlinedIcon />
               </Badge>
@@ -293,10 +296,10 @@ export default function MiniDrawer() {
           </Box>
         </Toolbar>
       </AppBar>
-      <Drawer variant="permanent" open={open}>
+      <Drawer anchor="right" variant="permanent" open={open}>
         <DrawerHeader>
           <IconButton onClick={handleDrawerClose}>
-            {theme.direction === "rtl" ? (
+            {theme.direction === "ltr" ? (
               <ChevronRightIcon />
             ) : (
               <ChevronLeftIcon />
@@ -305,13 +308,31 @@ export default function MiniDrawer() {
         </DrawerHeader>
         <Divider />
         <List>
-          {["Inbox", "Starred", "Send email", "Drafts"].map((text, index) => (
+          {[
+            "בית",
+            "פרופיל",
+            "חיפוש",
+            "הארנק שלי",
+            "הגדרות",
+            "ארכיון קופונים",
+          ].map((text, index) => (
             <ListItem key={text} disablePadding sx={{ display: "block" }}>
               <ListItemButton
                 sx={{
                   minHeight: 48,
                   justifyContent: open ? "initial" : "center",
                   px: 2.5,
+                  direction: "ltr",
+                  "& .MuiListItemIcon-root": {
+                    minWidth: 0,
+                    mr: open ? 3 : "auto",
+                    ml: open ? "auto" : 1,
+                    justifyContent: "center",
+                  },
+                  "& .MuiListItemText-root": {
+                    textAlign: "right",
+                    opacity: open ? 1 : 0,
+                  },
                 }}
               >
                 <ListItemIcon
@@ -321,7 +342,12 @@ export default function MiniDrawer() {
                     justifyContent: "center",
                   }}
                 >
-                  {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+                  {index === 0 ? <HomeIcon /> : ""}
+                  {index === 1 ? <Person2Icon /> : ""}
+                  {index === 2 ? <SearchIcon /> : ""}
+                  {index === 3 ? <AccountBalanceWalletIcon /> : ""}
+                  {index === 4 ? <SettingsIcon /> : ""}
+                  {index === 5 ? <MailIcon /> : ""}
                 </ListItemIcon>
                 <ListItemText primary={text} sx={{ opacity: open ? 1 : 0 }} />
               </ListItemButton>
@@ -329,37 +355,11 @@ export default function MiniDrawer() {
           ))}
         </List>
         <Divider />
-        <List>
-          {["All mail", "Trash", "Spam"].map((text, index) => (
-            <ListItem key={text} disablePadding sx={{ display: "block" }}>
-              <ListItemButton
-                sx={{
-                  minHeight: 48,
-                  justifyContent: open ? "initial" : "center",
-                  px: 2.5,
-                }}
-              >
-                <ListItemIcon
-                  sx={{
-                    minWidth: 0,
-                    mr: open ? 3 : "auto",
-                    justifyContent: "center",
-                  }}
-                >
-                  {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-                </ListItemIcon>
-                <ListItemText primary={text} sx={{ opacity: open ? 1 : 0 }} />
-              </ListItemButton>
-            </ListItem>
-          ))}
-        </List>
       </Drawer>
       {renderMobileMenu}
       {renderMenu}
       <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
         <DrawerHeader />
-        <Typography paragraph></Typography>
-        <Typography paragraph></Typography>
       </Box>
     </Box>
   );
