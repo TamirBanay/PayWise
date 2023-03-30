@@ -6,6 +6,7 @@ import NoPage from "./pages/NoPage";
 import Registration from "./pages/Registration";
 import ComponentLibery from "./pages/ComponentLibery";
 import Login from "./pages/Login";
+import Profile from "./pages/Profile";
 
 function App() {
   return (
@@ -22,6 +23,9 @@ function App() {
         </Route>
         <Route path="/Comp">
           <ComponentLibery />
+        </Route>
+        <Route path="/profile">
+          <Profile />
         </Route>
         <Route path="*">
           <NoPage />

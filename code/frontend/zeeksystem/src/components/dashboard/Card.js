@@ -8,7 +8,7 @@ import card from "../dashboard/card.css";
 
 export default function ActionAreaCard(props) {
   return (
-    <Card sx={{ maxWidth: 345 }}>
+    <Card sx={{ maxWidth: 250 }}>
       <CardActionArea>
         <CardMedia component="img" image={props.logo} alt="green iguana" />
         <CardContent>

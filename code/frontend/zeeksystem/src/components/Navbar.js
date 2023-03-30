@@ -30,7 +30,7 @@ import HomeIcon from "@mui/icons-material/Home";
 import Person2Icon from "@mui/icons-material/Person2";
 import AccountBalanceWalletIcon from "@mui/icons-material/AccountBalanceWallet";
 import SettingsIcon from "@mui/icons-material/Settings";
-import { Redirect } from "react-router-dom";
+import { BrowserRouter as Router, NavLink } from "react-router-dom";
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
   borderRadius: theme.shape.borderRadius,
@@ -137,7 +137,7 @@ const Drawer = styled(MuiDrawer, {
   }),
 }));
 
-export default function MiniDrawer() {
+export default function MiniDrawer(pro) {
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
   const menuId = "primary-search-account-menu";
@@ -342,8 +342,20 @@ export default function MiniDrawer() {
                     justifyContent: "center",
                   }}
                 >
-                  {index === 0 ? <HomeIcon /> : ""}
-                  {index === 1 ? <Person2Icon /> : ""}
+                  {index === 0 ? (
+                    <NavLink to="/">
+                      <HomeIcon />
+                    </NavLink>
+                  ) : (
+                    ""
+                  )}
+                  {index === 1 ? (
+                    <NavLink to="/profile">
+                      <Person2Icon />
+                    </NavLink>
+                  ) : (
+                    ""
+                  )}
                   {index === 2 ? <SearchIcon /> : ""}
                   {index === 3 ? <AccountBalanceWalletIcon /> : ""}
                   {index === 4 ? <SettingsIcon /> : ""}

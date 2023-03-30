@@ -3,8 +3,10 @@ import Link from "@mui/material/Link";
 import { Redirect } from "react-router-dom";
 import Dashboard from "../components/dashboard/Dashboard";
 import Navbar from "../components/Navbar";
-
+import AddRefundButton from "../components/dashboard/AddRefundButton";
 import { Button } from "@mui/material";
+import Card from "../components/dashboard/Card";
+import zaraImg from "../images/zaraLogo.png";
 
 function Home() {
   const [name, setName] = useState(null);
@@ -44,6 +46,8 @@ function Home() {
       ) : (
         <div>
           <Navbar />
+          <h1>Home</h1>
+
           <Link href="/login" variant="body2">
             <Button variant="contained" onClick={logOut}>
               Logout

@@ -3,6 +3,7 @@ import Card from "../components/dashboard/Card";
 import zaraImg from "../images/zaraLogo.png";
 import Dashboard from "../components/dashboard/Dashboard";
 import AddRefundButton from "../components/dashboard/AddRefundButton";
+import Profile from "./Profile";
 function ComponentLibery() {
   return (
     <div>
