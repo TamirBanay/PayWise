@@ -1,41 +1,55 @@
-import React, { Component } from "react";
+import React from "react";
 import Chart from "react-apexcharts";
-;
+import { styled, alpha, useTheme } from "@mui/material/styles";
+import useMediaQuery from "@mui/material/useMediaQuery";
 
-class Dashboard extends Component {
-  render() {
-    const seriesData = [20, 43, 50, 54];
-
-    return (
-      <div>
-        <br />
+const Dashboard = () => {
+  const seriesData = [20, 43, 50, 54];
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down("sx"));
+  return (
+    <div>
+      {isMobile ? (
         <Chart
           type="donut"
-          width={650}
+          series={seriesData}
+          options={{
+            labels: [
+              "מזון וצריכה",
+              "ביגוד והנעלה",
+              "חשמל ואלקטרוניקה",
+              "שונות",
+            ],
+            plotOptions: {
+              pie: {
+                donut: {
+                  size: "65%",
+                },
+              },
+            },
+
+            noData: { text: "Empty wallet" },
+          }}
+        />
+      ) : (
+        <Chart
+          type="donut"
           height={350}
           series={seriesData}
           options={{
             labels: [
-              "Clothing",
-              "Food",
-              "Retailing",
-              "Electricity & Electronics",
+              "מזון וצריכה",
+              "ביגוד והנעלה",
+              "חשמל ואלקטרוניקה",
+              "שונות",
             ],
-            legend: {
-              position: "bottom",
-            },
-            title: { text: "Your wallet" },
+
             noData: { text: "Empty wallet" },
           }}
-          style={{ position: "fixed", left: "400px", marginTop: "100px" }}
         />
-
-        <div style={{ textAlign: "center" }}>
-    
-        </div>
-      </div>
-    );
-  }
-}
+      )}
+    </div>
+  );
+};
 
 export default Dashboard;

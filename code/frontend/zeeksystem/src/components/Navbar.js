@@ -1,4 +1,3 @@
-import navbar from "../components/navbar.css";
 import * as React from "react";
 import { styled, alpha, useTheme } from "@mui/material/styles";
 import Box from "@mui/material/Box";
@@ -31,6 +30,8 @@ import Person2Icon from "@mui/icons-material/Person2";
 import AccountBalanceWalletIcon from "@mui/icons-material/AccountBalanceWallet";
 import SettingsIcon from "@mui/icons-material/Settings";
 import { BrowserRouter as Router, NavLink } from "react-router-dom";
+import useMediaQuery from "@mui/material/useMediaQuery";
+import navbar from "./navbar.css";
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
   borderRadius: theme.shape.borderRadius,
@@ -139,6 +140,7 @@ const Drawer = styled(MuiDrawer, {
 
 export default function MiniDrawer(pro) {
   const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
   const [open, setOpen] = React.useState(false);
   const menuId = "primary-search-account-menu";
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -186,9 +188,11 @@ export default function MiniDrawer(pro) {
       open={isMenuOpen}
       onClose={handleMenuClose}
     >
-      <MenuItem onClick={handleMenuClose}>פרופיל</MenuItem>
-      <MenuItem onClick={handleMenuClose}>החשבון שלי </MenuItem>
+      <NavLink to="/profile">
+        <MenuItem onClick={handleMenuClose}>פרופיל</MenuItem>
+      </NavLink>
       <MenuItem onClick={handleMenuClose}>התנתקות</MenuItem>
+      <MenuItem onClick={handleMenuClose}>החשבון שלי </MenuItem>
     </Menu>
   );
 
@@ -233,7 +237,7 @@ export default function MiniDrawer(pro) {
   );
 
   return (
-    <Box sx={{ display: "flex" }} class="boxClass">
+    <Box sx={{ direction: "rtl" }}>
       <CssBaseline />
       <AppBar position="relative" open={open}>
         <Toolbar>
@@ -250,18 +254,24 @@ export default function MiniDrawer(pro) {
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" noWrap component="div">
-            PAY WISE
+            {isMobile & open ? "" : "PAY WISE"}
           </Typography>
-          <Search>
-            <SearchIconWrapper>
-              <SearchIcon />
-            </SearchIconWrapper>
-            <StyledInputBase
-              sx={{ marginRight: 4.5 }}
-              placeholder="חיפוש..."
-              inputProps={{ "aria-label": "search" }}
-            />
-          </Search>
+          {/* responsive search  */}
+          {isMobile ? (
+            ""
+          ) : (
+            <Search>
+              <SearchIconWrapper>
+                <SearchIcon />
+              </SearchIconWrapper>
+              <StyledInputBase
+                sx={{ marginRight: 4.5 }}
+                placeholder="חיפוש..."
+                inputProps={{ "aria-label": "search" }}
+              />
+            </Search>
+          )}
+
           <Box sx={{ flexGrow: 1 }} />
           <Box sx={{ display: { xs: "none", md: "flex" } }}>
             <IconButton size="large" color="inherit">
@@ -296,6 +306,7 @@ export default function MiniDrawer(pro) {
           </Box>
         </Toolbar>
       </AppBar>
+
       <Drawer anchor="right" variant="permanent" open={open}>
         <DrawerHeader>
           <IconButton onClick={handleDrawerClose}>
@@ -366,8 +377,8 @@ export default function MiniDrawer(pro) {
             </ListItem>
           ))}
         </List>
-        <Divider />
       </Drawer>
+
       {renderMobileMenu}
       {renderMenu}
       <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
