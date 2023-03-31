@@ -1,12 +1,16 @@
 import React from "react";
 import Chart from "react-apexcharts";
-import { styled, alpha, useTheme } from "@mui/material/styles";
+import { useTheme } from "@mui/material/styles";
 import useMediaQuery from "@mui/material/useMediaQuery";
 
 const Dashboard = () => {
   const seriesData = [20, 43, 50, 54];
+
+  const sum = seriesData.reduce((total, num) => total + num, 0);
+
   const theme = useTheme();
-  const isMobile = useMediaQuery(theme.breakpoints.down("sx"));
+  const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
+  console.log(isMobile);
   return (
     <div>
       {isMobile ? (
@@ -20,14 +24,31 @@ const Dashboard = () => {
               "חשמל ואלקטרוניקה",
               "שונות",
             ],
-            plotOptions: {
-              pie: {
-                donut: {
-                  size: "65%",
-                },
+            title: {
+              style: {
+                fontSize: "18px",
+                fontWeight: "bold",
+                // fontFamily: "Helvetica, Arial, sans-serif",
+                color: "#263238",
               },
+              align: "center",
+              text: sum + " :סכום הזיכויים שלך",
             },
 
+            responsive: [
+              {
+                breakpoint: 480,
+                options: {
+                  chart: {
+                    width: 400,
+                    height: 300,
+                  },
+                  legend: {
+                    position: "bottom",
+                  },
+                },
+              },
+            ],
             noData: { text: "Empty wallet" },
           }}
         />
@@ -38,12 +59,24 @@ const Dashboard = () => {
           series={seriesData}
           options={{
             labels: [
-              "מזון וצריכה",
+              "מזון וצריכה ",
               "ביגוד והנעלה",
               "חשמל ואלקטרוניקה",
               "שונות",
             ],
-
+            title: {
+              style: {
+                fontSize: "20px",
+                fontWeight: "bold",
+                // fontFamily: undefined,
+                color: "#263238",
+              },
+              align: "center",
+              text: sum + " :סכום הזיכויים שלך",
+            },
+            legend: {
+              position: "bottom",
+            },
             noData: { text: "Empty wallet" },
           }}
         />
