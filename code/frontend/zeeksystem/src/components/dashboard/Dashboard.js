@@ -10,9 +10,7 @@ const Dashboard = () => {
 
   const theme = useTheme();
   const isMobileMs = useMediaQuery(theme.breakpoints.down("sm"));
-  // const isMobileLg = useMediaQuery(theme.breakpoints.up("lg"));
 
-  // console.log(isMobileLg);
   return (
     <div>
       {isMobileMs ? (
@@ -42,7 +40,7 @@ const Dashboard = () => {
                 breakpoint: 480,
                 options: {
                   chart: {
-                    width: 400,
+                    width: 350,
                     height: 300,
                   },
                   legend: {

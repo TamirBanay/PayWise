@@ -3,12 +3,12 @@ import { Redirect } from "react-router-dom";
 import Dashboard from "../components/dashboard/Dashboard";
 import Navbar from "../components/Navbar";
 import AddRefundButton from "../components/dashboard/AddRefundButton";
-import Card from "../components/dashboard/InteractiveCard";
+import Card from "../components/dashboard/FlexRowRatio";
 import zaraImg from "../images/zaraLogo.png";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import { styled, alpha, useTheme } from "@mui/material/styles";
 import Divider from "@mui/material/Divider";
-import OverflowCard from "../components/dashboard/InteractiveCard";
+import OverflowCard from "../components/dashboard/FlexRowRatio";
 
 function Home() {
   const [name, setName] = useState(null);
