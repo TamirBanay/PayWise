@@ -31,7 +31,7 @@ import AccountBalanceWalletIcon from "@mui/icons-material/AccountBalanceWallet";
 import SettingsIcon from "@mui/icons-material/Settings";
 import { BrowserRouter as Router, NavLink } from "react-router-dom";
 import useMediaQuery from "@mui/material/useMediaQuery";
-import navbar from "./navbar.css";
+import AddRoundedIcon from "@mui/icons-material/AddRounded";
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
   borderRadius: theme.shape.borderRadius,
@@ -144,9 +144,12 @@ export default function MiniDrawer(pro) {
   const [open, setOpen] = React.useState(false);
   const menuId = "primary-search-account-menu";
   const [anchorEl, setAnchorEl] = React.useState(null);
+  const [anchorAddRedundMenu, setAnchorAddRedundMenu] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
   const mobileMenuId = "primary-search-account-menu-mobile";
   const isMenuOpen = Boolean(anchorEl);
+  const AddRefundisMenuOpen = Boolean(anchorAddRedundMenu);
+
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
 
   const handleDrawerOpen = () => {
@@ -159,6 +162,10 @@ export default function MiniDrawer(pro) {
   const handleProfileMenuOpen = (event) => {
     setAnchorEl(event.currentTarget);
   };
+  const handleAddRedundMenuOpen = (event) => {
+    setAnchorAddRedundMenu(event.currentTarget);
+  };
+
   const handleMobileMenuOpen = (event) => {
     setMobileMoreAnchorEl(event.currentTarget);
   };
@@ -170,6 +177,10 @@ export default function MiniDrawer(pro) {
   const handleMenuClose = () => {
     setAnchorEl(null);
     handleMobileMenuClose();
+  };
+
+  const handleAddRefundMenuClose = () => {
+    setAnchorAddRedundMenu(null);
   };
 
   const renderMenu = (
@@ -195,12 +206,33 @@ export default function MiniDrawer(pro) {
       <MenuItem onClick={handleMenuClose}>החשבון שלי </MenuItem>
     </Menu>
   );
+  //add refund menu rander plus button
+  const renderAddRefundMenu = (
+    <Menu
+      anchorEl={anchorAddRedundMenu}
+      anchorOrigin={{
+        vertical: "bottom",
+        horizontal: "center",
+      }}
+      id={menuId}
+      keepMounted
+      transformOrigin={{
+        vertical: "top",
+        horizontal: "lfet",
+      }}
+      open={AddRefundisMenuOpen}
+      onClose={handleAddRefundMenuClose}
+    >
+      <MenuItem onClick={handleMenuClose}>הוספה ע"י סריקה</MenuItem>
+      <MenuItem onClick={handleMenuClose}>הוספה ידנית</MenuItem>
+    </Menu>
+  );
 
   const renderMobileMenu = (
     <Menu
       anchorEl={mobileMoreAnchorEl}
       anchorOrigin={{
-        vertical: "top",
+        vertical: "bottom",
         horizontal: "right",
       }}
       id={mobileMenuId}
@@ -218,7 +250,7 @@ export default function MiniDrawer(pro) {
             <AccountBalanceWalletOutlinedIcon />
           </Badge>
         </IconButton>
-        <p>wallet</p>
+        <p>ארנק</p>
       </MenuItem>
 
       <MenuItem onClick={handleProfileMenuOpen}>
@@ -273,7 +305,20 @@ export default function MiniDrawer(pro) {
           )}
 
           <Box sx={{ flexGrow: 1 }} />
+
           <Box sx={{ display: { xs: "none", md: "flex" } }}>
+            <IconButton
+              size="large"
+              edge="end"
+              aria-label="account of current user"
+              aria-controls={menuId}
+              aria-haspopup="true"
+              onClick={handleAddRedundMenuOpen}
+              color="inherit"
+            >
+              <AddRoundedIcon />
+            </IconButton>
+
             <IconButton size="large" color="inherit">
               <Badge badgeContent={4} color="error">
                 <AccountBalanceWalletOutlinedIcon />
@@ -290,6 +335,19 @@ export default function MiniDrawer(pro) {
               color="inherit"
             >
               <AccountCircle />
+            </IconButton>
+          </Box>
+          {/* //mobile add redund menu */}
+          <Box sx={{ display: { xs: "flex", md: "none" } }}>
+            <IconButton
+              size="large"
+              aria-label="show more"
+              aria-controls={mobileMenuId}
+              aria-haspopup="true"
+              onClick={handleAddRedundMenuOpen}
+              color="inherit"
+            >
+              <AddRoundedIcon size="large" />
             </IconButton>
           </Box>
           <Box sx={{ display: { xs: "flex", md: "none" } }}>
@@ -378,9 +436,10 @@ export default function MiniDrawer(pro) {
           ))}
         </List>
       </Drawer>
-
       {renderMobileMenu}
       {renderMenu}
+      {renderAddRefundMenu}
+
       <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
         <DrawerHeader />
       </Box>

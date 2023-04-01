@@ -9,11 +9,13 @@ const Dashboard = () => {
   const sum = seriesData.reduce((total, num) => total + num, 0);
 
   const theme = useTheme();
-  const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
-  console.log(isMobile);
+  const isMobileMs = useMediaQuery(theme.breakpoints.down("sm"));
+  // const isMobileLg = useMediaQuery(theme.breakpoints.up("lg"));
+
+  // console.log(isMobileLg);
   return (
     <div>
-      {isMobile ? (
+      {isMobileMs ? (
         <Chart
           type="donut"
           series={seriesData}

@@ -1,20 +1,20 @@
 import React, { useEffect, useState } from "react";
-import Link from "@mui/material/Link";
 import { Redirect } from "react-router-dom";
 import Dashboard from "../components/dashboard/Dashboard";
 import Navbar from "../components/Navbar";
 import AddRefundButton from "../components/dashboard/AddRefundButton";
-import { Button } from "@mui/material";
-import Card from "../components/dashboard/Card";
+import Card from "../components/dashboard/InteractiveCard";
 import zaraImg from "../images/zaraLogo.png";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import { styled, alpha, useTheme } from "@mui/material/styles";
+import Divider from "@mui/material/Divider";
+import OverflowCard from "../components/dashboard/InteractiveCard";
 
 function Home() {
   const [name, setName] = useState(null);
   const [redirect, setRedirect] = React.useState(false);
-
-
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
   const logOut = async () => {
     await fetch("http://localhost:8000/api/logout", {
       method: "POST",
@@ -56,8 +56,16 @@ function Home() {
               Logout
             </Button>
           </Link> */}
-
-          <Dashboard />
+          {/* <Dashboard /> */}
+          {/* {isMobile ? (
+            <Divider
+              variant="middle"
+              orientation="horizontal"
+              sx={{ height: "20px" }}
+            />
+          ) : (
+            "פה נכנס מסך רגיל"
+          )} */}
         </div>
       )}
     </div>
