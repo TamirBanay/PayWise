@@ -2,6 +2,8 @@ import React from "react";
 import Chart from "react-apexcharts";
 import { useTheme } from "@mui/material/styles";
 import useMediaQuery from "@mui/material/useMediaQuery";
+import dashbord from "./dashbord.css";
+import Divider from "@mui/joy/Divider";
 
 const Dashboard = () => {
   const seriesData = [20, 43, 50, 54];
@@ -14,72 +16,146 @@ const Dashboard = () => {
   return (
     <div>
       {isMobileMs ? (
-        <Chart
-          type="donut"
-          series={seriesData}
-          options={{
-            labels: [
-              "מזון וצריכה",
-              "ביגוד והנעלה",
-              "חשמל ואלקטרוניקה",
-              "שונות",
-            ],
-            title: {
-              style: {
-                fontSize: "18px",
-                fontWeight: "bold",
-                // fontFamily: "Helvetica, Arial, sans-serif",
-                color: "#263238",
-              },
-              align: "center",
-              text: sum + " :סכום הזיכויים שלך",
-            },
-
-            responsive: [
-              {
-                breakpoint: 480,
-                options: {
-                  chart: {
-                    width: 350,
-                    height: 300,
+        /* if its mobile */
+        <div>
+          {isMobileMs ? (
+            <Chart
+              type="donut"
+              series={seriesData}
+              options={{
+                labels: [
+                  "מזון וצריכה",
+                  "ביגוד והנעלה",
+                  "חשמל ואלקטרוניקה",
+                  "שונות",
+                ],
+                title: {
+                  style: {
+                    fontSize: "18px",
+                    fontWeight: "bold",
+                    color: "#263238",
                   },
-                  legend: {
-                    position: "bottom",
-                  },
+                  align: "center",
+                  text: sum + " :סכום הזיכויים שלך",
                 },
-              },
-            ],
-            noData: { text: "Empty wallet" },
-          }}
-        />
+
+                responsive: [
+                  {
+                    breakpoint: 480,
+                    options: {
+                      chart: {
+                        width: 350,
+                        height: 300,
+                      },
+                      legend: {
+                        position: "bottom",
+                      },
+                    },
+                  },
+                ],
+                noData: { text: "Empty wallet" },
+              }}
+            />
+          ) : (
+            <Chart
+              type="donut"
+              height={350}
+              series={seriesData}
+              options={{
+                labels: [
+                  "מזון וצריכה ",
+                  "ביגוד והנעלה",
+                  "חשמל ואלקטרוניקה",
+                  "שונות",
+                ],
+                title: {
+                  style: {
+                    fontSize: "20px",
+                    fontWeight: "bold",
+                    // fontFamily: undefined,
+                    color: "#263238",
+                  },
+                  align: "center",
+                  text: sum + " :סכום הזיכויים שלך",
+                },
+                legend: {
+                  position: "bottom",
+                },
+                noData: { text: "Empty wallet" },
+              }}
+            />
+          )}
+        </div>
       ) : (
-        <Chart
-          type="donut"
-          height={350}
-          series={seriesData}
-          options={{
-            labels: [
-              "מזון וצריכה ",
-              "ביגוד והנעלה",
-              "חשמל ואלקטרוניקה",
-              "שונות",
-            ],
-            title: {
-              style: {
-                fontSize: "20px",
-                fontWeight: "bold",
-                // fontFamily: undefined,
-                color: "#263238",
-              },
-              align: "center",
-              text: sum + " :סכום הזיכויים שלך",
-            },
-            legend: {
-              position: "bottom",
-            },
-            noData: { text: "Empty wallet" },
-          }}
-        />
+        /* if its normal screen */
+        <div className="main-container">
+          {isMobileMs ? (
+            <Chart
+              type="donut"
+              series={seriesData}
+              options={{
+                labels: [
+                  "מזון וצריכה",
+                  "ביגוד והנעלה",
+                  "חשמל ואלקטרוניקה",
+                  "שונות",
+                ],
+                title: {
+                  style: {
+                    fontSize: "18px",
+                    fontWeight: "bold",
+                    color: "#263238",
+                  },
+                  align: "center",
+                  text: sum + " :סכום הזיכויים שלך",
+                },
+
+                responsive: [
+                  {
+                    breakpoint: 480,
+                    options: {
+                      chart: {
+                        width: 350,
+                        height: 300,
+                      },
+                      legend: {
+                        position: "bottom",
+                      },
+                    },
+                  },
+                ],
+                noData: { text: "Empty wallet" },
+              }}
+            />
+          ) : (
+            <Chart
+              type="pie"
+              height={450}
+              series={seriesData}
+              options={{
+                labels: [
+                  "מזון וצריכה ",
+                  "ביגוד והנעלה",
+                  "חשמל ואלקטרוניקה",
+                  "שונות",
+                ],
+                title: {
+                  style: {
+                    fontSize: "30px",
+                    fontWeight: "bold",
+                    color: "#263238",
+                  },
+                  align: "center",
+                  text: sum + " :סכום הזיכויים שלך",
+                },
+                legend: {
+                  position: "bottom",
+                },
+                noData: { text: "Empty wallet" },
+              }}
+            />
+          )}
+        </div>
       )}
     </div>
   );

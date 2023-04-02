@@ -3,22 +3,29 @@ import AspectRatio from "@mui/joy/AspectRatio";
 import Box from "@mui/joy/Box";
 import Typography from "@mui/joy/Typography";
 import Card from "@mui/joy/Card";
+import zaraLogo from "../../images/zaraLogo.png";
+import ACELogo from "../../images/ACELogo.jpg";
+import pAndBLogo from "../../images/pAndBLogo.jpg";
+// import { height } from "@mui/system";
 
 const data = [
   {
-    src: "https://images.unsplash.com/photo-1502657877623-f66bf489d236",
-    title: "Night view",
-    description: "4.21M views",
+    src: zaraLogo,
+    title: "ZARA",
+    description: "200$",
+    dueDate: "29.4.23",
   },
   {
-    src: "https://images.unsplash.com/photo-1527549993586-dff825b37782",
-    title: "Lake view",
-    description: "4.74M views",
+    src: ACELogo,
+    title: "ACE",
+    description: "70$",
+    dueDate: "20.5.23",
   },
   {
-    src: "https://images.unsplash.com/photo-1532614338840-ab30cf10ed36",
-    title: "Mountain view",
-    description: "3.98M views",
+    src: pAndBLogo,
+    title: "PULL&BEAR",
+    description: "120$",
+    dueDate: "15.6.23",
   },
 ];
 
@@ -48,8 +55,18 @@ export default function CarouselRatio() {
             "--Card-padding": (theme) => theme.spacing(2),
           }}
         >
-          <AspectRatio ratio="1" sx={{ minWidth: 60 }}>
+          <AspectRatio
+            ratio="1"
+            sx={{
+              minWidth: 60,
+            }}
+          >
             <img
+              style={{
+                width: "100%",
+                height: "75%",
+                // objectFit: "cover",
+              }}
               src={`${item.src}?h=120&fit=crop&auto=format`}
               srcSet={`${item.src}?h=120&fit=crop&auto=format&dpr=2 2x`}
               alt={item.title}
@@ -57,7 +74,8 @@ export default function CarouselRatio() {
           </AspectRatio>
           <Box sx={{ whiteSpace: "nowrap" }}>
             <Typography fontWeight="md">{item.title}</Typography>
-            <Typography level="body2">{item.description}</Typography>
+            <Typography level="body2">{item.dueDate}</Typography>
+            <Typography level="body1">{item.description}</Typography>
           </Box>
         </Card>
       ))}
