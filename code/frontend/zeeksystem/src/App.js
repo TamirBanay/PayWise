@@ -7,6 +7,7 @@ import Registration from "./pages/Registration";
 import ComponentLibery from "./pages/ComponentLibery";
 import Login from "./pages/Login";
 import Profile from "./pages/Profile";
+import Search from "./pages/Search";
 
 function App() {
   return (
@@ -26,6 +27,9 @@ function App() {
         </Route>
         <Route path="/profile">
           <Profile />
+        </Route>
+        <Route path="/Search">
+          <Search />
         </Route>
         <Route path="*">
           <NoPage />

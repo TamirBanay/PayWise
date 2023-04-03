@@ -34,6 +34,7 @@ import useMediaQuery from "@mui/material/useMediaQuery";
 import AddRoundedIcon from "@mui/icons-material/AddRounded";
 import payWiseLogo from "../images/payWiseLogo.png";
 import Link from "@mui/material/Link";
+import SearchPage from "../pages/Search";
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
@@ -274,7 +275,7 @@ export default function MiniDrawer(pro) {
   return (
     <Box sx={{ direction: "rtl" }}>
       <CssBaseline />
-      {/* responsiv logo- when use mobile and menu open more icons icon is deleted  */}
+      {/* responsiv logo - when use mobile and menu open more icons icon is deleted  */}
       {isMobile & open ? (
         <AppBar position="relative" open={open}>
           <Toolbar>
@@ -471,65 +472,132 @@ export default function MiniDrawer(pro) {
           </IconButton>
         </DrawerHeader>
         <Divider />
-        <List>
-          {[
-            "בית",
-            "פרופיל",
-            "חיפוש",
-            "הארנק שלי",
-            "הגדרות",
-            "ארכיון קופונים",
-          ].map((text, index) => (
-            <ListItem key={text} disablePadding sx={{ display: "block" }}>
-              <ListItemButton
-                sx={{
-                  minHeight: 48,
-                  justifyContent: open ? "initial" : "center",
-                  px: 2.5,
-                  direction: "ltr",
-                  "& .MuiListItemIcon-root": {
-                    minWidth: 0,
-                    mr: open ? 3 : "auto",
-                    ml: open ? "auto" : 1,
-                    justifyContent: "center",
-                  },
-                  "& .MuiListItemText-root": {
-                    textAlign: "right",
-                    opacity: open ? 1 : 0,
-                  },
-                }}
-              >
-                <ListItemIcon
+        {/* if its mobile no search icon in the Drawer */}
+        {isMobile ? (
+          <List>
+            {[
+              "בית",
+              "פרופיל",
+              "חיפוש",
+              "הארנק שלי",
+              "הגדרות",
+              "ארכיון קופונים",
+            ].map((text, index) => (
+              <ListItem key={text} disablePadding sx={{ display: "block" }}>
+                <ListItemButton
                   sx={{
-                    minWidth: 0,
-                    mr: open ? 3 : "auto",
-                    justifyContent: "center",
+                    minHeight: 48,
+                    justifyContent: open ? "initial" : "center",
+                    px: 2.5,
+                    direction: "ltr",
+                    "& .MuiListItemIcon-root": {
+                      minWidth: 0,
+                      mr: open ? 3 : "auto",
+                      ml: open ? "auto" : 1,
+                      justifyContent: "center",
+                    },
+                    "& .MuiListItemText-root": {
+                      textAlign: "right",
+                      opacity: open ? 1 : 0,
+                    },
                   }}
                 >
-                  {index === 0 ? (
-                    <NavLink to="/">
-                      <HomeIcon />
-                    </NavLink>
-                  ) : (
-                    ""
-                  )}
-                  {index === 1 ? (
-                    <NavLink to="/profile">
-                      <Person2Icon />
-                    </NavLink>
-                  ) : (
-                    ""
-                  )}
-                  {index === 2 ? <SearchIcon /> : ""}
-                  {index === 3 ? <AccountBalanceWalletIcon /> : ""}
-                  {index === 4 ? <SettingsIcon /> : ""}
-                  {index === 5 ? <MailIcon /> : ""}
-                </ListItemIcon>
-                <ListItemText primary={text} sx={{ opacity: open ? 1 : 0 }} />
-              </ListItemButton>
-            </ListItem>
-          ))}
-        </List>
+                  <ListItemIcon
+                    sx={{
+                      minWidth: 0,
+                      mr: open ? 3 : "auto",
+                      justifyContent: "center",
+                    }}
+                  >
+                    {index === 0 ? (
+                      <NavLink to="/">
+                        <HomeIcon />
+                      </NavLink>
+                    ) : (
+                      ""
+                    )}
+                    {index === 1 ? (
+                      <NavLink to="/profile">
+                        <Person2Icon />
+                      </NavLink>
+                    ) : (
+                      ""
+                    )}
+                    {index === 2 ? (
+                      <NavLink to="/Search">
+                        <SearchIcon />
+                      </NavLink>
+                    ) : (
+                      ""
+                    )}
+                    {index === 3 ? <AccountBalanceWalletIcon /> : ""}
+                    {index === 4 ? <SettingsIcon /> : ""}
+                    {index === 5 ? <MailIcon /> : ""}
+                  </ListItemIcon>
+                  <ListItemText primary={text} sx={{ opacity: open ? 1 : 0 }} />
+                </ListItemButton>
+              </ListItem>
+            ))}
+          </List>
+        ) : (
+          <List>
+            {["בית", "פרופיל", "הארנק שלי", "הגדרות", "ארכיון קופונים"].map(
+              (text, index) => (
+                <ListItem key={text} disablePadding sx={{ display: "block" }}>
+                  <ListItemButton
+                    sx={{
+                      minHeight: 48,
+                      justifyContent: open ? "initial" : "center",
+                      px: 2.5,
+                      direction: "ltr",
+                      "& .MuiListItemIcon-root": {
+                        minWidth: 0,
+                        mr: open ? 3 : "auto",
+                        ml: open ? "auto" : 1,
+                        justifyContent: "center",
+                      },
+                      "& .MuiListItemText-root": {
+                        textAlign: "right",
+                        opacity: open ? 1 : 0,
+                      },
+                    }}
+                  >
+                    <ListItemIcon
+                      sx={{
+                        minWidth: 0,
+                        mr: open ? 3 : "auto",
+                        justifyContent: "center",
+                      }}
+                    >
+                      {index === 0 ? (
+                        <NavLink to="/">
+                          <HomeIcon />
+                        </NavLink>
+                      ) : (
+                        ""
+                      )}
+                      {index === 1 ? (
+                        <NavLink to="/profile">
+                          <Person2Icon />
+                        </NavLink>
+                      ) : (
+                        ""
+                      )}
+
+                      {index === 2 ? <AccountBalanceWalletIcon /> : ""}
+                      {index === 3 ? <SettingsIcon /> : ""}
+                      {index === 4 ? <MailIcon /> : ""}
+                    </ListItemIcon>
+                    <ListItemText
+                      primary={text}
+                      sx={{ opacity: open ? 1 : 0 }}
+                    />
+                  </ListItemButton>
+                </ListItem>
+              )
+            )}
+          </List>
+        )}
       </Drawer>
       {renderMobileMenu}
       {renderMenu}
