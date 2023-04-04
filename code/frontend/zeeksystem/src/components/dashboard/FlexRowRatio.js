@@ -63,9 +63,7 @@ export default function CarouselRatio() {
           >
             <img
               style={{
-                width: "100%",
-                height: "75%",
-                // objectFit: "cover",
+                objectFit: "fill",
               }}
               src={`${item.src}?h=120&fit=crop&auto=format`}
               srcSet={`${item.src}?h=120&fit=crop&auto=format&dpr=2 2x`}
