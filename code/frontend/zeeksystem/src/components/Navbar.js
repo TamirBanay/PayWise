@@ -215,7 +215,7 @@ export default function MiniDrawer(pro) {
       keepMounted
       transformOrigin={{
         vertical: "top",
-        horizontal: "lfet",
+        horizontal: "left",
       }}
       open={isMenuOpen}
       onClose={handleMenuClose}
@@ -239,7 +239,7 @@ export default function MiniDrawer(pro) {
       keepMounted
       transformOrigin={{
         vertical: "top",
-        horizontal: "lfet",
+        horizontal: "left",
       }}
       open={AddRefundisMenuOpen}
       onClose={handleAddRefundMenuClose}

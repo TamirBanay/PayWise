@@ -3,6 +3,9 @@ import { Redirect } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import { useTheme } from "@mui/material/styles";
+import FlexRowRatio from "../components/dashboard/FlexRowRatio";
+import Dashboard from "../components/dashboard/Dashboard";
+import Divider from "@mui/joy/Divider";
 
 function Home() {
   const [name, setName] = useState(null);
@@ -44,22 +47,20 @@ function Home() {
       ) : (
         <div>
           <Navbar />
-          {/* <h1>Home</h1> */}
-          {/* <Link href="/login" variant="body2">
-            <Button variant="contained" onClick={logOut}>
-              Logout
-            </Button>
-          </Link> */}
-          {/* <Dashboard /> */}
-          {/* {isMobile ? (
-            <Divider
-              variant="middle"
-              orientation="horizontal"
-              sx={{ height: "20px" }}
-            />
+          <Dashboard />
+          <p></p>
+          {isMobile ? (
+            /* if its mobile */
+            <div>
+              <Divider orientation="horizontal">זיכויים קרובים</Divider>
+              <p></p>
+
+              <FlexRowRatio />
+            </div>
           ) : (
-            "פה נכנס מסך רגיל"
-          )} */}
+            /* if its normal screen */
+            ""
+          )}
         </div>
       )}
     </div>
