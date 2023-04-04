@@ -35,6 +35,23 @@ import AddRoundedIcon from "@mui/icons-material/AddRounded";
 import payWiseLogo from "../images/payWiseLogo.png";
 import Link from "@mui/material/Link";
 import SearchPage from "../pages/Search";
+import { createTheme } from "@mui/material/styles";
+
+const theme = createTheme({
+  status: {
+    danger: "#e53e3e",
+  },
+  palette: {
+    primary: {
+      main: "#0971f1",
+      darker: "#053e85",
+    },
+    neutral: {
+      main: "#64748B",
+      contrastText: "#fff",
+    },
+  },
+});
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
@@ -273,7 +290,7 @@ export default function MiniDrawer(pro) {
   );
 
   return (
-    <Box sx={{ direction: "rtl" }}>
+    <Box sx={{ direction: "rtl", height: 100 }}>
       <CssBaseline />
       {/* responsiv logo - when use mobile and menu open more icons icon is deleted  */}
       {isMobile & open ? (
@@ -531,7 +548,14 @@ export default function MiniDrawer(pro) {
                       ""
                     )}
                     {index === 3 ? <AccountBalanceWalletIcon /> : ""}
-                    {index === 4 ? <SettingsIcon /> : ""}
+
+                    {index === 4 ? (
+                      <NavLink to="/settings">
+                        <SettingsIcon />
+                      </NavLink>
+                    ) : (
+                      ""
+                    )}
                     {index === 5 ? <MailIcon /> : ""}
                   </ListItemIcon>
                   <ListItemText primary={text} sx={{ opacity: open ? 1 : 0 }} />
@@ -585,7 +609,16 @@ export default function MiniDrawer(pro) {
                       )}
 
                       {index === 2 ? <AccountBalanceWalletIcon /> : ""}
-                      {index === 3 ? <SettingsIcon /> : ""}
+
+                      {index === 3 ? (
+                        <NavLink to="/settings">
+                          {" "}
+                          <SettingsIcon />{" "}
+                        </NavLink>
+                      ) : (
+                        ""
+                      )}
+
                       {index === 4 ? <MailIcon /> : ""}
                     </ListItemIcon>
                     <ListItemText

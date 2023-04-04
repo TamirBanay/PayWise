@@ -8,6 +8,7 @@ import ComponentLibery from "./pages/ComponentLibery";
 import Login from "./pages/Login";
 import Profile from "./pages/Profile";
 import Search from "./pages/Search";
+import Settings from "./pages/Setting";
 
 function App() {
   return (
@@ -30,6 +31,9 @@ function App() {
         </Route>
         <Route path="/Search">
           <Search />
+        </Route>
+        <Route path="/settings">
+          <Settings />
         </Route>
         <Route path="*">
           <NoPage />
