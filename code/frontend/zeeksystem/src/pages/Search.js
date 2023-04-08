@@ -15,7 +15,7 @@ function Search() {
   return (
     <div>
       <Navbar />
-      {/* <Tags /> */}
+      <Tags />
     </div>
   );
 }
