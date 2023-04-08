@@ -36,7 +36,10 @@ import payWiseLogo from "../images/payWiseLogo.png";
 import Link from "@mui/material/Link";
 import SearchPage from "../pages/Search";
 import { createTheme } from "@mui/material/styles";
-
+// import MenuIcon from '@mui/icons-material/Menu';
+// import SearchIcon from '@mui/icons-material/Search';
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+// and so on...s
 const theme = createTheme({
   status: {
     danger: "#e53e3e",

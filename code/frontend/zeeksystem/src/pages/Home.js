@@ -5,13 +5,14 @@ import useMediaQuery from "@mui/material/useMediaQuery";
 import { useTheme } from "@mui/material/styles";
 import FlexRowRatio from "../components/dashboard/FlexRowRatio";
 import Dashboard from "../components/dashboard/Dashboard";
-import Divider from "@mui/joy/Divider";
+import Divider from "@mui/material/Divider";
 
 function Home() {
   const [name, setName] = useState(null);
-  const [redirect, setRedirect] = React.useState(false);
+  const [redirect, setRedirect] = useState(false);
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
+
   const logOut = async () => {
     await fetch("http://localhost:8000/api/logout", {
       method: "POST",
@@ -19,22 +20,30 @@ function Home() {
       credentials: "include",
     });
 
-    return <Redirect to="/login" />;
+    setRedirect(true);
   };
+
   useEffect(() => {
-    (async () => {
-      const response = await fetch("http://localhost:8000/api/user", {
-        headers: { "Content-Type": "application/json" },
-        credentials: "include",
-      });
-      const content = await response.json();
-      setName(content.name);
-      console.log();
-      if (content.detail == "Unauthenticated!") {
-        setRedirect(true);
+    const fetchUserData = async () => {
+      try {
+        const response = await fetch("http://localhost:8000/api/user", {
+          headers: { "Content-Type": "application/json" },
+          credentials: "include",
+        });
+
+        if (response.ok) {
+          const content = await response.json();
+          setName(content.name);
+        } else {
+          setRedirect(true);
+        }
+      } catch (error) {
+        console.error("Failed to fetch user data:", error);
       }
-    })();
-  });
+    };
+
+    fetchUserData();
+  }, []);
 
   if (redirect) {
     return <Redirect to="/login" />;
@@ -42,26 +51,17 @@ function Home() {
 
   return (
     <div>
-      {redirect ? (
-        <></>
-      ) : (
+      <Navbar />
+      <Dashboard />
+      <p></p>
+      {isMobile ? (
         <div>
-          <Navbar />
-          <Dashboard />
+          <Divider orientation="horizontal">זיכויים קרובים</Divider>
           <p></p>
-          {isMobile ? (
-            /* if its mobile */
-            <div>
-              <Divider orientation="horizontal">זיכויים קרובים</Divider>
-              <p></p>
-
-              <FlexRowRatio />
-            </div>
-          ) : (
-            /* if its normal screen */
-            ""
-          )}
+          <FlexRowRatio />
         </div>
+      ) : (
+        ""
       )}
     </div>
   );
