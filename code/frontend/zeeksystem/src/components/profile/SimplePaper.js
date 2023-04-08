@@ -17,7 +17,7 @@ export default function SimplePaper() {
         "& > :not(style)": {
           m: 1,
           width: isMobile ? "80%" : "90%",
-          height: 150,
+          height: isMobile ? 150 : 170,
           marginLeft: isMobile ? "13px" : "40px",
           marginTop: isMobile ? "-13px" : "-20px",
         },
@@ -26,7 +26,7 @@ export default function SimplePaper() {
       <Paper
         elevation={6}
         sx={{
-          backgroundColor: "#E7BC4C",
+          background: "linear-gradient(135deg, #426FEB, #E7BC4C)",
         }}
       />
     </Box>

@@ -479,8 +479,8 @@ export default function MiniDrawer(pro) {
       )}
 
       <Drawer anchor="right" variant="permanent" open={open}>
-        <DrawerHeader>
-          <IconButton onClick={handleDrawerClose}>
+        <DrawerHeader onClick={handleDrawerClose}>
+          <IconButton>
             {theme.direction === "ltr" ? (
               <ChevronRightIcon />
             ) : (

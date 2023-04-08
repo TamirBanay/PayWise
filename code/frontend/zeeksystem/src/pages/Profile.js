@@ -7,10 +7,11 @@ import ProfilePic from "../images/ProfilePic.png";
 import Typography from "@mui/material/Typography";
 import TabsIcon from "../components/profile/TabsIcon";
 import TabsIconWithText from "../components/profile/TabsIconWithText";
+import barcode from "../images/barcode.png";
 function Profile() {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
-  
+
   return (
     <div>
       <Navbar />
@@ -22,9 +23,18 @@ function Profile() {
           alignItems: "center",
           height: "200px",
           marginTop: "-115px",
-          marginLeft: isMobile ? "-30px" : "",
+          marginLeft: isMobile ? "-30px" : "1100px",
         }}
       >
+        <img
+          src={barcode}
+          style={{
+            width: isMobile ? "" : "350px",
+            height: "250px",
+            position: "fixed",
+            marginBottom: "100px",
+          }}
+        />
         <img
           src={ProfilePic}
           style={{
@@ -32,10 +42,16 @@ function Profile() {
             height: isMobile ? "120px" : "150px",
             borderRadius: "50%",
             border: "3px solid white",
+            position: "absolute",
           }}
         />
       </div>
-      <div style={{ marginLeft: isMobile ? "-35px" : "", marginTop: "-10px" }}>
+      <div
+        style={{
+          marginLeft: isMobile ? "-35px" : "1100px",
+          marginTop: "-10px",
+        }}
+      >
         <Typography
           align="center"
           variant="inherit"

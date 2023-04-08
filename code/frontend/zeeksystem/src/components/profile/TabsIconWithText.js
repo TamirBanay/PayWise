@@ -38,7 +38,7 @@ export default function TabsIconWithText() {
           mb: 2,
           borderRadius: "lg",
           width: "50%",
-          marginLeft: "350px",
+          marginLeft: "600px",
           marginTop: "15px",
           direction: "rtl",
         }}
