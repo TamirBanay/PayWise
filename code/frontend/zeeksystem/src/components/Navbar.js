@@ -29,17 +29,14 @@ import HomeIcon from "@mui/icons-material/Home";
 import Person2Icon from "@mui/icons-material/Person2";
 import AccountBalanceWalletIcon from "@mui/icons-material/AccountBalanceWallet";
 import SettingsIcon from "@mui/icons-material/Settings";
-import { BrowserRouter as Router, NavLink } from "react-router-dom";
+import { BrowserRouter as NavLink } from "react-router-dom";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import AddRoundedIcon from "@mui/icons-material/AddRounded";
 import payWiseLogo from "../images/payWiseLogo.png";
 import Link from "@mui/material/Link";
 import SearchPage from "../pages/Search";
 import { createTheme } from "@mui/material/styles";
-// import MenuIcon from '@mui/icons-material/Menu';
-// import SearchIcon from '@mui/icons-material/Search';
-import AccountCircleIcon from "@mui/icons-material/AccountCircle";
-// and so on...s
+
 const theme = createTheme({
   status: {
     danger: "#e53e3e",
@@ -445,7 +442,7 @@ export default function MiniDrawer(pro) {
                 <AccountCircle />
               </IconButton>
             </Box>
-            {/* //mobile add refund menu */}
+            {/* //mobile add redund menu */}
             <Box sx={{ display: { xs: "flex", md: "none" } }}>
               <IconButton
                 size="large"
@@ -530,44 +527,44 @@ export default function MiniDrawer(pro) {
                     }}
                   >
                     {index === 0 ? (
-                      <Link to="/" color="#234761">
+                      <Link href="/" color="#234761">
                         <HomeIcon />
                       </Link>
                     ) : (
                       ""
                     )}
                     {index === 1 ? (
-                      <Link to="/profile" color="#234761">
+                      <Link href="/profile" color="#234761">
                         <Person2Icon />
                       </Link>
                     ) : (
                       ""
                     )}
                     {index === 2 ? (
-                      <Link to="/Search" color="#234761">
+                      <Link href="/search" color="#234761">
                         <SearchIcon />
                       </Link>
                     ) : (
                       ""
                     )}
                     {index === 3 ? (
-                      <Link to="/Search" color="#234761">
-                        <AccountBalanceWalletIcon />{" "}
+                      <Link href="/" color="#234761">
+                        <AccountBalanceWalletIcon />
                       </Link>
                     ) : (
                       ""
                     )}
 
                     {index === 4 ? (
-                      <Link to="/settings" color="#234761">
+                      <Link href="/settings" color="#234761">
                         <SettingsIcon />
                       </Link>
                     ) : (
                       ""
                     )}
                     {index === 5 ? (
-                      <Link to="/settings" color="#234761">
-                        <MailIcon />{" "}
+                      <Link href="/settings" color="#234761">
+                        <MailIcon />
                       </Link>
                     ) : (
                       ""
@@ -609,32 +606,42 @@ export default function MiniDrawer(pro) {
                       }}
                     >
                       {index === 0 ? (
-                        <NavLink to="/">
+                        <Link href="/" color="#234761">
                           <HomeIcon />
-                        </NavLink>
+                        </Link>
                       ) : (
                         ""
                       )}
                       {index === 1 ? (
-                        <NavLink to="/profile">
+                        <Link href="/profile" color="#234761">
                           <Person2Icon />
-                        </NavLink>
+                        </Link>
                       ) : (
                         ""
                       )}
 
-                      {index === 2 ? <AccountBalanceWalletIcon /> : ""}
+                      {index === 2 ? (
+                        <Link href="/" color="#234761">
+                          <AccountBalanceWalletIcon />
+                        </Link>
+                      ) : (
+                        ""
+                      )}
 
                       {index === 3 ? (
-                        <NavLink to="/settings">
-                          {" "}
-                          <SettingsIcon />{" "}
-                        </NavLink>
+                        <Link href="/settings" color="#234761">
+                          <SettingsIcon />
+                        </Link>
                       ) : (
                         ""
                       )}
-
-                      {index === 4 ? <MailIcon /> : ""}
+                      {index === 4 ? (
+                        <Link href="/settings" color="#234761">
+                          <MailIcon />
+                        </Link>
+                      ) : (
+                        ""
+                      )}
                     </ListItemIcon>
                     <ListItemText
                       primary={text}
