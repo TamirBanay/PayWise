@@ -1,6 +1,6 @@
 import React from "react";
 import zaraImg from "../images/zaraLogo.png";
-import Dashboard from "../components/dashboard/Dashboard";
+import Dashboard from "../components/dashboard/ChartPie";
 import AddRefundButton from "../components/dashboard/AddRefundButton";
 import FlexRowRatio from "../components/dashboard/FlexRowRatio";
 import Navbar from "../components/Navbar";

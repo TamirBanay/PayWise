@@ -4,7 +4,7 @@ import Navbar from "../components/Navbar";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import { useTheme } from "@mui/material/styles";
 import FlexRowRatio from "../components/dashboard/FlexRowRatio";
-import Dashboard from "../components/dashboard/Dashboard";
+import ChartPie from "../components/dashboard/ChartPie";
 import Divider from "@mui/material/Divider";
 
 function Home() {
@@ -52,7 +52,7 @@ function Home() {
   return (
     <div>
       <Navbar />
-      <Dashboard />
+      <ChartPie />
       <p></p>
       {isMobile ? (
         <div>

@@ -1,11 +1,9 @@
 import React from "react";
-import zaraImg from "../images/zaraLogo.png";
-import Dashboard from "../components/dashboard/Dashboard";
-import AddRefundButton from "../components/dashboard/AddRefundButton";
+import ChartPie from "../components/dashboard/ChartPie";
 import FlexRowRatio from "../components/dashboard/FlexRowRatio";
 import Navbar from "../components/Navbar";
 import Divider from "@mui/joy/Divider";
-import { styled, alpha, useTheme } from "@mui/material/styles";
+import { useTheme } from "@mui/material/styles";
 import useMediaQuery from "@mui/material/useMediaQuery";
 
 function ComponentLibery() {
@@ -14,7 +12,7 @@ function ComponentLibery() {
   return (
     <div>
       <Navbar />
-      <Dashboard />
+      <ChartPie />
       <p></p>
       {isMobile ? (
         /* if its mobile */

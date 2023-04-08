@@ -45,7 +45,7 @@ export default function FlexRowRatio() {
         gap: 5,
         width: 270,
         borderRadius: "sm",
-        marginLeft: pathname == "/" ? "30px" : "15px",
+        marginLeft: pathname == "/" ? "30px" : "",
       }}
     >
       <List sx={{ py: "var(--ListDivider-gap)" }}>

@@ -3,12 +3,32 @@ import Tabs from "@mui/joy/Tabs";
 import TabList from "@mui/joy/TabList";
 import Tab from "@mui/joy/Tab";
 import ListItemDecorator from "@mui/joy/ListItemDecorator";
-
+import FlexRowRatio from "../dashboard/FlexRowRatio";
 import PersonPinIcon from "@mui/icons-material/PersonPin";
 import AccountBalanceWalletIcon from "@mui/icons-material/AccountBalanceWallet";
 import StarRateIcon from "@mui/icons-material/StarRate";
 export default function TabsIconWithText() {
-    
+  const [openPersonalDetails, setOpenPersonalDetails] = React.useState(false);
+  const [openfavorite, setOpenfavorite] = React.useState(false);
+  const [openWallet, setOpenWallet] = React.useState(true);
+
+  const handleopenWallet = () => {
+    setOpenWallet(!openWallet);
+    setOpenfavorite(false);
+    setOpenPersonalDetails(false);
+  };
+
+  const handleOpenfavorite = () => {
+    setOpenfavorite(!openfavorite);
+    setOpenWallet(false);
+    setOpenPersonalDetails(false);
+  };
+
+  const handleOpenPersonalDetails = () => {
+    setOpenPersonalDetails(!openPersonalDetails);
+    setOpenWallet(false);
+    setOpenfavorite(false);
+  };
   return (
     <div>
       <Tabs
@@ -20,28 +40,38 @@ export default function TabsIconWithText() {
           width: "50%",
           marginLeft: "350px",
           marginTop: "15px",
+          direction: "rtl",
         }}
       >
         <TabList>
-          <Tab>
+          <Tab onClick={handleopenWallet}>
             <ListItemDecorator>
               <AccountBalanceWalletIcon color="warning" />
             </ListItemDecorator>
-            My refunds
+            הזיכויים שלי
           </Tab>
-          <Tab>
+          <Tab onClick={handleOpenfavorite}>
             <ListItemDecorator>
               <StarRateIcon color="warning" />
             </ListItemDecorator>
-            Favorite
+            מועדפים
           </Tab>
-          <Tab>
+          <Tab onClick={handleOpenPersonalDetails}>
             <ListItemDecorator>
               <PersonPinIcon color="warning" />
             </ListItemDecorator>
-            Personal details
+            פרטים אישיים
           </Tab>
         </TabList>
+        {openPersonalDetails ? "שמי תמיר בנאי  " : ""}
+        {openfavorite ? "המועדפים שלי" : ""}
+        {openWallet ? (
+          <div style={{ marginTop: "10px" }}>
+            <FlexRowRatio />
+          </div>
+        ) : (
+          ""
+        )}
       </Tabs>
     </div>
   );

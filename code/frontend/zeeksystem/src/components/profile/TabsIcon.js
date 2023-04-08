@@ -10,7 +10,7 @@ import FlexRowRatio from "../dashboard/FlexRowRatio";
 export default function TabsIcon() {
   const [openPersonalDetails, setOpenPersonalDetails] = React.useState(false);
   const [openfavorite, setOpenfavorite] = React.useState(false);
-  const [openWallet, setOpenWallet] = React.useState(true);
+  const [openWallet, setOpenWallet] = React.useState(false);
 
   const handleopenWallet = () => {
     setOpenWallet(!openWallet);
@@ -41,7 +41,7 @@ export default function TabsIcon() {
       <Tabs
         aria-label="Icon tabs"
         defaultValue={0}
-        sx={{ borderRadius: "lg", width: "300px" }}
+        sx={{ borderRadius: "lg", width: "300px", direction: "rtl" }}
       >
         <TabList>
           <Tab>
@@ -55,7 +55,7 @@ export default function TabsIcon() {
             <PersonPinIcon />
           </Tab>
         </TabList>
-        {openPersonalDetails ? "שמי תמיר בנאי  " : ""}
+        {openPersonalDetails ? "הפרטים שלי" : ""}
         {openfavorite ? "המועדפים שלי" : ""}
         {openWallet ? (
           <div style={{ marginTop: "10px" }}>
