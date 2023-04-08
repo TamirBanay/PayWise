@@ -38,7 +38,7 @@ import SearchPage from "../pages/Search";
 import { createTheme } from "@mui/material/styles";
 // import MenuIcon from '@mui/icons-material/Menu';
 // import SearchIcon from '@mui/icons-material/Search';
-import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 // and so on...s
 const theme = createTheme({
   status: {
@@ -270,7 +270,7 @@ export default function MiniDrawer(pro) {
     >
       <MenuItem>
         <IconButton size="large" aria-label="show 4 new mails" color="inherit">
-          <Badge badgeContent={4} color="error">
+          <Badge badgeContent={5} color="error">
             <AccountBalanceWalletOutlinedIcon />
           </Badge>
         </IconButton>
@@ -342,7 +342,7 @@ export default function MiniDrawer(pro) {
               </IconButton>
 
               <IconButton size="large" color="inherit">
-                <Badge badgeContent={4} color="error">
+                <Badge badgeContent={5} color="error">
                   <AccountBalanceWalletOutlinedIcon />
                 </Badge>
               </IconButton>
@@ -445,7 +445,7 @@ export default function MiniDrawer(pro) {
                 <AccountCircle />
               </IconButton>
             </Box>
-            {/* //mobile add redund menu */}
+            {/* //mobile add refund menu */}
             <Box sx={{ display: { xs: "flex", md: "none" } }}>
               <IconButton
                 size="large"
@@ -530,36 +530,48 @@ export default function MiniDrawer(pro) {
                     }}
                   >
                     {index === 0 ? (
-                      <NavLink to="/">
+                      <Link to="/" color="#234761">
                         <HomeIcon />
-                      </NavLink>
+                      </Link>
                     ) : (
                       ""
                     )}
                     {index === 1 ? (
-                      <NavLink to="/profile">
+                      <Link to="/profile" color="#234761">
                         <Person2Icon />
-                      </NavLink>
+                      </Link>
                     ) : (
                       ""
                     )}
                     {index === 2 ? (
-                      <NavLink to="/Search">
+                      <Link to="/Search" color="#234761">
                         <SearchIcon />
-                      </NavLink>
+                      </Link>
                     ) : (
                       ""
                     )}
-                    {index === 3 ? <AccountBalanceWalletIcon /> : ""}
+                    {index === 3 ? (
+                      <Link to="/Search" color="#234761">
+                        <AccountBalanceWalletIcon />{" "}
+                      </Link>
+                    ) : (
+                      ""
+                    )}
 
                     {index === 4 ? (
-                      <NavLink to="/settings">
+                      <Link to="/settings" color="#234761">
                         <SettingsIcon />
-                      </NavLink>
+                      </Link>
                     ) : (
                       ""
                     )}
-                    {index === 5 ? <MailIcon /> : ""}
+                    {index === 5 ? (
+                      <Link to="/settings" color="#234761">
+                        <MailIcon />{" "}
+                      </Link>
+                    ) : (
+                      ""
+                    )}
                   </ListItemIcon>
                   <ListItemText primary={text} sx={{ opacity: open ? 1 : 0 }} />
                 </ListItemButton>
