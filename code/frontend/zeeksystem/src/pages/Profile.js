@@ -10,8 +10,7 @@ import TabsIconWithText from "../components/profile/TabsIconWithText";
 function Profile() {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
-  const [openPersonalDetails, setOpenPersonalDetails] = React.useState(false);
-
+  
   return (
     <div>
       <Navbar />

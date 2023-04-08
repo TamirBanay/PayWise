@@ -1,12 +1,16 @@
 import * as React from "react";
 import AspectRatio from "@mui/joy/AspectRatio";
-import Box from "@mui/joy/Box";
 import Typography from "@mui/joy/Typography";
-import Card from "@mui/joy/Card";
+import Sheet from "@mui/joy/Sheet";
+import List from "@mui/joy/List";
+import ListDivider from "@mui/joy/ListDivider";
+import ListItem from "@mui/joy/ListItem";
+import ListItemContent from "@mui/joy/ListItemContent";
+import ListItemButton from "@mui/joy/ListItemButton";
 import zaraLogo from "../../images/zaraLogo.png";
 import ACELogo from "../../images/ACELogo.jpg";
 import pAndBLogo from "../../images/pAndBLogo.jpg";
-// import { height } from "@mui/system";
+import { useLocation } from "react-router-dom";
 
 const data = [
   {
@@ -29,54 +33,46 @@ const data = [
   },
 ];
 
-export default function CarouselRatio() {
+export default function FlexRowRatio() {
+  const location = useLocation();
+  const { pathname, search, hash } = location;
   return (
-    <Box
+    <Sheet
+      variant="outlined"
       sx={{
         display: "flex",
-        gap: 1,
-        py: 1,
-        overflow: "auto",
-        width: 343,
-        scrollSnapType: "x mandatory",
-        "& > *": {
-          scrollSnapAlign: "center",
-        },
-        "::-webkit-scrollbar": { display: "none" },
+        flexDirection: "column",
+        gap: 5,
+        width: 270,
+        borderRadius: "sm",
+        marginLeft: pathname == "/" ? "30px" : "15px",
       }}
     >
-      {data.map((item) => (
-        <Card
-          orientation="horizontal"
-          key={item.title}
-          variant="outlined"
-          sx={{
-            gap: 2,
-            "--Card-padding": (theme) => theme.spacing(2),
-          }}
-        >
-          <AspectRatio
-            ratio="1"
-            sx={{
-              minWidth: 60,
-            }}
-          >
-            <img
-              style={{
-                objectFit: "fill",
-              }}
-              src={`${item.src}?h=120&fit=crop&auto=format`}
-              srcSet={`${item.src}?h=120&fit=crop&auto=format&dpr=2 2x`}
-              alt={item.title}
-            />
-          </AspectRatio>
-          <Box sx={{ whiteSpace: "nowrap" }}>
-            <Typography fontWeight="md">{item.title}</Typography>
-            <Typography level="body2">{item.dueDate}</Typography>
-            <Typography level="body1">{item.description}</Typography>
-          </Box>
-        </Card>
-      ))}
-    </Box>
+      <List sx={{ py: "var(--ListDivider-gap)" }}>
+        {data.map((item, index) => (
+          <React.Fragment key={item.title}>
+            <ListItem>
+              <ListItemButton sx={{ gap: 2 }}>
+                <AspectRatio
+                  sx={{ flexBasis: 120, borderRadius: "sm", overflow: "auto" }}
+                >
+                  <img
+                    src={`${item.src}?w=120&fit=crop&auto=format`}
+                    srcSet={`${item.src}?w=120&fit=crop&auto=format&dpr=2 2x`}
+                    alt={item.title}
+                  />
+                </AspectRatio>
+                <ListItemContent>
+                  <Typography fontWeight="md">{item.title}</Typography>
+                  <Typography level="body2">{item.description}</Typography>
+                  <Typography level="body2">{item.dueDate}</Typography>
+                </ListItemContent>
+              </ListItemButton>
+            </ListItem>
+            {index !== data.length - 1 && <ListDivider />}
+          </React.Fragment>
+        ))}
+      </List>
+    </Sheet>
   );
 }

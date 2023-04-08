@@ -5,8 +5,31 @@ import Tab from "@mui/joy/Tab";
 import AccountBalanceWalletIcon from "@mui/icons-material/AccountBalanceWallet";
 import StarRateIcon from "@mui/icons-material/StarRate";
 import PersonPinIcon from "@mui/icons-material/PersonPin";
+import FlexRowRatio from "../dashboard/FlexRowRatio";
 
 export default function TabsIcon() {
+  const [openPersonalDetails, setOpenPersonalDetails] = React.useState(false);
+  const [openfavorite, setOpenfavorite] = React.useState(false);
+  const [openWallet, setOpenWallet] = React.useState(true);
+
+  const handleopenWallet = () => {
+    setOpenWallet(!openWallet);
+    setOpenfavorite(false);
+    setOpenPersonalDetails(false);
+  };
+
+  const handleOpenfavorite = () => {
+    setOpenfavorite(!openfavorite);
+    setOpenWallet(false);
+    setOpenPersonalDetails(false);
+  };
+
+  const handleOpenPersonalDetails = () => {
+    setOpenPersonalDetails(!openPersonalDetails);
+    setOpenWallet(false);
+    setOpenfavorite(false);
+  };
+
   return (
     <div
       style={{
@@ -22,15 +45,25 @@ export default function TabsIcon() {
       >
         <TabList>
           <Tab>
-            <AccountBalanceWalletIcon />
+            <AccountBalanceWalletIcon onClick={handleopenWallet} />
           </Tab>
           <Tab>
-            <StarRateIcon />
+            <StarRateIcon onClick={handleOpenfavorite} />
           </Tab>
-          <Tab>
+
+          <Tab onClick={handleOpenPersonalDetails}>
             <PersonPinIcon />
           </Tab>
         </TabList>
+        {openPersonalDetails ? "שמי תמיר בנאי  " : ""}
+        {openfavorite ? "המועדפים שלי" : ""}
+        {openWallet ? (
+          <div style={{ marginTop: "10px" }}>
+            <FlexRowRatio />
+          </div>
+        ) : (
+          ""
+        )}
       </Tabs>
     </div>
   );
