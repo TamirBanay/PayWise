@@ -51,7 +51,7 @@ function Home() {
 
   return (
     <div>
-      <Navbar />
+      <Navbar logOut={logOut} />
       <ChartPie />
       <p></p>
       {isMobile ? (

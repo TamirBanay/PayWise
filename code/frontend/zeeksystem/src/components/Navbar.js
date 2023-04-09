@@ -34,8 +34,9 @@ import useMediaQuery from "@mui/material/useMediaQuery";
 import AddRoundedIcon from "@mui/icons-material/AddRounded";
 import payWiseLogo from "../images/payWiseLogo.png";
 import Link from "@mui/material/Link";
-import SearchPage from "../pages/Search";
 import { createTheme } from "@mui/material/styles";
+import FormPropsTextFields from "./scans/FormPropsTextFields";
+// import PopperPopupState from "./scans/PopperPopupState";
 
 const theme = createTheme({
   status: {
@@ -159,7 +160,7 @@ const Drawer = styled(MuiDrawer, {
   }),
 }));
 
-export default function MiniDrawer(pro) {
+export default function MiniDrawer(props) {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
   const [open, setOpen] = React.useState(false);
@@ -170,8 +171,13 @@ export default function MiniDrawer(pro) {
   const mobileMenuId = "primary-search-account-menu-mobile";
   const isMenuOpen = Boolean(anchorEl);
   const AddRefundisMenuOpen = Boolean(anchorAddRedundMenu);
-
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
+  const [openInsertMenuallyScan, setOpenInsertMenuallyScan] =
+    React.useState(false);
+  console.log(openInsertMenuallyScan);
+  const handleopenInsertMenuallyScan = () => {
+    setOpenInsertMenuallyScan(!openInsertMenuallyScan);
+  };
 
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -203,7 +209,6 @@ export default function MiniDrawer(pro) {
   const handleAddRefundMenuClose = () => {
     setAnchorAddRedundMenu(null);
   };
-
   const renderMenu = (
     <Menu
       anchorEl={anchorEl}
@@ -223,7 +228,7 @@ export default function MiniDrawer(pro) {
       <NavLink to="/profile">
         <MenuItem onClick={handleMenuClose}>פרופיל</MenuItem>
       </NavLink>
-      <MenuItem onClick={handleMenuClose}>התנתקות</MenuItem>
+      <MenuItem onClick={(handleMenuClose, props.logOut)}>התנתקות</MenuItem>
       <MenuItem onClick={handleMenuClose}>החשבון שלי </MenuItem>
     </Menu>
   );
@@ -245,7 +250,9 @@ export default function MiniDrawer(pro) {
       onClose={handleAddRefundMenuClose}
     >
       <MenuItem onClick={handleMenuClose}>הוספה ע"י סריקה</MenuItem>
-      <MenuItem onClick={handleMenuClose}>הוספה ידנית</MenuItem>
+      <MenuItem onClick={(handleMenuClose, handleopenInsertMenuallyScan)}>
+        הוספה ידנית
+      </MenuItem>
     </Menu>
   );
 
@@ -284,7 +291,7 @@ export default function MiniDrawer(pro) {
         >
           <AccountCircle />
         </IconButton>
-        <p>פרופיל</p>
+        <p onClick={props.logOut}>פרופיל</p>
       </MenuItem>
     </Menu>
   );
@@ -657,6 +664,7 @@ export default function MiniDrawer(pro) {
       {renderMobileMenu}
       {renderMenu}
       {renderAddRefundMenu}
+      {openInsertMenuallyScan ? <PopperPopupState /> : "סגור"}
 
       <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
         <DrawerHeader />

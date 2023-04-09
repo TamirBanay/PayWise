@@ -10,7 +10,7 @@ import FlexRowRatio from "../dashboard/FlexRowRatio";
 export default function TabsIcon() {
   const [openPersonalDetails, setOpenPersonalDetails] = React.useState(false);
   const [openfavorite, setOpenfavorite] = React.useState(false);
-  const [openWallet, setOpenWallet] = React.useState(false);
+  const [openWallet, setOpenWallet] = React.useState(true);
 
   const handleopenWallet = () => {
     setOpenWallet(!openWallet);

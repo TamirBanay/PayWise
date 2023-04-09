@@ -26,7 +26,7 @@ export default function SimplePaper() {
       <Paper
         elevation={6}
         sx={{
-          background: "linear-gradient(135deg, #426FEB, #E7BC4C)",
+          background: "#E7BC4C",
         }}
       />
     </Box>
