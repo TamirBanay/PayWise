@@ -11,15 +11,12 @@ export default function PopperPopupState() {
     <PopupState variant="popper" popupId="demo-popup-popper">
       {(popupState) => (
         <div>
-          <Button variant="contained" {...bindToggle(popupState)}>
-            Toggle Popper
-          </Button>
           <Popper {...bindPopper(popupState)} transition>
-            {({ TransitionProps }) => (
-              <Fade {...TransitionProps} timeout={350}>
-                <Paper>{/* <FormPropsTextFields /> */}</Paper>
-              </Fade>
-            )}
+            <Fade {...TransitionProps} timeout={350}>
+              <Paper>
+                <FormPropsTextFields />
+              </Paper>
+            </Fade>
           </Popper>
         </div>
       )}

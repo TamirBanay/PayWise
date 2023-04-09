@@ -11,6 +11,7 @@ import zaraLogo from "../../images/zaraLogo.png";
 import ACELogo from "../../images/ACELogo.jpg";
 import pAndBLogo from "../../images/pAndBLogo.jpg";
 import { useLocation } from "react-router-dom";
+import FavoriteIcon from "@mui/icons-material/Favorite";
 
 const data = [
   {
@@ -33,17 +34,29 @@ const data = [
   },
 ];
 
-export default function FlexRowRatio() {
+export default function FlexRowRatio(props) {
   const location = useLocation();
-  const { pathname, search, hash } = location;
+  const { pathname } = location;
+  const [selectedCardData, setSelectedCardData] = React.useState([]);
+
+  const handleToggleFavorite = (index) => {
+    if (selectedCardData.includes(data[index])) {
+      setSelectedCardData(
+        selectedCardData.filter((item) => item !== data[index])
+      );
+    } else {
+      setSelectedCardData([...selectedCardData, data[index]]);
+    }
+  };
   return (
     <Sheet
       variant="outlined"
       sx={{
+        direction: "rtl",
         display: "flex",
         flexDirection: "column",
         gap: 5,
-        width: 270,
+        width: props.width,
         borderRadius: "sm",
         marginLeft: pathname == "/" ? "30px" : "",
       }}
@@ -62,13 +75,22 @@ export default function FlexRowRatio() {
                     alt={item.title}
                   />
                 </AspectRatio>
+
                 <ListItemContent>
                   <Typography fontWeight="md">{item.title}</Typography>
                   <Typography level="body2">{item.description}</Typography>
                   <Typography level="body2">{item.dueDate}</Typography>
                 </ListItemContent>
               </ListItemButton>
+              <FavoriteIcon
+                sx={{ position: "fixed", marginRight: "220px" }}
+                onClick={() => handleToggleFavorite(index)}
+                color={
+                  selectedCardData.includes(data[index]) ? "error" : "inherit"
+                }
+              />
             </ListItem>
+
             {index !== data.length - 1 && <ListDivider />}
           </React.Fragment>
         ))}

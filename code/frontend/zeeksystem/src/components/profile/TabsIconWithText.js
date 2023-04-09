@@ -67,7 +67,7 @@ export default function TabsIconWithText() {
         {openfavorite ? "המועדפים שלי" : ""}
         {openWallet ? (
           <div style={{ marginTop: "10px" }}>
-            <FlexRowRatio />
+            <FlexRowRatio width="283px" />
           </div>
         ) : (
           ""

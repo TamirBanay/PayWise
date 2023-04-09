@@ -36,8 +36,6 @@ import payWiseLogo from "../images/payWiseLogo.png";
 import Link from "@mui/material/Link";
 import { createTheme } from "@mui/material/styles";
 import FormPropsTextFields from "./scans/FormPropsTextFields";
-// import PopperPopupState from "./scans/PopperPopupState";
-
 const theme = createTheme({
   status: {
     danger: "#e53e3e",
@@ -172,12 +170,6 @@ export default function MiniDrawer(props) {
   const isMenuOpen = Boolean(anchorEl);
   const AddRefundisMenuOpen = Boolean(anchorAddRedundMenu);
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
-  const [openInsertMenuallyScan, setOpenInsertMenuallyScan] =
-    React.useState(false);
-  console.log(openInsertMenuallyScan);
-  const handleopenInsertMenuallyScan = () => {
-    setOpenInsertMenuallyScan(!openInsertMenuallyScan);
-  };
 
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -232,6 +224,7 @@ export default function MiniDrawer(props) {
       <MenuItem onClick={handleMenuClose}>החשבון שלי </MenuItem>
     </Menu>
   );
+
   //add refund menu rander plus button
   const renderAddRefundMenu = (
     <Menu
@@ -250,9 +243,7 @@ export default function MiniDrawer(props) {
       onClose={handleAddRefundMenuClose}
     >
       <MenuItem onClick={handleMenuClose}>הוספה ע"י סריקה</MenuItem>
-      <MenuItem onClick={(handleMenuClose, handleopenInsertMenuallyScan)}>
-        הוספה ידנית
-      </MenuItem>
+      <MenuItem onClick={handleMenuClose}>הוספה ידנית</MenuItem>
     </Menu>
   );
 
@@ -664,7 +655,6 @@ export default function MiniDrawer(props) {
       {renderMobileMenu}
       {renderMenu}
       {renderAddRefundMenu}
-      {openInsertMenuallyScan ? <PopperPopupState /> : "סגור"}
 
       <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
         <DrawerHeader />

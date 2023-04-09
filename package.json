@@ -6,6 +6,7 @@
     "@mui/icons-material": "^5.11.16",
     "@mui/joy": "^5.0.0-alpha.73",
     "apexcharts": "^3.37.2",
+    "material-ui-popup-state": "^5.0.8",
     "react-apexcharts": "^1.4.0",
     "react-minimal-pie-chart": "^8.4.0",
     "react-router-dom": "^5.3.4",

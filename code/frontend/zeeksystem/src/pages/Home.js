@@ -58,7 +58,7 @@ function Home() {
         <div>
           <Divider orientation="horizontal">זיכויים קרובים</Divider>
           <p></p>
-          <FlexRowRatio />
+          <FlexRowRatio width="270px" />
         </div>
       ) : (
         ""
