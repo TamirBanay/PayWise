@@ -83,7 +83,11 @@ export default function FlexRowRatio(props) {
                 </ListItemContent>
               </ListItemButton>
               <FavoriteIcon
-                sx={{ position: "fixed", marginRight: "220px" }}
+                sx={{
+                  position: "fixed",
+                  marginRight:
+                    location.pathname == "/profile" ? "240px" : "220px",
+                }}
                 onClick={() => handleToggleFavorite(index)}
                 color={
                   selectedCardData.includes(data[index]) ? "error" : "inherit"

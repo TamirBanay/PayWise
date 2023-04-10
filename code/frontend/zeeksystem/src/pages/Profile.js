@@ -8,6 +8,7 @@ import Typography from "@mui/material/Typography";
 import TabsIcon from "../components/profile/TabsIcon";
 import TabsIconWithText from "../components/profile/TabsIconWithText";
 import barcode from "../images/barcode.png";
+import israel from "../images/israel.png";
 function Profile() {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
@@ -49,7 +50,7 @@ function Profile() {
       <div
         style={{
           marginLeft: isMobile ? "-35px" : "1100px",
-          marginTop: "-10px",
+          marginTop: "-20px",
         }}
       >
         <Typography
@@ -60,7 +61,12 @@ function Profile() {
           @tamo
         </Typography>
         <Typography align="center" variant="h5">
-          תמיר בנאי
+          {"  "} תמיר בנאי
+        </Typography>
+        <Typography align="center" variant="inherit">
+          {" "}
+          <img src={israel} style={{ width: "20px" }} />
+          {" Tel-Aviv, Israel "}
         </Typography>
       </div>
       {isMobile ? <TabsIcon /> : <TabsIconWithText />}

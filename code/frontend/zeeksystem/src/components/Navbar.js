@@ -399,7 +399,9 @@ export default function MiniDrawer(props) {
             ) : (
               <Search>
                 <SearchIconWrapper>
-                  <SearchIcon />
+                  <Link href="/Search" color="#fff">
+                    <SearchIcon />
+                  </Link>
                 </SearchIconWrapper>
                 <StyledInputBase
                   sx={{ marginRight: 4.5 }}
