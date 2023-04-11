@@ -527,28 +527,28 @@ export default function MiniDrawer(props) {
                     }}
                   >
                     {index === 0 ? (
-                      <Link href="/" color="#234761">
+                      <Link href="/" color="#1C74BC">
                         <HomeIcon />
                       </Link>
                     ) : (
                       ""
                     )}
                     {index === 1 ? (
-                      <Link href="/profile" color="#234761">
+                      <Link href="/profile" color="#1C74BC">
                         <Person2Icon />
                       </Link>
                     ) : (
                       ""
                     )}
                     {index === 2 ? (
-                      <Link href="/search" color="#234761">
+                      <Link href="/search" color="#1C74BC">
                         <SearchIcon />
                       </Link>
                     ) : (
                       ""
                     )}
                     {index === 3 ? (
-                      <Link href="/" color="#234761">
+                      <Link href="/" color="#1C74BC">
                         <AccountBalanceWalletIcon />
                       </Link>
                     ) : (
@@ -556,14 +556,14 @@ export default function MiniDrawer(props) {
                     )}
 
                     {index === 4 ? (
-                      <Link href="/settings" color="#234761">
+                      <Link href="/settings" color="#1C74BC">
                         <SettingsIcon />
                       </Link>
                     ) : (
                       ""
                     )}
                     {index === 5 ? (
-                      <Link href="/settings" color="#234761">
+                      <Link href="/settings" color="#1C74BC">
                         <MailIcon />
                       </Link>
                     ) : (
@@ -606,14 +606,14 @@ export default function MiniDrawer(props) {
                       }}
                     >
                       {index === 0 ? (
-                        <Link href="/" color="#234761">
+                        <Link href="/" color="#1C74BC">
                           <HomeIcon />
                         </Link>
                       ) : (
                         ""
                       )}
                       {index === 1 ? (
-                        <Link href="/profile" color="#234761">
+                        <Link href="/profile" color="#1C74BC">
                           <Person2Icon />
                         </Link>
                       ) : (
@@ -621,7 +621,7 @@ export default function MiniDrawer(props) {
                       )}
 
                       {index === 2 ? (
-                        <Link href="/" color="#234761">
+                        <Link href="/" color="#1C74BC">
                           <AccountBalanceWalletIcon />
                         </Link>
                       ) : (
@@ -629,14 +629,14 @@ export default function MiniDrawer(props) {
                       )}
 
                       {index === 3 ? (
-                        <Link href="/settings" color="#234761">
+                        <Link href="/settings" color="#1C74BC">
                           <SettingsIcon />
                         </Link>
                       ) : (
                         ""
                       )}
                       {index === 4 ? (
-                        <Link href="/settings" color="#234761">
+                        <Link href="/settings" color="#1C74BC">
                           <MailIcon />
                         </Link>
                       ) : (

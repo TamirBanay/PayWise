@@ -12,6 +12,9 @@ import ACELogo from "../../images/ACELogo.jpg";
 import pAndBLogo from "../../images/pAndBLogo.jpg";
 import { useLocation } from "react-router-dom";
 import FavoriteIcon from "@mui/icons-material/Favorite";
+import LanguageSharpIcon from "@mui/icons-material/LanguageSharp";
+import { useTheme } from "@mui/material/styles";
+import useMediaQuery from "@mui/material/useMediaQuery";
 
 const data = [
   {
@@ -19,22 +22,27 @@ const data = [
     title: "ZARA",
     description: "200$",
     dueDate: "29.4.23",
+    link: "https://www.zara.com/il/",
   },
   {
     src: ACELogo,
     title: "ACE",
     description: "70$",
     dueDate: "20.5.23",
+    link: "https://www.ace.co.il/",
   },
   {
     src: pAndBLogo,
     title: "PULL&BEAR",
     description: "120$",
     dueDate: "15.6.23",
+    link: "https://www.pullandbear.com/il/",
   },
 ];
 
 export default function FlexRowRatio(props) {
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
   const location = useLocation();
   const { pathname } = location;
   const [selectedCardData, setSelectedCardData] = React.useState([]);
@@ -65,9 +73,24 @@ export default function FlexRowRatio(props) {
         {data.map((item, index) => (
           <React.Fragment key={item.title}>
             <ListItem>
-              <ListItemButton sx={{ gap: 2 }}>
+              <ListItemButton
+                sx={{
+                  gap: 2,
+                  "&:hover": isMobile
+                    ? ""
+                    : {
+                        background: "rgba(0, 0, 0, 0.1)", // Update the background color
+                        borderRadius: "sm", // Update the border radius
+                        transform: "scale(1.05) translateX(-15px)", // Update the transform property
+                      },
+                }}
+              >
                 <AspectRatio
-                  sx={{ flexBasis: 120, borderRadius: "sm", overflow: "auto" }}
+                  sx={{
+                    flexBasis: 120,
+                    borderRadius: "sm",
+                    overflow: "auto",
+                  }}
                 >
                   <img
                     src={`${item.src}?w=120&fit=crop&auto=format`}
@@ -85,14 +108,31 @@ export default function FlexRowRatio(props) {
               <FavoriteIcon
                 sx={{
                   position: "fixed",
+                  marginBottom: "30px",
                   marginRight:
-                    location.pathname == "/profile" ? "240px" : "220px",
+                    (location.pathname == "/profile") & isMobile
+                      ? "250px"
+                      : (location.pathname == "/profile") & !isMobile
+                      ? "240px"
+                      : "220px",
                 }}
                 onClick={() => handleToggleFavorite(index)}
                 color={
                   selectedCardData.includes(data[index]) ? "error" : "inherit"
                 }
               />
+              <a
+                href={item.link}
+                style={{ textDecoration: "none", color: "inherit" }}
+              >
+                <LanguageSharpIcon
+                  sx={{
+                    position: "relative",
+                    marginTop: "40px",
+                    marginLeft: isMobile ? "" : "10px",
+                  }}
+                />
+              </a>
             </ListItem>
 
             {index !== data.length - 1 && <ListDivider />}

@@ -26,7 +26,7 @@ export default function SimplePaper() {
       <Paper
         elevation={6}
         sx={{
-          background: "#E7BC4C",
+          background: "#FAEB46",
         }}
       />
     </Box>

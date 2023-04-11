@@ -17,6 +17,7 @@ function Profile() {
     <div>
       <Navbar />
       <SimplePaper />
+
       <div
         style={{
           display: "flex",
@@ -27,7 +28,7 @@ function Profile() {
           marginLeft: isMobile ? "-30px" : "1100px",
         }}
       >
-        <img
+        {/* <img
           src={barcode}
           style={{
             width: isMobile ? "" : "350px",
@@ -35,7 +36,7 @@ function Profile() {
             position: "fixed",
             marginBottom: "100px",
           }}
-        />
+        /> */}
         <img
           src={ProfilePic}
           style={{
@@ -60,10 +61,14 @@ function Profile() {
         >
           @tamo
         </Typography>
-        <Typography align="center" variant="h5">
+        <Typography align="center" variant="h5" style={{ color: "#23476" }}>
           {"  "} תמיר בנאי
         </Typography>
-        <Typography align="center" variant="inherit">
+        <Typography
+          align="center"
+          variant="inherit"
+          style={{ color: "#23476" }}
+        >
           {" "}
           <img src={israel} style={{ width: "20px" }} />
           {" Tel-Aviv, Israel "}
