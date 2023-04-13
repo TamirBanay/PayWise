@@ -1,4 +1,5 @@
 from django.db import models
+from users.models import Wallet, User
 
 
 class PayWiseUser (models.Model):
@@ -34,13 +35,13 @@ class Store(models.Model):
 
 class Vouchers (models.Model):
     voucherID = models.IntegerField(primary_key=True)
-    # walletID = models.ForeignKey(
-    #     Wallet, on_delete=models.SET_DEFAULT, default="undefined")
+    walletID = models.ForeignKey(
+        Wallet, on_delete=models.CASCADE, default=User.DEFAULT_WALLET_ID)
     voucherCategory = models.ForeignKey(
         VoucherCategory, on_delete=models.SET_DEFAULT, default="undefined")
     storeType = models.ForeignKey(
         StoreType, on_delete=models.SET_DEFAULT, default="undefined")
-    ammount = models.IntegerField()
+    ammount = models.DecimalField(max_digits=10, decimal_places=2)
     dateOfAcquire = models.DateField()
     dateOfExpiry = models.DateField()
     redeemed = models.BooleanField(default=False)

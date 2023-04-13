@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from rest_framework import status
 from rest_framework import generics
+from users.models import Wallet
 from mysite.models import PayWiseUser, VoucherCategory, StoreType, Store, Vouchers, Alerts
 from mysite.serializers import VoucherCategorySerializer, StoreTypeSerializer, StoreSerializer, VouchersSerializer, AlertsSerializer
 from rest_framework.decorators import api_view, renderer_classes
@@ -12,6 +13,22 @@ from .models import TemporaryVoucher
 from .serializers import TemporaryVoucherSerializer
 import jwt
 from django.contrib.auth import get_user_model
+from django.shortcuts import render, redirect
+from .models import Vouchers
+from .forms import VoucherForm
+
+
+def add_voucher(request):
+    if request.method == 'POST':
+        form = VoucherForm(request.user, request.POST)
+        if form.is_valid():
+            voucher = form.save(commit=False)
+            voucher.walletID = form.cleaned_data['walletID']
+            voucher.save()
+            return redirect('voucher_list')
+    else:
+        form = VoucherForm(request.user)
+    return render(request, 'add_voucher.html', {'form': form})
 
 
 def voucher_view(request):

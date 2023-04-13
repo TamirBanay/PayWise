@@ -12,6 +12,7 @@ class User(AbstractUser):
     username = None
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = []
+    DEFAULT_WALLET_ID = 1
 
 
 class Wallet(models.Model):

@@ -35,7 +35,7 @@ import AddRoundedIcon from "@mui/icons-material/AddRounded";
 import payWiseLogo from "../images/payWiseLogo.png";
 import Link from "@mui/material/Link";
 import { createTheme } from "@mui/material/styles";
-import FormPropsTextFields from "./scans/FormPropsTextFields";
+import BasicPopover2 from "./scans/BasicPopover2";
 const theme = createTheme({
   status: {
     danger: "#e53e3e",
@@ -245,13 +245,14 @@ export default function MiniDrawer(props) {
       onClose={handleAddRefundMenuClose}
     >
       <MenuItem onClick={handleMenuClose}>הוספה ע"י סריקה</MenuItem>
-      <MenuItem onClick={handleMenuClose}>הוספה ידנית</MenuItem>
+      <MenuItem onClick={handleMenuClose}>
+        <BasicPopover2 />
+      </MenuItem>
     </Menu>
   );
 
   const renderMobileMenu = (
     <Menu
-      // dir="rtl"
       anchorEl={mobileMoreAnchorEl}
       anchorOrigin={{
         vertical: "bottom",
