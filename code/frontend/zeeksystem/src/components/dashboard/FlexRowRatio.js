@@ -114,7 +114,9 @@ export default function FlexRowRatio(props) {
                       ? "250px"
                       : (location.pathname == "/profile") & !isMobile
                       ? "240px"
-                      : "220px",
+                      : (location.pathname == "/") & isMobile
+                      ? "220px"
+                      : "20px",
                 }}
                 onClick={() => handleToggleFavorite(index)}
                 color={

@@ -203,6 +203,7 @@ export default function MiniDrawer(props) {
   };
   const renderMenu = (
     <Menu
+      dir="rtl"
       anchorEl={anchorEl}
       anchorOrigin={{
         vertical: "bottom",
@@ -228,6 +229,7 @@ export default function MiniDrawer(props) {
   //add refund menu rander plus button
   const renderAddRefundMenu = (
     <Menu
+      dir="rtl"
       anchorEl={anchorAddRedundMenu}
       anchorOrigin={{
         vertical: "bottom",
@@ -249,6 +251,7 @@ export default function MiniDrawer(props) {
 
   const renderMobileMenu = (
     <Menu
+      // dir="rtl"
       anchorEl={mobileMoreAnchorEl}
       anchorOrigin={{
         vertical: "bottom",

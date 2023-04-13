@@ -14,11 +14,20 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path,include
-from mysite import views
+from django.urls import path, include
+from mysite.views import create_temporary_voucher
+from mysite.models import Vouchers
+from . import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('api/get_Vouchers/<int:vocherID>/<int:walletID>',views.get_Vouchers),
-    path('api/',include('users.urls'))
+
+    path('api/', include('users.urls')),
+    # path('api/vouchers/', create_voucher, name='create_voucher'),
+    path('api/create_temporary_voucher/', create_temporary_voucher,
+         name='create_temporary_voucher'),
+    # path('api/create_voucher/', views.create_voucher, name='create_voucher'),
+
+
+
 ]

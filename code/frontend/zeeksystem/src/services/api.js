@@ -19,15 +19,15 @@ $axios.interceptors.response.use(
 );
 
 class getVoucherService {
-  static getVoucher(voucherID, walletID) {
+  static createVoucher(voucherData) {
     return $axios
-      .get(`get_Vouchers/${int}/${int}`)
+      .post("vouchers/", voucherData)
       .then((response) => response.data);
   }
 }
 
 const service = {
-  getVoucher,
+  createVoucher,
 };
 
 export default service;

@@ -33,7 +33,8 @@ function Home() {
 
         if (response.ok) {
           const content = await response.json();
-          setName(content.name);
+          setName(content.first_name);
+          console.log(content);
         } else {
           setRedirect(true);
         }
