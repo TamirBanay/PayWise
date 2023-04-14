@@ -46,10 +46,9 @@ class Vouchers (models.Model):
     voucherCategory = models.CharField(max_length=30, default="undefined")
     storeType = models.CharField(max_length=30, default="undefined")
     ammount = models.DecimalField(max_digits=10, decimal_places=2)
-    # dateOfAcquire = models.DateField(default=local_dt)
-    # dateOfExpiry = models.DateField(default=local_dt)
-    dateOfAcquire = models.CharField(max_length=30, default="undefined")
-    dateOfExpiry = models.CharField(max_length=30, default="undefined")
+    dateOfAcquire = models.DateTimeField(default=local_dt)
+    dateOfExpiry = models.DateTimeField(default=local_dt)
+
     redeemed = models.BooleanField(default=False)
 
 
