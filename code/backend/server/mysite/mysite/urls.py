@@ -15,7 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from mysite.views import create_temporary_voucher
+from mysite.views import CreateVoucherView
 from mysite.models import Vouchers
 from . import views
 
@@ -24,9 +24,9 @@ urlpatterns = [
 
     path('api/', include('users.urls')),
     # path('api/vouchers/', create_voucher, name='create_voucher'),
-    path('api/create_temporary_voucher/', create_temporary_voucher,
-         name='create_temporary_voucher'),
-    # path('api/create_voucher/', views.create_voucher, name='create_voucher'),
+    # path('api/create_temporary_voucher/', create_temporary_voucher,
+    #      name='create_temporary_voucher'),
+    path('api/createVoucher/', CreateVoucherView.as_view()),
 
 
 

@@ -41,7 +41,7 @@ class TemporaryVoucherSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 
-class VouchersSerializer(serializers.ModelSerializer):
+class VoucherSerializer(serializers.ModelSerializer):
     class Meta:
         model = Vouchers
         fields = ['voucherID', 'walletID', 'voucherCategory', 'storeType',

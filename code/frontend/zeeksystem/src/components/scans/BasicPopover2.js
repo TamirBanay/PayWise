@@ -3,7 +3,7 @@ import Popover from "@mui/material/Popover";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import HelperTextAligned from "./HelperTextAligned";
-export default function BasicPopover() {
+export default function BasicPopover(props) {
   const [anchorEl, setAnchorEl] = React.useState(null);
 
   const handleClick = (event) => {
@@ -32,7 +32,7 @@ export default function BasicPopover() {
           horizontal: "left",
         }}
       >
-        <HelperTextAligned />
+        <HelperTextAligned userID={props.userID} />
       </Popover>
     </div>
   );

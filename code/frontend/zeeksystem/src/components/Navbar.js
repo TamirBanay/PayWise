@@ -246,7 +246,7 @@ export default function MiniDrawer(props) {
     >
       <MenuItem onClick={handleMenuClose}>הוספה ע"י סריקה</MenuItem>
       <MenuItem onClick={handleMenuClose}>
-        <BasicPopover2 />
+        <BasicPopover2 userID={props.userID} />
       </MenuItem>
     </Menu>
   );

@@ -10,6 +10,7 @@ import Divider from "@mui/material/Divider";
 function Home() {
   const [name, setName] = useState(null);
   const [redirect, setRedirect] = useState(false);
+  const [userID, setUserId] = useState(null);
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
 
@@ -33,6 +34,7 @@ function Home() {
 
         if (response.ok) {
           const content = await response.json();
+          setUserId(content.id);
           setName(content.first_name);
           console.log(content);
         } else {
@@ -52,7 +54,7 @@ function Home() {
 
   return (
     <div>
-      <Navbar logOut={logOut} />
+      <Navbar logOut={logOut} userID={userID} />
       <ChartPie />
       <p></p>
       {isMobile ? (
