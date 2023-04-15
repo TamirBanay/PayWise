@@ -14,6 +14,14 @@ from django.contrib.auth import get_user_model
 from django.shortcuts import render, redirect
 from .forms import VoucherForm
 from rest_framework.views import APIView
+from django.core import serializers
+from django.http import JsonResponse
+
+
+def get_vouchers(request, walletID):
+    vouchers = Vouchers.objects.filter(walletID=walletID)
+    vouchers_json = serializers.serialize('json', vouchers)
+    return JsonResponse({'vouchers': vouchers_json})
 
 
 class CreateVoucherView(APIView):

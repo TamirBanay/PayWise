@@ -39,9 +39,8 @@ export default function HelperTextAligned(props) {
       }}
     >
       <TextField
-        helperText="הכנס מס סיריאלי "
         id="demo-helper-text-aligned"
-        label="מס סיריאלי"
+        label="הכנס מס סיריאלי"
         onChange={handleChange}
       />
       <Button variant="contained" color="primary" onClick={handleSaveVoucher}>

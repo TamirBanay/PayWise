@@ -44,5 +44,6 @@ class TemporaryVoucherSerializer(serializers.ModelSerializer):
 class VoucherSerializer(serializers.ModelSerializer):
     class Meta:
         model = Vouchers
-        fields = ['voucherID', 'walletID', 'voucherCategory', 'storeType',
-                  'ammount', 'dateOfAcquire', 'dateOfExpiry', 'redeemed']
+        fields = '__all__'
+        # fields = ['voucherID', 'walletID', 'voucherCategory', 'storeType',
+        #           'ammount', 'dateOfAcquire', 'dateOfExpiry', 'redeemed']

@@ -3,12 +3,13 @@ import Tabs from "@mui/joy/Tabs";
 import TabList from "@mui/joy/TabList";
 import Tab from "@mui/joy/Tab";
 import ListItemDecorator from "@mui/joy/ListItemDecorator";
-import FlexRowRatio from "../dashboard/FlexRowRatio";
+// import FlexRowRatio from "../dashboard/FlexRowRatio";
 import PersonPinIcon from "@mui/icons-material/PersonPin";
 import AccountBalanceWalletIcon from "@mui/icons-material/AccountBalanceWallet";
 import StarRateIcon from "@mui/icons-material/StarRate";
 import DataSaverOffIcon from "@mui/icons-material/DataSaverOff";
 import ChartPie from "../dashboard/ChartPie";
+import Voucher from "../dashboard/Voucher";
 export default function TabsIconWithText() {
   const [openPersonalDetails, setOpenPersonalDetails] = React.useState(false);
   const [openfavorite, setOpenfavorite] = React.useState(false);
@@ -87,7 +88,7 @@ export default function TabsIconWithText() {
         {openfavorite ? "המועדפים שלי" : ""}
         {openWallet ? (
           <div style={{ marginTop: "10px" }}>
-            <FlexRowRatio width="300px" />
+            <Voucher  />
           </div>
         ) : (
           ""

@@ -24,20 +24,6 @@ const data = [
     dueDate: "29.4.23",
     link: "https://www.zara.com/il/",
   },
-  {
-    src: ACELogo,
-    title: "ACE",
-    description: "70$",
-    dueDate: "20.5.23",
-    link: "https://www.ace.co.il/",
-  },
-  {
-    src: pAndBLogo,
-    title: "PULL&BEAR",
-    description: "120$",
-    dueDate: "15.6.23",
-    link: "https://www.pullandbear.com/il/",
-  },
 ];
 
 export default function FlexRowRatio(props) {
@@ -101,7 +87,9 @@ export default function FlexRowRatio(props) {
 
                 <ListItemContent>
                   <Typography fontWeight="md">{item.title}</Typography>
-                  <Typography level="body2">{item.description}</Typography>
+                  <Typography level="body2">
+                    {props.voucher.fields.ammount}
+                  </Typography>
                   <Typography level="body2">{item.dueDate}</Typography>
                 </ListItemContent>
               </ListItemButton>

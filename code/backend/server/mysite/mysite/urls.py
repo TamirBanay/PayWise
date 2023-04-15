@@ -21,13 +21,7 @@ from . import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-
     path('api/', include('users.urls')),
-    # path('api/vouchers/', create_voucher, name='create_voucher'),
-    # path('api/create_temporary_voucher/', create_temporary_voucher,
-    #      name='create_temporary_voucher'),
     path('api/createVoucher/', CreateVoucherView.as_view()),
-
-
-
+    path('api/getVouchers/<int:walletID>', views.get_vouchers),
 ]

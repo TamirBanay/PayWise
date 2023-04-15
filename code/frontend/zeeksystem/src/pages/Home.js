@@ -6,14 +6,35 @@ import { useTheme } from "@mui/material/styles";
 import FlexRowRatio from "../components/dashboard/FlexRowRatio";
 import ChartPie from "../components/dashboard/ChartPie";
 import Divider from "@mui/material/Divider";
-
+import Voucher from "../components/dashboard/Voucher";
 function Home() {
+  const [walletID, setWalletID] = useState();
   const [name, setName] = useState(null);
   const [redirect, setRedirect] = useState(false);
-  const [userID, setUserId] = useState(null);
+  const [userID, setUserId] = useState(1000);
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
+  const [vouchers, setVouchers] = useState([]);
 
+  const getVoucher = async () => {
+    try {
+      const response = await fetch(
+        `http://localhost:8000/api/getVouchers/${walletID}`
+      );
+      const data = await response.json();
+      console.log(data);
+
+      const vouchersArray = JSON.parse(data.vouchers);
+      const matchingVouchers = vouchersArray.filter(
+        (voucher) => voucher.fields.walletID === walletID
+      );
+      // console.log(walletID);
+      // console.log(vouchersArray[0].fields.ammount); // an array of voucher objects in JSON format
+      setVouchers(matchingVouchers);
+    } catch (error) {
+      console.error("Error retrieving vouchers:", error);
+    }
+  };
   const logOut = async () => {
     await fetch("http://localhost:8000/api/logout", {
       method: "POST",
@@ -34,7 +55,9 @@ function Home() {
 
         if (response.ok) {
           const content = await response.json();
+
           setUserId(content.id);
+          setWalletID(content.id + 1000); // Update walletID based on fetched user data
           setName(content.first_name);
           console.log(content);
         } else {
@@ -48,10 +71,16 @@ function Home() {
     fetchUserData();
   }, []);
 
+  useEffect(() => {
+    if (walletID) {
+      // Only call getVoucher if walletID is truthy
+      getVoucher();
+    }
+  }, [walletID]); // Add walletID as a dependency
+
   if (redirect) {
     return <Redirect to="/login" />;
   }
-
   return (
     <div>
       <Navbar logOut={logOut} userID={userID} />
@@ -60,8 +89,13 @@ function Home() {
       {isMobile ? (
         <div>
           <Divider orientation="horizontal">זיכויים קרובים</Divider>
+
           <p></p>
-          <FlexRowRatio width="270px" />
+
+          {vouchers.length > 0 &&
+            vouchers.map((voucher) => (
+              <Voucher voucher={voucher.fields} key={voucher.pk} />
+            ))}
         </div>
       ) : (
         ""
