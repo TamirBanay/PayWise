@@ -74,7 +74,7 @@ function Profile() {
           {" Tel-Aviv, Israel "}
         </Typography>
       </div>
-      {isMobile ? <TabsIcon /> : <TabsIconWithText />}
+      {/* {isMobile ? <TabsIcon /> : <TabsIconWithText />} */}
     </div>
   );
 }
