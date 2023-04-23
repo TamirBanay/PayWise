@@ -30,7 +30,7 @@ function Home() {
         `http://localhost:8000/api/getVouchers/${walletID}`
       );
       const data = await response.json();
-      console.log(data);
+      // console.log(data);
 
       const vouchersArray = JSON.parse(data.vouchers);
       const matchingVouchers = vouchersArray.filter(

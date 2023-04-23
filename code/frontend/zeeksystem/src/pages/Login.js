@@ -37,18 +37,29 @@ export default function SignInSide() {
   const handleSubmit = async (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    await fetch("http://localhost:8000/api/login", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      credentials: "include",
-      body: JSON.stringify({
-        email: data.get("email"),
-        password: data.get("password"),
-      }),
-    });
 
-    setRedirect(true);
+    try {
+      const response = await fetch("http://localhost:8000/api/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        credentials: "include",
+        body: JSON.stringify({
+          email: data.get("email"),
+          password: data.get("password"),
+        }),
+      });
+
+      if (response.ok) {
+        setRedirect(true);
+      } else {
+        alert("Incorrect username or password, please try again");
+        throw new Error("Incorrect username or password");
+      }
+    } catch (error) {
+      console.error(error);
+    }
   };
+
   if (redirect) {
     return <Redirect to="/" />;
   }
