@@ -87,11 +87,6 @@ function Home() {
     }
   }, [walletID]); // Add walletID as a dependency
 
-  const test = () => {
-    setTestVouchers(vouchers);
-  };
-  console.log(testVouchers);
-
   if (redirect) {
     return <Redirect to="/login" />;
   }
@@ -114,7 +109,6 @@ function Home() {
       ) : (
         ""
       )}
-      <button onClick={test}>test</button>
     </div>
   );
 }

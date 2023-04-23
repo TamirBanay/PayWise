@@ -15,10 +15,7 @@ function Profile() {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
 
-  const voucherData = useRecoilValue(voucherState);
-  const test = () => {
-    console.log(voucherData);
-  };
+  const voucherData = useRecoilValue(voucherState); // recoile testing voucher data
 
   return (
     <div>
@@ -73,7 +70,6 @@ function Profile() {
         </Typography>
       </div>
       {isMobile ? <TabsIcon /> : <TabsIconWithText />}
-      <button onClick={test}>test</button>
     </div>
   );
 }
