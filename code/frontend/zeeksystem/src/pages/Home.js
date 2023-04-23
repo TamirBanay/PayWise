@@ -7,7 +7,7 @@ import FlexRowRatio from "../components/dashboard/FlexRowRatio";
 import ChartPie from "../components/dashboard/ChartPie";
 import Divider from "@mui/material/Divider";
 import Voucher from "../components/dashboard/Voucher";
-import { voucherState } from "../services/atom";
+import { Vouchers } from "../services/atom";
 import { useRecoilState } from "recoil";
 
 // import React from "react";
@@ -19,11 +19,11 @@ function Home() {
   const [userID, setUserId] = useState(1000);
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
-  const [vouchers, setVouchers] = useState([]);
+  const [vouchers, setVouchers] = useRecoilState(Vouchers);
 
  
   
-  const getVoucher = async () => {
+  const getWallet = async () => {
     try {
       const response = await fetch(
         `http://localhost:8000/api/getVouchers/${walletID}`
@@ -52,48 +52,46 @@ function Home() {
     setRedirect(true);
   };
 
-  useEffect(() => {
-    const fetchUserData = async () => {
-      try {
-        const response = await fetch("http://localhost:8000/api/user", {
-          headers: { "Content-Type": "application/json" },
-          credentials: "include",
-        });
+  const fetchUserData = async () => {
+    try {
+      const response = await fetch("http://localhost:8000/api/user", {
+        headers: { "Content-Type": "application/json" },
+        credentials: "include",
+      });
 
-        if (response.ok) {
-          const content = await response.json();
+      if (response.ok) {
+        const content = await response.json();
 
-          setUserId(content.id);
-          setWalletID(content.id + 1000); // Update walletID based on fetched user data
-          // setName(content.first_name);
-          console.log(content);
-        } else {
-          setRedirect(true);
-        }
-      } catch (error) {
-        console.error("Failed to fetch user data:", error);
+        setUserId(content.id);
+        setWalletID(content.id + 1000); // Update walletID based on fetched user data
+        // setName(content.first_name);
+        console.log(content);
+      } else {
+        setRedirect(true);
       }
-    };
-
+    } catch (error) {
+      console.error("Failed to fetch user data:", error);
+    }
+  };
+  useEffect(() => {
     fetchUserData();
   }, []);
 
-  const [testVouchers, setTestVouchers] = useRecoilState(voucherState);
+  
 
   useEffect(() => {
     if (walletID) {
       // Only call getVoucher if walletID is truthy
-      getVoucher();
-      setTestVouchers(vouchers);
+      getWallet();
     }
   }, [walletID]); // Add walletID as a dependency
-
+  console.log(vouchers);
   if (redirect) {
     return <Redirect to="/login" />;
   }
   return (
     <div>
-      <Navbar logOut={logOut} userID={userID} />
+      <Navbar logOut={logOut} userID={userID} getWallet={getWallet}/>
       <ChartPie />
       <p></p>
       {isMobile ? (
@@ -101,10 +99,9 @@ function Home() {
           <Divider orientation="horizontal">זיכויים קרובים</Divider>
 
           <p></p>
-
           {vouchers.length > 0 &&
             vouchers.map((voucher) => (
-              <Voucher voucher={voucher.fields} key={voucher.pk} vID={voucher.pk} />
+              <Voucher voucher={voucher.fields} key={voucher.pk} vID={voucher.pk} getWallet={getWallet}/>
             ))}
         </div>
       ) : (

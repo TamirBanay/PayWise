@@ -13,6 +13,7 @@ export default function InteractiveCard(props) {
       method: "DELETE",
       headers: { "Content-Type": "application/json" },
     });
+    props.getWallet();
   };
   return (
     <Card

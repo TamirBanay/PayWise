@@ -1,7 +1,7 @@
 import { atom } from "recoil";
 
-export const voucherState = atom({
-  key: "voucherState",
+export const Vouchers = atom({
+  key: "Vouchers",
   default: [],
 });
     

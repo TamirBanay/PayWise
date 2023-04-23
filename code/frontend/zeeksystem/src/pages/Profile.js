@@ -9,13 +9,13 @@ import TabsIcon from "../components/profile/TabsIcon";
 import TabsIconWithText from "../components/profile/TabsIconWithText";
 import israel from "../images/israel.png";
 import { useRecoilValue } from "recoil";
-import { voucherState } from "../services/atom";
+import { Vouchers } from "../services/atom";
 
 function Profile() {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
 
-  const voucherData = useRecoilValue(voucherState); // recoile testing voucher data
+  const voucherData = useRecoilValue(Vouchers); // recoile testing voucher data
 
   return (
     <div>
