@@ -14,13 +14,15 @@ import { useRecoilState } from "recoil";
 
 function Home() {
   const [walletID, setWalletID] = useState();
-  const [name, setName] = useState(null);
+  // const [name, setName] = useRecoilState(first_name);
   const [redirect, setRedirect] = useState(false);
   const [userID, setUserId] = useState(1000);
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
   const [vouchers, setVouchers] = useState([]);
 
+ 
+  
   const getVoucher = async () => {
     try {
       const response = await fetch(
@@ -63,9 +65,8 @@ function Home() {
 
           setUserId(content.id);
           setWalletID(content.id + 1000); // Update walletID based on fetched user data
-          setName(content.first_name);
-
-          // console.log(content);
+          // setName(content.first_name);
+          console.log(content);
         } else {
           setRedirect(true);
         }
@@ -103,7 +104,7 @@ function Home() {
 
           {vouchers.length > 0 &&
             vouchers.map((voucher) => (
-              <Voucher voucher={voucher.fields} key={voucher.pk} />
+              <Voucher voucher={voucher.fields} key={voucher.pk} vID={voucher.pk} />
             ))}
         </div>
       ) : (
