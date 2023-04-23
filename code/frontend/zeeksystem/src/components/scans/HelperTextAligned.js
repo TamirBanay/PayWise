@@ -7,7 +7,6 @@ export default function HelperTextAligned(props) {
   const [sirialNumber, setSirialNumber] = useState();
   const handleSaveVoucher = async (event) => {
     event.preventDefault();
-    console.log(sirialNumber);
     await fetch("http://localhost:8000/api/createVoucher/", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -15,7 +14,7 @@ export default function HelperTextAligned(props) {
         voucherID: sirialNumber,
         walletID: 1000 + props.userID,
         voucherCategory: "Category A",
-        storeType: "Store B",
+        storeType: "Store A",
         ammount: "100",
         redeemed: false,
       }),
