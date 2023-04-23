@@ -35,19 +35,33 @@ export default function SignUp() {
   const handleSubmit = async (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    await fetch("http://localhost:8000/api/register", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        first_name: data.get("firstName"),
-        last_name: data.get("lastName"),
-        email: data.get("email"),
-        password: data.get("password"),
-      }),
-    });
 
-    setRedirect(true);
+    try {
+      const response = await fetch("http://localhost:8000/api/register", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          first_name: data.get("firstName"),
+          last_name: data.get("lastName"),
+          email: data.get("email"),
+          password: data.get("password"),
+        }),
+      });
+
+      if (response.ok) {
+        setRedirect(true);
+      } else if (response.status === 409) {
+        alert("Email already in use");
+        throw new Error("Email already in use");
+      } else {
+        alert("Email already in use");
+        throw new Error("Email already in use, Unable to register user");
+      }
+    } catch (error) {
+      console.error(error);
+    }
   };
+
   if (redirect) {
     return <Redirect to="/login" />;
   }
