@@ -8,12 +8,14 @@ import Typography from "@mui/material/Typography";
 import TabsIcon from "../components/profile/TabsIcon";
 import TabsIconWithText from "../components/profile/TabsIconWithText";
 import israel from "../images/israel.png";
-import { useRecoilValue } from "recoil";
-import { Vouchers } from "../services/atom";
+import { useRecoilValue,useRecoilState } from "recoil";
+import { Vouchers,first_name,last_name } from "../services/atom";
 
 function Profile() {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
+  const [firstName, setFirstName] = useRecoilState(first_name);
+  const [lastName, setLastName] = useRecoilState(last_name);
 
   const voucherData = useRecoilValue(Vouchers); // recoile testing voucher data
 
@@ -57,8 +59,8 @@ function Profile() {
           @tamo
         </Typography>
         <Typography align="center" variant="h5" style={{ color: "#23476" }}>
-          {"  "} תמיר בנאי
-        </Typography>
+          {firstName} {lastName}  
+          </Typography>
         <Typography
           align="center"
           variant="inherit"

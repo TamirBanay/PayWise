@@ -12,6 +12,7 @@ export default function BasicPopover(props) {
 
   const handleClose = () => {
     setAnchorEl(null);
+    props.handleAddRefundMenuClose();
   };
 
   const open = Boolean(anchorEl);
