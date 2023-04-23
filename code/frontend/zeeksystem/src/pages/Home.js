@@ -7,6 +7,11 @@ import FlexRowRatio from "../components/dashboard/FlexRowRatio";
 import ChartPie from "../components/dashboard/ChartPie";
 import Divider from "@mui/material/Divider";
 import Voucher from "../components/dashboard/Voucher";
+import { voucherState } from "../services/atom";
+import { useRecoilState } from "recoil";
+
+// import React from "react";
+
 function Home() {
   const [walletID, setWalletID] = useState();
   const [name, setName] = useState(null);
@@ -59,6 +64,7 @@ function Home() {
           setUserId(content.id);
           setWalletID(content.id + 1000); // Update walletID based on fetched user data
           setName(content.first_name);
+
           // console.log(content);
         } else {
           setRedirect(true);
@@ -71,12 +77,20 @@ function Home() {
     fetchUserData();
   }, []);
 
+  const [testVouchers, setTestVouchers] = useRecoilState(voucherState);
+
   useEffect(() => {
     if (walletID) {
       // Only call getVoucher if walletID is truthy
       getVoucher();
+      setTestVouchers(vouchers);
     }
   }, [walletID]); // Add walletID as a dependency
+
+  const test = () => {
+    setTestVouchers(vouchers);
+  };
+  console.log(testVouchers);
 
   if (redirect) {
     return <Redirect to="/login" />;
@@ -100,6 +114,7 @@ function Home() {
       ) : (
         ""
       )}
+      <button onClick={test}>test</button>
     </div>
   );
 }

@@ -7,11 +7,18 @@ import ProfilePic from "../images/ProfilePic.png";
 import Typography from "@mui/material/Typography";
 import TabsIcon from "../components/profile/TabsIcon";
 import TabsIconWithText from "../components/profile/TabsIconWithText";
-import barcode from "../images/barcode.png";
 import israel from "../images/israel.png";
+import { useRecoilValue } from "recoil";
+import { voucherState } from "../services/atom";
+
 function Profile() {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
+
+  const voucherData = useRecoilValue(voucherState);
+  const test = () => {
+    console.log(voucherData);
+  };
 
   return (
     <div>
@@ -28,15 +35,6 @@ function Profile() {
           marginLeft: isMobile ? "-30px" : "1100px",
         }}
       >
-        {/* <img
-          src={barcode}
-          style={{
-            width: isMobile ? "" : "350px",
-            height: "250px",
-            position: "fixed",
-            marginBottom: "100px",
-          }}
-        /> */}
         <img
           src={ProfilePic}
           style={{
@@ -74,7 +72,8 @@ function Profile() {
           {" Tel-Aviv, Israel "}
         </Typography>
       </div>
-      {/* {isMobile ? <TabsIcon /> : <TabsIconWithText />} */}
+      {isMobile ? <TabsIcon /> : <TabsIconWithText />}
+      <button onClick={test}>test</button>
     </div>
   );
 }

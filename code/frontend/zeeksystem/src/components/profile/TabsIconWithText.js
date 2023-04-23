@@ -88,7 +88,7 @@ export default function TabsIconWithText() {
         {openfavorite ? "המועדפים שלי" : ""}
         {openWallet ? (
           <div style={{ marginTop: "10px" }}>
-            <Voucher  />
+            {/* <Voucher  /> */}
           </div>
         ) : (
           ""
