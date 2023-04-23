@@ -59,7 +59,7 @@ export default function TabsIcon() {
         {openfavorite ? "המועדפים שלי" : ""}
         {openWallet ? (
           <div style={{ marginTop: "10px" }}>
-            <FlexRowRatio key={voucher.pk} voucher={voucher} />
+            {/* <FlexRowRatio key={voucher.pk} voucher={voucher} /> */}
           </div>
         ) : (
           ""

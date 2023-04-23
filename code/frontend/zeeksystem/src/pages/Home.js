@@ -7,11 +7,10 @@ import FlexRowRatio from "../components/dashboard/FlexRowRatio";
 import ChartPie from "../components/dashboard/ChartPie";
 import Divider from "@mui/material/Divider";
 import Voucher from "../components/dashboard/Voucher";
-// import { first_name } from "../services/AppStates";
+import { voucherState } from "../services/atom";
 import { useRecoilState } from "recoil";
 
-
-
+// import React from "react";
 
 function Home() {
   const [walletID, setWalletID] = useState();
@@ -79,10 +78,13 @@ function Home() {
     fetchUserData();
   }, []);
 
+  const [testVouchers, setTestVouchers] = useRecoilState(voucherState);
+
   useEffect(() => {
     if (walletID) {
       // Only call getVoucher if walletID is truthy
       getVoucher();
+      setTestVouchers(vouchers);
     }
   }, [walletID]); // Add walletID as a dependency
 
