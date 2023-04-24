@@ -9,10 +9,12 @@ import Divider from "@mui/material/Divider";
 import Voucher from "../components/dashboard/Voucher";
 import { voucherState } from "../services/atom";
 import { useRecoilState } from "recoil";
+import Paper from "@mui/material/Paper";
+import Popper from "@mui/material/Popper";
+import Fade from "@mui/material/Fade";
+import Popover from "../components/dashboard/Popover";
 
-// import React from "react";
-
-function Home() {
+function Home(props) {
   const [walletID, setWalletID] = useState();
   // const [name, setName] = useRecoilState(first_name);
   const [redirect, setRedirect] = useState(false);
@@ -21,8 +23,8 @@ function Home() {
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
   const [vouchers, setVouchers] = useState([]);
 
- 
-  
+
+
   const getVoucher = async () => {
     try {
       const response = await fetch(
@@ -91,6 +93,12 @@ function Home() {
   if (redirect) {
     return <Redirect to="/login" />;
   }
+
+  const [onClickVoucher, setOnClickVoucher] = useState(true);
+  const handleOpenVoucher = () => {
+    setOnClickVoucher(!onClickVoucher);
+  };
+
   return (
     <div>
       <Navbar logOut={logOut} userID={userID} />
@@ -102,10 +110,17 @@ function Home() {
 
           <p></p>
 
-          {vouchers.length > 0 &&
-            vouchers.map((voucher) => (
-              <Voucher voucher={voucher.fields} key={voucher.pk} vID={voucher.pk} />
-            ))}
+          {onClickVoucher
+            ? vouchers.length > 0 &&
+              vouchers.map((voucher) => (
+                <Popover
+                  voucher={voucher.fields}
+                  key={voucher.pk}
+                  vID={voucher.pk}
+                  openVoucher={handleOpenVoucher}
+                />
+              ))
+            : ""}
         </div>
       ) : (
         ""

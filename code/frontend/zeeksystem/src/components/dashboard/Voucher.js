@@ -5,7 +5,8 @@ import Card from "@mui/joy/Card";
 import Chip from "@mui/joy/Chip";
 import Typography from "@mui/joy/Typography";
 import bin from "../dashboard/bin.png";
-
+import { useState } from "react";
+import OpenInNewIcon from "@mui/icons-material/OpenInNew";
 export default function InteractiveCard(props) {
   const hendleDelete = async (event) => {
     event.preventDefault();
@@ -14,6 +15,7 @@ export default function InteractiveCard(props) {
       headers: { "Content-Type": "application/json" },
     });
   };
+
   return (
     <Card
       variant="outlined"
@@ -27,6 +29,7 @@ export default function InteractiveCard(props) {
           borderColor: "neutral.outlinedHoverBorder",
         },
       }}
+      onClick={props.handleClick}
     >
       <AspectRatio ratio="1" sx={{ width: 90 }}>
         <img
@@ -44,7 +47,6 @@ export default function InteractiveCard(props) {
           {props.voucher.dateOfExpiry.slice(0, 10)}
         </Typography>
         <Typography> {props.voucher.ammount}</Typography>
-        <img src={bin} width="10" height="10" onClick={hendleDelete} />
       </div>
     </Card>
   );
