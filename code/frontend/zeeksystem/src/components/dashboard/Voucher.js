@@ -1,8 +1,6 @@
 import * as React from "react";
 import AspectRatio from "@mui/joy/AspectRatio";
-import Link from "@mui/joy/Link";
 import Card from "@mui/joy/Card";
-import Chip from "@mui/joy/Chip";
 import Typography from "@mui/joy/Typography";
 import bin from "../dashboard/bin.png";
 
@@ -13,6 +11,7 @@ export default function InteractiveCard(props) {
       method: "DELETE",
       headers: { "Content-Type": "application/json" },
     });
+    props.getWallet();
   };
   return (
     <Card
@@ -43,8 +42,11 @@ export default function InteractiveCard(props) {
         <Typography fontSize="sm" aria-describedby="card-description" mb={1}>
           {props.voucher.dateOfExpiry.slice(0, 10)}
         </Typography>
-        <Typography> {props.voucher.ammount}</Typography>
-        <img src={bin} width="10" height="10" onClick={hendleDelete} />
+        <Typography level="h2" fontSize="sm" aria-describedby="card-description" mb={1}>
+          ID : {props.vID}
+        </Typography>
+        <Typography> {props.voucher.ammount} <img src={bin} width="10" height="10" onClick={hendleDelete} /></Typography>
+        
       </div>
     </Card>
   );
