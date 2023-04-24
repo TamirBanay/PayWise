@@ -7,7 +7,7 @@ import FlexRowRatio from "../components/dashboard/FlexRowRatio";
 import ChartPie from "../components/dashboard/ChartPie";
 import Divider from "@mui/material/Divider";
 import Voucher from "../components/dashboard/Voucher";
-import { voucherState } from "../services/atom";
+import { Vouchers,first_name,last_name } from "../services/atom";
 import { useRecoilState } from "recoil";
 import Paper from "@mui/material/Paper";
 import Popper from "@mui/material/Popper";
@@ -16,29 +16,31 @@ import Popover from "../components/dashboard/Popover";
 
 function Home(props) {
   const [walletID, setWalletID] = useState();
-  // const [name, setName] = useRecoilState(first_name);
+  const [firstName, setFirstName] = useRecoilState(first_name);
+  const [lastName, setLastName] = useRecoilState(last_name);
+
   const [redirect, setRedirect] = useState(false);
   const [userID, setUserId] = useState(1000);
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
-  const [vouchers, setVouchers] = useState([]);
+  const [vouchers, setVouchers] = useRecoilState(Vouchers);
 
 
+ 
+  
+  const getWallet = async () => {
 
-  const getVoucher = async () => {
     try {
       const response = await fetch(
         `http://localhost:8000/api/getVouchers/${walletID}`
       );
       const data = await response.json();
-      // console.log(data);
 
       const vouchersArray = JSON.parse(data.vouchers);
       const matchingVouchers = vouchersArray.filter(
         (voucher) => voucher.fields.walletID === walletID
       );
-      // console.log(walletID);
-      // console.log(vouchersArray[0].fields.ammount); // an array of voucher objects in JSON format
+     
       setVouchers(matchingVouchers);
     } catch (error) {
       console.error("Error retrieving vouchers:", error);
@@ -54,42 +56,39 @@ function Home(props) {
     setRedirect(true);
   };
 
-  useEffect(() => {
-    const fetchUserData = async () => {
-      try {
-        const response = await fetch("http://localhost:8000/api/user", {
-          headers: { "Content-Type": "application/json" },
-          credentials: "include",
-        });
+  const fetchUserData = async () => {
+    try {
+      const response = await fetch("http://localhost:8000/api/user", {
+        headers: { "Content-Type": "application/json" },
+        credentials: "include",
+      });
 
-        if (response.ok) {
-          const content = await response.json();
+      if (response.ok) {
+        const content = await response.json();
 
-          setUserId(content.id);
-          setWalletID(content.id + 1000); // Update walletID based on fetched user data
-          // setName(content.first_name);
-          console.log(content);
-        } else {
-          setRedirect(true);
-        }
-      } catch (error) {
-        console.error("Failed to fetch user data:", error);
+        setUserId(content.id);
+        setWalletID(content.id + 1000); // Update walletID based on fetched user data
+        setFirstName(content.first_name);
+        setLastName(content.last_name);
+      } else {
+        setRedirect(true);
       }
-    };
-
+    } catch (error) {
+      console.error("Failed to fetch user data:", error);
+    }
+  };
+  useEffect(() => {
     fetchUserData();
   }, []);
 
-  const [testVouchers, setTestVouchers] = useRecoilState(voucherState);
+  
 
   useEffect(() => {
     if (walletID) {
       // Only call getVoucher if walletID is truthy
-      getVoucher();
-      setTestVouchers(vouchers);
+      getWallet();
     }
   }, [walletID]); // Add walletID as a dependency
-
   if (redirect) {
     return <Redirect to="/login" />;
   }
@@ -101,7 +100,7 @@ function Home(props) {
 
   return (
     <div>
-      <Navbar logOut={logOut} userID={userID} />
+      <Navbar logOut={logOut} userID={userID} getWallet={getWallet}/>
       <ChartPie />
       <p></p>
       {isMobile ? (
@@ -118,6 +117,7 @@ function Home(props) {
                   key={voucher.pk}
                   vID={voucher.pk}
                   openVoucher={handleOpenVoucher}
+                  getWallet={getWallet}
                 />
               ))
             : ""}

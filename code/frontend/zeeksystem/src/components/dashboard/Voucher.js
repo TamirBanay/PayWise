@@ -1,8 +1,6 @@
 import * as React from "react";
 import AspectRatio from "@mui/joy/AspectRatio";
-import Link from "@mui/joy/Link";
 import Card from "@mui/joy/Card";
-import Chip from "@mui/joy/Chip";
 import Typography from "@mui/joy/Typography";
 import bin from "../dashboard/bin.png";
 import { useState } from "react";
@@ -14,6 +12,7 @@ export default function InteractiveCard(props) {
       method: "DELETE",
       headers: { "Content-Type": "application/json" },
     });
+    props.getWallet();
   };
 
   return (

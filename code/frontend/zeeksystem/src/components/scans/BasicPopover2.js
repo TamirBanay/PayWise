@@ -12,6 +12,7 @@ export default function BasicPopover(props) {
 
   const handleClose = () => {
     setAnchorEl(null);
+    props.handleAddRefundMenuClose();
   };
 
   const open = Boolean(anchorEl);
@@ -32,7 +33,7 @@ export default function BasicPopover(props) {
           horizontal: "left",
         }}
       >
-        <HelperTextAligned userID={props.userID} />
+        <HelperTextAligned userID={props.userID} handleClose={handleClose} getWallet={props.getWallet}/>
       </Popover>
     </div>
   );

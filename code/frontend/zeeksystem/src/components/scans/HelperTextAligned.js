@@ -7,7 +7,6 @@ export default function HelperTextAligned(props) {
   const [sirialNumber, setSirialNumber] = useState();
   const handleSaveVoucher = async (event) => {
     event.preventDefault();
-    console.log(sirialNumber);
     await fetch("http://localhost:8000/api/createVoucher/", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -23,10 +22,13 @@ export default function HelperTextAligned(props) {
       .then((response) => response.json())
       .then((data) => {
         console.log("sucsses", data);
+        props.getWallet();
+        props.handleClose();
       })
       .catch((error) => {
         console.log("error", error);
       });
+      
   };
   const handleChange = (e) => {
     setSirialNumber(e.target.value);
