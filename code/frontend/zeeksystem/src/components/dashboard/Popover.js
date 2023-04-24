@@ -13,6 +13,7 @@ export default function BasicPopover(props) {
       method: "DELETE",
       headers: { "Content-Type": "application/json" },
     });
+    props.getWallet();
   };
 
   const handleClick = (event) => {
