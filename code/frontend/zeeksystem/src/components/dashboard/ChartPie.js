@@ -21,12 +21,21 @@ const Dashboard = () => {
   function getUniqueNumOfStoreTypes(vouchers) {
     let storeTypes = [];
     let StoreSeries = [];
+    let i = 0;
     if (vouchers && vouchers.length > 0) {
       vouchers.forEach((voucher) => {
         if (!storeTypes.includes(voucher.fields.storeType)) {
           storeTypes.push(voucher.fields.storeType)
           StoreSeries.push(1);
           
+        }
+        else
+        {
+          for(i = 0;i<storeTypes.length;i++)
+          {
+            if(storeTypes[i] == voucher.fields.storeType)
+              StoreSeries[i]++;
+          }
         }
       });
     }
@@ -97,7 +106,12 @@ const Dashboard = () => {
               type="donut"
               series={seriesData}
               options={{
-                labels: label,
+                labels: [
+                  "מזון וצריכה",
+                  "ביגוד והנעלה",
+                  "חשמל ואלקטרוניקה",
+                  "שונות",
+                ],
                 title: {
                   style: {
                     fontSize: "18px",
@@ -138,7 +152,12 @@ const Dashboard = () => {
                 height={location.pathname == "/profile" ? 300 : 450}
                 series={seriesData}
                 options={{
-                  labels: label,
+                  labels: [
+                    "מזון וצריכה ",
+                    "ביגוד והנעלה",
+                    "חשמל ואלקטרוניקה",
+                    "שונות",
+                  ],
                   title: {
                     style: {
                       fontSize: "20px",
