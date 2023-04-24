@@ -47,7 +47,7 @@ const Dashboard = () => {
   
   const seriesData = getUniqueNumOfStoreTypes(vouchers);
   const label = getUniqueArrOfStoreTypes(vouchers);
-  
+  console.log(label);
   const theme = useTheme();
   const isMobileMs = useMediaQuery(theme.breakpoints.down("sm"));
 
@@ -60,12 +60,7 @@ const Dashboard = () => {
             type="donut"
             series={seriesData}
             options={{
-              labels: [
-                "מזון וצריכה",
-                "ביגוד והנעלה",
-                "חשמל ואלקטרוניקה",
-                "שונות",
-              ],
+              labels: label,
               title: {
                 style: {
                   fontSize: "18px",
@@ -103,12 +98,7 @@ const Dashboard = () => {
               type="donut"
               series={seriesData}
               options={{
-                labels: [
-                  "מזון וצריכה",
-                  "ביגוד והנעלה",
-                  "חשמל ואלקטרוניקה",
-                  "שונות",
-                ],
+                labels: label,
                 title: {
                   style: {
                     fontSize: "18px",
@@ -149,12 +139,7 @@ const Dashboard = () => {
                 height={location.pathname == "/profile" ? 300 : 450}
                 series={seriesData}
                 options={{
-                  labels: [
-                    "מזון וצריכה ",
-                    "ביגוד והנעלה",
-                    "חשמל ואלקטרוניקה",
-                    "שונות",
-                  ],
+                  labels: label,
                   title: {
                     style: {
                       fontSize: "20px",
