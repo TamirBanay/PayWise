@@ -3,7 +3,8 @@ import AspectRatio from "@mui/joy/AspectRatio";
 import Card from "@mui/joy/Card";
 import Typography from "@mui/joy/Typography";
 import bin from "../dashboard/bin.png";
-
+import { useState } from "react";
+import OpenInNewIcon from "@mui/icons-material/OpenInNew";
 export default function InteractiveCard(props) {
   const hendleDelete = async (event) => {
     event.preventDefault();
@@ -13,6 +14,7 @@ export default function InteractiveCard(props) {
     });
     props.getWallet();
   };
+
   return (
     <Card
       variant="outlined"
@@ -26,6 +28,7 @@ export default function InteractiveCard(props) {
           borderColor: "neutral.outlinedHoverBorder",
         },
       }}
+      onClick={props.handleClick}
     >
       <AspectRatio ratio="1" sx={{ width: 90 }}>
         <img
@@ -42,11 +45,7 @@ export default function InteractiveCard(props) {
         <Typography fontSize="sm" aria-describedby="card-description" mb={1}>
           {props.voucher.dateOfExpiry.slice(0, 10)}
         </Typography>
-        <Typography level="h2" fontSize="sm" aria-describedby="card-description" mb={1}>
-          ID : {props.vID}
-        </Typography>
-        <Typography> {props.voucher.ammount} <img src={bin} width="10" height="10" onClick={hendleDelete} /></Typography>
-        
+        <Typography> {props.voucher.ammount}</Typography>
       </div>
     </Card>
   );

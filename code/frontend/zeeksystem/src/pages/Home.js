@@ -9,10 +9,12 @@ import Divider from "@mui/material/Divider";
 import Voucher from "../components/dashboard/Voucher";
 import { Vouchers,first_name,last_name } from "../services/atom";
 import { useRecoilState } from "recoil";
+import Paper from "@mui/material/Paper";
+import Popper from "@mui/material/Popper";
+import Fade from "@mui/material/Fade";
+import Popover from "../components/dashboard/Popover";
 
-// import React from "react";
-
-function Home() {
+function Home(props) {
   const [walletID, setWalletID] = useState();
   const [firstName, setFirstName] = useRecoilState(first_name);
   const [lastName, setLastName] = useRecoilState(last_name);
@@ -23,9 +25,11 @@ function Home() {
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
   const [vouchers, setVouchers] = useRecoilState(Vouchers);
 
+
  
   
   const getWallet = async () => {
+
     try {
       const response = await fetch(
         `http://localhost:8000/api/getVouchers/${walletID}`
@@ -88,6 +92,12 @@ function Home() {
   if (redirect) {
     return <Redirect to="/login" />;
   }
+
+  const [onClickVoucher, setOnClickVoucher] = useState(true);
+  const handleOpenVoucher = () => {
+    setOnClickVoucher(!onClickVoucher);
+  };
+
   return (
     <div>
       <Navbar logOut={logOut} userID={userID} getWallet={getWallet}/>
@@ -98,10 +108,19 @@ function Home() {
           <Divider orientation="horizontal">זיכויים קרובים</Divider>
 
           <p></p>
-          {vouchers.length > 0 &&
-            vouchers.map((voucher) => (
-              <Voucher voucher={voucher.fields} key={voucher.pk} vID={voucher.pk} getWallet={getWallet}/>
-            ))}
+
+          {onClickVoucher
+            ? vouchers.length > 0 &&
+              vouchers.map((voucher) => (
+                <Popover
+                  voucher={voucher.fields}
+                  key={voucher.pk}
+                  vID={voucher.pk}
+                  openVoucher={handleOpenVoucher}
+                  getWallet={getWallet}
+                />
+              ))
+            : ""}
         </div>
       ) : (
         ""
