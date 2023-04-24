@@ -47,7 +47,6 @@ const Dashboard = () => {
   
   const seriesData = getUniqueNumOfStoreTypes(vouchers);
   const label = getUniqueArrOfStoreTypes(vouchers);
-  console.log(label);
   const theme = useTheme();
   const isMobileMs = useMediaQuery(theme.breakpoints.down("sm"));
 

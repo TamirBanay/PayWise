@@ -14,7 +14,7 @@ export default function HelperTextAligned(props) {
         voucherID: sirialNumber,
         walletID: 1000 + props.userID,
         voucherCategory: "Category A",
-        storeType: "Store A",
+        storeType: "Store B",
         ammount: "100",
         redeemed: false,
       }),

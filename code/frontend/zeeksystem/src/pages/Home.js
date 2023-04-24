@@ -31,14 +31,12 @@ function Home() {
         `http://localhost:8000/api/getVouchers/${walletID}`
       );
       const data = await response.json();
-      // console.log(data);
 
       const vouchersArray = JSON.parse(data.vouchers);
       const matchingVouchers = vouchersArray.filter(
         (voucher) => voucher.fields.walletID === walletID
       );
-      // console.log(walletID);
-      // console.log(vouchersArray[0].fields.ammount); // an array of voucher objects in JSON format
+     
       setVouchers(matchingVouchers);
     } catch (error) {
       console.error("Error retrieving vouchers:", error);
@@ -68,7 +66,6 @@ function Home() {
         setWalletID(content.id + 1000); // Update walletID based on fetched user data
         setFirstName(content.first_name);
         setLastName(content.last_name);
-        console.log(content);
       } else {
         setRedirect(true);
       }
