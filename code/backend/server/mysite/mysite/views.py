@@ -1,3 +1,6 @@
+import json
+from django.http import HttpResponseRedirect
+from django.shortcuts import get_object_or_404, render
 from rest_framework import status
 from users.models import Wallet
 from mysite.models import PayWiseUser, VoucherCategory, StoreType, Store, Vouchers, Alerts
@@ -10,10 +13,8 @@ from .forms import VoucherForm
 from rest_framework.views import APIView
 from django.core import serializers
 from django.http import JsonResponse
-from django.shortcuts import get_object_or_404
 from .models import Vouchers
 from django.views.decorators.csrf import csrf_exempt
-
 
 
 def get_vouchers(request, walletID):
@@ -30,7 +31,8 @@ class CreateVoucherView(APIView):
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         else:
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-        
+
+
 @csrf_exempt
 def delete_voucher(request, voucher_id):
     if request.method == 'DELETE':
@@ -38,3 +40,15 @@ def delete_voucher(request, voucher_id):
         voucher.delete()
         return JsonResponse({'message': 'Voucher deleted successfully'})
 
+
+@csrf_exempt
+def voucher_redeemed(request, voucher_id):
+    voucher = get_object_or_404(Vouchers, pk=voucher_id)
+    if request.method == 'POST':
+        data = json.loads(request.body)
+        voucher.redeemed = data.get('redeemed', voucher.redeemed)
+        voucher.save()
+        return JsonResponse({
+            'redeemed': True,
+        })
+        return JsonResponse({'message': 'Voucher redeemed failed'})

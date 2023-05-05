@@ -15,7 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from mysite.views import CreateVoucherView
+from mysite.views import CreateVoucherView, voucher_redeemed
 from mysite.models import Vouchers
 from . import views
 
@@ -25,5 +25,6 @@ urlpatterns = [
     path('api/createVoucher/', CreateVoucherView.as_view()),
     path('api/getVouchers/<int:walletID>', views.get_vouchers),
     path('api/deletVouchers/<int:voucher_id>', views.delete_voucher),
+    path('api/voucher_redeemed/<int:voucher_id>', views.voucher_redeemed),
 
 ]

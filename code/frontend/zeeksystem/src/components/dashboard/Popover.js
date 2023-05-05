@@ -28,33 +28,40 @@ export default function BasicPopover(props) {
 
   return (
     <div>
-      <Voucher
-        voucher={props.voucher}
-        key={props.vID}
-        vID={props.vID}
-        openVoucher={props.openVoucher}
-        handleClick={handleClick}
-        open={open}
-      />
-      <Popover
-        id={id}
-        open={open}
-        anchorEl={anchorEl}
-        onClose={handleClose}
-        anchorOrigin={{
-          vertical: "center",
-          horizontal: "center",
-        }}
-      >
-        <VoucherPage
-          voucher={props.voucher}
-          key={props.vID}
-          vID={props.vID}
-          handleClick={handleClick}
-          open={open}
-          delete={hendleDelete}
-        />
-      </Popover>
+      {props.voucher.redeemed ? (
+        ""
+      ) : (
+        <div>
+          <Voucher
+            voucher={props.voucher}
+            key={props.vID}
+            vID={props.vID}
+            openVoucher={props.openVoucher}
+            handleClick={handleClick}
+            open={open}
+          />
+          <Popover
+            id={id}
+            open={open}
+            anchorEl={anchorEl}
+            onClose={handleClose}
+            anchorOrigin={{
+              vertical: "center",
+              horizontal: "center",
+            }}
+          >
+            <VoucherPage
+              voucher={props.voucher}
+              key={props.vID}
+              vID={props.vID}
+              handleClick={handleClick}
+              open={open}
+              delete={hendleDelete}
+              getWallet={props.getWallet}
+            />
+          </Popover>
+        </div>
+      )}
     </div>
   );
 }

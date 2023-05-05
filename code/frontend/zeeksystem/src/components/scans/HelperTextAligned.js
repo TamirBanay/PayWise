@@ -21,14 +21,13 @@ export default function HelperTextAligned(props) {
     })
       .then((response) => response.json())
       .then((data) => {
-        console.log("sucsses", data);
+        // console.log("sucsses", data);
         props.getWallet();
         props.handleClose();
       })
       .catch((error) => {
         console.log("error", error);
       });
-      
   };
   const handleChange = (e) => {
     setSirialNumber(e.target.value);

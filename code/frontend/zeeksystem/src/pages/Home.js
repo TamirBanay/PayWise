@@ -7,7 +7,7 @@ import FlexRowRatio from "../components/dashboard/FlexRowRatio";
 import ChartPie from "../components/dashboard/ChartPie";
 import Divider from "@mui/material/Divider";
 import Voucher from "../components/dashboard/Voucher";
-import { Vouchers,first_name,last_name } from "../services/atom";
+import { Vouchers, first_name, last_name } from "../services/atom";
 import { useRecoilState } from "recoil";
 import Paper from "@mui/material/Paper";
 import Popper from "@mui/material/Popper";
@@ -24,12 +24,7 @@ function Home(props) {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
   const [vouchers, setVouchers] = useRecoilState(Vouchers);
-
-
- 
-  
   const getWallet = async () => {
-
     try {
       const response = await fetch(
         `http://localhost:8000/api/getVouchers/${walletID}`
@@ -40,7 +35,7 @@ function Home(props) {
       const matchingVouchers = vouchersArray.filter(
         (voucher) => voucher.fields.walletID === walletID
       );
-     
+
       setVouchers(matchingVouchers);
     } catch (error) {
       console.error("Error retrieving vouchers:", error);
@@ -81,8 +76,6 @@ function Home(props) {
     fetchUserData();
   }, []);
 
-  
-
   useEffect(() => {
     if (walletID) {
       // Only call getVoucher if walletID is truthy
@@ -92,7 +85,6 @@ function Home(props) {
   if (redirect) {
     return <Redirect to="/login" />;
   }
-
   const [onClickVoucher, setOnClickVoucher] = useState(true);
   const handleOpenVoucher = () => {
     setOnClickVoucher(!onClickVoucher);
@@ -100,7 +92,7 @@ function Home(props) {
 
   return (
     <div>
-      <Navbar logOut={logOut} userID={userID} getWallet={getWallet}/>
+      <Navbar logOut={logOut} userID={userID} getWallet={getWallet} />
       <ChartPie />
       <p></p>
       {isMobile ? (
