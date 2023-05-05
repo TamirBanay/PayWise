@@ -14,7 +14,6 @@ export default function InteractiveCard(props) {
     });
     props.getWallet();
   };
-
   return (
     <Card
       variant="outlined"
