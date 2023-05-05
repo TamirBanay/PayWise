@@ -7,7 +7,35 @@ import IconButton from "@mui/joy/IconButton";
 import Typography from "@mui/joy/Typography";
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 import BookmarkAdd from "@mui/icons-material/BookmarkAddOutlined";
+import { useEffect, useState } from "react";
+
 export default function BasicCard(props) {
+  const handlleRedeemdVoucher = async (event) => {
+    event.preventDefault();
+
+    try {
+      const response = await fetch(
+        `http://localhost:8000/api/voucher_redeemed/${props.vID}`,
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            redeemed: true,
+          }),
+        }
+      );
+
+      if (response.ok) {
+        props.getWallet();
+        console.log("redeemed: sucsee " + response.status);
+      } else {
+        console.error("redeemed failed:" + error);
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   return (
     <Card variant="outlined" sx={{ width: 320 }}>
       <Typography level="h2" fontSize="md" sx={{ mb: 0.5 }}>
@@ -40,6 +68,9 @@ export default function BasicCard(props) {
           <Typography fontSize="lg" fontWeight="lg">
             {props.voucher.ammount}$
           </Typography>
+          <Typography fontSize="sm" fontWeight="sm">
+            ID: {props.vID}
+          </Typography>
         </div>
         <Button
           variant="solid"
@@ -47,8 +78,9 @@ export default function BasicCard(props) {
           color="primary"
           aria-label="Explore Bahamas Islands"
           sx={{ ml: "auto", fontWeight: 600 }}
+          onClick={handlleRedeemdVoucher}
         >
-          Explore
+          Redeemd
         </Button>
       </Box>
     </Card>
