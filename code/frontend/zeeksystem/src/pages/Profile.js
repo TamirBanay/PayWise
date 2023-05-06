@@ -9,17 +9,16 @@ import TabsIcon from "../components/profile/TabsIcon";
 import TabsIconWithText from "../components/profile/TabsIconWithText";
 import israel from "../images/israel.png";
 import { useRecoilValue,useRecoilState } from "recoil";
-import { Vouchers,first_name,last_name, user_email } from "../services/atom";
+import { _Vouchers,first_name,last_name, user_email, _User } from "../services/atom";
 
 function Profile() {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
-  const [firstName, setFirstName] = useRecoilState(first_name);
-  const [lastName, setLastName] = useRecoilState(last_name);
-  const [usrEmail, setUsrEmail] = useRecoilState(user_email);
+  const [user, setUser] = useRecoilState(_User);
 
 
-  const voucherData = useRecoilValue(Vouchers); // recoile testing voucher data
+
+  const voucherData = useRecoilValue(_Vouchers); // recoile testing voucher data
 
   return (
     <div>
@@ -58,10 +57,10 @@ function Profile() {
           variant="inherit"
           style={{ color: "#C4C4C4" }}
         >
-          {usrEmail}
+         {user.email}
         </Typography>
         <Typography align="center" variant="h5" style={{ color: "#23476" }}>
-          {firstName} {lastName}  
+          {user.first_name} {user.last_name}  
           </Typography>
         <Typography
           align="center"
@@ -70,7 +69,7 @@ function Profile() {
         >
           {" "}
           <img src={israel} style={{ width: "20px" }} />
-          {" Tel-Aviv, Israel "}
+          {user.street}, {user.city}
         </Typography>
       </div>
       {isMobile ? <TabsIcon /> : <TabsIconWithText />}

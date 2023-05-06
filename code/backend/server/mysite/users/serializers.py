@@ -1,15 +1,16 @@
 from rest_framework import serializers
-from .models import User, PayWiseUser
+from .models import User
 
-class PayWiseUserSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = PayWiseUser
-        fields = ['user', 'gender', 'city',
-                  'street', 'houseNumber', 'dateOfBirth']
+# class PayWiseUserSerializer(serializers.ModelSerializer):
+#     class Meta:
+#         model = PayWiseUser
+#         fields = ['user', 'gender', 'city',
+#                   'street', 'houseNumber', 'dateOfBirth']
 class UserSerializers(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ['id','first_name','last_name', 'email', 'password']
+        fields = ['id','first_name','last_name', 'email', 'password','gender', 'city',
+                  'street', 'houseNumber', 'dateOfBirth']
         extra_Kwargs = {
             'password': {'wirte_only': True}
         }

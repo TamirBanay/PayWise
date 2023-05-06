@@ -7,7 +7,7 @@ import FlexRowRatio from "../components/dashboard/FlexRowRatio";
 import ChartPie from "../components/dashboard/ChartPie";
 import Divider from "@mui/material/Divider";
 import Voucher from "../components/dashboard/Voucher";
-import { Vouchers, first_name, last_name, user_email } from "../services/atom";
+import { _Vouchers, first_name, last_name, user_email, _User } from "../services/atom";
 import { useRecoilState } from "recoil";
 import Paper from "@mui/material/Paper";
 import Popper from "@mui/material/Popper";
@@ -18,12 +18,13 @@ function Home(props) {
   const [firstName, setFirstName] = useRecoilState(first_name);
   const [lastName, setLastName] = useRecoilState(last_name);
   const [usrEmail, setUsrEmail] = useRecoilState(user_email);
+  const [user, setUser] = useRecoilState(_User);
 
   const [redirect, setRedirect] = useState(false);
   const [userID, setUserId] = useState(1000);
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
-  const [vouchers, setVouchers] = useRecoilState(Vouchers);
+  const [vouchers, setVouchers] = useRecoilState(_Vouchers);
   const [walletID, setWalletID] = useState();
 
   const getWallet = async () => {
@@ -65,6 +66,7 @@ function Home(props) {
 
         setUserId(content.id);
         setWalletID(content.id + 1000); // Update walletID based on fetched user data
+        setUser(content);
         setFirstName(content.first_name);
         setLastName(content.last_name);
         setUsrEmail(content.email)

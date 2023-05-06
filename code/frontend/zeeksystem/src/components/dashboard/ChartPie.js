@@ -6,11 +6,11 @@ import ChartPie from "./ChartPie.css";
 import Divider from "@mui/joy/Divider";
 import { useLocation } from "react-router-dom";
 import { useRecoilValue } from "recoil";
-import { Vouchers } from "../../services/atom";
+import { _Vouchers } from "../../services/atom";
 
 const Dashboard = () => {
   let location = useLocation();
-  const vouchers = useRecoilValue(Vouchers);
+  const vouchers = useRecoilValue(_Vouchers);
   const [labels, setLabels] = useState([]);
 
   const totalAmount = vouchers.reduce((total, voucher) => {
