@@ -1,14 +1,10 @@
 from rest_framework import serializers
-from mysite.models import PayWiseUser, VoucherCategory, StoreType, Store, Vouchers, Alerts
+from mysite.models import VoucherCategory, StoreType, Store, Vouchers, Alerts
 from .models import TemporaryVoucher
 from mysite.models import Vouchers
 
 
-class PayWiseUserSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = PayWiseUser
-        fields = ['userID', 'gender', 'city',
-                  'street', 'houseNumber', 'dateOfBirth']
+
 
 
 class VoucherCategorySerializer(serializers.ModelSerializer):

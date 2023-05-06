@@ -1,7 +1,11 @@
 from rest_framework import serializers
-from .models import User
+from .models import User, PayWiseUser
 
-
+class PayWiseUserSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = PayWiseUser
+        fields = ['user', 'gender', 'city',
+                  'street', 'houseNumber', 'dateOfBirth']
 class UserSerializers(serializers.ModelSerializer):
     class Meta:
         model = User
@@ -17,3 +21,4 @@ class UserSerializers(serializers.ModelSerializer):
             instance.set_password(password)
         instance.save()
         return instance
+    
