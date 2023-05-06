@@ -24,6 +24,7 @@ export default function InteractiveCard(props) {
       variant="outlined"
       orientation="horizontal"
       sx={{
+        marginTop: 0.5,
         direction: "rtl",
         width: 320,
         gap: 2,
@@ -45,14 +46,6 @@ export default function InteractiveCard(props) {
       </AspectRatio>
       <div>
         <Typography level="h2" fontSize="lg" id="card-description" mb={0.5}>
-          {location.pathname == "/wallet" ? (
-            <Typography sx={{ marginRight: 7 }} fontSize="md">
-              ID: {props.vID}{" "}
-            </Typography>
-          ) : (
-            ""
-          )}
-
           {props.voucher.storeType}
         </Typography>
         <Typography fontSize="sm" aria-describedby="card-description" mb={1}>

@@ -9,6 +9,7 @@ import { Vouchers, first_name, last_name } from "../../services/atom";
 import BrowserNotSupportedIcon from "@mui/icons-material/BrowserNotSupported";
 import Voucher from "../dashboard/Voucher";
 import Typography from "@mui/joy/Typography";
+import { Button } from "@mui/material";
 
 export default function TabsUnderlineExample(props) {
   const [openUsedVouchers, setOpenUsedVouchers] = React.useState(false);
@@ -16,7 +17,29 @@ export default function TabsUnderlineExample(props) {
   const [onClickVoucher, setOnClickVoucher] = useState(true);
   const [vouchers, setVouchers] = useRecoilState(Vouchers);
   const [walletID, setWalletID] = useState();
+  const [openAllUsedVouchers, setOpenAllUsedVouchers] = useState(true);
+  const [openAllNotUsedVouchers, setOpenAllNotUsedVouchers] = useState(false);
 
+  const getWallet = async () => {
+    try {
+      const response = await fetch(
+        `http://localhost:8000/api/getVouchers/${walletID}`
+      );
+      const data = await response.json();
+
+      const vouchersArray = JSON.parse(data.vouchers);
+      const matchingVouchers = vouchersArray.filter(
+        (voucher) => voucher.fields.walletID === walletID
+      );
+
+      setVouchers(matchingVouchers);
+    } catch (error) {
+      console.error("Error retrieving vouchers:", error);
+    }
+  };
+  const handleOpenVoucher = () => {
+    setOnClickVoucher(!onClickVoucher);
+  };
   const handlleOpenUsedVouchers = () => {
     setOpenUsedVouchers(!openUsedVouchers);
     setOpenNotUsedVouchers(false);
@@ -26,7 +49,13 @@ export default function TabsUnderlineExample(props) {
     setOpenNotUsedVouchers(!openNotUsedVouchers);
     setOpenUsedVouchers(false);
   };
-
+  const handlleOpenAllUsedVouchers = () => {
+    // setOpenAllNotUsedVouchers(!openAllUsedVouchers);
+    setOpenAllUsedVouchers(!openAllUsedVouchers);
+  };
+  const handleOpenAllNotUsedVouchers = () => {
+    setOpenAllUsedVouchers(!openAllUsedVouchers);
+  };
   return (
     <Tabs aria-label="tabs" defaultValue={0} direction="rtl">
       <TabList
@@ -43,7 +72,7 @@ export default function TabsUnderlineExample(props) {
               display: "block",
               position: "absolute",
               left: 30, // change to `0` to stretch to the edge.
-              right: 35, // change to `0` to stretch to the edge.
+              right: 30, // change to `0` to stretch to the edge.
               bottom: 0,
               height: 3,
               bgcolor: "primary.400",
@@ -67,7 +96,16 @@ export default function TabsUnderlineExample(props) {
         </Tab>
       </TabList>
       <p></p>
-      <p></p>
+      {openAllUsedVouchers ? (
+        <Button sx={{ marginLeft: 25 }} onClick={handlleOpenAllUsedVouchers}>
+          הצג הכל
+        </Button>
+      ) : (
+        <Button sx={{ marginLeft: 25 }} onClick={handlleOpenAllUsedVouchers}>
+          הצג פחות
+        </Button>
+      )}
+
       <p></p>
 
       {openNotUsedVouchers ? (
@@ -75,11 +113,14 @@ export default function TabsUnderlineExample(props) {
         0 ? (
           vouchers
             .filter((voucher) => voucher.fields.redeemed === false)
+            .slice(0, openAllUsedVouchers ? vouchers.length : 3) // limit to 3 vouchers if openAllUsedVouchers is not true
             .map((voucher) => (
-              <Voucher
+              <Popover
                 voucher={voucher.fields}
                 key={voucher.pk}
                 vID={voucher.pk}
+                openVoucher={handleOpenVoucher}
+                getWallet={getWallet}
               />
             ))
         ) : (
@@ -103,11 +144,14 @@ export default function TabsUnderlineExample(props) {
         0 ? (
           vouchers
             .filter((voucher) => voucher.fields.redeemed === true)
+            .slice(0, openAllUsedVouchers ? 3 : vouchers.length)
             .map((voucher) => (
-              <Voucher
+              <Popover
                 voucher={voucher.fields}
                 key={voucher.pk}
                 vID={voucher.pk}
+                openVoucher={handleOpenVoucher}
+                getWallet={getWallet}
               />
             ))
         ) : (
@@ -118,7 +162,7 @@ export default function TabsUnderlineExample(props) {
               flexDirection: "column",
             }}
           >
-            <Typography>אין זיכויים שמומשו</Typography>
+            <Typography>אין זיכויים </Typography>
             <BrowserNotSupportedIcon fontSize="large" sx={{ mt: 1 }} />
           </Typography>
         )
