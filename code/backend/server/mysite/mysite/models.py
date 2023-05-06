@@ -2,16 +2,6 @@ from django.db import models
 from users.models import Wallet, User
 from datetime import datetime
 
-
-class PayWiseUser (models.Model):
-    userID = models.AutoField(primary_key=True)
-    gender = models.CharField(max_length=30)
-    city = models.CharField(max_length=30)
-    street = models.CharField(max_length=30,  null=True, blank=True)
-    houseNumber = models.CharField(max_length=30, null=True, blank=True)
-    dateOfBirth = models.DateField()
-
-
 class VoucherCategory(models.Model):
     categoryID = models.AutoField(primary_key=True)
     name = models.CharField(max_length=30)

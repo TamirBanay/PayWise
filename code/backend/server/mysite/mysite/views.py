@@ -1,6 +1,6 @@
 from rest_framework import status
 from users.models import Wallet
-from mysite.models import PayWiseUser, VoucherCategory, StoreType, Store, Vouchers, Alerts
+from mysite.models import VoucherCategory, StoreType, Store, Vouchers, Alerts
 from mysite.serializers import VoucherCategorySerializer, StoreTypeSerializer, StoreSerializer,  AlertsSerializer
 from rest_framework.response import Response
 from .models import TemporaryVoucher
