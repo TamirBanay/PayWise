@@ -11,6 +11,10 @@ import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { Redirect } from "react-router-dom";
+import Radio from '@mui/material/Radio';
+import RadioGroup from '@mui/material/RadioGroup';
+import FormControlLabel from '@mui/material/FormControlLabel';
+
 
 function Copyright(props) {
   return (
@@ -45,6 +49,9 @@ export default function SignUp() {
           last_name: data.get("lastName"),
           email: data.get("email"),
           password: data.get("password"),
+          gender: data.get("row-radio-buttons-group"),
+          city: data.get("city"),
+          street: data.get("street"),
         }),
       });
 
@@ -61,7 +68,12 @@ export default function SignUp() {
       console.error(error);
     }
   };
-
+  const test = (event) =>{
+    event.preventDefault();
+    const data = new FormData(event.currentTarget);
+    console.log(data.get("street"));
+  }
+  
   if (redirect) {
     return <Redirect to="/login" />;
   }
@@ -132,6 +144,37 @@ export default function SignUp() {
                   autoComplete="new-password"
                 />
               </Grid>
+              <Grid item xs={12} sm={6}>
+                <TextField
+                  required
+                  fullWidth
+                  id="city"
+                  label="city "
+                  name="city"
+                  autoComplete="city"
+                />
+              </Grid>
+              <Grid item xs={12} sm={6}>
+                <TextField
+                  required
+                  fullWidth
+                  id="street"
+                  label="Street"
+                  name="street"
+                  autoComplete="street"
+                />
+              </Grid>
+              <Grid item xs={12} sm={6}>
+                <RadioGroup
+                  row
+                  aria-labelledby="demo-row-radio-buttons-group-label"
+                  name="row-radio-buttons-group"
+                >
+                  <FormControlLabel value="female" control={<Radio />} label="Female" />
+                  <FormControlLabel value="male" control={<Radio />} label="Male" />
+                  <FormControlLabel value="other" control={<Radio />} label="Other" />
+                </RadioGroup>
+              </Grid>
             </Grid>
             <Button
               type="submit"
@@ -143,7 +186,7 @@ export default function SignUp() {
             </Button>
             <Grid container justifyContent="flex-end">
               <Grid item>
-                <Link href="/login" variant="body2">
+                <Link href="/#/login" variant="body2">
                   Already have an account? Sign in
                 </Link>
               </Grid>

@@ -9,13 +9,15 @@ import TabsIcon from "../components/profile/TabsIcon";
 import TabsIconWithText from "../components/profile/TabsIconWithText";
 import israel from "../images/israel.png";
 import { useRecoilValue,useRecoilState } from "recoil";
-import { Vouchers,first_name,last_name } from "../services/atom";
+import { Vouchers,first_name,last_name, user_email } from "../services/atom";
 
 function Profile() {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
   const [firstName, setFirstName] = useRecoilState(first_name);
   const [lastName, setLastName] = useRecoilState(last_name);
+  const [usrEmail, setUsrEmail] = useRecoilState(user_email);
+
 
   const voucherData = useRecoilValue(Vouchers); // recoile testing voucher data
 
@@ -56,7 +58,7 @@ function Profile() {
           variant="inherit"
           style={{ color: "#C4C4C4" }}
         >
-          @tamo
+          {usrEmail}
         </Typography>
         <Typography align="center" variant="h5" style={{ color: "#23476" }}>
           {firstName} {lastName}  

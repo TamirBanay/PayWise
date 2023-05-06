@@ -7,7 +7,7 @@ import FlexRowRatio from "../components/dashboard/FlexRowRatio";
 import ChartPie from "../components/dashboard/ChartPie";
 import Divider from "@mui/material/Divider";
 import Voucher from "../components/dashboard/Voucher";
-import { Vouchers, first_name, last_name } from "../services/atom";
+import { Vouchers, first_name, last_name, user_email } from "../services/atom";
 import { useRecoilState } from "recoil";
 import Paper from "@mui/material/Paper";
 import Popper from "@mui/material/Popper";
@@ -18,6 +18,7 @@ function Home(props) {
   const [walletID, setWalletID] = useState();
   const [firstName, setFirstName] = useRecoilState(first_name);
   const [lastName, setLastName] = useRecoilState(last_name);
+  const [usrEmail, setUsrEmail] = useRecoilState(user_email);
 
   const [redirect, setRedirect] = useState(false);
   const [userID, setUserId] = useState(1000);
@@ -65,6 +66,7 @@ function Home(props) {
         setWalletID(content.id + 1000); // Update walletID based on fetched user data
         setFirstName(content.first_name);
         setLastName(content.last_name);
+        setUsrEmail(content.email)
       } else {
         setRedirect(true);
       }
@@ -83,7 +85,7 @@ function Home(props) {
     }
   }, [walletID]); // Add walletID as a dependency
   if (redirect) {
-    return <Redirect to="/login" />;
+    return <Redirect to="/#/login" />;
   }
   const [onClickVoucher, setOnClickVoucher] = useState(true);
   const handleOpenVoucher = () => {

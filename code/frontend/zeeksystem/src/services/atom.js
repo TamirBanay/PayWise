@@ -12,4 +12,8 @@ export const last_name = atom({
   key: "lastName",
   default: "",
 });
+export const user_email = atom({
+  key: "userEmail",
+  default: "",
+});
     
