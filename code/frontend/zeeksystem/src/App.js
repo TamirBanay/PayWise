@@ -10,6 +10,7 @@ import Profile from "./pages/Profile";
 import Search from "./pages/Search";
 import Settings from "./pages/Setting";
 import { RecoilRoot } from "recoil";
+import Wallet from "./pages/Wallet";
 
 function App() {
   return (
@@ -30,6 +31,9 @@ function App() {
           </Route>
           <Route path="/profile">
             <Profile />
+          </Route>
+          <Route path="/wallet">
+            <Wallet />
           </Route>
           <Route path="/Search">
             <Search />

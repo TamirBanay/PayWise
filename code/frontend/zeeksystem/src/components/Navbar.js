@@ -246,7 +246,11 @@ export default function MiniDrawer(props) {
     >
       <MenuItem onClick={handleMenuClose}>הוספה ע"י סריקה</MenuItem>
       <MenuItem onClick={handleMenuClose}>
-        <BasicPopover2 userID={props.userID} getWallet={props.getWallet} handleAddRefundMenuClose={handleAddRefundMenuClose} />
+        <BasicPopover2
+          userID={props.userID}
+          getWallet={props.getWallet}
+          handleAddRefundMenuClose={handleAddRefundMenuClose}
+        />
       </MenuItem>
     </Menu>
   );
@@ -552,7 +556,7 @@ export default function MiniDrawer(props) {
                       ""
                     )}
                     {index === 3 ? (
-                      <Link href="/#/" color="#1C74BC">
+                      <Link href="/#/wallet" color="#1C74BC">
                         <AccountBalanceWalletIcon />
                       </Link>
                     ) : (
@@ -625,7 +629,7 @@ export default function MiniDrawer(props) {
                       )}
 
                       {index === 2 ? (
-                        <Link href="/#/" color="#1C74BC">
+                        <Link href="/#/wallet" color="#1C74BC">
                           <AccountBalanceWalletIcon />
                         </Link>
                       ) : (

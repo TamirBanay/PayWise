@@ -15,7 +15,6 @@ import Fade from "@mui/material/Fade";
 import Popover from "../components/dashboard/Popover";
 
 function Home(props) {
-  const [walletID, setWalletID] = useState();
   const [firstName, setFirstName] = useRecoilState(first_name);
   const [lastName, setLastName] = useRecoilState(last_name);
   const [usrEmail, setUsrEmail] = useRecoilState(user_email);
@@ -25,6 +24,8 @@ function Home(props) {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
   const [vouchers, setVouchers] = useRecoilState(Vouchers);
+  const [walletID, setWalletID] = useState();
+
   const getWallet = async () => {
     try {
       const response = await fetch(

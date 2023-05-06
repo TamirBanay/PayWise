@@ -8,8 +8,12 @@ import Typography from "@mui/joy/Typography";
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 import BookmarkAdd from "@mui/icons-material/BookmarkAddOutlined";
 import { useEffect, useState } from "react";
+import { useLocation } from "react-router-dom";
+import DoneIcon from "@mui/icons-material/Done";
 
 export default function BasicCard(props) {
+  const location = useLocation();
+  const { pathname } = location;
   const handlleRedeemdVoucher = async (event) => {
     event.preventDefault();
 
@@ -72,16 +76,23 @@ export default function BasicCard(props) {
             ID: {props.vID}
           </Typography>
         </div>
-        <Button
-          variant="solid"
-          size="sm"
-          color="primary"
-          aria-label="Explore Bahamas Islands"
-          sx={{ ml: "auto", fontWeight: 600 }}
-          onClick={handlleRedeemdVoucher}
-        >
-          Redeemd
-        </Button>
+        {/* if im in wallet page and the voucher is redeemed show v icon */}
+        {location.pathname == "/wallet" && props.voucher.redeemed == true ? (
+          <Typography sx={{ ml: "auto" }}>
+            <DoneIcon color="success" fontSize="large" />
+          </Typography>
+        ) : (
+          <Button
+            variant="solid"
+            size="sm"
+            color="primary"
+            aria-label="Explore Bahamas Islands"
+            sx={{ ml: "auto", fontWeight: 600 }}
+            onClick={handlleRedeemdVoucher}
+          >
+            מימוש
+          </Button>
+        )}
       </Box>
     </Card>
   );
