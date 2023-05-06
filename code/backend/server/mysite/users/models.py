@@ -35,7 +35,3 @@ def create_user_wallet_and_profile(sender, instance, created, **kwargs):
         # Generate a unique value for the walletID field
         wallet.walletID = instance.id + 1000
         wallet.save()
-
-        # Create a PayWiseUser profile for the new user
-        profile = PayWiseUser(user=instance)
-        profile.save()
