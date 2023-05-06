@@ -4,7 +4,12 @@ import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import Voucher from "./Voucher";
 import VoucherPage from "./VoucherPage";
+import { useLocation } from "react-router-dom";
+
 export default function BasicPopover(props) {
+  const location = useLocation();
+  const { pathname } = location;
+
   const [anchorEl, setAnchorEl] = React.useState(false);
 
   const hendleDelete = async (event) => {
@@ -28,7 +33,7 @@ export default function BasicPopover(props) {
 
   return (
     <div>
-      {props.voucher.redeemed ? (
+      {props.voucher.redeemed && location.pathname == "/" ? (
         ""
       ) : (
         <div>
@@ -46,8 +51,11 @@ export default function BasicPopover(props) {
             anchorEl={anchorEl}
             onClose={handleClose}
             anchorOrigin={{
-              vertical: "center",
-              horizontal: "center",
+              vertical: "top",
+              horizontal: "left",
+            }}
+            style={{
+              transform: "translateX(-9px)", // adjust this value to move the Popover more to the left
             }}
           >
             <VoucherPage
