@@ -601,13 +601,6 @@ export default function MiniDrawer(props) {
                       ""
                     )}
                     {index === 2 ? (
-                      <Link href="/#/search" color="#1C74BC">
-                        <SearchIcon />
-                      </Link>
-                    ) : (
-                      ""
-                    )}
-                    {index === 3 ? (
                       <Link href="/#/wallet" color="#1C74BC">
                         <AccountBalanceWalletIcon />
                       </Link>
@@ -615,20 +608,14 @@ export default function MiniDrawer(props) {
                       ""
                     )}
 
-                    {index === 4 ? (
+                    {/* {index === 4 ? (
                       <Link href="/#/settings" color="#1C74BC">
                         <SettingsIcon />
                       </Link>
                     ) : (
                       ""
-                    )}
-                    {index === 5 ? (
-                      <Link href="/#/settings" color="#1C74BC">
-                        <MailIcon />
-                      </Link>
-                    ) : (
-                      ""
-                    )}
+                    )} */}
+                    
                   </ListItemIcon>
                   <ListItemText primary={text} sx={{ opacity: open ? 1 : 0 }} />
                 </ListItemButton>
@@ -688,20 +675,6 @@ export default function MiniDrawer(props) {
                         ""
                       )}
 
-                      {index === 3 ? (
-                        <Link href="/#/settings" color="#1C74BC">
-                          <SettingsIcon />
-                        </Link>
-                      ) : (
-                        ""
-                      )}
-                      {index === 4 ? (
-                        <Link href="/#/settings" color="#1C74BC">
-                          <MailIcon />
-                        </Link>
-                      ) : (
-                        ""
-                      )}
                     </ListItemIcon>
                     <ListItemText
                       primary={text}
