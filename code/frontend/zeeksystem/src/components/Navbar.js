@@ -36,9 +36,8 @@ import payWiseLogo from "../images/payWiseLogo.png";
 import Link from "@mui/material/Link";
 import { createTheme } from "@mui/material/styles";
 import { useRecoilState } from "recoil";
-import {_Vouchers} from "../services/atom"
+import { _Vouchers } from "../services/atom";
 import BasicPopover2 from "./scans/BasicPopover2";
-
 
 const theme = createTheme({
   status: {
@@ -177,9 +176,6 @@ export default function MiniDrawer(props) {
   const [walletID, setWalletID] = React.useState();
   const [vouchers, setVouchers] = useRecoilState(_Vouchers);
 
-
-
-  
   const fetchUserData = async () => {
     try {
       const response = await fetch("http://localhost:8000/api/user", {
@@ -190,7 +186,7 @@ export default function MiniDrawer(props) {
       if (response.ok) {
         const content = await response.json();
         setWalletID(content.id + 1000); // Update walletID based on fetched user data
-      } 
+      }
     } catch (error) {
       console.error("Failed to fetch user data:", error);
     }
@@ -209,7 +205,6 @@ export default function MiniDrawer(props) {
       );
 
       setVouchers(matchingVouchers);
-
     } catch (error) {
       console.error("Error retrieving vouchers:", error);
     }
@@ -223,7 +218,6 @@ export default function MiniDrawer(props) {
       getWallet();
     }
   }, [walletID]); // Add walletID as a dependency
-
 
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -324,15 +318,20 @@ export default function MiniDrawer(props) {
       open={isMobileMenuOpen}
       onClose={handleMobileMenuClose}
     >
-      <MenuItem>
+      {/* <MenuItem>
         <IconButton size="large" aria-label="show 4 new mails" color="inherit">
-          <Badge badgeContent={vouchers.filter((voucher) => voucher.fields.redeemed === false)
-              .length} color="error">
+          <Badge
+            badgeContent={
+              vouchers.filter((voucher) => voucher.fields.redeemed === false)
+                .length
+            }
+            color="error"
+          >
             <AccountBalanceWalletOutlinedIcon />
           </Badge>
         </IconButton>
         <p>ארנק</p>
-      </MenuItem>
+      </MenuItem> */}
 
       <MenuItem onClick={handleProfileMenuOpen}>
         <IconButton
@@ -344,7 +343,7 @@ export default function MiniDrawer(props) {
         >
           <AccountCircle />
         </IconButton>
-        <p onClick={props.logOut}>פרופיל</p>
+        <p>פרופיל</p>
       </MenuItem>
     </Menu>
   );
@@ -557,10 +556,8 @@ export default function MiniDrawer(props) {
             {[
               "בית",
               "פרופיל",
-              "חיפוש",
               "הארנק שלי",
-              "הגדרות",
-              "ארכיון קופונים",
+              // "הגדרות",
             ].map((text, index) => (
               <ListItem key={text} disablePadding sx={{ display: "block" }}>
                 <ListItemButton
@@ -604,7 +601,16 @@ export default function MiniDrawer(props) {
                     )}
                     {index === 2 ? (
                       <Link href="/#/wallet" color="#1C74BC">
-                        <AccountBalanceWalletIcon />
+                        <Badge
+                          badgeContent={
+                            vouchers.filter(
+                              (voucher) => voucher.fields.redeemed === false
+                            ).length
+                          }
+                          color="error"
+                        >
+                          <AccountBalanceWalletIcon />
+                        </Badge>
                       </Link>
                     ) : (
                       ""
@@ -617,7 +623,6 @@ export default function MiniDrawer(props) {
                     ) : (
                       ""
                     )} */}
-                    
                   </ListItemIcon>
                   <ListItemText primary={text} sx={{ opacity: open ? 1 : 0 }} />
                 </ListItemButton>
@@ -626,7 +631,7 @@ export default function MiniDrawer(props) {
           </List>
         ) : (
           <List>
-            {["בית", "פרופיל", "הארנק שלי", "הגדרות", "ארכיון קופונים"].map(
+            {["בית", "פרופיל", "הארנק שלי", "ארכיון קופונים"].map(
               (text, index) => (
                 <ListItem key={text} disablePadding sx={{ display: "block" }}>
                   <ListItemButton
@@ -676,7 +681,6 @@ export default function MiniDrawer(props) {
                       ) : (
                         ""
                       )}
-
                     </ListItemIcon>
                     <ListItemText
                       primary={text}
