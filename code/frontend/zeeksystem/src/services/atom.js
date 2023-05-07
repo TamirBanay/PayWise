@@ -1,8 +1,12 @@
 import { atom } from "recoil";
 
-export const Vouchers = atom({
-  key: "Vouchers",
+export const _Vouchers = atom({
+  key: "_Vouchers",
   default: [],
+});
+export const _User = atom({
+  key: "_User",
+  default: "",
 });
 export const first_name = atom({
   key: "firstName",

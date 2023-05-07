@@ -5,7 +5,7 @@ import Tab, { tabClasses } from "@mui/joy/Tab";
 import Popover from "../dashboard/Popover";
 import { useRecoilState } from "recoil";
 import { useEffect, useState } from "react";
-import { Vouchers, first_name, last_name } from "../../services/atom";
+import { _Vouchers, first_name, last_name } from "../../services/atom";
 import BrowserNotSupportedIcon from "@mui/icons-material/BrowserNotSupported";
 import Voucher from "../dashboard/Voucher";
 import Typography from "@mui/joy/Typography";
@@ -15,7 +15,7 @@ export default function TabsUnderlineExample(props) {
   const [openUsedVouchers, setOpenUsedVouchers] = React.useState(false);
   const [openNotUsedVouchers, setOpenNotUsedVouchers] = React.useState(true);
   const [onClickVoucher, setOnClickVoucher] = useState(true);
-  const [vouchers, setVouchers] = useRecoilState(Vouchers);
+  const [vouchers, setVouchers] = useRecoilState(_Vouchers);
   const [walletID, setWalletID] = useState();
   const [openAllUsedVouchers, setOpenAllUsedVouchers] = useState(true);
   const [openAllNotUsedVouchers, setOpenAllNotUsedVouchers] = useState(false);

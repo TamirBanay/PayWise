@@ -9,6 +9,11 @@ class User(AbstractUser):
     last_name = models.CharField(max_length=255)
     email = models.EmailField(max_length=255, unique=True)
     password = models.CharField(max_length=255)
+    gender = models.CharField(max_length=30, null=True)
+    city = models.CharField(max_length=30, null=True)
+    street = models.CharField(max_length=30,  null=True, blank=True)
+    houseNumber = models.CharField(max_length=30, null=True, blank=True)
+    dateOfBirth = models.DateField(null=True, blank=True)
     username = None
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = []
@@ -19,13 +24,13 @@ class Wallet(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     walletID = models.IntegerField(primary_key=True)
 
-class PayWiseUser (models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
-    gender = models.CharField(max_length=30, null=True)
-    city = models.CharField(max_length=30, null=True)
-    street = models.CharField(max_length=30,  null=True, blank=True)
-    houseNumber = models.CharField(max_length=30, null=True, blank=True)
-    dateOfBirth = models.DateField(null=True, blank=True)
+# class PayWiseUser (models.Model):
+#     user = models.OneToOneField(User, on_delete=models.CASCADE)
+#     gender = models.CharField(max_length=30, null=True)
+#     city = models.CharField(max_length=30, null=True)
+#     street = models.CharField(max_length=30,  null=True, blank=True)
+#     houseNumber = models.CharField(max_length=30, null=True, blank=True)
+#     dateOfBirth = models.DateField(null=True, blank=True)
 
 
 @receiver(post_save, sender=User)
