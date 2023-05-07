@@ -35,7 +35,10 @@ import AddRoundedIcon from "@mui/icons-material/AddRounded";
 import payWiseLogo from "../images/payWiseLogo.png";
 import Link from "@mui/material/Link";
 import { createTheme } from "@mui/material/styles";
+import { useRecoilState } from "recoil";
+import { _Vouchers } from "../services/atom";
 import BasicPopover2 from "./scans/BasicPopover2";
+
 const theme = createTheme({
   status: {
     danger: "#e53e3e",
@@ -170,6 +173,51 @@ export default function MiniDrawer(props) {
   const isMenuOpen = Boolean(anchorEl);
   const AddRefundisMenuOpen = Boolean(anchorAddRedundMenu);
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
+  const [walletID, setWalletID] = React.useState();
+  const [vouchers, setVouchers] = useRecoilState(_Vouchers);
+
+  const fetchUserData = async () => {
+    try {
+      const response = await fetch("http://localhost:8000/api/user", {
+        headers: { "Content-Type": "application/json" },
+        credentials: "include",
+      });
+
+      if (response.ok) {
+        const content = await response.json();
+        setWalletID(content.id + 1000); // Update walletID based on fetched user data
+      }
+    } catch (error) {
+      console.error("Failed to fetch user data:", error);
+    }
+  };
+
+  const getWallet = async () => {
+    try {
+      const response = await fetch(
+        `http://localhost:8000/api/getVouchers/${walletID}`
+      );
+      const data = await response.json();
+
+      const vouchersArray = JSON.parse(data.vouchers);
+      const matchingVouchers = vouchersArray.filter(
+        (voucher) => voucher.fields.walletID === walletID
+      );
+
+      setVouchers(matchingVouchers);
+    } catch (error) {
+      console.error("Error retrieving vouchers:", error);
+    }
+  };
+  React.useEffect(() => {
+    fetchUserData();
+  }, []);
+  React.useEffect(() => {
+    if (walletID) {
+      // Only call getVoucher if walletID is truthy
+      getWallet();
+    }
+  }, [walletID]); // Add walletID as a dependency
 
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -247,8 +295,7 @@ export default function MiniDrawer(props) {
       <MenuItem onClick={handleMenuClose}>הוספה ע"י סריקה</MenuItem>
       <MenuItem onClick={handleMenuClose}>
         <BasicPopover2
-          userID={props.userID}
-          getWallet={props.getWallet}
+          getWallet={getWallet}
           handleAddRefundMenuClose={handleAddRefundMenuClose}
         />
       </MenuItem>
@@ -271,14 +318,20 @@ export default function MiniDrawer(props) {
       open={isMobileMenuOpen}
       onClose={handleMobileMenuClose}
     >
-      <MenuItem>
+      {/* <MenuItem>
         <IconButton size="large" aria-label="show 4 new mails" color="inherit">
-          <Badge badgeContent={5} color="error">
+          <Badge
+            badgeContent={
+              vouchers.filter((voucher) => voucher.fields.redeemed === false)
+                .length
+            }
+            color="error"
+          >
             <AccountBalanceWalletOutlinedIcon />
           </Badge>
         </IconButton>
         <p>ארנק</p>
-      </MenuItem>
+      </MenuItem> */}
 
       <MenuItem onClick={handleProfileMenuOpen}>
         <IconButton
@@ -290,7 +343,7 @@ export default function MiniDrawer(props) {
         >
           <AccountCircle />
         </IconButton>
-        <p onClick={props.logOut}>פרופיל</p>
+        <p>פרופיל</p>
       </MenuItem>
     </Menu>
   );
@@ -503,10 +556,8 @@ export default function MiniDrawer(props) {
             {[
               "בית",
               "פרופיל",
-              "חיפוש",
               "הארנק שלי",
-              "הגדרות",
-              "ארכיון קופונים",
+              // "הגדרות",
             ].map((text, index) => (
               <ListItem key={text} disablePadding sx={{ display: "block" }}>
                 <ListItemButton
@@ -549,34 +600,29 @@ export default function MiniDrawer(props) {
                       ""
                     )}
                     {index === 2 ? (
-                      <Link href="/#/search" color="#1C74BC">
-                        <SearchIcon />
-                      </Link>
-                    ) : (
-                      ""
-                    )}
-                    {index === 3 ? (
                       <Link href="/#/wallet" color="#1C74BC">
-                        <AccountBalanceWalletIcon />
+                        <Badge
+                          badgeContent={
+                            vouchers.filter(
+                              (voucher) => voucher.fields.redeemed === false
+                            ).length
+                          }
+                          color="error"
+                        >
+                          <AccountBalanceWalletIcon />
+                        </Badge>
                       </Link>
                     ) : (
                       ""
                     )}
 
-                    {index === 4 ? (
+                    {/* {index === 4 ? (
                       <Link href="/#/settings" color="#1C74BC">
                         <SettingsIcon />
                       </Link>
                     ) : (
                       ""
-                    )}
-                    {index === 5 ? (
-                      <Link href="/#/settings" color="#1C74BC">
-                        <MailIcon />
-                      </Link>
-                    ) : (
-                      ""
-                    )}
+                    )} */}
                   </ListItemIcon>
                   <ListItemText primary={text} sx={{ opacity: open ? 1 : 0 }} />
                 </ListItemButton>
@@ -585,7 +631,7 @@ export default function MiniDrawer(props) {
           </List>
         ) : (
           <List>
-            {["בית", "פרופיל", "הארנק שלי", "הגדרות", "ארכיון קופונים"].map(
+            {["בית", "פרופיל", "הארנק שלי", "ארכיון קופונים"].map(
               (text, index) => (
                 <ListItem key={text} disablePadding sx={{ display: "block" }}>
                   <ListItemButton
@@ -631,21 +677,6 @@ export default function MiniDrawer(props) {
                       {index === 2 ? (
                         <Link href="/#/wallet" color="#1C74BC">
                           <AccountBalanceWalletIcon />
-                        </Link>
-                      ) : (
-                        ""
-                      )}
-
-                      {index === 3 ? (
-                        <Link href="/#/settings" color="#1C74BC">
-                          <SettingsIcon />
-                        </Link>
-                      ) : (
-                        ""
-                      )}
-                      {index === 4 ? (
-                        <Link href="/#/settings" color="#1C74BC">
-                          <MailIcon />
                         </Link>
                       ) : (
                         ""
