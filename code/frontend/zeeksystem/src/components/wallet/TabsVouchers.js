@@ -5,7 +5,7 @@ import Tab, { tabClasses } from "@mui/joy/Tab";
 import Popover from "../dashboard/Popover";
 import { useRecoilState } from "recoil";
 import { useEffect, useState } from "react";
-import { _Vouchers, first_name, last_name } from "../../services/atom";
+import { _Vouchers, _User, first_name, last_name } from "../../services/atom";
 import BrowserNotSupportedIcon from "@mui/icons-material/BrowserNotSupported";
 import Voucher from "../dashboard/Voucher";
 import Typography from "@mui/joy/Typography";
@@ -19,6 +19,7 @@ export default function TabsUnderlineExample(props) {
   const [walletID, setWalletID] = useState();
   const [openAllUsedVouchers, setOpenAllUsedVouchers] = useState(true);
   const [openAllNotUsedVouchers, setOpenAllNotUsedVouchers] = useState(false);
+  const [user, setUser] = useRecoilState(_User);
 
   const getWallet = async () => {
     try {
@@ -37,6 +38,35 @@ export default function TabsUnderlineExample(props) {
       console.error("Error retrieving vouchers:", error);
     }
   };
+  const fetchUserData = async () => {
+    try {
+      const response = await fetch("http://localhost:8000/api/user", {
+        headers: { "Content-Type": "application/json" },
+        credentials: "include",
+      });
+
+      if (response.ok) {
+        const content = await response.json();
+
+        setWalletID(content.id + 1000); // Update walletID based on fetched user data
+        setUser(content);
+      } else {
+        setRedirect(true);
+      }
+    } catch (error) {
+      console.error("Failed to fetch user data:", error);
+    }
+  };
+  useEffect(() => {
+    fetchUserData();
+  }, []);
+
+  useEffect(() => {
+    if (walletID) {
+      // Only call getVoucher if walletID is truthy
+      getWallet();
+    }
+  }, [walletID]);
   const handleOpenVoucher = () => {
     setOnClickVoucher(!onClickVoucher);
   };
@@ -56,6 +86,7 @@ export default function TabsUnderlineExample(props) {
   const handleOpenAllNotUsedVouchers = () => {
     setOpenAllUsedVouchers(!openAllUsedVouchers);
   };
+
   return (
     <Tabs aria-label="tabs" defaultValue={0} direction="rtl">
       <TabList
@@ -113,7 +144,7 @@ export default function TabsUnderlineExample(props) {
         0 ? (
           vouchers
             .filter((voucher) => voucher.fields.redeemed === false)
-            .slice(0, openAllUsedVouchers ? vouchers.length : 3) // limit to 3 vouchers if openAllUsedVouchers is not true
+            .slice(0, !openAllUsedVouchers ? vouchers.length : 3) // limit to 3 vouchers if openAllUsedVouchers is not true
             .map((voucher) => (
               <Popover
                 voucher={voucher.fields}
