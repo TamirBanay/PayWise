@@ -209,6 +209,7 @@ export default function MiniDrawer(props) {
       );
 
       setVouchers(matchingVouchers);
+
     } catch (error) {
       console.error("Error retrieving vouchers:", error);
     }
@@ -325,7 +326,8 @@ export default function MiniDrawer(props) {
     >
       <MenuItem>
         <IconButton size="large" aria-label="show 4 new mails" color="inherit">
-          <Badge badgeContent={5} color="error">
+          <Badge badgeContent={vouchers.filter((voucher) => voucher.fields.redeemed === false)
+              .length} color="error">
             <AccountBalanceWalletOutlinedIcon />
           </Badge>
         </IconButton>
