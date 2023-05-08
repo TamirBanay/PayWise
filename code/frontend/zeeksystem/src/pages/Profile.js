@@ -26,72 +26,9 @@ function Profile(props) {
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
   const [user, setUser] = useRecoilState(_User);
   const [editProfileDetails, setEditProfileDetails] = useState(false);
-  const [user_id, setUserId] = useState();
-  const voucherData = useRecoilValue(_Vouchers); // recoile testing voucher data
 
-  const fetchUserData = async () => {
-    try {
-      const response = await fetch("http://localhost:8000/api/user", {
-        headers: { "Content-Type": "application/json" },
-        credentials: "include",
-      });
-
-      if (response.ok) {
-        const content = await response.json();
-        setUserId(content.id);
-      } else {
-        setRedirect(true);
-      }
-    } catch (error) {
-      console.error("Failed to fetch user data:", error);
-    }
-  };
-
-  useEffect(() => {
-    fetchUserData();
-  }, []);
-
-  const data = {
-    first_name: "tamir",
-    last_name: "Doe23",
-    email: "johne@example3.com",
-    gender: "male3",
-    city: "New Y23rk",
-    street: "5th 3Avenue",
-    houseNumber: "331",
-    dateOfBirth: "1990-01-01",
-  };
-
-  const updateUserDetails = async (user_id, data) => {
-    try {
-      const response = await fetch(
-        `http://localhost:8000/api/changeDetails/${user_id}`,
-        {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(data),
-        }
-      );
-
-      if (response.ok) {
-        const user = await response.json();
-        console.log("User details updated successfully");
-        return user;
-      } else {
-        console.error("Failed to update user details");
-      }
-    } catch (error) {
-      console.error(error);
-    }
-  };
   const handlleChangeDetailsUser = () => {
     setEditProfileDetails(!editProfileDetails);
-  };
-
-  const handleUpdateDetails = () => {
-    updateUserDetails(user_id, data).then((user) => {
-      console.log("User details updated:", user);
-    });
   };
 
   return (
@@ -121,7 +58,7 @@ function Profile(props) {
         />
       </div>
       <EditIcon sx={{ marginLeft: 37 }} onClick={handlleChangeDetailsUser} />
-      {editProfileDetails ? <UpdateUserDetails data={data} /> : ""}
+
       <div
         style={{
           marginLeft: isMobile ? "-35px" : "1100px",
@@ -149,7 +86,15 @@ function Profile(props) {
           {user.street}, {user.city}
         </Typography>
       </div>
-      {isMobile ? <TabsIcon /> : <TabsIconWithText />}
+      {editProfileDetails ? (
+        <UpdateUserDetails
+          setEditProfileDetails={setEditProfileDetails}
+          editProfileDetails={editProfileDetails}
+          handlleChangeDetailsUser={handlleChangeDetailsUser}
+        />
+      ) : (
+        ""
+      )}
     </div>
   );
 }
