@@ -14,6 +14,7 @@ import DoneIcon from "@mui/icons-material/Done";
 export default function BasicCard(props) {
   const location = useLocation();
   const { pathname } = location;
+
   const handlleRedeemdVoucher = async (event) => {
     event.preventDefault();
 

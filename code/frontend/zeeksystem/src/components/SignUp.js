@@ -11,10 +11,9 @@ import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { Redirect } from "react-router-dom";
-import Radio from '@mui/material/Radio';
-import RadioGroup from '@mui/material/RadioGroup';
-import FormControlLabel from '@mui/material/FormControlLabel';
-
+import Radio from "@mui/material/Radio";
+import RadioGroup from "@mui/material/RadioGroup";
+import FormControlLabel from "@mui/material/FormControlLabel";
 
 function Copyright(props) {
   return (
@@ -68,12 +67,12 @@ export default function SignUp() {
       console.error(error);
     }
   };
-  const test = (event) =>{
+  const test = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
     console.log(data.get("street"));
-  }
-  
+  };
+
   if (redirect) {
     return <Redirect to="/login" />;
   }
@@ -170,9 +169,21 @@ export default function SignUp() {
                   aria-labelledby="demo-row-radio-buttons-group-label"
                   name="row-radio-buttons-group"
                 >
-                  <FormControlLabel value="female" control={<Radio />} label="Female" />
-                  <FormControlLabel value="male" control={<Radio />} label="Male" />
-                  <FormControlLabel value="other" control={<Radio />} label="Other" />
+                  <FormControlLabel
+                    value="female"
+                    control={<Radio />}
+                    label="Female"
+                  />
+                  <FormControlLabel
+                    value="male"
+                    control={<Radio />}
+                    label="Male"
+                  />
+                  <FormControlLabel
+                    value="other"
+                    control={<Radio />}
+                    label="Other"
+                  />
                 </RadioGroup>
               </Grid>
             </Grid>
