@@ -11,9 +11,11 @@ import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { Redirect } from "react-router-dom";
-import Radio from '@mui/material/Radio';
-import RadioGroup from '@mui/material/RadioGroup';
-import FormControlLabel from '@mui/material/FormControlLabel';
+import Radio from "@mui/material/Radio";
+import RadioGroup from "@mui/material/RadioGroup";
+import FormControlLabel from "@mui/material/FormControlLabel";
+import {  useState } from "react";
+
 
 
 function Copyright(props) {
@@ -34,8 +36,8 @@ function Copyright(props) {
 const theme = createTheme();
 
 export default function SignUp() {
+  const [selectedDate, setSelectedDate] = useState((new Date()).toISOString().substr(0, 10));
   const [redirect, setRedirect] = React.useState(false);
-
   const handleSubmit = async (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
@@ -52,6 +54,7 @@ export default function SignUp() {
           gender: data.get("row-radio-buttons-group"),
           city: data.get("city"),
           street: data.get("street"),
+          dateOfBirth: data.get("date")
         }),
       });
 
@@ -68,12 +71,12 @@ export default function SignUp() {
       console.error(error);
     }
   };
-  const test = (event) =>{
+  const test = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
     console.log(data.get("street"));
-  }
-  
+  };
+
   if (redirect) {
     return <Redirect to="/login" />;
   }
@@ -164,15 +167,32 @@ export default function SignUp() {
                   autoComplete="street"
                 />
               </Grid>
+
+              <Grid item xs={12} sm={6}>
+                <TextField id="date" name="date" type="date" defaultValue={selectedDate} helperText ="date of birth" inputProps={{ max:selectedDate }}/>
+              </Grid>
+
               <Grid item xs={12} sm={6}>
                 <RadioGroup
                   row
                   aria-labelledby="demo-row-radio-buttons-group-label"
                   name="row-radio-buttons-group"
                 >
-                  <FormControlLabel value="female" control={<Radio />} label="Female" />
-                  <FormControlLabel value="male" control={<Radio />} label="Male" />
-                  <FormControlLabel value="other" control={<Radio />} label="Other" />
+                  <FormControlLabel
+                    value="female"
+                    control={<Radio />}
+                    label="Female"
+                  />
+                  <FormControlLabel
+                    value="male"
+                    control={<Radio />}
+                    label="Male"
+                  />
+                  <FormControlLabel
+                    value="other"
+                    control={<Radio />}
+                    label="Other"
+                  />
                 </RadioGroup>
               </Grid>
             </Grid>
