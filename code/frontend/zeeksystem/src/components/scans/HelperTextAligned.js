@@ -10,6 +10,22 @@ import { useRecoilState } from "recoil";
 export default function HelperTextAligned(props) {
   const [sirialNumber, setSirialNumber] = useState();
   const [user, setUser] = useRecoilState(_User) 
+  const [allVouchers, setAllVouchers] = useState();
+
+  const getAllVouchers = async () => {
+    try {
+      const response = await fetch(
+        `http://localhost:8000/api/getAllVouchers/`
+      );
+      const data = await response.json();
+      setAllVouchers(data)
+    } catch (error) {
+      console.error("Error retrieving all vouchers:", error);
+    }
+  };
+ 
+ 
+ 
   const handleSaveVoucher = async (event) => {
     event.preventDefault();
     await fetch("http://localhost:8000/api/createVoucher/", {
@@ -36,7 +52,9 @@ export default function HelperTextAligned(props) {
   };
   const handleChange = (e) => {
     setSirialNumber(e.target.value);
+    getAllVouchers().then(console.log(allVouchers))
   };
+  
 
   return (
     <Box
