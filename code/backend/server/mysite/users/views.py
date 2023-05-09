@@ -23,18 +23,6 @@ class RegisterView(APIView):
         user_serializer = UserSerializers(data=request.data)
         user_serializer.is_valid(raise_exception=True)
         user = user_serializer.save()
-
-        # paywise_user_data = {
-        #     'user': user.id,
-        #     'gender': request.data.get('gender'),
-        #     'city': request.data.get('city'),
-        #     'street': request.data.get('street'),
-        #     # 'houseNumber': request.data.get('houseNumber'),
-        #     # 'dateOfBirth': request.data.get('dateOfBirth')
-        # }
-        # paywise_user_serializer = PayWiseUserSerializer(data=paywise_user_data)
-        # paywise_user_serializer.is_valid(raise_exception=True)
-        # paywise_user_serializer.save()
         return Response(user_serializer.data)
 
 

@@ -3,8 +3,13 @@ import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button"; // Import Button from Material-UI
 import { useState } from "react";
+import {_User} from "../../services/atom"
+import { useRecoilState } from "recoil";
+
+
 export default function HelperTextAligned(props) {
   const [sirialNumber, setSirialNumber] = useState();
+  const [user, setUser] = useRecoilState(_User) 
   const handleSaveVoucher = async (event) => {
     event.preventDefault();
     await fetch("http://localhost:8000/api/createVoucher/", {
@@ -12,7 +17,7 @@ export default function HelperTextAligned(props) {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         voucherID: sirialNumber,
-        walletID: 1000 + props.userID,
+        walletID: 1000 + user.id,
         voucherCategory: "Category A",
         storeType: "Store B",
         ammount: "100",
