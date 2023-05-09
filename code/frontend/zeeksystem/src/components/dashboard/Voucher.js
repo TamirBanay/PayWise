@@ -51,8 +51,8 @@ export default function InteractiveCard(props) {
         <Typography fontSize="sm" aria-describedby="card-description" mb={1}>
           {props.voucher.dateOfExpiry.slice(0, 10)}
         </Typography>
-        <Typography>
-          ${props.voucher.ammount}
+        <Typography >
+            {props.voucher.ammount}  ₪
           <Typography>
             {" "}
             {props.voucher.redeemed ? <DoneIcon color="success" /> : ""}

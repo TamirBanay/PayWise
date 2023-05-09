@@ -1,7 +1,5 @@
 from rest_framework import serializers
-from mysite.models import VoucherCategory, StoreType, Store, Vouchers, Alerts
-from .models import TemporaryVoucher
-from mysite.models import Vouchers
+from mysite.models import VoucherCategory, StoreType, Store, Vouchers, MOCKVouchers, Alerts
 
 
 
@@ -31,15 +29,12 @@ class AlertsSerializer(serializers.ModelSerializer):
         fields = ['alertID', 'voucherID', 'walletID', 'alertDate', 'aletHour']
 
 
-class TemporaryVoucherSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = TemporaryVoucher
-        fields = '__all__'
-
-
 class VoucherSerializer(serializers.ModelSerializer):
     class Meta:
         model = Vouchers
         fields = '__all__'
-        # fields = ['voucherID', 'walletID', 'voucherCategory', 'storeType',
-        #           'ammount', 'dateOfAcquire', 'dateOfExpiry', 'redeemed']
+
+class MOCKVoucherSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = MOCKVouchers
+        fields = '__all__'

@@ -29,16 +29,24 @@ class Vouchers (models.Model):
     voucherID = models.IntegerField(primary_key=True)
     walletID = models.ForeignKey(
         Wallet, on_delete=models.CASCADE, default=User.DEFAULT_WALLET_ID)
-    # voucherCategory = models.ForeignKey(
-    #     VoucherCategory, on_delete=models.SET_DEFAULT, default="undefined")
-    # storeType = models.ForeignKey(
-    #     StoreType, on_delete=models.SET_DEFAULT, default="undefined")
+    storeName = storeType = models.CharField(max_length=30, default="undefined")
     voucherCategory = models.CharField(max_length=30, default="undefined")
     storeType = models.CharField(max_length=30, default="undefined")
     ammount = models.DecimalField(max_digits=10, decimal_places=2)
     dateOfAcquire = models.DateTimeField(default=local_dt)
     dateOfExpiry = models.DateTimeField(default=local_dt)
+    redeemed = models.BooleanField(default=False)
+    
 
+class MOCKVouchers (models.Model):
+    local_dt = datetime.now()
+    voucherID = models.IntegerField(primary_key=True)
+    storeName = storeType = models.CharField(max_length=30, default="undefined")
+    voucherCategory = models.CharField(max_length=30, default="undefined")
+    storeType = models.CharField(max_length=30, default="undefined")
+    ammount = models.DecimalField(max_digits=10, decimal_places=2)
+    dateOfAcquire = models.DateTimeField(default=local_dt)
+    dateOfExpiry = models.DateTimeField(default=local_dt)
     redeemed = models.BooleanField(default=False)
 
 
@@ -46,13 +54,8 @@ class Alerts (models.Model):
     alertID = models.IntegerField(primary_key=True)
     voucherID = models.ForeignKey(
         Vouchers, on_delete=models.SET_DEFAULT, default="undefined")
-    # walletID = models.ForeignKey(
-    #     Wallet, on_delete=models.SET_DEFAULT, default="undefined")
     alertDate = models.DateField()
     aletHour = models.TimeField()
 
 
-class TemporaryVoucher(models.Model):
-    storeName = models.CharField(max_length=50, unique=True)
-    expiration_date = models.DateTimeField()
-    price = models.PositiveIntegerField()
+

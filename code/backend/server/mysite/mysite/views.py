@@ -3,10 +3,9 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import get_object_or_404, render
 from rest_framework import status
 from users.models import Wallet
-from mysite.models import VoucherCategory, StoreType, Store, Vouchers, Alerts
+from mysite.models import VoucherCategory, StoreType, Store, Vouchers, Alerts, MOCKVouchers
 from mysite.serializers import VoucherCategorySerializer, StoreTypeSerializer, StoreSerializer,  AlertsSerializer
 from rest_framework.response import Response
-from .models import TemporaryVoucher
 from .serializers import VoucherSerializer
 import jwt
 from .forms import VoucherForm
@@ -21,6 +20,12 @@ def get_vouchers(request, walletID):
     vouchers = Vouchers.objects.filter(walletID=walletID)
     vouchers_json = serializers.serialize('json', vouchers)
     return JsonResponse({'vouchers': vouchers_json})
+
+def get_MOCK_vouchers(request):
+    MOCK_vouchers = MOCKVouchers.objects.all()
+    MOCK_vouchers_json = serializers.serialize('json', MOCK_vouchers)
+    return JsonResponse({'MOCK_vouchers': MOCK_vouchers_json})
+
 
 
 class CreateVoucherView(APIView):

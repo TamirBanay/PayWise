@@ -90,14 +90,6 @@ DATABASES = {
         'HOST': 'localhost',   # Or an IP Address that your DB is hosted on
         'PORT': '3306',
     },
-    # 'external': {
-    #     'ENGINE': 'django.db.backends.mysql',
-    #     'NAME': 'zeekSchema',
-    #     'USER': 'root',
-    #     'PASSWORD': 'Oz18357295',
-    #     'HOST': 'localhost',   # Or an IP Address that your DB is hosted on
-    #     'PORT': '3306',
-    # }
 }
 
 
