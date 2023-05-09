@@ -12,6 +12,7 @@ import { useEffect, useState } from "react";
 import UpdateUserDetails from "../components/profile/UpdateUserDetails";
 import { useRecoilValue, useRecoilState } from "recoil";
 import Popover from "@mui/material/Popover";
+import Select from '@mui/material/Select';
 
 import {
   _Vouchers,
@@ -26,11 +27,47 @@ function Profile(props) {
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
   const [user, setUser] = useRecoilState(_User);
   const [editProfileDetails, setEditProfileDetails] = useState(false);
+  const [messegeToSuccess, setMessegeToSuccess] = useState(false);
+  const [user_id, setUserId] = useState();
+
+  const fetchUserData = async () => {
+    try {
+      const response = await fetch("http://localhost:8000/api/user", {
+        headers: { "Content-Type": "application/json" },
+        credentials: "include",
+      });
+
+      if (response.ok) {
+        const content = await response.json();
+        setUserId(content.id);
+        setUser(content);
+      } else {
+        setRedirect(true);
+      }
+    } catch (error) {
+      console.error("Failed to fetch user data:", error);
+    }
+  };
 
   const handlleChangeDetailsUser = () => {
     setEditProfileDetails(!editProfileDetails);
   };
+  useEffect(() => {
+    let timeoutId;
 
+    if (messegeToSuccess) {
+      timeoutId = setTimeout(() => {
+        setMessegeToSuccess(false);
+      }, 5000);
+    }
+    return () => {
+      clearTimeout(timeoutId);
+    };
+  }, [messegeToSuccess]);
+
+  useEffect(() => {
+    fetchUserData();
+  }, []);
   return (
     <div>
       <Navbar />
@@ -82,8 +119,8 @@ function Profile(props) {
           style={{ color: "#23476" }}
         >
           {" "}
-          <img src={israel} style={{ width: "20px" }} />
-          {user.street}, {user.city}
+          <img src={israel} style={{ width: "20px" }} /> {user.street},{" "}
+          {user.city}
         </Typography>
       </div>
       {editProfileDetails ? (
@@ -91,10 +128,17 @@ function Profile(props) {
           setEditProfileDetails={setEditProfileDetails}
           editProfileDetails={editProfileDetails}
           handlleChangeDetailsUser={handlleChangeDetailsUser}
+          messegeToSuccess={messegeToSuccess}
+          setMessegeToSuccess={setMessegeToSuccess}
+          fetchUser={fetchUserData}
         />
       ) : (
         ""
       )}
+      <div style={{ textAlign: "center", marginTop: 20, fontSize: 20 }}>
+        {" "}
+        {messegeToSuccess ? "הפרטים עודכנו בהצלחה " : ""}
+      </div>
     </div>
   );
 }

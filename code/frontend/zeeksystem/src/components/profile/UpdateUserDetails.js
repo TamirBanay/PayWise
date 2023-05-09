@@ -4,6 +4,9 @@ import TextField from "@mui/material/TextField";
 import { Button } from "@mui/material";
 import { useEffect, useState } from "react";
 import { useRecoilValue, useRecoilState } from "recoil";
+import Select from "@mui/material/Select";
+import InputLabel from "@mui/material/InputLabel";
+import MenuItem from "@mui/material/MenuItem";
 
 import {
   _Vouchers,
@@ -16,6 +19,8 @@ import {
 export default function FormPropsTextFields(props) {
   const [user, setUser] = useRecoilState(_User);
   const [user_id, setUserId] = useState();
+  const [gender, setGender] = React.useState(user.gender);
+
   const fetchUserData = async () => {
     try {
       const response = await fetch("http://localhost:8000/api/user", {
@@ -53,6 +58,7 @@ export default function FormPropsTextFields(props) {
       if (response.ok) {
         const user = await response.json();
         console.log("User details updated successfully");
+        props.setMessegeToSuccess(!props.messegeToSuccess);
         return user;
       } else {
         console.error("Failed to update user details", error);
@@ -61,11 +67,11 @@ export default function FormPropsTextFields(props) {
       console.error(error);
     }
   };
+
   const handleUpdateDetails = () => {
     const firstName = document.getElementById("first-name").value;
     const lastName = document.getElementById("last-name").value;
     const email = document.getElementById("email").value;
-    const gender = document.getElementById("gender").value;
     const city = document.getElementById("city").value;
     const street = document.getElementById("street").value;
     const houseNumber = document.getElementById("house-number").value;
@@ -92,28 +98,54 @@ export default function FormPropsTextFields(props) {
   const handleButtonClick = () => {
     handleUpdateDetails();
     props.handlleChangeDetailsUser();
+    props.fetchUser();
+    fetchUserData();
   };
+
+  useEffect(() => {
+    fetchUserData();
+  }, []);
+
+  const handleChange = (event) => {
+    setGender(event.target.value);
+  };
+
   return (
     <Box
       component="form"
       sx={{
         "& .MuiTextField-root": { m: 1, width: "25ch" },
         direction: "rtl",
-        marginRight: 13,
+        marginRight: 9,
         paddingBottom: 5,
       }}
       noValidate
       autoComplete="off"
     >
-      <div>
+      <div
+        style={{
+          border: "1px solid lightgray",
+          borderRadius: "10px",
+          padding: "10px",
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          width: 300,
+          marginTop: 10,
+        }}
+      >
         <TextField id="first-name" label="שם" defaultValue={user.first_name} />
         <TextField
           id="last-name"
           label="שם משפחה"
           defaultValue={user.last_name}
         />
-        <TextField id="email" label="מייל" defaultValue={user.email} />
-        <TextField id="gender" label="מין" defaultValue={user.gender} />
+        <TextField
+          id="email"
+          label="מייל"
+          defaultValue={user.email}
+          sx={{ direction: "ltr" }}
+        />
         <TextField id="city" label="עיר" defaultValue={user.city} />
         <TextField id="street" label="רחוב" defaultValue={user.street} />
         <TextField
@@ -123,18 +155,29 @@ export default function FormPropsTextFields(props) {
         />
         <TextField
           id="date-of-birth"
-          label="תאריך לידה "
+          label="תאריך לידה"
           defaultValue={user.dateOfBirth}
           type="date"
         />
+        <Select
+          variant="outlined"
+          sx={{ marginLeft: 9, width: 150, marginTop: 1, marginBottom: 1 }}
+          id="gender"
+          value={gender}
+          onChange={handleChange}
+        >
+          <MenuItem value={"זכר"}>זכר</MenuItem>
+          <MenuItem value={"נקבה"}>נקבה</MenuItem>
+          <MenuItem value={"אחר"}>אחר</MenuItem>
+        </Select>
+        <Button
+          variant="contained"
+          onClick={handleButtonClick}
+          sx={{ marginLeft: 20 }}
+        >
+          עדכן
+        </Button>{" "}
       </div>
-      <Button
-        variant="contained"
-        onClick={handleButtonClick}
-        sx={{ marginRight: 1 }}
-      >
-        עדכן
-      </Button>{" "}
     </Box>
   );
 }
