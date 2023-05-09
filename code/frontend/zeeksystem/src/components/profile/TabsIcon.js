@@ -8,9 +8,9 @@ import PersonPinIcon from "@mui/icons-material/PersonPin";
 import FlexRowRatio from "../dashboard/FlexRowRatio";
 
 export default function TabsIcon() {
-  const [openPersonalDetails, setOpenPersonalDetails] = React.useState(false);
+  const [openPersonalDetails, setOpenPersonalDetails] = React.useState(true);
   const [openfavorite, setOpenfavorite] = React.useState(false);
-  const [openWallet, setOpenWallet] = React.useState(true);
+  const [openWallet, setOpenWallet] = React.useState(false);
 
   const handleopenWallet = () => {
     setOpenWallet(!openWallet);
