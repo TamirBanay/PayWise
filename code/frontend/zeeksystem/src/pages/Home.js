@@ -3,18 +3,19 @@ import { Redirect } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import { useTheme } from "@mui/material/styles";
-import FlexRowRatio from "../components/dashboard/FlexRowRatio";
 import ChartPie from "../components/dashboard/ChartPie";
 import Divider from "@mui/material/Divider";
-import Voucher from "../components/dashboard/Voucher";
-import { _Vouchers, first_name, last_name, user_email, _User, _Redirect } from "../services/atom";
+import {
+  _Vouchers,
+  first_name,
+  last_name,
+  user_email,
+  _User,
+  _Redirect,
+} from "../services/atom";
 import { useRecoilState } from "recoil";
-import Paper from "@mui/material/Paper";
-import Popper from "@mui/material/Popper";
-import Fade from "@mui/material/Fade";
 import Popover from "../components/dashboard/Popover";
 import { useHistory } from "react-router-dom";
-
 
 function Home(props) {
   const [firstName, setFirstName] = useRecoilState(first_name);
@@ -28,7 +29,6 @@ function Home(props) {
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
   const [vouchers, setVouchers] = useRecoilState(_Vouchers);
   const [walletID, setWalletID] = useState();
-
 
   const getWallet = async () => {
     try {
@@ -55,9 +55,7 @@ function Home(props) {
     });
 
     setRedirect(true);
-    history.push("/login")
-
-
+    history.push("/login");
   };
 
   const fetchUserData = async () => {
@@ -75,9 +73,11 @@ function Home(props) {
         setUser(content);
         setFirstName(content.first_name);
         setLastName(content.last_name);
-        setUsrEmail(content.email)
-        const jwtCookie = document.cookie.split(';').find(cookie => cookie.trim().startsWith('jwt='));
-        console.log(jwtCookie);
+        setUsrEmail(content.email);
+        const jwtCookie = document.cookie
+          .split(";")
+          .find((cookie) => cookie.trim().startsWith("jwt="));
+        // console.log(jwtCookie);
       } else {
         setRedirect(true);
       }

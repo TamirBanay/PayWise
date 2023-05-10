@@ -2,7 +2,6 @@ import * as React from "react";
 import AspectRatio from "@mui/joy/AspectRatio";
 import Card from "@mui/joy/Card";
 import Typography from "@mui/joy/Typography";
-import bin from "../dashboard/bin.png";
 import { useState } from "react";
 import OpenInNewIcon from "@mui/icons-material/OpenInNew";
 import DoneIcon from "@mui/icons-material/Done";

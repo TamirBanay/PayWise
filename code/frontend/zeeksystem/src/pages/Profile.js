@@ -5,14 +5,12 @@ import { useTheme } from "@mui/material/styles";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import ProfilePic from "../images/profile.jpg";
 import Typography from "@mui/material/Typography";
-import TabsIcon from "../components/profile/TabsIcon";
-import TabsIconWithText from "../components/profile/TabsIconWithText";
 import israel from "../images/israel.png";
 import { useEffect, useState } from "react";
 import UpdateUserDetails from "../components/profile/UpdateUserDetails";
 import { useRecoilValue, useRecoilState } from "recoil";
 import Popover from "@mui/material/Popover";
-import Select from '@mui/material/Select';
+import Select from "@mui/material/Select";
 
 import {
   _Vouchers,
