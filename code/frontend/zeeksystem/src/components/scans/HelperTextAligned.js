@@ -41,6 +41,7 @@ export default function HelperTextAligned(props) {
           storeType: voucher.fields.storeType,
           ammount: voucher.fields.ammount,
           redeemed: voucher.fields.redeemed,
+          storeName: voucher.fields.storeName,
         }),
       })
         .then((response) => response.json())

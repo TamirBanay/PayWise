@@ -10,6 +10,7 @@ import { useLocation } from "react-router-dom";
 
 export default function InteractiveCard(props) {
   const location = useLocation();
+
   const { pathname } = location;
   const hendleDelete = async (event) => {
     event.preventDefault();
@@ -19,6 +20,7 @@ export default function InteractiveCard(props) {
     });
     props.getWallet();
   };
+
   return (
     <Card
       variant="outlined"
@@ -37,22 +39,17 @@ export default function InteractiveCard(props) {
       onClick={props.handleClick}
     >
       <AspectRatio ratio="1" sx={{ width: 90 }}>
-        <img
-          src="https://images.unsplash.com/photo-1507833423370-a126b89d394b?auto=format&fit=crop&w=90"
-          srcSet="https://images.unsplash.com/photo-1507833423370-a126b89d394b?auto=format&fit=crop&w=90&dpr=2 2x"
-          loading="lazy"
-          alt=""
-        />
+        <img src={props.img} alt={props.voucher.storeType} />
       </AspectRatio>
       <div>
         <Typography level="h2" fontSize="lg" id="card-description" mb={0.5}>
-          {props.voucher.storeType}
+          {props.voucher.storeName}
         </Typography>
         <Typography fontSize="sm" aria-describedby="card-description" mb={1}>
           {props.voucher.dateOfExpiry.slice(0, 10)}
         </Typography>
-        <Typography >
-            {props.voucher.ammount}  ₪
+        <Typography>
+          {props.voucher.ammount} ₪
           <Typography>
             {" "}
             {props.voucher.redeemed ? <DoneIcon color="success" /> : ""}
