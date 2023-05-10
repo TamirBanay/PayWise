@@ -22,14 +22,13 @@ function Home(props) {
   const [usrEmail, setUsrEmail] = useRecoilState(user_email);
   const [user, setUser] = useRecoilState(_User);
   const history = useHistory();
-
-
   const [redirect, setRedirect] = useRecoilState(_Redirect);
   const [userID, setUserId] = useState(1000);
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
   const [vouchers, setVouchers] = useRecoilState(_Vouchers);
   const [walletID, setWalletID] = useState();
+
 
   const getWallet = async () => {
     try {
@@ -77,6 +76,8 @@ function Home(props) {
         setFirstName(content.first_name);
         setLastName(content.last_name);
         setUsrEmail(content.email)
+        const jwtCookie = document.cookie.split(';').find(cookie => cookie.trim().startsWith('jwt='));
+        console.log(jwtCookie);
       } else {
         setRedirect(true);
       }

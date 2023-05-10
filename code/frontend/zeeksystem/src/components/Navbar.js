@@ -258,6 +258,11 @@ export default function MiniDrawer(props) {
   };
 
   const handleMenuClose = () => {
+    setAnchorEl(null);
+    handleMobileMenuClose();
+
+  };
+  const handlelogout = () => {
     logOut();
     // setAnchorEl(null);
     // handleMobileMenuClose();
@@ -287,7 +292,7 @@ export default function MiniDrawer(props) {
       <NavLink to="/profile">
         <MenuItem onClick={handleMenuClose}>פרופיל</MenuItem>
       </NavLink>
-      <MenuItem onClick={(handleMenuClose)}>התנתקות</MenuItem>
+      <MenuItem onClick={(handlelogout)}>התנתקות</MenuItem>
       <MenuItem onClick={handleMenuClose}>החשבון שלי </MenuItem>
     </Menu>
   );
