@@ -40,7 +40,6 @@ import { _Vouchers, _Redirect } from "../services/atom";
 import BasicPopover2 from "./scans/BasicPopover2";
 import { useHistory } from "react-router-dom";
 
-
 const theme = createTheme({
   status: {
     danger: "#e53e3e",
@@ -221,19 +220,17 @@ export default function MiniDrawer(props) {
     }
   }, [walletID]); // Add walletID as a dependency
 
-
   const history = useHistory();
   const [redirect, setRedirect] = useRecoilState(_Redirect);
   const logOut = async () => {
     setRedirect(true);
-    history.push("/login")
+    history.push("/login");
     await fetch("http://localhost:8000/api/logout", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       credentials: "include",
     });
   };
-
 
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -260,13 +257,11 @@ export default function MiniDrawer(props) {
   const handleMenuClose = () => {
     setAnchorEl(null);
     handleMobileMenuClose();
-
   };
   const handlelogout = () => {
     logOut();
     // setAnchorEl(null);
     // handleMobileMenuClose();
-
   };
 
   const handleAddRefundMenuClose = () => {
@@ -292,7 +287,7 @@ export default function MiniDrawer(props) {
       <NavLink to="/profile">
         <MenuItem onClick={handleMenuClose}>פרופיל</MenuItem>
       </NavLink>
-      <MenuItem onClick={(handlelogout)}>התנתקות</MenuItem>
+      <MenuItem onClick={handlelogout}>התנתקות</MenuItem>
       <MenuItem onClick={handleMenuClose}>החשבון שלי </MenuItem>
     </Menu>
   );
@@ -341,21 +336,6 @@ export default function MiniDrawer(props) {
       open={isMobileMenuOpen}
       onClose={handleMobileMenuClose}
     >
-      {/* <MenuItem>
-        <IconButton size="large" aria-label="show 4 new mails" color="inherit">
-          <Badge
-            badgeContent={
-              vouchers.filter((voucher) => voucher.fields.redeemed === false)
-                .length
-            }
-            color="error"
-          >
-            <AccountBalanceWalletOutlinedIcon />
-          </Badge>
-        </IconButton>
-        <p>ארנק</p>
-      </MenuItem> */}
-
       <MenuItem onClick={handleProfileMenuOpen}>
         <IconButton
           size="large"
@@ -374,171 +354,70 @@ export default function MiniDrawer(props) {
   return (
     <Box sx={{ direction: "rtl", height: 100 }}>
       <CssBaseline />
-      {/* responsiv logo - when use mobile and menu open more icons icon is deleted  */}
-      {isMobile & open ? (
-        <AppBar position="relative" open={open}>
-          <Toolbar>
+      <AppBar position="relative" open={open}>
+        <Toolbar>
+          <IconButton
+            color="inherit"
+            aria-label="open drawer"
+            onClick={handleDrawerOpen}
+            edge="start"
+            sx={{
+              marginLeft: 5,
+              ...(open && { display: "none" }),
+            }}
+          >
+            <MenuIcon />
+          </IconButton>
+          <Typography variant="h6" noWrap component="div"></Typography>
+
+          <Box sx={{ flexGrow: 1 }} />
+          <Box sx={{ display: { xs: "none", md: "flex" } }}>
             <IconButton
+              size="large"
+              edge="end"
+              aria-label="account of current user"
+              aria-controls={menuId}
+              aria-haspopup="true"
+              onClick={handleAddRedundMenuOpen}
               color="inherit"
-              aria-label="open drawer"
-              onClick={handleDrawerOpen}
-              edge="start"
-              sx={{
-                marginLeft: 5,
-                ...(open && { display: "none" }),
-              }}
             >
-              <MenuIcon />
+              <AddRoundedIcon />
             </IconButton>
-            <Typography variant="h6" noWrap component="div"></Typography>
-            {/* responsive search  */}
-            {isMobile ? (
-              ""
-            ) : (
-              <Search>
-                <SearchIconWrapper>
-                  <SearchIcon />
-                </SearchIconWrapper>
-                <StyledInputBase
-                  sx={{ marginRight: 4.5 }}
-                  placeholder="חיפוש..."
-                  inputProps={{ "aria-label": "search" }}
-                />
-              </Search>
-            )}
-            <Box sx={{ flexGrow: 1 }} />
-            <Box sx={{ display: { xs: "none", md: "flex" } }}>
-              <IconButton
-                size="large"
-                edge="end"
-                aria-label="account of current user"
-                aria-controls={menuId}
-                aria-haspopup="true"
-                onClick={handleAddRedundMenuOpen}
-                color="inherit"
-              >
-                <AddRoundedIcon />
-              </IconButton>
 
-              <IconButton size="large" color="inherit">
-                <Badge badgeContent={5} color="error">
-                  <AccountBalanceWalletOutlinedIcon />
-                </Badge>
-              </IconButton>
+            <IconButton size="large" color="inherit">
+              <Badge badgeContent={4} color="error">
+                <AccountBalanceWalletOutlinedIcon />
+              </Badge>
+            </IconButton>
 
-              <IconButton
-                size="large"
-                edge="end"
-                aria-label="account of current user"
-                aria-controls={menuId}
-                aria-haspopup="true"
-                onClick={handleProfileMenuOpen}
-                color="inherit"
-              >
-                <AccountCircle />
-              </IconButton>
-            </Box>
-            {/* //mobile add redund menu */}
-            <Box sx={{ display: { xs: "flex", md: "none" } }}>
-              <IconButton
-                size="large"
-                aria-label="show more"
-                aria-controls={mobileMenuId}
-                aria-haspopup="true"
-                onClick={handleAddRedundMenuOpen}
-                color="inherit"
-              >
-                <AddRoundedIcon size="large" />
-              </IconButton>
-            </Box>
-
-            <Link href="/" variant="body2">
-              <img
-                src={payWiseLogo}
-                alt="PayWise Logo"
-                style={{ height: 50 }}
-              />
-            </Link>
-          </Toolbar>
-        </AppBar>
-      ) : (
-        <AppBar position="relative" open={open}>
-          <Toolbar>
             <IconButton
+              size="large"
+              edge="end"
+              aria-label="account of current user"
+              aria-controls={menuId}
+              aria-haspopup="true"
+              onClick={handleProfileMenuOpen}
               color="inherit"
-              aria-label="open drawer"
-              onClick={handleDrawerOpen}
-              edge="start"
-              sx={{
-                marginLeft: 5,
-                ...(open && { display: "none" }),
-              }}
             >
-              <MenuIcon />
+              <AccountCircle />
             </IconButton>
-            <Typography variant="h6" noWrap component="div"></Typography>
-            {/* responsive search  */}
-            {isMobile ? (
-              ""
-            ) : (
-              <Search>
-                <SearchIconWrapper>
-                  <Link href="/Search" color="#fff">
-                    <SearchIcon />
-                  </Link>
-                </SearchIconWrapper>
-                <StyledInputBase
-                  sx={{ marginRight: 4.5 }}
-                  placeholder="חיפוש..."
-                  inputProps={{ "aria-label": "search" }}
-                />
-              </Search>
-            )}
-            <Box sx={{ flexGrow: 1 }} />
-            <Box sx={{ display: { xs: "none", md: "flex" } }}>
-              <IconButton
-                size="large"
-                edge="end"
-                aria-label="account of current user"
-                aria-controls={menuId}
-                aria-haspopup="true"
-                onClick={handleAddRedundMenuOpen}
-                color="inherit"
-              >
-                <AddRoundedIcon />
-              </IconButton>
+          </Box>
 
-              <IconButton size="large" color="inherit">
-                <Badge badgeContent={4} color="error">
-                  <AccountBalanceWalletOutlinedIcon />
-                </Badge>
-              </IconButton>
-
-              <IconButton
-                size="large"
-                edge="end"
-                aria-label="account of current user"
-                aria-controls={menuId}
-                aria-haspopup="true"
-                onClick={handleProfileMenuOpen}
-                color="inherit"
-              >
-                <AccountCircle />
-              </IconButton>
-            </Box>
-            {/* //mobile add redund menu */}
-            <Box sx={{ display: { xs: "flex", md: "none" } }}>
-              <IconButton
-                size="large"
-                aria-label="show more"
-                aria-controls={mobileMenuId}
-                aria-haspopup="true"
-                onClick={handleAddRedundMenuOpen}
-                color="inherit"
-              >
-                <AddRoundedIcon size="large" />
-              </IconButton>
-            </Box>
+          <Box sx={{ display: { xs: "flex", md: "none" } }}>
+            <IconButton
+              size="large"
+              aria-label="show more"
+              aria-controls={mobileMenuId}
+              aria-haspopup="true"
+              onClick={handleAddRedundMenuOpen}
+              color="inherit"
+            >
+              <AddRoundedIcon size="large" />
+            </IconButton>
+          </Box>
+          {open ? (
+            ""
+          ) : (
             <Box sx={{ display: { xs: "flex", md: "none" } }}>
               <IconButton
                 size="large"
@@ -551,16 +430,12 @@ export default function MiniDrawer(props) {
                 <MoreIcon />
               </IconButton>
             </Box>
-            <Link href="/" variant="body2">
-              <img
-                src={payWiseLogo}
-                alt="PayWise Logo"
-                style={{ height: 50 }}
-              />
-            </Link>
-          </Toolbar>
-        </AppBar>
-      )}
+          )}
+          <Link href="/#/" variant="body2">
+            <img src={payWiseLogo} alt="PayWise Logo" style={{ height: 50 }} />
+          </Link>
+        </Toolbar>
+      </AppBar>
 
       <Drawer anchor="right" variant="permanent" open={open}>
         <DrawerHeader onClick={handleDrawerClose}>
@@ -573,148 +448,70 @@ export default function MiniDrawer(props) {
           </IconButton>
         </DrawerHeader>
         <Divider />
-        {/* if its mobile no search icon in the Drawer */}
-        {isMobile ? (
-          <List>
-            {[
-              "בית",
-              "פרופיל",
-              "הארנק שלי",
-              // "הגדרות",
-            ].map((text, index) => (
-              <ListItem key={text} disablePadding sx={{ display: "block" }}>
-                <ListItemButton
+        <List>
+          {["בית", "פרופיל", "הארנק שלי"].map((text, index) => (
+            <ListItem key={text} disablePadding sx={{ display: "block" }}>
+              <ListItemButton
+                sx={{
+                  minHeight: 48,
+                  justifyContent: open ? "initial" : "center",
+                  px: 2.5,
+                  direction: "ltr",
+                  "& .MuiListItemIcon-root": {
+                    minWidth: 0,
+                    mr: open ? 3 : "auto",
+                    ml: open ? "auto" : 1,
+                    justifyContent: "center",
+                  },
+                  "& .MuiListItemText-root": {
+                    textAlign: "right",
+                    opacity: open ? 1 : 0,
+                  },
+                }}
+              >
+                <ListItemIcon
                   sx={{
-                    minHeight: 48,
-                    justifyContent: open ? "initial" : "center",
-                    px: 2.5,
-                    direction: "ltr",
-                    "& .MuiListItemIcon-root": {
-                      minWidth: 0,
-                      mr: open ? 3 : "auto",
-                      ml: open ? "auto" : 1,
-                      justifyContent: "center",
-                    },
-                    "& .MuiListItemText-root": {
-                      textAlign: "right",
-                      opacity: open ? 1 : 0,
-                    },
+                    minWidth: 0,
+                    mr: open ? 3 : "auto",
+                    justifyContent: "center",
                   }}
                 >
-                  <ListItemIcon
-                    sx={{
-                      minWidth: 0,
-                      mr: open ? 3 : "auto",
-                      justifyContent: "center",
-                    }}
-                  >
-                    {index === 0 ? (
-                      <Link href="/#/" color="#1C74BC">
-                        <HomeIcon />
-                      </Link>
-                    ) : (
-                      ""
-                    )}
-                    {index === 1 ? (
-                      <Link href="/#/profile" color="#1C74BC">
-                        <Person2Icon />
-                      </Link>
-                    ) : (
-                      ""
-                    )}
-                    {index === 2 ? (
-                      <Link href="/#/wallet" color="#1C74BC">
-                        <Badge
-                          badgeContent={
-                            vouchers.filter(
-                              (voucher) => voucher.fields.redeemed === false
-                            ).length
-                          }
-                          color="error"
-                        >
-                          <AccountBalanceWalletIcon />
-                        </Badge>
-                      </Link>
-                    ) : (
-                      ""
-                    )}
-
-                    {/* {index === 4 ? (
-                      <Link href="/#/settings" color="#1C74BC">
-                        <SettingsIcon />
-                      </Link>
-                    ) : (
-                      ""
-                    )} */}
-                  </ListItemIcon>
-                  <ListItemText primary={text} sx={{ opacity: open ? 1 : 0 }} />
-                </ListItemButton>
-              </ListItem>
-            ))}
-          </List>
-        ) : (
-          <List>
-            {["בית", "פרופיל", "הארנק שלי", "ארכיון קופונים"].map(
-              (text, index) => (
-                <ListItem key={text} disablePadding sx={{ display: "block" }}>
-                  <ListItemButton
-                    sx={{
-                      minHeight: 48,
-                      justifyContent: open ? "initial" : "center",
-                      px: 2.5,
-                      direction: "ltr",
-                      "& .MuiListItemIcon-root": {
-                        minWidth: 0,
-                        mr: open ? 3 : "auto",
-                        ml: open ? "auto" : 1,
-                        justifyContent: "center",
-                      },
-                      "& .MuiListItemText-root": {
-                        textAlign: "right",
-                        opacity: open ? 1 : 0,
-                      },
-                    }}
-                  >
-                    <ListItemIcon
-                      sx={{
-                        minWidth: 0,
-                        mr: open ? 3 : "auto",
-                        justifyContent: "center",
-                      }}
-                    >
-                      {index === 0 ? (
-                        <Link href="/#/" color="#1C74BC">
-                          <HomeIcon />
-                        </Link>
-                      ) : (
-                        ""
-                      )}
-                      {index === 1 ? (
-                        <Link href="/#/profile" color="#1C74BC">
-                          <Person2Icon />
-                        </Link>
-                      ) : (
-                        ""
-                      )}
-
-                      {index === 2 ? (
-                        <Link href="/#/wallet" color="#1C74BC">
-                          <AccountBalanceWalletIcon />
-                        </Link>
-                      ) : (
-                        ""
-                      )}
-                    </ListItemIcon>
-                    <ListItemText
-                      primary={text}
-                      sx={{ opacity: open ? 1 : 0 }}
-                    />
-                  </ListItemButton>
-                </ListItem>
-              )
-            )}
-          </List>
-        )}
+                  {index === 0 ? (
+                    <Link href="/#/" color="#1C74BC">
+                      <HomeIcon />
+                    </Link>
+                  ) : (
+                    ""
+                  )}
+                  {index === 1 ? (
+                    <Link href="/#/profile" color="#1C74BC">
+                      <Person2Icon />
+                    </Link>
+                  ) : (
+                    ""
+                  )}
+                  {index === 2 ? (
+                    <Link href="/#/wallet" color="#1C74BC">
+                      <Badge
+                        badgeContent={
+                          vouchers.filter(
+                            (voucher) => voucher.fields.redeemed === false
+                          ).length
+                        }
+                        color="error"
+                      >
+                        <AccountBalanceWalletIcon />
+                      </Badge>
+                    </Link>
+                  ) : (
+                    ""
+                  )}
+                </ListItemIcon>
+                <ListItemText primary={text} sx={{ opacity: open ? 1 : 0 }} />
+              </ListItemButton>
+            </ListItem>
+          ))}
+        </List>
       </Drawer>
       {renderMobileMenu}
       {renderMenu}
