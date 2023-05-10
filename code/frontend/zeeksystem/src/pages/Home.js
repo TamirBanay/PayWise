@@ -5,7 +5,6 @@ import useMediaQuery from "@mui/material/useMediaQuery";
 import { useTheme } from "@mui/material/styles";
 import ChartPie from "../components/dashboard/ChartPie";
 import Divider from "@mui/material/Divider";
-import Voucher from "../components/dashboard/Voucher";
 import {
   _Vouchers,
   first_name,
@@ -15,9 +14,6 @@ import {
   _Redirect,
 } from "../services/atom";
 import { useRecoilState } from "recoil";
-import Paper from "@mui/material/Paper";
-import Popper from "@mui/material/Popper";
-import Fade from "@mui/material/Fade";
 import Popover from "../components/dashboard/Popover";
 import { useHistory } from "react-router-dom";
 

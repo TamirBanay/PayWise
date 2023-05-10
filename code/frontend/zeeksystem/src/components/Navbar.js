@@ -442,7 +442,6 @@ export default function MiniDrawer(props) {
                   "& .MuiListItemIcon-root": {
                     minWidth: 0,
                     mr: open ? 3 : "auto",
-                    ml: open ? "auto" : 1,
                     justifyContent: "center",
                   },
                   "& .MuiListItemText-root": {

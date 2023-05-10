@@ -60,18 +60,13 @@ export default function BasicCard(props) {
         <DeleteForeverIcon onClick={props.delete} />
       </IconButton>
       <AspectRatio minHeight="120px" maxHeight="200px" sx={{ my: 2 }}>
-        <img
-          src={props.img}
-          srcSet={props.img}
-          loading="lazy"
-          alt=""
-        />
+        <img src={props.img} srcSet={props.img} loading="lazy" alt="" />
       </AspectRatio>
       <Box sx={{ display: "flex" }}>
         <div>
           <Typography level="body3">Total price:</Typography>
           <Typography fontSize="lg" fontWeight="lg">
-            {props.voucher.ammount}$
+            {props.voucher.ammount} ₪
           </Typography>
           <Typography fontSize="sm" fontWeight="sm">
             ID: {props.vID}
