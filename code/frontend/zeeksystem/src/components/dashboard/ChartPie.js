@@ -67,15 +67,18 @@ const Dashboard = () => {
           type="donut"
           series={seriesData}
           options={{
+            dataLabels: {
+              enabled: false,
+            },
             labels: label,
             title: {
               style: {
                 fontSize: "18px",
-                fontWeight: "bold",
+                fontWeight: "0.5rem",
                 color: "#263238",
               },
               align: "center",
-              text: "₪ " + totalAmount + " :סכום הזיכויים שלך",
+              text: "₪ " + totalAmount + " :סכום הזיכויים ",
             },
 
             responsive: [

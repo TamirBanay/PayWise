@@ -10,6 +10,7 @@ import BookmarkAdd from "@mui/icons-material/BookmarkAddOutlined";
 import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import DoneIcon from "@mui/icons-material/Done";
+import Divider from "@mui/material/Divider";
 
 export default function BasicCard(props) {
   const location = useLocation();
@@ -42,7 +43,10 @@ export default function BasicCard(props) {
   };
 
   return (
-    <Card variant="outlined" sx={{ width: 320 }}>
+    <Card
+      variant="outlined"
+      sx={{ width: 320, borderRadius: 5, direction: "rtl" }}
+    >
       <Typography level="h2" fontSize="md" sx={{ mb: 0.5 }}>
         {props.voucher.storeType}
       </Typography>
@@ -57,24 +61,29 @@ export default function BasicCard(props) {
         size="sm"
         sx={{ position: "absolute", top: "0.5rem", right: "0.5rem" }}
       >
-        <DeleteForeverIcon onClick={props.delete} />
+        <DeleteForeverIcon onClick={props.delete} sx={{ mr: 34 }} />
       </IconButton>
+
       <AspectRatio minHeight="120px" maxHeight="200px" sx={{ my: 2 }}>
         <img src={props.img} srcSet={props.img} loading="lazy" alt="" />
       </AspectRatio>
+
       <Box sx={{ display: "flex" }}>
         <div>
-          <Typography level="body3">Total price:</Typography>
-          <Typography fontSize="lg" fontWeight="lg">
-            {props.voucher.ammount} ₪
+          <Typography fontSize="md" fontWeight="lg" sx={{ direction: "rtl" }}>
+            מחיר: {"  "}
+            <Typography fontSize="md" fontWeight="lg">
+              {props.voucher.ammount} ₪
+            </Typography>
           </Typography>
+
           <Typography fontSize="sm" fontWeight="sm">
-            ID: {props.vID}
+            מס' שובר: {props.vID}
           </Typography>
         </div>
         {/* if im in wallet page and the voucher is redeemed show v icon */}
         {location.pathname == "/wallet" && props.voucher.redeemed == true ? (
-          <Typography sx={{ ml: "auto" }}>
+          <Typography sx={{ mr: "auto" }}>
             <DoneIcon color="success" fontSize="large" />
           </Typography>
         ) : (
@@ -83,7 +92,7 @@ export default function BasicCard(props) {
             size="sm"
             color="primary"
             aria-label="Explore Bahamas Islands"
-            sx={{ ml: "auto", fontWeight: 600 }}
+            sx={{ mr: "auto", fontWeight: 600 }}
             onClick={handlleRedeemdVoucher}
           >
             מימוש
