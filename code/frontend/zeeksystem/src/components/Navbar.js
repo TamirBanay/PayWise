@@ -36,6 +36,8 @@ import { useRecoilState } from "recoil";
 import { _Vouchers, _Redirect } from "../services/atom";
 import BasicPopover2 from "./scans/BasicPopover2";
 import { useHistory } from "react-router-dom";
+import LogoutIcon from "@mui/icons-material/Logout";
+import AlertDialogModal from "./dashboard/AlertDialogModal";
 
 const theme = createTheme({
   status: {
@@ -153,9 +155,7 @@ export default function MiniDrawer(props) {
   const [anchorAddRedundMenu, setAnchorAddRedundMenu] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
   const mobileMenuId = "primary-search-account-menu-mobile";
-  const isMenuOpen = Boolean(anchorEl);
   const AddRefundisMenuOpen = Boolean(anchorAddRedundMenu);
-  const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
   const [walletID, setWalletID] = React.useState();
   const [vouchers, setVouchers] = useRecoilState(_Vouchers);
 
@@ -242,37 +242,11 @@ export default function MiniDrawer(props) {
   };
   const handlelogout = () => {
     logOut();
-    // setAnchorEl(null);
-    // handleMobileMenuClose();
   };
 
   const handleAddRefundMenuClose = () => {
     setAnchorAddRedundMenu(null);
   };
-  const renderMenu = (
-    <Menu
-      dir="rtl"
-      anchorEl={anchorEl}
-      anchorOrigin={{
-        vertical: "bottom",
-        horizontal: "center",
-      }}
-      id={menuId}
-      keepMounted
-      transformOrigin={{
-        vertical: "top",
-        horizontal: "left",
-      }}
-      open={isMenuOpen}
-      onClose={handleMenuClose}
-    >
-      <NavLink to="/profile">
-        <MenuItem onClick={handleMenuClose}>פרופיל</MenuItem>
-      </NavLink>
-      <MenuItem onClick={handlelogout}>התנתקות</MenuItem>
-      <MenuItem onClick={handleMenuClose}>החשבון שלי </MenuItem>
-    </Menu>
-  );
 
   //add refund menu rander plus button
   const renderAddRefundMenu = (
@@ -298,37 +272,6 @@ export default function MiniDrawer(props) {
           getWallet={getWallet}
           handleAddRefundMenuClose={handleAddRefundMenuClose}
         />
-      </MenuItem>
-    </Menu>
-  );
-
-  const renderMobileMenu = (
-    <Menu
-      anchorEl={mobileMoreAnchorEl}
-      anchorOrigin={{
-        vertical: "bottom",
-        horizontal: "right",
-      }}
-      id={mobileMenuId}
-      keepMounted
-      transformOrigin={{
-        vertical: "top",
-        horizontal: "right",
-      }}
-      open={isMobileMenuOpen}
-      onClose={handleMobileMenuClose}
-    >
-      <MenuItem onClick={handleProfileMenuOpen}>
-        <IconButton
-          size="large"
-          aria-label="account of current user"
-          aria-controls="primary-search-account-menu"
-          aria-haspopup="true"
-          color="inherit"
-        >
-          <AccountCircle />
-        </IconButton>
-        <p>פרופיל</p>
       </MenuItem>
     </Menu>
   );
@@ -401,16 +344,8 @@ export default function MiniDrawer(props) {
             ""
           ) : (
             <Box sx={{ display: { xs: "flex", md: "none" } }}>
-              <IconButton
-                size="large"
-                aria-label="show more"
-                aria-controls={mobileMenuId}
-                aria-haspopup="true"
-                onClick={handleMobileMenuOpen}
-                color="inherit"
-              >
-                <MoreIcon />
-              </IconButton>
+              {/* LogOut dealog, the logOut icon inside the comonent */}
+              <AlertDialogModal logOut={logOut} />
             </Box>
           )}
           <Link href="/#/" variant="body2">
@@ -494,8 +429,7 @@ export default function MiniDrawer(props) {
           ))}
         </List>
       </Drawer>
-      {renderMobileMenu}
-      {renderMenu}
+
       {renderAddRefundMenu}
 
       <Box component="main" sx={{ flexGrow: 1, p: 3 }}>

@@ -1,0 +1,65 @@
+import * as React from "react";
+import Box from "@mui/joy/Box";
+import Button from "@mui/joy/Button";
+import Divider from "@mui/joy/Divider";
+import Modal from "@mui/joy/Modal";
+import ModalDialog from "@mui/joy/ModalDialog";
+import DeleteForever from "@mui/icons-material/DeleteForever";
+import WarningRoundedIcon from "@mui/icons-material/WarningRounded";
+import Typography from "@mui/joy/Typography";
+import LogoutIcon from "@mui/icons-material/Logout";
+
+export default function AlertDialogModal(props) {
+  const [open, setOpen] = React.useState(false);
+  return (
+    <React.Fragment>
+      <LogoutIcon
+        endDecorator={<DeleteForever />}
+        onClick={() => setOpen(true)}
+        sx={{ marginLeft: 1 }}
+      />
+
+      <Modal
+        open={open}
+        onClose={() => setOpen(false)}
+        sx={{ direction: "rtl" }}
+      >
+        <ModalDialog
+          variant="outlined"
+          role="alertdialog"
+          aria-labelledby="alert-dialog-modal-title"
+          aria-describedby="alert-dialog-modal-description"
+        >
+          <Typography
+            id="alert-dialog-modal-title"
+            component="h2"
+            startDecorator={<WarningRoundedIcon />}
+          >
+            התנתקות
+          </Typography>
+          <Divider />
+          <Typography
+            id="alert-dialog-modal-description"
+            textColor="text.tertiary"
+          >
+         האם ברצונך להתנתק מהחשבון?
+          </Typography>
+          <Box
+            sx={{ display: "flex", gap: 1, justifyContent: "flex-end", pt: 2 }}
+          >
+            <Button
+              variant="plain"
+              color="neutral"
+              onClick={() => setOpen(false)}
+            >
+              ביטול
+            </Button>
+            <Button variant="solid" color="danger" onClick={props.logOut}>
+              התנתק{" "}
+            </Button>
+          </Box>
+        </ModalDialog>
+      </Modal>
+    </React.Fragment>
+  );
+}
