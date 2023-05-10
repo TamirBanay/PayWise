@@ -7,9 +7,24 @@ import { useState } from "react";
 import OpenInNewIcon from "@mui/icons-material/OpenInNew";
 import DoneIcon from "@mui/icons-material/Done";
 import { useLocation } from "react-router-dom";
+import fashionDef from "../../images/fashion.jpg";
+import retailDef from "../../images/retail.jpg";
+import electronicsDef from "../../images/electronics.jpg";
+import zara from "../../images/zara.png";
+import fox from "../../images/fox.jpg";
+import AmericanEagle from "../../images/AmericanEagle.jpg";
+import bug from "../../images/bug.jpg";
+import alam from "../../images/alam.jpg";
+import ikea from "../../images/ikea.jpg";
+import ace from "../../images/ACE.jpg";
+import store from "../../images/store.jpg";
+
+import { useEffect } from "react";
 
 export default function InteractiveCard(props) {
   const location = useLocation();
+  const [img, setImg] = useState("error");
+
   const { pathname } = location;
   const hendleDelete = async (event) => {
     event.preventDefault();
@@ -19,6 +34,26 @@ export default function InteractiveCard(props) {
     });
     props.getWallet();
   };
+
+  // useEffect(() => {
+  //   const name = props.voucher.storeName;
+  //   const type = props.voucher.storeType;
+  //   if (type == "אופנה")
+  //     if (name == "FOX") setImg(fox);
+  //     else if (name == "ZARA") setImg(zara);
+  //     else if (name == "American Eagle") setImg(AmericanEagle);
+  //     else setImg(fashionDef);
+  //   else if (type == "אלקטרוניקה")
+  //     if (name == "BUG") setImg(bug);
+  //     else if (name == "א.ל.מ") setImg(alam);
+  //     else setImg(electronicsDef);
+  //   else if (type == "קמעונאות")
+  //     if (name == "IKEA") setImg(ikea);
+  //     else if (name == "ACE") setImg(ace);
+  //     else setImg(retailDef);
+  //   else setImg(store);
+  // }, []);
+
   return (
     <Card
       variant="outlined"
@@ -37,22 +72,17 @@ export default function InteractiveCard(props) {
       onClick={props.handleClick}
     >
       <AspectRatio ratio="1" sx={{ width: 90 }}>
-        <img
-          src="https://images.unsplash.com/photo-1507833423370-a126b89d394b?auto=format&fit=crop&w=90"
-          srcSet="https://images.unsplash.com/photo-1507833423370-a126b89d394b?auto=format&fit=crop&w=90&dpr=2 2x"
-          loading="lazy"
-          alt=""
-        />
+        <img src={props.img} alt={props.voucher.storeType} />
       </AspectRatio>
       <div>
         <Typography level="h2" fontSize="lg" id="card-description" mb={0.5}>
-          {props.voucher.storeType}
+          {props.voucher.storeName}
         </Typography>
         <Typography fontSize="sm" aria-describedby="card-description" mb={1}>
           {props.voucher.dateOfExpiry.slice(0, 10)}
         </Typography>
-        <Typography >
-            {props.voucher.ammount}  ₪
+        <Typography>
+          {props.voucher.ammount} ₪
           <Typography>
             {" "}
             {props.voucher.redeemed ? <DoneIcon color="success" /> : ""}
