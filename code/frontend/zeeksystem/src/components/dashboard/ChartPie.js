@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import Chart from "react-apexcharts";
 import { useTheme } from "@mui/material/styles";
 import useMediaQuery from "@mui/material/useMediaQuery";
-import ChartPie from "./ChartPie.css";
 import Divider from "@mui/joy/Divider";
 import { useLocation } from "react-router-dom";
 import { useRecoilValue } from "recoil";
@@ -102,7 +101,7 @@ const Dashboard = () => {
         </div>
       ) : (
         /* if its normal screen */
-        <div className="main-container">
+        <div>
           {isMobileMs ? (
             <Chart
               type="donut"

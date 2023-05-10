@@ -10,8 +10,6 @@ export default function SimplePaper() {
   return (
     <Box
       sx={{
-        // justifyContent: "center",
-        // alignItems: "center",
         display: "flex",
         flexWrap: "wrap",
         "& > :not(style)": {
