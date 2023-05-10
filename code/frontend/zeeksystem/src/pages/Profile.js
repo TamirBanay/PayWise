@@ -3,7 +3,7 @@ import Navbar from "../components/Navbar";
 import SimplePaper from "../components/profile/SimplePaper";
 import { useTheme } from "@mui/material/styles";
 import useMediaQuery from "@mui/material/useMediaQuery";
-import ProfilePic from "../images/ProfilePic.png";
+import ProfilePic from "../images/profile.jpg";
 import Typography from "@mui/material/Typography";
 import TabsIcon from "../components/profile/TabsIcon";
 import TabsIconWithText from "../components/profile/TabsIconWithText";

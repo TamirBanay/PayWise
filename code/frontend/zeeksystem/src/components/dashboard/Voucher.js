@@ -7,23 +7,9 @@ import { useState } from "react";
 import OpenInNewIcon from "@mui/icons-material/OpenInNew";
 import DoneIcon from "@mui/icons-material/Done";
 import { useLocation } from "react-router-dom";
-import fashionDef from "../../images/fashion.jpg";
-import retailDef from "../../images/retail.jpg";
-import electronicsDef from "../../images/electronics.jpg";
-import zara from "../../images/zara.png";
-import fox from "../../images/fox.jpg";
-import AmericanEagle from "../../images/AmericanEagle.jpg";
-import bug from "../../images/bug.jpg";
-import alam from "../../images/alam.jpg";
-import ikea from "../../images/ikea.jpg";
-import ace from "../../images/ACE.jpg";
-import store from "../../images/store.jpg";
-
-import { useEffect } from "react";
 
 export default function InteractiveCard(props) {
   const location = useLocation();
-  const [img, setImg] = useState("error");
 
   const { pathname } = location;
   const hendleDelete = async (event) => {
@@ -34,25 +20,6 @@ export default function InteractiveCard(props) {
     });
     props.getWallet();
   };
-
-  // useEffect(() => {
-  //   const name = props.voucher.storeName;
-  //   const type = props.voucher.storeType;
-  //   if (type == "אופנה")
-  //     if (name == "FOX") setImg(fox);
-  //     else if (name == "ZARA") setImg(zara);
-  //     else if (name == "American Eagle") setImg(AmericanEagle);
-  //     else setImg(fashionDef);
-  //   else if (type == "אלקטרוניקה")
-  //     if (name == "BUG") setImg(bug);
-  //     else if (name == "א.ל.מ") setImg(alam);
-  //     else setImg(electronicsDef);
-  //   else if (type == "קמעונאות")
-  //     if (name == "IKEA") setImg(ikea);
-  //     else if (name == "ACE") setImg(ace);
-  //     else setImg(retailDef);
-  //   else setImg(store);
-  // }, []);
 
   return (
     <Card
