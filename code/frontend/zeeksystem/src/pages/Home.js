@@ -7,20 +7,24 @@ import FlexRowRatio from "../components/dashboard/FlexRowRatio";
 import ChartPie from "../components/dashboard/ChartPie";
 import Divider from "@mui/material/Divider";
 import Voucher from "../components/dashboard/Voucher";
-import { _Vouchers, first_name, last_name, user_email, _User } from "../services/atom";
+import { _Vouchers, first_name, last_name, user_email, _User, _Redirect } from "../services/atom";
 import { useRecoilState } from "recoil";
 import Paper from "@mui/material/Paper";
 import Popper from "@mui/material/Popper";
 import Fade from "@mui/material/Fade";
 import Popover from "../components/dashboard/Popover";
+import { useHistory } from "react-router-dom";
+
 
 function Home(props) {
   const [firstName, setFirstName] = useRecoilState(first_name);
   const [lastName, setLastName] = useRecoilState(last_name);
   const [usrEmail, setUsrEmail] = useRecoilState(user_email);
   const [user, setUser] = useRecoilState(_User);
+  const history = useHistory();
 
-  const [redirect, setRedirect] = useState(false);
+
+  const [redirect, setRedirect] = useRecoilState(_Redirect);
   const [userID, setUserId] = useState(1000);
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
@@ -52,6 +56,9 @@ function Home(props) {
     });
 
     setRedirect(true);
+    history.push("/login")
+
+
   };
 
   const fetchUserData = async () => {
@@ -88,7 +95,7 @@ function Home(props) {
     }
   }, [walletID]); // Add walletID as a dependency
   if (redirect) {
-    return <Redirect to="/#/login" />;
+    return <Redirect to="/login" />;
   }
   const [onClickVoucher, setOnClickVoucher] = useState(true);
   const handleOpenVoucher = () => {

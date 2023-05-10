@@ -36,8 +36,10 @@ import payWiseLogo from "../images/payWiseLogo.png";
 import Link from "@mui/material/Link";
 import { createTheme } from "@mui/material/styles";
 import { useRecoilState } from "recoil";
-import { _Vouchers } from "../services/atom";
+import { _Vouchers, _Redirect } from "../services/atom";
 import BasicPopover2 from "./scans/BasicPopover2";
+import { useHistory } from "react-router-dom";
+
 
 const theme = createTheme({
   status: {
@@ -219,6 +221,20 @@ export default function MiniDrawer(props) {
     }
   }, [walletID]); // Add walletID as a dependency
 
+
+  const history = useHistory();
+  const [redirect, setRedirect] = useRecoilState(_Redirect);
+  const logOut = async () => {
+    setRedirect(true);
+    history.push("/login")
+    await fetch("http://localhost:8000/api/logout", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      credentials: "include",
+    });
+  };
+
+
   const handleDrawerOpen = () => {
     setOpen(true);
   };
@@ -242,8 +258,10 @@ export default function MiniDrawer(props) {
   };
 
   const handleMenuClose = () => {
-    setAnchorEl(null);
-    handleMobileMenuClose();
+    logOut();
+    // setAnchorEl(null);
+    // handleMobileMenuClose();
+
   };
 
   const handleAddRefundMenuClose = () => {
@@ -269,7 +287,7 @@ export default function MiniDrawer(props) {
       <NavLink to="/profile">
         <MenuItem onClick={handleMenuClose}>פרופיל</MenuItem>
       </NavLink>
-      <MenuItem onClick={(handleMenuClose, props.logOut)}>התנתקות</MenuItem>
+      <MenuItem onClick={(handleMenuClose)}>התנתקות</MenuItem>
       <MenuItem onClick={handleMenuClose}>החשבון שלי </MenuItem>
     </Menu>
   );

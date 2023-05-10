@@ -13,6 +13,11 @@ import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { Redirect } from "react-router-dom";
+import { _Redirect } from "../services/atom";
+import { useRecoilState } from "recoil";
+import { useEffect } from "react";
+import { useHistory } from "react-router-dom";
+
 
 function Copyright(props) {
   return (
@@ -32,7 +37,9 @@ function Copyright(props) {
 const theme = createTheme();
 
 export default function SignInSide() {
-  const [redirect, setRedirect] = React.useState(false);
+  const [redirect, setRedirect] = useRecoilState(_Redirect);
+  const history = useHistory();
+
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -50,7 +57,8 @@ export default function SignInSide() {
       });
 
       if (response.ok) {
-        setRedirect(true);
+        setRedirect(false);
+        history.push("/")
       } else {
         alert("Incorrect username or password, please try again");
         throw new Error("Incorrect username or password");
@@ -60,9 +68,6 @@ export default function SignInSide() {
     }
   };
 
-  if (redirect) {
-    return <Redirect to="/" />;
-  }
   return (
     <ThemeProvider theme={theme}>
       <Grid container component="main" sx={{ height: "100vh" }}>
