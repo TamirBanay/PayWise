@@ -99,8 +99,8 @@ class ChangeUserDetailsView(APIView):
             gender = new_data.get('gender', user.gender)
             city = new_data.get('city', user.city)
             street = new_data.get('street', user.street)
-            house_number = new_data.get('house_number', user.houseNumber)
-            date_of_birth = new_data.get('date_of_birth', user.dateOfBirth)
+            house_number = new_data.get('houseNumber', user.houseNumber)
+            date_of_birth = new_data.get('dateOfBirth', user.dateOfBirth)
 
             # Update the user data with the new data
             user.first_name = first_name

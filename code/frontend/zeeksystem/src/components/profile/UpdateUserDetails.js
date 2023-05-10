@@ -20,7 +20,10 @@ export default function FormPropsTextFields(props) {
   const [user, setUser] = useRecoilState(_User);
   const [user_id, setUserId] = useState();
   const [gender, setGender] = React.useState(user.gender);
-
+  // const [dateOfBirth, setDateOfBirth] = React.useState(user.dateOfBirth);
+  const [selectedDate, setSelectedDate] = useState(
+    new Date().toISOString().substr(0, 10)
+  );
   const fetchUserData = async () => {
     try {
       const response = await fetch("http://localhost:8000/api/user", {
@@ -87,7 +90,6 @@ export default function FormPropsTextFields(props) {
       houseNumber: houseNumber,
       dateOfBirth: dateOfBirth,
     };
-
     updateUserDetails(user_id, data).then((user) => {
       console.log("User details updated:", user);
     });
@@ -109,7 +111,10 @@ export default function FormPropsTextFields(props) {
   const handleChange = (event) => {
     setGender(event.target.value);
   };
-
+  // const handleChangeBday = (event) => {
+  //   setDateOfBirth(event.target.value);
+  // };
+  // console.log(type(dateOfBirth));
   return (
     <Box
       component="form"
@@ -158,6 +163,7 @@ export default function FormPropsTextFields(props) {
           label="תאריך לידה"
           defaultValue={user.dateOfBirth}
           type="date"
+          inputProps={{ max: selectedDate }}
         />
         <Select
           variant="outlined"
