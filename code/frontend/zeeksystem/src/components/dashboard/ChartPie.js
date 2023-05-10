@@ -75,7 +75,7 @@ const Dashboard = () => {
                 color: "#263238",
               },
               align: "center",
-              text: totalAmount + " :סכום הזיכויים שלך",
+              text: "₪ " + totalAmount + " :סכום הזיכויים שלך",
             },
 
             responsive: [

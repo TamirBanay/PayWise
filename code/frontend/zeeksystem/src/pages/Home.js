@@ -108,28 +108,27 @@ function Home(props) {
       <Navbar logOut={logOut} userID={userID} getWallet={getWallet} />
       <ChartPie />
       <p></p>
-      {isMobile ? (
-        <div>
-          <Divider orientation="horizontal">זיכויים קרובים</Divider>
 
-          <p></p>
+      <div>
+        <Divider orientation="horizontal" sx={{ marginRight: 5 }}>
+          זיכויים קרובים
+        </Divider>
 
-          {onClickVoucher
-            ? vouchers.length > 0 &&
-              vouchers.map((voucher) => (
-                <Popover
-                  voucher={voucher.fields}
-                  key={voucher.pk}
-                  vID={voucher.pk}
-                  openVoucher={handleOpenVoucher}
-                  getWallet={getWallet}
-                />
-              ))
-            : ""}
-        </div>
-      ) : (
-        ""
-      )}
+        <p></p>
+
+        {onClickVoucher
+          ? vouchers.length > 0 &&
+            vouchers.map((voucher) => (
+              <Popover
+                voucher={voucher.fields}
+                key={voucher.pk}
+                vID={voucher.pk}
+                openVoucher={handleOpenVoucher}
+                getWallet={getWallet}
+              />
+            ))
+          : ""}
+      </div>
     </div>
   );
 }
