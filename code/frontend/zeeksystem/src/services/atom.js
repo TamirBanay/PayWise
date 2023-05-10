@@ -20,4 +20,9 @@ export const user_email = atom({
   key: "userEmail",
   default: "",
 });
+export const _Redirect = atom({
+  key: "Redirect",
+  default: true,
+});
+
     
