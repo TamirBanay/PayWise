@@ -38,6 +38,7 @@ import BasicPopover2 from "./scans/BasicPopover2";
 import { useHistory } from "react-router-dom";
 import LogoutIcon from "@mui/icons-material/Logout";
 import AlertDialogModal from "./dashboard/AlertDialogModal";
+import { useLocation } from "react-router-dom";
 
 const theme = createTheme({
   status: {
@@ -80,6 +81,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 }));
 
 const drawerWidth = 240;
+// const location = useLocation();
 
 const openedMixin = (theme) => ({
   width: drawerWidth,
@@ -158,6 +160,7 @@ export default function MiniDrawer(props) {
   const AddRefundisMenuOpen = Boolean(anchorAddRedundMenu);
   const [walletID, setWalletID] = React.useState();
   const [vouchers, setVouchers] = useRecoilState(_Vouchers);
+  let location = useLocation();
 
   const fetchUserData = async () => {
     try {
@@ -204,15 +207,6 @@ export default function MiniDrawer(props) {
 
   const history = useHistory();
   const [redirect, setRedirect] = useRecoilState(_Redirect);
-  const logOut = async () => {
-    setRedirect(true);
-    history.push("/login");
-    await fetch("http://localhost:8000/api/logout", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      credentials: "include",
-    });
-  };
 
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -239,9 +233,6 @@ export default function MiniDrawer(props) {
   const handleMenuClose = () => {
     setAnchorEl(null);
     handleMobileMenuClose();
-  };
-  const handlelogout = () => {
-    logOut();
   };
 
   const handleAddRefundMenuClose = () => {
@@ -277,7 +268,12 @@ export default function MiniDrawer(props) {
   );
 
   return (
-    <Box sx={{ direction: "rtl", height: 100 }}>
+    <Box
+      sx={{
+        direction: "rtl",
+        height: location.pathname == "/profile" ? 50 : 100,
+      }}
+    >
       <CssBaseline />
       <AppBar position="relative" open={open}>
         <Toolbar>
@@ -340,14 +336,7 @@ export default function MiniDrawer(props) {
               <AddRoundedIcon size="large" />
             </IconButton>
           </Box>
-          {open ? (
-            ""
-          ) : (
-            <Box sx={{ display: { xs: "flex", md: "none" } }}>
-              {/* LogOut dealog, the logOut icon inside the comonent */}
-              <AlertDialogModal logOut={logOut} />
-            </Box>
-          )}
+
           <Link href="/#/" variant="body2">
             <img src={payWiseLogo} alt="PayWise Logo" style={{ height: 50 }} />
           </Link>
