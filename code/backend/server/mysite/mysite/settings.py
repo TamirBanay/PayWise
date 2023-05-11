@@ -138,6 +138,23 @@ AUTH_USER_MODEL = 'users.User'
 CORS_ORIGIN_WHITELIST = [
     'http://localhost:3000',
 ]
-CROS_ORIGIN_ALLOW_ALL = True
+CORS_ORIGIN_ALLOW_ALL = True
 CORS_ALLOW_CREDENTIALS = True
 
+# EMAIL_BACKEND = "sendgrid_backend.SendgridBackend"
+# SENDGRID_API_KEY='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'
+   # settings.py
+
+# ...
+
+# Email Backend Configuration
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'ozbenacot@gmail.com'  # Replace with your Gmail email address
+EMAIL_HOST_PASSWORD = 'ocvchqvtwkcgvgmw'  # Replace with your Gmail password or an app-specific password
+EMAIL_USE_TLS = True
+# DEFAULT_FROM_EMAIL = 'ozbenacot2@gmail.com'  # Replace with your Gmail email address
+
+# ...
+ 
