@@ -8,16 +8,17 @@ import DeleteForever from "@mui/icons-material/DeleteForever";
 import WarningRoundedIcon from "@mui/icons-material/WarningRounded";
 import Typography from "@mui/joy/Typography";
 import LogoutIcon from "@mui/icons-material/Logout";
+import DeleteIcon from "@mui/icons-material/Delete";
 
 export default function AlertDialogModal(props) {
   const [open, setOpen] = React.useState(false);
   return (
     <React.Fragment>
-      <LogoutIcon
-        endDecorator={<DeleteForever />}
-        onClick={() => setOpen(true)}
-        sx={{ marginLeft: 1 }}
-      />
+      {props.icon == 1 ? (
+        <DeleteIcon onClick={() => setOpen(true)} sx={{ marginLeft: 1 }} />
+      ) : (
+        <LogoutIcon onClick={() => setOpen(true)} sx={{ marginLeft: 1 }} />
+      )}
 
       <Modal
         open={open}
@@ -35,14 +36,14 @@ export default function AlertDialogModal(props) {
             component="h2"
             startDecorator={<WarningRoundedIcon />}
           >
-            התנתקות
+            {props.title}
           </Typography>
           <Divider />
           <Typography
             id="alert-dialog-modal-description"
             textColor="text.tertiary"
           >
-         האם ברצונך להתנתק מהחשבון?
+            {props.mainText}
           </Typography>
           <Box
             sx={{ display: "flex", gap: 1, justifyContent: "flex-end", pt: 2 }}
@@ -54,8 +55,8 @@ export default function AlertDialogModal(props) {
             >
               ביטול
             </Button>
-            <Button variant="solid" color="danger" onClick={props.logOut}>
-              התנתק{" "}
+            <Button variant="solid" color="danger" onClick={props.function}>
+              {props.textButton}
             </Button>
           </Box>
         </ModalDialog>

@@ -14,17 +14,17 @@ export default function SimplePaper() {
         flexWrap: "wrap",
         "& > :not(style)": {
           m: 1,
-          width: isMobile ? "80%" : "90%",
+          width: "100%",
           height: isMobile ? 150 : 170,
-          marginLeft: isMobile ? "13px" : "40px",
-          marginTop: isMobile ? "-13px" : "-20px",
+          marginLeft: isMobile ? "1px" : "40px",
+          marginTop: isMobile ? "-5px" : "-20px",
         },
       }}
     >
       <Paper
         elevation={6}
         sx={{
-          background: "#FAEB46",
+          background: "#0091B0",
         }}
       />
     </Box>

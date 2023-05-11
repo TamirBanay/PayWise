@@ -1,4 +1,5 @@
 import json
+from urllib import response
 from venv import logger
 from django.forms import ValidationError
 from django.http import JsonResponse
@@ -13,9 +14,21 @@ import datetime
 from rest_framework.exceptions import AuthenticationFailed
 from rest_framework.views import APIView
 from rest_framework.response import Response
+from django.contrib.auth.decorators import login_required
+from django.contrib import messages
+from django.shortcuts import redirect, render
+from django.contrib.auth import authenticate, login, logout
 
 
-# Create your views here.
+class DeleteAccountView(APIView):
+    def delete(self, request, user_id):
+        user = get_object_or_404(User, pk=user_id)
+
+        # Delete user account
+        user.delete()
+        messages.success(
+            request, 'Your account has been deleted successfully.')
+        return JsonResponse({"message": "Delete user successfully"}, status=200)
 
 
 class RegisterView(APIView):
