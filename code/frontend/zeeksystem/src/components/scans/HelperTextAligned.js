@@ -5,11 +5,14 @@ import Button from "@mui/material/Button"; // Import Button from Material-UI
 import { useEffect, useState } from "react";
 import { _User } from "../../services/atom";
 import { useRecoilState } from "recoil";
+import AlertNotification from "../AlertNotification";
 
 export default function HelperTextAligned(props) {
   const [serialNumber, setSerialNumber] = useState();
   const [user, setUser] = useRecoilState(_User);
   const [allVouchers, setAllVouchers] = useState();
+
+  const [voucherExist, setVoucherExist] = useState(false);
 
   const getAllVouchers = async () => {
     try {
@@ -27,7 +30,7 @@ export default function HelperTextAligned(props) {
       (voucher) => voucher.pk == serialNumber
     );
     if (!serialNumberExists) {
-      console.log("the voucher is not exist in the system");
+      setVoucherExist(true);
     } else {
       const voucher = allVouchers.find((voucher) => voucher.pk == serialNumber);
       event.preventDefault();
@@ -42,7 +45,7 @@ export default function HelperTextAligned(props) {
           ammount: voucher.fields.ammount,
           redeemed: voucher.fields.redeemed,
           storeName: voucher.fields.storeName,
-          dateOfExpiry: voucher.fields.dateOfExpiry
+          dateOfExpiry: voucher.fields.dateOfExpiry,
         }),
       })
         .then((response) => response.json())
@@ -77,6 +80,16 @@ export default function HelperTextAligned(props) {
       <Button variant="contained" color="primary" onClick={handleSaveVoucher}>
         שלח
       </Button>
+      {voucherExist ? (
+        <AlertNotification
+          voucherExist={voucherExist}
+          setVoucherExist={setVoucherExist}
+          title="שובר לא נמצא"
+          mainText={`מצטערים, שובר מס ${serialNumber} אינו קיים במערכת. אנא נסו מספר אחר`}
+        ></AlertNotification>
+      ) : (
+        <></>
+      )}
     </Box>
   );
 }
