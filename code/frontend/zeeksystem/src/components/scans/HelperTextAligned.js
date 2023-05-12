@@ -8,7 +8,7 @@ import { useRecoilState } from "recoil";
 import AlertNotification from "../AlertNotification";
 
 export default function HelperTextAligned(props) {
-  const [serialNumber, setSerialNumber] = useState();
+  const [serialNumber, setSerialNumber] = useState(" ");
   const [user, setUser] = useRecoilState(_User);
   const [allVouchers, setAllVouchers] = useState();
 
@@ -85,7 +85,7 @@ export default function HelperTextAligned(props) {
           voucherExist={voucherExist}
           setVoucherExist={setVoucherExist}
           title="שובר לא נמצא"
-          mainText={`מצטערים, שובר מס ${serialNumber} אינו קיים במערכת. אנא נסו מספר אחר`}
+          mainText={`מצטערים, שובר מספר: ${serialNumber} אינו קיים במערכת. אנא נסו מספר אחר`}
         ></AlertNotification>
       ) : (
         <></>
