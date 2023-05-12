@@ -6,7 +6,7 @@ class UsersConfig(AppConfig):
     name = 'users'
     
     def ready(self):
-        if not getattr(self, 'scheduler_started', False):
-            from notifications import scheduler
-            scheduler.start()
-            self.scheduler_started = True
+        # Import the necessary modules
+        from notifications.scheduler import start
+        # Call the start function to activate the scheduler
+        start()
