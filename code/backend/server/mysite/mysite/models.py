@@ -1,6 +1,7 @@
 from django.db import models
 from users.models import Wallet, User
-from datetime import datetime
+from django.utils import timezone
+
 
 class VoucherCategory(models.Model):
     categoryID = models.AutoField(primary_key=True)
@@ -25,7 +26,6 @@ class Store(models.Model):
 
 
 class Vouchers (models.Model):
-    local_dt = datetime.now()
     voucherID = models.IntegerField(primary_key=True)
     walletID = models.ForeignKey(
         Wallet, on_delete=models.CASCADE, default=User.DEFAULT_WALLET_ID)
@@ -33,20 +33,19 @@ class Vouchers (models.Model):
     voucherCategory = models.CharField(max_length=30, default="undefined")
     storeType = models.CharField(max_length=30, default="undefined")
     ammount = models.DecimalField(max_digits=10, decimal_places=2)
-    dateOfAcquire = models.DateTimeField(default=local_dt)
-    dateOfExpiry = models.DateTimeField(default=local_dt)
+    dateOfAcquire = models.DateTimeField(default=timezone.now)
+    dateOfExpiry = models.DateTimeField(default=timezone.now)
     redeemed = models.BooleanField(default=False)
     
 
 class MOCKVouchers (models.Model):
-    local_dt = datetime.now()
     voucherID = models.IntegerField(primary_key=True)
     storeName = storeType = models.CharField(max_length=30, default="undefined")
     voucherCategory = models.CharField(max_length=30, default="undefined")
     storeType = models.CharField(max_length=30, default="undefined")
     ammount = models.DecimalField(max_digits=10, decimal_places=2)
-    dateOfAcquire = models.DateTimeField(default=local_dt)
-    dateOfExpiry = models.DateTimeField(default=local_dt)
+    dateOfAcquire = models.DateTimeField(default=timezone.now)
+    dateOfExpiry = models.DateTimeField(default=timezone.now)
     redeemed = models.BooleanField(default=False)
 
 

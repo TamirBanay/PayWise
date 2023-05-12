@@ -12,7 +12,8 @@ def schedule_api():
 
     # Retrieve the vouchers expiring in the upcoming week
     expiring_vouchers = Vouchers.objects.filter(
-        dateOfExpiry__range=[today, next_week])
+        dateOfExpiry__range=[today, next_week],
+        redeemed = False)
 
     # Iterate over the expiring vouchers and send email notifications
     for voucher in expiring_vouchers:
@@ -30,10 +31,13 @@ def schedule_api():
 
             # Compose the email message
             subject = 'Voucher Expiry Reminder'
-            message = f"Hello {user_name},\n\nThis is a reminder that your voucher (ID: {voucher.voucherID}) for:{voucher.storeName} will expire in {days_until_expiry} days.\nPlease make sure to redeem it before the expiry date.\n\nThank you!"
+            message = f"שלום {user_name}, \n\nזוהי הודעת תזכורת כי שובר ההחזר על סך:{voucher.ammount} (מספר: {voucher.voucherID}) עבור {voucher.storeName} עומד לפוג בעוד כ{days_until_expiry}  ימים\n וודא כי הינך ממש את הושבר טרם תפוגתו.\n\nבתודה מערכת PayWise"
+
+            # message = f"Hello {user_name},\n\nThis is a reminder that your voucher (ID: {voucher.voucherID}) for:{voucher.storeName} will expire in {days_until_expiry} days.\nPlease make sure to redeem it before the expiry date.\n\nThank you!"
             from_email = 'sender@example.com'
             # Change this to the appropriate email field in your User model
             recipient_list = [user.email]
 
             # Send the email notification
             send_mail(subject, message, from_email, recipient_list)
+            print(f"message successfully to voucher {voucher.voucherID}")
