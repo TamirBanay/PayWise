@@ -8,6 +8,7 @@ import Login from "./pages/Login";
 import Profile from "./pages/Profile";
 import { RecoilRoot } from "recoil";
 import Wallet from "./pages/Wallet";
+import ScanVoucher from "./pages/ScanVoucher";
 
 function App() {
   return (
@@ -28,6 +29,9 @@ function App() {
           </Route>
           <Route path="/wallet">
             <Wallet />
+          </Route>
+          <Route path="/scanVoucher">
+            <ScanVoucher />
           </Route>
           <Route path="*">
             <NoPage />

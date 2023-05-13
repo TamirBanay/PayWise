@@ -26,7 +26,7 @@ import ListItemText from "@mui/material/ListItemText";
 import HomeIcon from "@mui/icons-material/Home";
 import Person2Icon from "@mui/icons-material/Person2";
 import AccountBalanceWalletIcon from "@mui/icons-material/AccountBalanceWallet";
-import { BrowserRouter as NavLink } from "react-router-dom";
+import { BrowserRouter as NavLink, Redirect } from "react-router-dom";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import AddRoundedIcon from "@mui/icons-material/AddRounded";
 import payWiseLogo from "../images/payWiseLogo.png";
@@ -39,7 +39,8 @@ import { useHistory } from "react-router-dom";
 import LogoutIcon from "@mui/icons-material/Logout";
 import AlertDialogModal from "./dashboard/AlertDialogModal";
 import { useLocation } from "react-router-dom";
-
+import ScanComponent from "./scans/ScanComponent";
+import { Reddit } from "@mui/icons-material";
 const theme = createTheme({
   status: {
     danger: "#e53e3e",
@@ -161,6 +162,7 @@ export default function MiniDrawer(props) {
   const [walletID, setWalletID] = React.useState();
   const [vouchers, setVouchers] = useRecoilState(_Vouchers);
   let location = useLocation();
+  const [openScan, setOpenScans] = React.useState(false);
 
   const fetchUserData = async () => {
     try {
@@ -211,6 +213,9 @@ export default function MiniDrawer(props) {
   const handleDrawerOpen = () => {
     setOpen(true);
   };
+  const handleOpenScan = () => {
+    setOpenScans(!openScan);
+  };
 
   const handleDrawerClose = () => {
     setOpen(false);
@@ -257,7 +262,9 @@ export default function MiniDrawer(props) {
       open={AddRefundisMenuOpen}
       onClose={handleAddRefundMenuClose}
     >
-      <MenuItem onClick={handleMenuClose}>הוספה ע"י סריקה</MenuItem>
+      <MenuItem onClick={(handleMenuClose, handleOpenScan)} href="/scanVoucher">
+        הוספה ע"י סריקה
+      </MenuItem>
       <MenuItem onClick={handleMenuClose}>
         <BasicPopover2
           getWallet={getWallet}
@@ -420,7 +427,7 @@ export default function MiniDrawer(props) {
       </Drawer>
 
       {renderAddRefundMenu}
-
+      {openScan ? <Redirect to="/ScanVoucher" /> : ""}
       <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
         <DrawerHeader />
       </Box>

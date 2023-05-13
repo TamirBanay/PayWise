@@ -15,6 +15,8 @@ import { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 
 import { _User } from "../../services/atom";
+
+
 export default function ChipWithDecorators(props) {
   const [redirect, setRedirect] = useRecoilState(_Redirect);
   const [openLogOut, setOpenLogOut] = useState(false);

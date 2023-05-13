@@ -1,12 +1,11 @@
-import * as React from "react";
-import Box from "@mui/material/Box";
-import TextField from "@mui/material/TextField";
-import Button from "@mui/material/Button"; // Import Button from Material-UI
-import { useEffect, useState } from "react";
-import { _User } from "../../services/atom";
+import React, { useEffect, useState } from "react";
+import Quagga from "quagga";
+import { Redirect } from "react-router-dom";
 import { useRecoilState } from "recoil";
+import { _User } from "../../services/atom";
 
-export default function HelperTextAligned(props) {
+const ScanPage = () => {
+  const [redirect, setRedirect] = useState(false);
   const [serialNumber, setSerialNumber] = useState();
   const [user, setUser] = useRecoilState(_User);
   const [allVouchers, setAllVouchers] = useState();
@@ -22,7 +21,7 @@ export default function HelperTextAligned(props) {
     }
   };
 
-  const handleSaveVoucher = async (event) => {
+  const handleSaveVoucher = async () => {
     const serialNumberExists = allVouchers.some(
       (voucher) => voucher.pk == serialNumber
     );
@@ -30,7 +29,6 @@ export default function HelperTextAligned(props) {
       console.log("the voucher is not exist in the system");
     } else {
       const voucher = allVouchers.find((voucher) => voucher.pk == serialNumber);
-      event.preventDefault();
       await fetch("http://localhost:8000/api/createVoucher/", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -48,35 +46,73 @@ export default function HelperTextAligned(props) {
         .then((response) => response.json())
         .then((data) => {
           // console.log("sucsses", data);
-          props.getWallet();
-          props.handleClose();
         });
       getAllVouchers().catch((error) => {
         console.log("error", error);
       });
     }
   };
-  const handleChange = (e) => {
-    setSerialNumber(e.target.value);
-  };
   useEffect(() => {
     getAllVouchers();
   }, []);
 
-  return (
-    <Box
-      sx={{
-        "& > :not(style)": { m: 2 },
-      }}
-    >
-      <TextField
-        id="demo-helper-text-aligned"
-        label="הכנס מס סיריאלי"
-        onChange={handleChange}
-      />
-      <Button variant="contained" color="primary" onClick={handleSaveVoucher}>
-        שלח
-      </Button>
-    </Box>
-  );
-}
+  useEffect(() => {
+    if (serialNumber) {
+      handleSaveVoucher();
+    }
+  }, [serialNumber]);
+
+  useEffect(() => {
+    Quagga.init(
+      {
+        inputStream: {
+          name: "Live",
+          type: "LiveStream",
+
+          target: document.querySelector("#camera"),
+        },
+        decoder: {
+          readers: [
+            "code_128_reader",
+            "ean_reader",
+            "ean_8_reader",
+            "code_39_reader",
+            "code_39_vin_reader",
+            "codabar_reader",
+            "upc_reader",
+            "upc_e_reader",
+            "i2of5_reader",
+            "2of5_reader",
+            "code_93_reader",
+          ],
+        },
+      },
+      (err) => {
+        if (err) {
+          console.log(err);
+          setRedirect(true);
+          return;
+        }
+        Quagga.start();
+      }
+    );
+
+    Quagga.onDetected((result) => {
+      setSerialNumber(parseInt(result.codeResult.code));
+      setRedirect(true);
+      Quagga.stop();
+    });
+
+    return () => {
+      Quagga.stop();
+    };
+  }, []);
+
+  if (redirect) {
+    return <Redirect to="/" />;
+  }
+
+  return <div id="camera"></div>;
+};
+
+export default ScanPage;
