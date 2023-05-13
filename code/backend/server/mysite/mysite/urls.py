@@ -24,6 +24,7 @@ urlpatterns = [
     path('api/', include('users.urls')),
     path('api/createVoucher/', CreateVoucherView.as_view()),
     path('api/getVouchers/<int:walletID>', views.get_vouchers),
+    path('api/getVouchers/', views.get_all_vouchers),
     path('api/getAllVouchers/', views.get_MOCK_vouchers),
     path('api/deletVouchers/<int:voucher_id>', views.delete_voucher),
     path('api/voucher_redeemed/<int:voucher_id>', views.voucher_redeemed),
