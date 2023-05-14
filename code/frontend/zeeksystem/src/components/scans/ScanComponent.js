@@ -6,6 +6,8 @@ import { _User } from "../../services/atom";
 import Button from "@mui/material/Button";
 import { useHistory } from "react-router-dom";
 import AlertDialogModal from "../dashboard/AlertDialogModal";
+import { FitScreen } from "@mui/icons-material";
+import "./scans.css";
 const ScanPage = () => {
   const history = useHistory();
   const [redirect, setRedirect] = useState(false);
@@ -78,6 +80,13 @@ const ScanPage = () => {
           type: "LiveStream",
 
           target: document.querySelector("#camera"),
+          constraints: {
+            width: "385",
+          },
+        },
+        locator: {
+          patchSize: "large",
+          halfSample: true,
         },
         decoder: {
           readers: [
@@ -121,8 +130,20 @@ const ScanPage = () => {
   }
 
   return (
-    <div id="camera">
-      <Button variant="contained" onClick={handleBackHome} sx={{ ml: 40 }}>
+    <div>
+      <div id="interactive" class="viewport">
+        <video
+          class="videoCamera"
+          autoplay="true"
+          preload="auto"
+          src=""
+          muted="true"
+          playsinline="true"
+        ></video>
+        <canvas class="drawingBuffer"></canvas>
+      </div>
+
+      <Button variant="contained" onClick={handleBackHome} sx={{ ml: 20 }}>
         ביטול{" "}
       </Button>
     </div>
