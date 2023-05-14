@@ -7,7 +7,7 @@ import Button from "@mui/material/Button";
 import { useHistory } from "react-router-dom";
 import AlertDialogModal from "../dashboard/AlertDialogModal";
 import { FitScreen } from "@mui/icons-material";
-import "./scans.css";
+import "./ScanComponent.css";
 const ScanPage = () => {
   const history = useHistory();
   const [redirect, setRedirect] = useState(false);
