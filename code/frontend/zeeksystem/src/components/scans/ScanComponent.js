@@ -3,13 +3,20 @@ import Quagga from "quagga";
 import { Redirect } from "react-router-dom";
 import { useRecoilState } from "recoil";
 import { _User } from "../../services/atom";
+import Button from "@mui/material/Button";
+import { useHistory } from "react-router-dom";
+import CameraAltIcon from "@mui/icons-material/CameraAlt";
 
 const ScanPage = () => {
+  const history = useHistory();
+
   const [redirect, setRedirect] = useState(false);
   const [serialNumber, setSerialNumber] = useState();
   const [user, setUser] = useRecoilState(_User);
   const [allVouchers, setAllVouchers] = useState();
-
+  const handlleBackHome = () => {
+    history.push("/");
+  };
   const getAllVouchers = async () => {
     try {
       const response = await fetch(`http://localhost:8000/api/getAllVouchers/`);
@@ -112,7 +119,13 @@ const ScanPage = () => {
     return <Redirect to="/" />;
   }
 
-  return <div id="camera"></div>;
+  return (
+    <div id="camera">
+      <Button variant="contained" onClick={handlleBackHome} sx={{ ml: 40 }}>
+        ביטול{" "}
+      </Button>
+    </div>
+  );
 };
 
 export default ScanPage;
