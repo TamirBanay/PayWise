@@ -52,7 +52,7 @@ export default function AlertNotification(props) {
               color="neutral"
               onClick={handleCancelled}
             >
-              ביטול
+              הבנתי
             </Button>
           </Box>
         </ModalDialog>
