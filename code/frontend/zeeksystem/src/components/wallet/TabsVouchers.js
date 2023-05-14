@@ -50,8 +50,6 @@ export default function TabsUnderlineExample(props) {
 
         setWalletID(content.id + 1000); // Update walletID based on fetched user data
         setUser(content);
-      } else {
-        setRedirect(true);
       }
     } catch (error) {
       console.error("Failed to fetch user data:", error);
