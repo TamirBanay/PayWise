@@ -21,6 +21,11 @@ def get_vouchers(request, walletID):
     vouchers_json = serializers.serialize('json', vouchers)
     return JsonResponse({'vouchers': vouchers_json})
 
+def get_all_vouchers(request):
+    vouchers = Vouchers.objects.all()
+    vouchers_json = serializers.serialize('json', vouchers)
+    return JsonResponse({'vouchers': vouchers_json})
+
 def get_MOCK_vouchers(request):
     MOCK_vouchers = MOCKVouchers.objects.all()
     MOCK_vouchers_json = serializers.serialize('json', MOCK_vouchers)

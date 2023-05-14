@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'corsheaders',
     'mysite',
     'users',
+    'notifications'
 ]
 
 
@@ -86,7 +87,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'zeekSchema',
         'USER': 'root',
-        'PASSWORD': 'tamirsapir055',
+        'PASSWORD': 'password',
         'HOST': 'localhost',   # Or an IP Address that your DB is hosted on
         'PORT': '3306',
     },
@@ -121,7 +122,7 @@ TIME_ZONE = 'UTC'
 
 USE_I18N = True
 
-USE_TZ = True
+USE_TZ = False
 
 
 # Static files (CSS, JavaScript, Images)
@@ -151,10 +152,8 @@ CORS_ALLOW_CREDENTIALS = True
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
-EMAIL_HOST_USER = 'ozbenacot@gmail.com'  # Replace with your Gmail email address
-EMAIL_HOST_PASSWORD = 'ocvchqvtwkcgvgmw'  # Replace with your Gmail password or an app-specific password
+EMAIL_HOST_USER = 'paywise.reminder@gmail.com'  
+EMAIL_HOST_PASSWORD = 'vsyhaywfhoipnhqh'  
 EMAIL_USE_TLS = True
-# DEFAULT_FROM_EMAIL = 'ozbenacot2@gmail.com'  # Replace with your Gmail email address
-
 # ...
  
