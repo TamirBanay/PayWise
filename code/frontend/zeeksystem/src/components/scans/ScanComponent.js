@@ -85,7 +85,7 @@ const ScanPage = () => {
           },
         },
         locator: {
-          patchSize: "large",
+          patchSize: "medium",
           halfSample: true,
         },
         decoder: {
@@ -103,6 +103,7 @@ const ScanPage = () => {
             "code_93_reader",
           ],
         },
+        locate: true,
       },
       (err) => {
         if (err) {
@@ -130,17 +131,17 @@ const ScanPage = () => {
   }
 
   return (
-    <div>
-      <div id="interactive" class="viewport">
+    <div className="mainContainer">
+      <div id="interactive" className="viewport">
         <video
-          class="videoCamera"
-          autoplay="true"
+          className="videoCamera"
+          autoPlay={true}
           preload="auto"
           src=""
-          muted="true"
-          playsinline="true"
+          muted={true}
+          playsInline={true}
         ></video>
-        <canvas class="drawingBuffer"></canvas>
+        <canvas className="drawingBuffer"></canvas>
       </div>
 
       <Button variant="contained" onClick={handleBackHome} sx={{ ml: 20 }}>
