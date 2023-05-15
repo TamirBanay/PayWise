@@ -5,6 +5,7 @@ import useMediaQuery from "@mui/material/useMediaQuery";
 import { useTheme } from "@mui/material/styles";
 import ChartPie from "../components/dashboard/ChartPie";
 import Divider from "@mui/material/Divider";
+import EllipsisList from "../components/dashboard/EllipsisList";
 import {
   _Vouchers,
   first_name,
@@ -114,7 +115,7 @@ function Home(props) {
           זיכויים קרובים
         </Divider>
 
-        <p></p>
+        {/* <EllipsisList /> */}
 
         {onClickVoucher
           ? vouchers.length > 0 &&
