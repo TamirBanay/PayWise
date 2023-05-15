@@ -1,0 +1,9 @@
+.drawingBuffer {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+.mainContainer {
+  background-color: black;
+  height: 850px;
+}
