@@ -1,17 +1,22 @@
 import * as React from "react";
-import Tabs from "@mui/joy/Tabs";
-import TabList from "@mui/joy/TabList";
-import Tab, { tabClasses } from "@mui/joy/Tab";
-import Popover from "../dashboard/Popover";
+import Tabs from "@mui/material/Tabs";
+import Tab from "@mui/material/Tab";
+import PhoneIcon from "@mui/icons-material/Phone";
+import FavoriteIcon from "@mui/icons-material/Favorite";
+import PersonPinIcon from "@mui/icons-material/PersonPin";
+import DoneIcon from "@mui/icons-material/Done";
+import AccessTimeIcon from "@mui/icons-material/AccessTime";
+import SellIcon from "@mui/icons-material/Sell";
 import { useRecoilState } from "recoil";
 import { useEffect, useState } from "react";
 import { _Vouchers, _User, first_name, last_name } from "../../services/atom";
-import BrowserNotSupportedIcon from "@mui/icons-material/BrowserNotSupported";
-import Voucher from "../dashboard/Voucher";
 import Typography from "@mui/joy/Typography";
+import BrowserNotSupportedIcon from "@mui/icons-material/BrowserNotSupported";
+import Popover from "../dashboard/Popover";
 import { Button } from "@mui/material";
-
-export default function TabsUnderlineExample(props) {
+import CreditScoreIcon from "@mui/icons-material/CreditScore";
+export default function IconTabs() {
+  const [value, setValue] = React.useState("notUsedVouchers");
   const [openUsedVouchers, setOpenUsedVouchers] = React.useState(false);
   const [openNotUsedVouchers, setOpenNotUsedVouchers] = React.useState(true);
   const [onClickVoucher, setOnClickVoucher] = useState(true);
@@ -50,7 +55,6 @@ export default function TabsUnderlineExample(props) {
 
         setWalletID(content.id + 1000); // Update walletID based on fetched user data
         setUser(content);
-      } else {
       }
     } catch (error) {
       console.error("Failed to fetch user data:", error);
@@ -85,62 +89,51 @@ export default function TabsUnderlineExample(props) {
   const handleOpenAllNotUsedVouchers = () => {
     setOpenAllUsedVouchers(!openAllUsedVouchers);
   };
-  const currentDate = new Date();
-  const expiryDate = new Date(vouchers.fields.dateOfExpiry);
 
+  const handleChange = (event, newValue) => {
+    setValue(newValue);
+  };
+  console.log(value);
+  const currentDate = new Date();
+  // const expiryDate = new Date(voucher.fields.dateOfExpiry);
   return (
-    <Tabs aria-label="tabs" defaultValue={0} direction="rtl">
-      <TabList
-        variant="plain"
-        sx={{
-          "--List-padding": "0px",
-          "--List-radius": "0px",
-          "--ListItem-minHeight": "48px",
-          [`& .${tabClasses.root}`]: {
-            boxShadow: "none",
-            fontWeight: "md",
-            [`&.${tabClasses.selected}::before`]: {
-              content: '""',
-              display: "block",
-              position: "absolute",
-              left: 30, // change to `0` to stretch to the edge.
-              right: 30, // change to `0` to stretch to the edge.
-              bottom: 0,
-              height: 3,
-              bgcolor: "primary.400",
-            },
-          },
-        }}
+    <div>
+      <Tabs
+        value={value}
+        onChange={handleChange}
+        aria-label="icon tabs example"
+        sx={{ direction: "rtl", width: "85%" }}
+        variant="fullWidth"
       >
-        <Tab sx={{ right: 10 }} onChange={handleOpenNotUsed}>
-          זיכויים שלא מומשו{" - "}
-          {
-            vouchers.filter((voucher) => voucher.fields.redeemed === false)
-              .length
-          }
-        </Tab>
-        <Tab sx={{ right: 40 }} onChange={handlleOpenUsedVouchers}>
-          זכויים שמומשו{" - "}
-          {
-            vouchers.filter((voucher) => voucher.fields.redeemed === true)
-              .length
-          }
-        </Tab>
-      </TabList>
+        <Tab
+          icon={<SellIcon color="primary" />}
+          aria-label="notUsedVouchers"
+          value={"notUsedVouchers"}
+        />
+        <Tab
+          icon={<AccessTimeIcon color="error" />}
+          aria-label="expiredVouchers"
+          value={"expiredVouchers"}
+        />
+        <Tab
+          icon={<CreditScoreIcon color="success" />}
+          aria-label="redeemedVouchers"
+          value={"redeemedVouchers"}
+        />
+      </Tabs>
       <p></p>
+      <p></p>
+
       {openAllUsedVouchers ? (
-        <Button sx={{ marginLeft: 25 }} onClick={handlleOpenAllUsedVouchers}>
+        <Button sx={{ marginLeft: 33 }} onClick={handlleOpenAllUsedVouchers}>
           הצג הכל
         </Button>
       ) : (
-        <Button sx={{ marginLeft: 25 }} onClick={handlleOpenAllUsedVouchers}>
+        <Button sx={{ marginLeft: 32 }} onClick={handlleOpenAllUsedVouchers}>
           הצג פחות
         </Button>
       )}
-
-      <p></p>
-
-      {openNotUsedVouchers ? (
+      {value == "notUsedVouchers" ? (
         vouchers.filter((voucher) => voucher.fields.redeemed === false).length >
         0 ? (
           vouchers
@@ -170,8 +163,7 @@ export default function TabsUnderlineExample(props) {
       ) : (
         ""
       )}
-
-      {openUsedVouchers ? (
+      {value == "redeemedVouchers" ? (
         vouchers.filter((voucher) => voucher.fields.redeemed === true).length >
         0 ? (
           vouchers
@@ -201,6 +193,36 @@ export default function TabsUnderlineExample(props) {
       ) : (
         ""
       )}
-    </Tabs>
+      {value == "expiredVouchers" ? (
+        vouchers.filter((voucher) => currentDate > voucher.fields.dateOfExpiry)
+          .length > 0 ? (
+          vouchers
+            .filter((voucher) => voucher.fields.redeemed === false)
+            .slice(0, !openAllUsedVouchers ? vouchers.length : 3) // limit to 3 vouchers if openAllUsedVouchers is not true
+            .map((voucher) => (
+              <Popover
+                voucher={voucher.fields}
+                key={voucher.pk}
+                vID={voucher.pk}
+                openVoucher={handleOpenVoucher}
+                getWallet={getWallet}
+              />
+            ))
+        ) : (
+          <Typography
+            sx={{
+              display: "flex",
+              alignItems: "center",
+              flexDirection: "column",
+            }}
+          >
+            <Typography>כל הזיכויים מומשו</Typography>
+            <BrowserNotSupportedIcon fontSize="large" sx={{ mt: 1 }} />
+          </Typography>
+        )
+      ) : (
+        ""
+      )}
+    </div>
   );
 }
