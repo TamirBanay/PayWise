@@ -87,7 +87,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'zeekSchema',
         'USER': 'root',
-        'PASSWORD': 'password',
+        'PASSWORD': 'tamirsapir055',
         'HOST': 'localhost',   # Or an IP Address that your DB is hosted on
         'PORT': '3306',
     },
@@ -144,7 +144,7 @@ CORS_ALLOW_CREDENTIALS = True
 
 # EMAIL_BACKEND = "sendgrid_backend.SendgridBackend"
 # SENDGRID_API_KEY='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'
-   # settings.py
+# settings.py
 
 # ...
 
@@ -152,8 +152,7 @@ CORS_ALLOW_CREDENTIALS = True
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
-EMAIL_HOST_USER = 'paywise.reminder@gmail.com'  
-EMAIL_HOST_PASSWORD = 'vsyhaywfhoipnhqh'  
+EMAIL_HOST_USER = 'paywise.reminder@gmail.com'
+EMAIL_HOST_PASSWORD = 'vsyhaywfhoipnhqh'
 EMAIL_USE_TLS = True
 # ...
- 

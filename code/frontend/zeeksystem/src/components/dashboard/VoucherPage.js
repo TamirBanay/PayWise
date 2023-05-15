@@ -48,7 +48,7 @@ export default function BasicCard(props) {
       sx={{ width: 320, borderRadius: 5, direction: "rtl" }}
     >
       <Typography level="h2" fontSize="md" sx={{ mb: 0.5 }}>
-        {props.voucher.storeType}
+        {props.voucher.storeName}
       </Typography>
       <Typography level="body2">
         {" "}

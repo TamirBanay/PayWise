@@ -4,7 +4,7 @@ import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import Voucher from "./Voucher";
 import VoucherPage from "./VoucherPage";
-import { useLocation,  } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import fashionDef from "../../images/fashion.jpg";
 import retailDef from "../../images/retail.jpg";
 import electronicsDef from "../../images/electronics.jpg";
@@ -17,12 +17,7 @@ import ikea from "../../images/ikea.jpg";
 import ace from "../../images/ACE.jpg";
 import store from "../../images/store.jpg";
 import { useEffect, useState } from "react";
-
-
-
-
-
-
+import EllipsisList from "../dashboard/EllipsisList";
 
 export default function BasicPopover(props) {
   const location = useLocation();
@@ -67,9 +62,7 @@ export default function BasicPopover(props) {
       else if (name == "ACE") setImg(ace);
       else setImg(retailDef);
     else setImg(store);
-  }
-
-
+  };
 
   useEffect(() => {
     setImgToVOucher();
@@ -81,15 +74,28 @@ export default function BasicPopover(props) {
         ""
       ) : (
         <div>
-          <Voucher
-            voucher={props.voucher}
-            key={props.vID}
-            vID={props.vID}
-            openVoucher={props.openVoucher}
-            handleClick={handleClick}
-            open={open}
-            img = {img}
-          />
+          {location.pathname == "/" ? (
+            <EllipsisList
+              voucher={props.voucher}
+              key={props.vID}
+              vID={props.vID}
+              openVoucher={props.openVoucher}
+              handleClick={handleClick}
+              open={open}
+              img={img}
+            />
+          ) : (
+            <Voucher
+              voucher={props.voucher}
+              key={props.vID}
+              vID={props.vID}
+              openVoucher={props.openVoucher}
+              handleClick={handleClick}
+              open={open}
+              img={img}
+            />
+          )}
+
           <Popover
             id={id}
             open={open}
@@ -111,7 +117,7 @@ export default function BasicPopover(props) {
               open={open}
               delete={hendleDelete}
               getWallet={props.getWallet}
-              img = {img}
+              img={img}
             />
           </Popover>
         </div>
