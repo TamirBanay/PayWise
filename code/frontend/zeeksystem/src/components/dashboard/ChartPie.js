@@ -11,9 +11,13 @@ const Dashboard = () => {
   let location = useLocation();
   const vouchers = useRecoilValue(_Vouchers);
   const [labels, setLabels] = useState([]);
+  const currentDate = new Date();
 
   const totalAmount = vouchers.reduce((total, voucher) => {
-    if (!voucher.fields.redeemed) {
+    if (
+      !voucher.fields.redeemed &&
+      currentDate < new Date(voucher.fields.dateOfExpiry)
+    ) {
       return total + parseFloat(voucher.fields.ammount);
     } else {
       return total;
@@ -26,12 +30,17 @@ const Dashboard = () => {
     let i = 0;
     if (vouchers && vouchers.length > 0) {
       vouchers.forEach((voucher) => {
-        if (!storeTypes.includes(voucher.fields.storeType)) {
-          storeTypes.push(voucher.fields.storeType);
-          StoreSeries.push(1);
-        } else {
-          for (i = 0; i < storeTypes.length; i++) {
-            if (storeTypes[i] == voucher.fields.storeType) StoreSeries[i]++;
+        if (
+          !voucher.fields.redeemed &&
+          currentDate < new Date(voucher.fields.dateOfExpiry)
+        ) {
+          if (!storeTypes.includes(voucher.fields.storeType)) {
+            storeTypes.push(voucher.fields.storeType);
+            StoreSeries.push(1);
+          } else {
+            for (i = 0; i < storeTypes.length; i++) {
+              if (storeTypes[i] == voucher.fields.storeType) StoreSeries[i]++;
+            }
           }
         }
       });
@@ -43,8 +52,13 @@ const Dashboard = () => {
     let storeTypes = [];
     if (vouchers && vouchers.length > 0) {
       vouchers.forEach((voucher) => {
-        if (!storeTypes.includes(voucher.fields.storeType)) {
-          storeTypes.push(voucher.fields.storeType);
+        if (
+          !voucher.fields.redeemed &&
+          currentDate < new Date(voucher.fields.dateOfExpiry)
+        ) {
+          if (!storeTypes.includes(voucher.fields.storeType)) {
+            storeTypes.push(voucher.fields.storeType);
+          }
         }
       });
     }

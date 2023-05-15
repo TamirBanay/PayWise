@@ -30,7 +30,7 @@ export default function EllipsisList(props) {
           <ListItemContent>
             <Typography level="h6" sx={{ width: "50%" }}>
               {" "}
-              <Badge
+              {/* <Badge
                 size="sm"
                 sx={{ ml: 2 }}
                 color={
@@ -42,14 +42,14 @@ export default function EllipsisList(props) {
                     ? "primary"
                     : ""
                 }
-              />
+              /> */}
               {props.voucher.storeName}
             </Typography>
             <Typography sx={{ mr: 30, mt: -3 }} level="h6">
               {" "}
               ₪{amount}
             </Typography>
-            <Typography level="body2" sx={{ mr: 2 }}>
+            <Typography level="body2" sx={{ mr: 0 }}>
               {props.voucher.dateOfExpiry.slice(0, 10)}
             </Typography>
           </ListItemContent>
