@@ -60,6 +60,7 @@ export default function IconTabs() {
       console.error("Failed to fetch user data:", error);
     }
   };
+
   useEffect(() => {
     fetchUserData();
   }, []);
@@ -93,9 +94,9 @@ export default function IconTabs() {
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
-  console.log(value);
   const currentDate = new Date();
   // const expiryDate = new Date(voucher.fields.dateOfExpiry);
+
   return (
     <div>
       <Tabs
@@ -134,10 +135,17 @@ export default function IconTabs() {
         </Button>
       )}
       {value == "notUsedVouchers" ? (
-        vouchers.filter((voucher) => voucher.fields.redeemed === false).length >
-        0 ? (
+        vouchers.filter(
+          (voucher) =>
+            voucher.fields.redeemed === false &&
+            currentDate < new Date(voucher.fields.dateOfExpiry)
+        ).length > 0 ? (
           vouchers
-            .filter((voucher) => voucher.fields.redeemed === false)
+            .filter(
+              (voucher) =>
+                voucher.fields.redeemed === false &&
+                currentDate < new Date(voucher.fields.dateOfExpiry)
+            )
             .slice(0, !openAllUsedVouchers ? vouchers.length : 3) // limit to 3 vouchers if openAllUsedVouchers is not true
             .map((voucher) => (
               <Popover
@@ -194,10 +202,17 @@ export default function IconTabs() {
         ""
       )}
       {value == "expiredVouchers" ? (
-        vouchers.filter((voucher) => currentDate > voucher.fields.dateOfExpiry)
-          .length > 0 ? (
+        vouchers.filter(
+          (voucher) =>
+            currentDate > new Date(voucher.fields.dateOfExpiry) &&
+            voucher.fields.redeemed == false
+        ).length > 0 ? (
           vouchers
-            .filter((voucher) => voucher.fields.redeemed === false)
+            .filter(
+              (voucher) =>
+                currentDate > new Date(voucher.fields.dateOfExpiry) &&
+                voucher.fields.redeemed == false
+            )
             .slice(0, !openAllUsedVouchers ? vouchers.length : 3) // limit to 3 vouchers if openAllUsedVouchers is not true
             .map((voucher) => (
               <Popover
