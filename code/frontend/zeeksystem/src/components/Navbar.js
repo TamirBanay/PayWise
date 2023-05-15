@@ -278,11 +278,18 @@ export default function MiniDrawer(props) {
     <Box
       sx={{
         direction: "rtl",
-        height: location.pathname == "/profile" ? 50 : 100,
+        height:
+          location.pathname == "/profile"
+            ? 50
+            : location.pathname == "/"
+            ? 100
+            : location.pathname == "/wallet"
+            ? 70
+            : "",
       }}
     >
       <CssBaseline />
-      <AppBar position="relative" open={open}>
+      <AppBar position="fixed" open={open}>
         <Toolbar>
           <IconButton
             color="inherit"

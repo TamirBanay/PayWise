@@ -30,7 +30,7 @@ function Home(props) {
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
   const [vouchers, setVouchers] = useRecoilState(_Vouchers);
   const [walletID, setWalletID] = useState();
-
+  const currentDate = new Date();
   const getWallet = async () => {
     try {
       const response = await fetch(
@@ -119,15 +119,19 @@ function Home(props) {
 
         {onClickVoucher
           ? vouchers.length > 0 &&
-            vouchers.map((voucher) => (
-              <Popover
-                voucher={voucher.fields}
-                key={voucher.pk}
-                vID={voucher.pk}
-                openVoucher={handleOpenVoucher}
-                getWallet={getWallet}
-              />
-            ))
+            vouchers
+              .filter(
+                (voucher) => currentDate < new Date(voucher.fields.dateOfExpiry)
+              )
+              .map((voucher) => (
+                <Popover
+                  voucher={voucher.fields}
+                  key={voucher.pk}
+                  vID={voucher.pk}
+                  openVoucher={handleOpenVoucher}
+                  getWallet={getWallet}
+                />
+              ))
           : ""}
       </div>
     </div>
