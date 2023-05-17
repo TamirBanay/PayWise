@@ -1,6 +1,7 @@
 
 **/__pycache__
 code/backend/env.
+code/backend/server/mysite/.env
 
 .idea
 
