@@ -74,27 +74,15 @@ export default function BasicPopover(props) {
         ""
       ) : (
         <div>
-          {location.pathname == "/" ? (
-            <EllipsisList
-              voucher={props.voucher}
-              key={props.vID}
-              vID={props.vID}
-              openVoucher={props.openVoucher}
-              handleClick={handleClick}
-              open={open}
-              img={img}
-            />
-          ) : (
-            <Voucher
-              voucher={props.voucher}
-              key={props.vID}
-              vID={props.vID}
-              openVoucher={props.openVoucher}
-              handleClick={handleClick}
-              open={open}
-              img={img}
-            />
-          )}
+          <EllipsisList
+            voucher={props.voucher}
+            key={props.vID}
+            vID={props.vID}
+            openVoucher={props.openVoucher}
+            handleClick={handleClick}
+            open={open}
+            img={img}
+          />
 
           <Popover
             id={id}
