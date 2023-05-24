@@ -51,16 +51,16 @@ class ChangeVoucheralert(APIView):
         try: 
              voucher = get_object_or_404(Vouchers, pk=voucher_id)
              new_data = request.data
-             daysBefoAlert = new_data.get('daysBefoAlert', voucher.daysBefoAlert)
+             daysBeforeAlert = new_data.get('daysBeforeAlert', voucher.daysBeforeAlert)
              
-             voucher.daysBefoAlert = daysBefoAlert
+             voucher.daysBeforeAlert = daysBeforeAlert
              voucher.save()
              
              
              logger.info(
                 f"Successfully updated user {voucher_id} with new data: {new_data}")
              return JsonResponse({
-                "daysBefoAlert": daysBefoAlert,
+                "daysBeforeAlert": daysBeforeAlert,
                
             })
              

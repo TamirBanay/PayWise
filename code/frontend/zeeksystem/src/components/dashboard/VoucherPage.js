@@ -38,9 +38,9 @@ export default function BasicCard(props) {
       newAlertDay = 0;
     }
     setOpenNotifications(!openAlerts);
-    fetch(`http://localhost:8000/api/change_days_befo_alert/${props.vID}`, {
+    fetch(`http://localhost:8000/api/change_days_before_alert/${props.vID}`, {
       method: "POST",
-      body: JSON.stringify({ daysBefoAlert: newAlertDay }),
+      body: JSON.stringify({ daysBeforeAlert: newAlertDay }),
       headers: {
         "Content-Type": "application/json",
       },
