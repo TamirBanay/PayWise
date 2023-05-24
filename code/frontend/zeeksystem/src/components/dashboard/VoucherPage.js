@@ -11,10 +11,48 @@ import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import DoneIcon from "@mui/icons-material/Done";
 import Divider from "@mui/material/Divider";
-
+import NotificationsIcon from "@mui/icons-material/Notifications";
+import Checkbox from "@mui/joy/Checkbox";
+import List from "@mui/joy/List";
+import ListItem from "@mui/joy/ListItem";
+import ChooseNotifications from "../notifications/ChooseNotifications";
 export default function BasicCard(props) {
   const location = useLocation();
   const { pathname } = location;
+  const [openAlerts, setOpenNotifications] = React.useState(false);
+  const [selectedValue, setSelectedValue] = useState("שבוע לפני");
+  // const [newAlertDay, setNewAlertDay] = useState(0);
+
+  const handleChange = (value) => {
+    setSelectedValue(value);
+  };
+  const handleChangeAlert = async (event) => {
+    let newAlertDay = 0;
+    if (selectedValue === "יום לפני") {
+      newAlertDay = 1;
+    } else if (selectedValue === "שבוע לפני") {
+      newAlertDay = 7;
+    } else if (selectedValue === "חודש לפני") {
+      newAlertDay = 30;
+    } else {
+      newAlertDay = 0;
+    }
+    setOpenNotifications(!openAlerts);
+    fetch(`http://localhost:8000/api/change_days_befo_alert/${props.vID}`, {
+      method: "POST",
+      body: JSON.stringify({ daysBefoAlert: newAlertDay }),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data); // Handle the response from the API
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+      });
+  };
 
   const handlleRedeemdVoucher = async (event) => {
     event.preventDefault();
@@ -41,64 +79,179 @@ export default function BasicCard(props) {
       console.error(error);
     }
   };
-
+  const handleOpenAlerts = () => {
+    setOpenNotifications(!openAlerts);
+  };
   return (
-    <Card
-      variant="outlined"
-      sx={{ width: 320, borderRadius: 5, direction: "rtl" }}
-    >
-      <Typography level="h2" fontSize="md" sx={{ mb: 0.5 }}>
-        {props.voucher.storeName}
-      </Typography>
-      <Typography level="body2">
-        {" "}
-        {props.voucher.dateOfExpiry.slice(0, 10)}
-      </Typography>
-      <IconButton
-        aria-label="bookmark Bahamas Islands"
-        variant="plain"
-        color="neutral"
-        size="sm"
-        sx={{ position: "absolute", top: "0.5rem", right: "0.5rem" }}
-      >
-        <DeleteForeverIcon onClick={props.delete} sx={{ mr: 34 }} />
-      </IconButton>
-
-      <AspectRatio minHeight="120px" maxHeight="200px" sx={{ my: 2 }}>
-        <img src={props.img} srcSet={props.img} loading="lazy" alt="" />
-      </AspectRatio>
-
-      <Box sx={{ display: "flex" }}>
-        <div>
-          <Typography fontSize="md" fontWeight="lg" sx={{ direction: "rtl" }}>
-            מחיר: {"  "}
-            <Typography fontSize="md" fontWeight="lg">
-              {props.voucher.ammount} ₪
-            </Typography>
+    <div>
+      {openAlerts ? (
+        <Card
+          variant="outlined"
+          sx={{ width: 320, borderRadius: 5, direction: "rtl" }}
+        >
+          <Typography level="h2" fontSize="md" sx={{ mb: 0.5 }}>
+            {props.voucher.storeName}
           </Typography>
-
-          <Typography fontSize="sm" fontWeight="sm">
-            מס' שובר: {props.vID}
+          <Typography level="body2">
+            {" "}
+            {props.voucher.dateOfExpiry.slice(0, 10)}
           </Typography>
-        </div>
-        {/* if im in wallet page and the voucher is redeemed show v icon */}
-        {location.pathname == "/wallet" && props.voucher.redeemed == true ? (
-          <Typography sx={{ mr: "auto" }}>
-            <DoneIcon color="success" fontSize="large" />
-          </Typography>
-        ) : (
-          <Button
-            variant="solid"
+          <IconButton
+            aria-label="bookmark Bahamas Islands"
+            variant="plain"
+            color="neutral"
             size="sm"
-            color="primary"
-            aria-label="Explore Bahamas Islands"
-            sx={{ mr: "auto", fontWeight: 600 }}
-            onClick={handlleRedeemdVoucher}
+            sx={{
+              position: "absolute",
+              top: "0.5rem",
+              width: "10%",
+              right: "88%",
+            }}
           >
-            מימוש
-          </Button>
-        )}
-      </Box>
-    </Card>
+            <DeleteForeverIcon onClick={props.delete} />
+          </IconButton>
+
+          <IconButton
+            aria-label="bookmark Bahamas Islands"
+            variant="plain"
+            color="neutral"
+            size="sm"
+            sx={{
+              position: "absolute",
+              top: "0.5rem",
+              width: "10%",
+              right: "77%",
+            }}
+          >
+            <NotificationsIcon onClick={handleOpenAlerts} />
+          </IconButton>
+
+          <ChooseNotifications
+            handleChange={handleChange}
+            setSelectedValue={setSelectedValue}
+            selectedValue={selectedValue}
+          />
+          <Box sx={{ display: "flex" }}>
+            <div>
+              <Typography
+                fontSize="md"
+                fontWeight="lg"
+                sx={{ direction: "rtl" }}
+              >
+                מחיר: {"  "}
+                <Typography fontSize="md" fontWeight="lg">
+                  {props.voucher.ammount} ₪
+                </Typography>
+              </Typography>
+
+              <Typography fontSize="sm" fontWeight="sm">
+                מס' שובר: {props.vID}
+              </Typography>
+            </div>
+            {/* if im in wallet page and the voucher is redeemed show v icon */}
+            {location.pathname == "/wallet" &&
+            props.voucher.redeemed == true ? (
+              <Typography sx={{ mr: "auto" }}>
+                <DoneIcon color="success" fontSize="large" />
+              </Typography>
+            ) : (
+              <Button
+                variant="solid"
+                size="sm"
+                color="primary"
+                aria-label="Explore Bahamas Islands"
+                sx={{ mr: "auto", fontWeight: 600 }}
+                onClick={handleChangeAlert}
+              >
+                הגדר
+              </Button>
+            )}
+          </Box>
+        </Card>
+      ) : (
+        <Card
+          variant="outlined"
+          sx={{ width: 320, borderRadius: 5, direction: "rtl" }}
+        >
+          <Typography level="h2" fontSize="md" sx={{ mb: 0.5 }}>
+            {props.voucher.storeName}
+          </Typography>
+          <Typography level="body2">
+            {" "}
+            {props.voucher.dateOfExpiry.slice(0, 10)}
+          </Typography>
+          <IconButton
+            aria-label="bookmark Bahamas Islands"
+            variant="plain"
+            color="neutral"
+            size="sm"
+            sx={{
+              position: "absolute",
+              top: "0.5rem",
+              width: "10%",
+              right: "88%",
+            }}
+          >
+            <DeleteForeverIcon onClick={props.delete} />
+          </IconButton>
+
+          <IconButton
+            aria-label="bookmark Bahamas Islands"
+            variant="plain"
+            color="neutral"
+            size="sm"
+            sx={{
+              position: "absolute",
+              top: "0.5rem",
+              width: "10%",
+              right: "77%",
+            }}
+          >
+            <NotificationsIcon onClick={handleOpenAlerts} />
+          </IconButton>
+
+          <AspectRatio minHeight="120px" maxHeight="200px" sx={{ my: 2 }}>
+            <img src={props.img} srcSet={props.img} loading="lazy" alt="" />
+          </AspectRatio>
+
+          <Box sx={{ display: "flex" }}>
+            <div>
+              <Typography
+                fontSize="md"
+                fontWeight="lg"
+                sx={{ direction: "rtl" }}
+              >
+                מחיר: {"  "}
+                <Typography fontSize="md" fontWeight="lg">
+                  {props.voucher.ammount} ₪
+                </Typography>
+              </Typography>
+
+              <Typography fontSize="sm" fontWeight="sm">
+                מס' שובר: {props.vID}
+              </Typography>
+            </div>
+            {/* if im in wallet page and the voucher is redeemed show v icon */}
+            {location.pathname == "/wallet" &&
+            props.voucher.redeemed == true ? (
+              <Typography sx={{ mr: "auto" }}>
+                <DoneIcon color="success" fontSize="large" />
+              </Typography>
+            ) : (
+              <Button
+                variant="solid"
+                size="sm"
+                color="primary"
+                aria-label="Explore Bahamas Islands"
+                sx={{ mr: "auto", fontWeight: 600 }}
+                onClick={handlleRedeemdVoucher}
+              >
+                מימוש
+              </Button>
+            )}
+          </Box>
+        </Card>
+      )}
+    </div>
   );
 }
