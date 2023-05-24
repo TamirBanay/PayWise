@@ -36,6 +36,7 @@ class Vouchers (models.Model):
     dateOfAcquire = models.DateTimeField(default=timezone.now)
     dateOfExpiry = models.DateTimeField(default=timezone.now)
     redeemed = models.BooleanField(default=False)
+    daysBeforeAlert = models.IntegerField(default=7)
     
 
 class MOCKVouchers (models.Model):
