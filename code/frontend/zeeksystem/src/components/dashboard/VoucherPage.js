@@ -16,15 +16,19 @@ import Checkbox from "@mui/joy/Checkbox";
 import List from "@mui/joy/List";
 import ListItem from "@mui/joy/ListItem";
 import ChooseNotifications from "../notifications/ChooseNotifications";
+import AlertDialogModal from "./AlertDialogModal";
 export default function BasicCard(props) {
   const location = useLocation();
   const { pathname } = location;
   const [openAlerts, setOpenNotifications] = React.useState(false);
   const [selectedValue, setSelectedValue] = useState("שבוע לפני");
-  // const [newAlertDay, setNewAlertDay] = useState(0);
+  const [openDeleteAlert, setOpenDeleteAlert] = React.useState(false);
 
   const handleChange = (value) => {
     setSelectedValue(value);
+  };
+  const handleChangeAletrBeforeDelete = () => {
+    setOpenDeleteAlert(!openDeleteAlert);
   };
   const handleChangeAlert = async (event) => {
     let newAlertDay = 0;
@@ -84,6 +88,7 @@ export default function BasicCard(props) {
   };
   return (
     <div>
+      {/* if its the vocher page or the alert page*/}
       {openAlerts ? (
         <Card
           variant="outlined"
@@ -108,7 +113,19 @@ export default function BasicCard(props) {
               right: "88%",
             }}
           >
-            <DeleteForeverIcon onClick={props.delete} />
+            <DeleteForeverIcon onClick={handleChangeAletrBeforeDelete} />
+            {openDeleteAlert ? (
+              <AlertDialogModal
+                function={props.delete}
+                mainText={"האם למחוק את זיכוי?"}
+                title={"מחיקת זיכוי"}
+                variant="plain"
+                textButton={"מחק"}
+                isOpen={openDeleteAlert}
+              />
+            ) : (
+              ""
+            )}
           </IconButton>
 
           <IconButton
@@ -192,7 +209,19 @@ export default function BasicCard(props) {
               right: "88%",
             }}
           >
-            <DeleteForeverIcon onClick={props.delete} />
+            <DeleteForeverIcon onClick={handleChangeAletrBeforeDelete} />
+            {openDeleteAlert ? (
+              <AlertDialogModal
+                function={props.delete}
+                mainText={"האם למחוק את זיכוי?"}
+                title={"מחיקת זיכוי"}
+                variant="plain"
+                textButton={"מחק"}
+                isOpen={openDeleteAlert}
+              />
+            ) : (
+              ""
+            )}
           </IconButton>
 
           <IconButton
