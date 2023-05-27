@@ -21,7 +21,9 @@ export default function BasicPopover(props) {
   return (
     <div>
       <Button aria-describedby={id} variant="text" onClick={handleClick}>
-        <Typography color="black">הוספה ידנית</Typography>
+        <Typography color="black" sx={{ ml: "%" }}>
+          הוספה ידנית
+        </Typography>
       </Button>
       <Popover
         id={id}
@@ -33,7 +35,11 @@ export default function BasicPopover(props) {
           horizontal: "left",
         }}
       >
-        <HelperTextAligned userID={props.userID} handleClose={handleClose} getWallet={props.getWallet}/>
+        <HelperTextAligned
+          userID={props.userID}
+          handleClose={handleClose}
+          getWallet={props.getWallet}
+        />
       </Popover>
     </div>
   );

@@ -265,6 +265,14 @@ export default function MiniDrawer(props) {
       <MenuItem onClick={(handleMenuClose, handleOpenScan)} href="/scanVoucher">
         הוספה ע"י סריקה
       </MenuItem>
+      <Divider
+        sx={{
+          borderBottom: "0.5px solid black",
+          height: 1,
+          mr: "10%",
+          width: "80%",
+        }}
+      />
       <MenuItem onClick={handleMenuClose}>
         <BasicPopover2
           getWallet={getWallet}

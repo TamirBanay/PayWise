@@ -12,16 +12,19 @@ import { useLocation } from "react-router-dom";
 import DoneIcon from "@mui/icons-material/Done";
 import Divider from "@mui/material/Divider";
 import NotificationsIcon from "@mui/icons-material/Notifications";
-import Checkbox from "@mui/joy/Checkbox";
-import List from "@mui/joy/List";
-import ListItem from "@mui/joy/ListItem";
 import ChooseNotifications from "../notifications/ChooseNotifications";
+import NotificationsOffIcon from "@mui/icons-material/NotificationsOff";
+import { _Vouchers } from "../../services/atom";
+import { useRecoilState } from "recoil";
+import Badge from "@mui/material/Badge";
+
 export default function BasicCard(props) {
   const location = useLocation();
   const { pathname } = location;
   const [openAlerts, setOpenNotifications] = React.useState(false);
   const [selectedValue, setSelectedValue] = useState("שבוע לפני");
-  // const [newAlertDay, setNewAlertDay] = useState(0);
+  const [vouchers, setVouchers] = useRecoilState(_Vouchers);
+  const [walletID, setWalletID] = useState();
 
   const handleChange = (value) => {
     setSelectedValue(value);
@@ -37,6 +40,7 @@ export default function BasicCard(props) {
     } else {
       newAlertDay = 0;
     }
+
     setOpenNotifications(!openAlerts);
     fetch(`http://localhost:8000/api/change_days_before_alert/${props.vID}`, {
       method: "POST",
@@ -49,6 +53,7 @@ export default function BasicCard(props) {
       .then((data) => {
         console.log(data); // Handle the response from the API
       })
+
       .catch((error) => {
         console.error("Error:", error);
       });
@@ -123,7 +128,24 @@ export default function BasicCard(props) {
               right: "77%",
             }}
           >
-            <NotificationsIcon onClick={handleOpenAlerts} />
+            {props.voucher.daysBeforeAlert == 0 ? (
+              <NotificationsOffIcon onClick={handleOpenAlerts} />
+            ) : (
+              <Badge
+                badgeContent={
+                  props.voucher.daysBeforeAlert == 1
+                    ? "D"
+                    : props.voucher.daysBeforeAlert == 7
+                    ? "W"
+                    : props.voucher.daysBeforeAlert == 30
+                    ? "M"
+                    : ""
+                }
+                color="primary"
+              >
+                <NotificationsIcon onClick={handleOpenAlerts} />
+              </Badge>
+            )}
           </IconButton>
 
           <ChooseNotifications
@@ -207,7 +229,24 @@ export default function BasicCard(props) {
               right: "77%",
             }}
           >
-            <NotificationsIcon onClick={handleOpenAlerts} />
+            {props.voucher.daysBeforeAlert == 0 ? (
+              <NotificationsOffIcon onClick={handleOpenAlerts} />
+            ) : (
+              <Badge
+                badgeContent={
+                  props.voucher.daysBeforeAlert == 1
+                    ? "D"
+                    : props.voucher.daysBeforeAlert == 7
+                    ? "W"
+                    : props.voucher.daysBeforeAlert == 30
+                    ? "M"
+                    : ""
+                }
+                color="primary"
+              >
+                <NotificationsIcon onClick={handleOpenAlerts} />
+              </Badge>
+            )}
           </IconButton>
 
           <AspectRatio minHeight="120px" maxHeight="200px" sx={{ my: 2 }}>
