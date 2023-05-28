@@ -18,6 +18,7 @@ import { _Vouchers, _badgeContent } from "../../services/atom";
 import { useRecoilState } from "recoil";
 import Badge from "@mui/material/Badge";
 import ClearIcon from "@mui/icons-material/Clear";
+import AlertDialogModal from "./AlertDialogModal";
 export default function BasicCard(props) {
   const location = useLocation();
   const { pathname } = location;
@@ -26,7 +27,11 @@ export default function BasicCard(props) {
   const currentDate = new Date();
   const [selectedValue, setSelectedValue] = useState("");
   const [badgeContent, setBadgeContent] = useState();
+  const [openDeleteAlert, setOpenDeleteAlert] = useState(false);
 
+  const handleChangeAletrBeforeDelete = () => {
+    setOpenDeleteAlert(!openDeleteAlert);
+  };
   useEffect(() => {
     if (props.voucher.daysBeforeAlert === 1) {
       setSelectedValue("יום לפני");
