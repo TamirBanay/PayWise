@@ -143,7 +143,21 @@ export default function BasicCard(props) {
               right: "88%",
             }}
           >
-            <DeleteForeverIcon onClick={props.delete} />
+            <DeleteForeverIcon onClick={handleChangeAletrBeforeDelete} />
+            {openDeleteAlert ? (
+              <AlertDialogModal
+                function={props.delete}
+                mainText={"האם למחוק את זיכוי?"}
+                title={"מחיקת זיכוי"}
+                variant="plain"
+                textButton={"מחק"}
+                openDeleteAlert={openDeleteAlert}
+                setOpenDeleteAlert={setOpenDeleteAlert}
+                isOpen={openDeleteAlert}
+              />
+            ) : (
+              ""
+            )}
           </IconButton>
 
           <IconButton
@@ -239,7 +253,21 @@ export default function BasicCard(props) {
               right: "88%",
             }}
           >
-            <DeleteForeverIcon onClick={props.delete} />
+            <DeleteForeverIcon onClick={handleChangeAletrBeforeDelete} />
+            {openDeleteAlert ? (
+              <AlertDialogModal
+                function={props.delete}
+                mainText={"האם למחוק את זיכוי?"}
+                title={"מחיקת זיכוי"}
+                variant="plain"
+                textButton={"מחק"}
+                isOpen={openDeleteAlert}
+                openDeleteAlert={openDeleteAlert}
+                setOpenDeleteAlert={setOpenDeleteAlert}
+              />
+            ) : (
+              ""
+            )}
           </IconButton>
 
           <IconButton
