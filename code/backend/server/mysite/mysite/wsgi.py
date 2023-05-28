@@ -3,7 +3,7 @@ import sys
 
 from django.core.wsgi import get_wsgi_application
 
-SERVER_BASE = 'c:/Apache24/_projects/hotix/server'
+SERVER_BASE = '/var/www/paywise/server'
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'mysite.settings')
 
 sys.path.append(SERVER_BASE)
