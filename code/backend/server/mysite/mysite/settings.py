@@ -86,8 +86,8 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'zeekSchema',
-        'USER': 'root',
-        'PASSWORD': 'tamirsapir055',
+        'USER': 'PayWise_db_root',
+        'PASSWORD': 'password',
         'HOST': 'localhost',   # Or an IP Address that your DB is hosted on
         'PORT': '3306',
     },
