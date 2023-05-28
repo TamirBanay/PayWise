@@ -11,17 +11,16 @@ def schedule_api():
     next_week = today + timedelta(days=7)
 
     # Retrieve the vouchers expiring in the upcoming week
-    expiring_vouchers = Vouchers.objects.filter(
-        dateOfExpiry__range=[today, next_week],
-        redeemed = False)
+    Active_vouchers = Vouchers.objects.filter(
+        redeemed = False, dateOfExpiry__gt= today )
 
     # Iterate over the expiring vouchers and send email notifications
-    for voucher in expiring_vouchers:
+    for voucher in Active_vouchers:
         # Calculate the number of days until the voucher expires
         days_until_expiry = (voucher.dateOfExpiry.date() - today).days
 
         # Check if the voucher's expiry date is within the upcoming week
-        if days_until_expiry <= 7:
+        if days_until_expiry <= voucher.daysBeforeAlert:
             # Retrieve the associated user
             user = voucher.walletID.user
 
@@ -48,43 +47,5 @@ def schedule_api():
             # Send the email
             email.send()
             print(f"message successfully to voucher {voucher.voucherID}")
+    print(f"All relevent users got an alert!")  
 
-
-
-
-# def schedule_api():
-#     # Calculate the date range for the upcoming week
-#     today = timezone.now().date()
-#     next_week = today + timedelta(days=7)
-
-#     # Retrieve the vouchers expiring in the upcoming week
-#     expiring_vouchers = Vouchers.objects.filter(
-#         dateOfExpiry__range=[today, next_week],
-#         redeemed = False)
-
-#     # Iterate over the expiring vouchers and send email notifications
-#     for voucher in expiring_vouchers:
-#         # Calculate the number of days until the voucher expires
-#         days_until_expiry = (voucher.dateOfExpiry.date() - today).days
-
-#         # Check if the voucher's expiry date is within the upcoming week
-#         if days_until_expiry <= 7:
-#             # Retrieve the associated user
-#             user = voucher.walletID.user
-
-#             # Get the user's name
-#             # Adjust this based on your User model structure
-#             user_name = user.first_name + " " + user.last_name
-
-#             # Compose the email message
-#             subject = 'Voucher Expiry Reminder'
-#             message = f"שלום {user_name}, \n\nזוהי הודעת תזכורת כי שובר ההחזר על סך:{voucher.ammount} (מספר: {voucher.voucherID}) עבור {voucher.storeName} עומד לפוג בעוד כ{days_until_expiry}  ימים\n וודא כי הינך ממש את הושבר טרם תפוגתו.\n\nבתודה מערכת PayWise"
-
-#             # message = f"Hello {user_name},\n\nThis is a reminder that your voucher (ID: {voucher.voucherID}) for:{voucher.storeName} will expire in {days_until_expiry} days.\nPlease make sure to redeem it before the expiry date.\n\nThank you!"
-#             from_email = 'sender@example.com'
-#             # Change this to the appropriate email field in your User model
-#             recipient_list = [user.email]
-
-#             # Send the email notification
-#             send_mail(subject, message, from_email, recipient_list)
-#             print(f"message successfully to voucher {voucher.voucherID}")

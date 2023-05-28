@@ -18,7 +18,7 @@ import ace from "../../images/ACE.jpg";
 import store from "../../images/store.jpg";
 import { useEffect, useState } from "react";
 import EllipsisList from "../dashboard/EllipsisList";
-
+import NotificationsIcon from "@mui/icons-material/Notifications";
 export default function BasicPopover(props) {
   const location = useLocation();
   const { pathname } = location;
@@ -39,6 +39,7 @@ export default function BasicPopover(props) {
   };
   const handleClose = () => {
     setAnchorEl(null);
+    props.getWallet();
   };
 
   const open = Boolean(anchorEl);
@@ -74,27 +75,15 @@ export default function BasicPopover(props) {
         ""
       ) : (
         <div>
-          {location.pathname == "/" ? (
-            <EllipsisList
-              voucher={props.voucher}
-              key={props.vID}
-              vID={props.vID}
-              openVoucher={props.openVoucher}
-              handleClick={handleClick}
-              open={open}
-              img={img}
-            />
-          ) : (
-            <Voucher
-              voucher={props.voucher}
-              key={props.vID}
-              vID={props.vID}
-              openVoucher={props.openVoucher}
-              handleClick={handleClick}
-              open={open}
-              img={img}
-            />
-          )}
+          <EllipsisList
+            voucher={props.voucher}
+            key={props.vID}
+            vID={props.vID}
+            openVoucher={props.openVoucher}
+            handleClick={handleClick}
+            open={open}
+            img={img}
+          />
 
           <Popover
             id={id}

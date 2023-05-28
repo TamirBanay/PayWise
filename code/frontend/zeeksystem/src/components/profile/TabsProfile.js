@@ -16,7 +16,6 @@ import { useHistory } from "react-router-dom";
 
 import { _User } from "../../services/atom";
 
-
 export default function ChipWithDecorators(props) {
   const [redirect, setRedirect] = useRecoilState(_Redirect);
   const [openLogOut, setOpenLogOut] = useState(false);
@@ -99,6 +98,7 @@ export default function ChipWithDecorators(props) {
             title={"מחיקת חשבון"}
             variant="plain"
             textButton={"המשך"}
+            isOpen={openLogOut}
           />
           סגירת חשבון
         </Chip>
@@ -114,6 +114,7 @@ export default function ChipWithDecorators(props) {
             title={"התנתקות"}
             variant="plain"
             textButton={"התנתק"}
+            isOpen={openLogOut}
           />
           התנתקות
         </Chip>

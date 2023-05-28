@@ -4,27 +4,29 @@ import Button from "@mui/joy/Button";
 import Divider from "@mui/joy/Divider";
 import Modal from "@mui/joy/Modal";
 import ModalDialog from "@mui/joy/ModalDialog";
-import DeleteForever from "@mui/icons-material/DeleteForever";
 import WarningRoundedIcon from "@mui/icons-material/WarningRounded";
 import Typography from "@mui/joy/Typography";
 import LogoutIcon from "@mui/icons-material/Logout";
 import DeleteIcon from "@mui/icons-material/Delete";
 
 export default function AlertDialogModal(props) {
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = React.useState(props.isOpen);
+
+  const handleCancel = () => {
+    props.setOpenDeleteAlert(!props.openDeleteAlert);
+    setOpen(false);
+  };
   return (
     <React.Fragment>
       {props.icon == 1 ? (
         <DeleteIcon onClick={() => setOpen(true)} sx={{ marginLeft: 1 }} />
-      ) : (
+      ) : props.icon == 2 ? (
         <LogoutIcon onClick={() => setOpen(true)} sx={{ marginLeft: 1 }} />
+      ) : (
+        ""
       )}
 
-      <Modal
-        open={open}
-        onClose={() => setOpen(false)}
-        sx={{ direction: "rtl" }}
-      >
+      <Modal open={open} onClose={handleCancel} sx={{ direction: "rtl" }}>
         <ModalDialog
           variant="outlined"
           role="alertdialog"
@@ -48,11 +50,7 @@ export default function AlertDialogModal(props) {
           <Box
             sx={{ display: "flex", gap: 1, justifyContent: "flex-end", pt: 2 }}
           >
-            <Button
-              variant="plain"
-              color="neutral"
-              onClick={() => setOpen(false)}
-            >
+            <Button variant="plain" color="neutral" onClick={handleCancel}>
               ביטול
             </Button>
             <Button variant="solid" color="danger" onClick={props.function}>
