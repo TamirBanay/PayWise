@@ -25,4 +25,7 @@ export const _Redirect = atom({
   default: true,
 });
 
-    
+export const _badgeContent = atom({
+  key: "_badgeContent",
+  default: "",
+});

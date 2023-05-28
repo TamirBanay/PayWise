@@ -21,7 +21,7 @@ export default function BasicPopover(props) {
   return (
     <div>
       <Button aria-describedby={id} variant="text" onClick={handleClick}>
-        <Typography color="black" sx={{ ml: "%" }}>
+        <Typography color="black" sx={{ ml: "20%" }}>
           הוספה ידנית
         </Typography>
       </Button>

@@ -7,6 +7,7 @@ import Divider from "@mui/joy/Divider";
 function CheckboxGroup(props) {
   const [vouchers, setVouchers] = useRecoilState(_Vouchers);
 
+
   return (
     <Box>
       <Divider
