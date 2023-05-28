@@ -27,7 +27,7 @@ export default function BasicPopover(props) {
 
   const hendleDelete = async (event) => {
     event.preventDefault();
-    await fetch(`http://localhost:8000/api/deletVouchers/${props.vID}`, {
+    await fetch(`api/deletVouchers/${props.vID}`, {
       method: "DELETE",
       headers: { "Content-Type": "application/json" },
     });

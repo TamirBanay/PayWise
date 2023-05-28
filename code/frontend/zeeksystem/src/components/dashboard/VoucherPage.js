@@ -69,7 +69,7 @@ export default function BasicCard(props) {
     }
 
     setOpenNotifications(!openAlerts);
-    fetch(`http://localhost:8000/api/change_days_before_alert/${props.vID}`, {
+    fetch(`api/change_days_before_alert/${props.vID}`, {
       method: "POST",
       body: JSON.stringify({ daysBeforeAlert: newAlertDay }),
       headers: {
@@ -92,7 +92,7 @@ export default function BasicCard(props) {
 
     try {
       const response = await fetch(
-        `http://localhost:8000/api/voucher_redeemed/${props.vID}/`,
+        `api/voucher_redeemed/${props.vID}/`,
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },

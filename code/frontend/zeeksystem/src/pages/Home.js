@@ -34,7 +34,7 @@ function Home(props) {
   const getWallet = async () => {
     try {
       const response = await fetch(
-        `http://localhost:8000/api/getVouchers/${walletID}`
+        `api/getVouchers/${walletID}`
       );
       const data = await response.json();
 
@@ -49,7 +49,7 @@ function Home(props) {
     }
   };
   const logOut = async () => {
-    await fetch("http://localhost:8000/api/logout", {
+    await fetch("api/logout", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       credentials: "include",
@@ -61,7 +61,7 @@ function Home(props) {
 
   const fetchUserData = async () => {
     try {
-      const response = await fetch("http://localhost:8000/api/user", {
+      const response = await fetch("api/user", {
         headers: { "Content-Type": "application/json" },
         credentials: "include",
       });

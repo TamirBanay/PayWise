@@ -24,7 +24,7 @@ export default function TabsUnderlineExample(props) {
   const getWallet = async () => {
     try {
       const response = await fetch(
-        `http://localhost:8000/api/getVouchers/${walletID}`
+        `api/getVouchers/${walletID}`
       );
       const data = await response.json();
 
@@ -40,7 +40,7 @@ export default function TabsUnderlineExample(props) {
   };
   const fetchUserData = async () => {
     try {
-      const response = await fetch("http://localhost:8000/api/user", {
+      const response = await fetch("api/user", {
         headers: { "Content-Type": "application/json" },
         credentials: "include",
       });

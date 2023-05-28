@@ -34,7 +34,7 @@ function Profile(props) {
 
   const fetchUserData = async () => {
     try {
-      const response = await fetch("http://localhost:8000/api/user", {
+      const response = await fetch("api/user", {
         headers: { "Content-Type": "application/json" },
         credentials: "include",
       });

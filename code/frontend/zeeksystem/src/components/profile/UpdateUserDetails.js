@@ -26,7 +26,7 @@ export default function FormPropsTextFields(props) {
   );
   const fetchUserData = async () => {
     try {
-      const response = await fetch("http://localhost:8000/api/user", {
+      const response = await fetch("api/user", {
         headers: { "Content-Type": "application/json" },
         credentials: "include",
       });
@@ -50,7 +50,7 @@ export default function FormPropsTextFields(props) {
   const updateUserDetails = async (user_id, data) => {
     try {
       const response = await fetch(
-        `http://localhost:8000/api/changeDetails/${user_id}`,
+        `api/changeDetails/${user_id}`,
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },
