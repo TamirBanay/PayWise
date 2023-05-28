@@ -27,7 +27,7 @@ urlpatterns = [
     path('api/getVouchers/', views.get_all_vouchers),
     path('api/getAllVouchers/', views.get_MOCK_vouchers),
     path('api/deletVouchers/<int:voucher_id>', views.delete_voucher),
-    path('api/voucher_redeemed/', views.voucher_redeemed),
+    path('api/voucher_redeemed/<int:voucher_id>/', views.voucher_redeemed),
     path('api/change_days_before_alert/<int:voucher_id>', ChangeVoucheralert.as_view()),
 
 ]

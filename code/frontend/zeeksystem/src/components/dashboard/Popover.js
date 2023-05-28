@@ -39,6 +39,7 @@ export default function BasicPopover(props) {
   };
   const handleClose = () => {
     setAnchorEl(null);
+    props.getWallet();
   };
 
   const open = Boolean(anchorEl);

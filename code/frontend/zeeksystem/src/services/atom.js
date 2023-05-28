@@ -24,5 +24,3 @@ export const _Redirect = atom({
   key: "Redirect",
   default: true,
 });
-
-    
