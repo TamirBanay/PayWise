@@ -19,7 +19,7 @@ export default function HelperTextAligned(props) {
 
   const getAllVouchers = async () => {
     try {
-      const response = await fetch(`http://localhost:8000/api/getAllVouchers/`);
+      const response = await fetch(`api/getAllVouchers/`);
       const data = await response.json();
       const allVouchersArray = JSON.parse(data.MOCK_vouchers);
       setAllVouchers(allVouchersArray);
@@ -30,7 +30,7 @@ export default function HelperTextAligned(props) {
 
   const getSystemVouchers = async () => {
     try {
-      const response = await fetch(`http://localhost:8000/api/getVouchers/`);
+      const response = await fetch(`api/getVouchers/`);
       const data = await response.json();
       const allVouchersArray = JSON.parse(data.vouchers);
       setSystemVOuchers(allVouchersArray);
@@ -66,7 +66,7 @@ export default function HelperTextAligned(props) {
       }
       else {
         event.preventDefault();
-        await fetch("http://localhost:8000/api/createVoucher/", {
+        await fetch("api/createVoucher/", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
