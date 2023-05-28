@@ -1,9 +1,24 @@
 import { useState } from "react";
 import { Box, Typography, List, ListItem, Checkbox } from "@mui/material";
+import { _Vouchers } from "../../services/atom";
+import { useRecoilState } from "recoil";
+import Divider from "@mui/joy/Divider";
 
 function CheckboxGroup(props) {
+  const [vouchers, setVouchers] = useRecoilState(_Vouchers);
+
+
   return (
     <Box>
+      <Divider
+        sx={{
+          borderBottom: "0.5px solid black",
+          height: 1,
+          left: "5%",
+          width: "110%",
+        }}
+      />
+      <p></p>
       <Typography id="sandwich-group" level="body2" fontWeight="lg" mb={1}>
         בחר מתי להתחיל לקבל התראות יומיות
       </Typography>
@@ -17,7 +32,7 @@ function CheckboxGroup(props) {
             />
             חודש לפני
           </ListItem>
-          <ListItem sx={{ mt: -2 }}>
+          <ListItem sx={{ mt: -3 }}>
             <Checkbox
               label="שבוע לפני"
               checked={props.selectedValue === "שבוע לפני"}
@@ -25,7 +40,7 @@ function CheckboxGroup(props) {
             />
             שבוע לפני
           </ListItem>
-          <ListItem sx={{ mt: -2 }}>
+          <ListItem sx={{ mt: -3 }}>
             <Checkbox
               label="יום לפני"
               checked={props.selectedValue === "יום לפני"}
@@ -33,7 +48,7 @@ function CheckboxGroup(props) {
             />
             יום לפני
           </ListItem>
-          <ListItem sx={{ mt: -2 }}>
+          <ListItem sx={{ mt: -3 }}>
             <Checkbox
               label="ללא התראות"
               checked={props.selectedValue === "ללא התראות"}
@@ -43,6 +58,16 @@ function CheckboxGroup(props) {
           </ListItem>
         </List>
       </Box>
+
+      <Divider
+        sx={{
+          borderBottom: "0.5px solid black",
+          height: 1,
+          left: "5%",
+          width: "110%",
+        }}
+      />
+      <p></p>
     </Box>
   );
 }

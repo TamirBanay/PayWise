@@ -20,7 +20,7 @@ def schedule_api():
         days_until_expiry = (voucher.dateOfExpiry.date() - today).days
 
         # Check if the voucher's expiry date is within the upcoming week
-        if days_until_expiry <= voucher.daysBefoAlert:
+        if days_until_expiry <= voucher.daysBeforeAlert:
             # Retrieve the associated user
             user = voucher.walletID.user
 
