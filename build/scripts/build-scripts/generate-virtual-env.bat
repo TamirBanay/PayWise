@@ -10,7 +10,7 @@ echo Activating Python virtual environment...
 call .venv\Scripts\activate.bat
 
 echo Installing %PROJECT_NAME% Python dependencies...
-pushd refund-system\code\backend
+pushd refund-system\code\backend\server
 python -m pip install -q -r requirements.txt
 popd
 

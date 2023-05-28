@@ -6,6 +6,7 @@ code/backend/env.
 code/backend/server/mysite/.env
 
 .idea
+build/releases
 
 # dependencies
 /node_modules
