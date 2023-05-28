@@ -9,9 +9,13 @@ import Typography from "@mui/joy/Typography";
 import LogoutIcon from "@mui/icons-material/Logout";
 import DeleteIcon from "@mui/icons-material/Delete";
 
-
 export default function AlertDialogModal(props) {
   const [open, setOpen] = React.useState(props.isOpen);
+
+  const handleCancel = () => {
+    props.setOpenDeleteAlert(!props.openDeleteAlert);
+    setOpen(false);
+  };
   return (
     <React.Fragment>
       {props.icon == 1 ? (
@@ -22,11 +26,7 @@ export default function AlertDialogModal(props) {
         ""
       )}
 
-      <Modal
-        open={open}
-        onClose={() => setOpen(false)}
-        sx={{ direction: "rtl" }}
-      >
+      <Modal open={open} onClose={handleCancel} sx={{ direction: "rtl" }}>
         <ModalDialog
           variant="outlined"
           role="alertdialog"
@@ -50,11 +50,7 @@ export default function AlertDialogModal(props) {
           <Box
             sx={{ display: "flex", gap: 1, justifyContent: "flex-end", pt: 2 }}
           >
-            <Button
-              variant="plain"
-              color="neutral"
-              onClick={() => setOpen(false)}
-            >
+            <Button variant="plain" color="neutral" onClick={handleCancel}>
               ביטול
             </Button>
             <Button variant="solid" color="danger" onClick={props.function}>

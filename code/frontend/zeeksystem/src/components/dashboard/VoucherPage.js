@@ -20,9 +20,9 @@ import AlertDialogModal from "./AlertDialogModal";
 export default function BasicCard(props) {
   const location = useLocation();
   const { pathname } = location;
-  const [openAlerts, setOpenNotifications] = React.useState(false);
+  const [openAlerts, setOpenNotifications] = useState(false);
   const [selectedValue, setSelectedValue] = useState("שבוע לפני");
-  const [openDeleteAlert, setOpenDeleteAlert] = React.useState(false);
+  const [openDeleteAlert, setOpenDeleteAlert] = useState(false);
 
   const handleChange = (value) => {
     setSelectedValue(value);
@@ -121,6 +121,8 @@ export default function BasicCard(props) {
                 title={"מחיקת זיכוי"}
                 variant="plain"
                 textButton={"מחק"}
+                openDeleteAlert={openDeleteAlert}
+                setOpenDeleteAlert={setOpenDeleteAlert}
                 isOpen={openDeleteAlert}
               />
             ) : (
@@ -218,6 +220,8 @@ export default function BasicCard(props) {
                 variant="plain"
                 textButton={"מחק"}
                 isOpen={openDeleteAlert}
+                openDeleteAlert={openDeleteAlert}
+                setOpenDeleteAlert={setOpenDeleteAlert}
               />
             ) : (
               ""
