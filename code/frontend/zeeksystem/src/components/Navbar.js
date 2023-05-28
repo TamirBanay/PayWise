@@ -166,7 +166,7 @@ export default function MiniDrawer(props) {
 
   const fetchUserData = async () => {
     try {
-      const response = await fetch("http://localhost:8000/api/user", {
+      const response = await fetch("api/user", {
         headers: { "Content-Type": "application/json" },
         credentials: "include",
       });
@@ -183,7 +183,7 @@ export default function MiniDrawer(props) {
   const getWallet = async () => {
     try {
       const response = await fetch(
-        `http://localhost:8000/api/getVouchers/${walletID}`
+        `api/getVouchers/${walletID}`
       );
       const data = await response.json();
 

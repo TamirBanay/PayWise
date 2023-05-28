@@ -20,7 +20,7 @@ const ScanPage = () => {
   };
   const getAllVouchers = async () => {
     try {
-      const response = await fetch(`http://localhost:8000/api/getAllVouchers/`);
+      const response = await fetch(`api/getAllVouchers/`);
       const data = await response.json();
       const allVouchersArray = JSON.parse(data.MOCK_vouchers);
       setAllVouchers(allVouchersArray);
@@ -38,7 +38,7 @@ const ScanPage = () => {
       alert("וואוצר מס' " + serialNumber + " לא קיים במערכת");
     } else {
       const voucher = allVouchers.find((voucher) => voucher.pk == serialNumber);
-      await fetch("http://localhost:8000/api/createVoucher/", {
+      await fetch("api/createVoucher/", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({

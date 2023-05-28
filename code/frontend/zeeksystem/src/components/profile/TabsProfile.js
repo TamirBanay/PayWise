@@ -25,7 +25,7 @@ export default function ChipWithDecorators(props) {
 
   const fetchUserData = async () => {
     try {
-      const response = await fetch("http://localhost:8000/api/user", {
+      const response = await fetch("api/user", {
         headers: { "Content-Type": "application/json" },
         credentials: "include",
       });
@@ -45,7 +45,7 @@ export default function ChipWithDecorators(props) {
     fetchUserData();
   }, []);
   const DeleteUser = async (user_id) => {
-    await fetch(`http://localhost:8000/api/deleteAccount/${user_id}`, {
+    await fetch(`api/deleteAccount/${user_id}`, {
       method: "DELETE",
       headers: { "Content-Type": "application/json" },
       credentials: "include",
@@ -60,7 +60,7 @@ export default function ChipWithDecorators(props) {
   const logOut = async () => {
     setRedirect(true);
     history.push("/login");
-    await fetch("http://localhost:8000/api/logout", {
+    await fetch("api/logout", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       credentials: "include",

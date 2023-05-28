@@ -1,6 +1,6 @@
 CREATE SCHEMA IF NOT EXISTS `zeekSchema`;
 
-DROP USER IF EXISTS 'paywise_user'@'%';
-CREATE USER 'paywise_user'@'%' IDENTIFIED WITH mysql_native_password BY 'd_k1S7-Vz9';
-GRANT ALL privileges ON zeekSchema.* TO 'paywise_user'@'%';
+DROP USER IF EXISTS 'PayWise_db_root'@'%';
+CREATE USER 'PayWise_db_root'@'%' IDENTIFIED WITH mysql_native_password BY 'password';
+GRANT ALL ON *.* TO 'PayWise_db_root'@'%';
 FLUSH PRIVILEGES;
