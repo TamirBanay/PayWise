@@ -19,13 +19,14 @@ import { useRecoilState } from "recoil";
 import Badge from "@mui/material/Badge";
 import ClearIcon from "@mui/icons-material/Clear";
 import AlertDialogModal from "./AlertDialogModal";
+import LocationOnIcon from "@mui/icons-material/LocationOn";
 export default function BasicCard(props) {
   const location = useLocation();
   const { pathname } = location;
   const [openAlerts, setOpenNotifications] = useState(false);
   const [vouchers, setVouchers] = useRecoilState(_Vouchers);
   const currentDate = new Date();
-  currentDate.setDate(currentDate.getDate() - 1)
+  currentDate.setDate(currentDate.getDate() - 1);
   const [selectedValue, setSelectedValue] = useState("");
   const [badgeContent, setBadgeContent] = useState();
   const [openDeleteAlert, setOpenDeleteAlert] = useState(false);
@@ -92,16 +93,13 @@ export default function BasicCard(props) {
     event.preventDefault();
 
     try {
-      const response = await fetch(
-        `api/voucher_redeemed/${props.vID}/`,
-        {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            redeemed: true,
-          }),
-        }
-      );
+      const response = await fetch(`api/voucher_redeemed/${props.vID}/`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          redeemed: true,
+        }),
+      });
 
       if (response.ok) {
         // Redemption successful, update wallet
@@ -274,6 +272,20 @@ export default function BasicCard(props) {
             ) : (
               ""
             )}
+          </IconButton>
+          <IconButton
+            aria-label="bookmark Bahamas Islands"
+            variant="plain"
+            color="neutral"
+            size="sm"
+            sx={{
+              position: "absolute",
+              top: "0.5rem",
+              width: "10%",
+              right: "65%",
+            }}
+          >
+            <LocationOnIcon />
           </IconButton>
 
           <IconButton
