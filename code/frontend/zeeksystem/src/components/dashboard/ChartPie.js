@@ -12,6 +12,8 @@ const Dashboard = () => {
   const vouchers = useRecoilValue(_Vouchers);
   const [labels, setLabels] = useState([]);
   const currentDate = new Date();
+  currentDate.setDate(currentDate.getDate() - 1);
+
 
   const totalAmount = vouchers.reduce((total, voucher) => {
     if (

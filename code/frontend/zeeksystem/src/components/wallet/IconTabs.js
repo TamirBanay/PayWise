@@ -95,6 +95,7 @@ export default function IconTabs() {
     setValue(newValue);
   };
   const currentDate = new Date();
+  currentDate.setDate(currentDate.getDate() - 1)
   // const expiryDate = new Date(voucher.fields.dateOfExpiry);
 
   return (
@@ -164,7 +165,7 @@ export default function IconTabs() {
               flexDirection: "column",
             }}
           >
-            <Typography>כל הזיכויים מומשו</Typography>
+            <Typography>אין זיכויים</Typography>
             <BrowserNotSupportedIcon fontSize="large" sx={{ mt: 1 }} />
           </Typography>
         )
@@ -194,7 +195,7 @@ export default function IconTabs() {
               flexDirection: "column",
             }}
           >
-            <Typography>אין זיכויים </Typography>
+            <Typography>אין זיכויים</Typography>
             <BrowserNotSupportedIcon fontSize="large" sx={{ mt: 1 }} />
           </Typography>
         )
@@ -231,7 +232,7 @@ export default function IconTabs() {
               flexDirection: "column",
             }}
           >
-            <Typography>כל הזיכויים מומשו</Typography>
+            <Typography>אין זיכויים</Typography>
             <BrowserNotSupportedIcon fontSize="large" sx={{ mt: 1 }} />
           </Typography>
         )
