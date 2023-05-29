@@ -131,9 +131,7 @@ const ScanPage = () => {
           halfSample: true,
         },
         decoder: {
-          readers: [
-            "code_128_reader",
-          ],
+          readers: ["code_128_reader"],
         },
         locate: true,
       },
