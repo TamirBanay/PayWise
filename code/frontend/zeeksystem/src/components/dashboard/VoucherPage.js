@@ -25,6 +25,7 @@ export default function BasicCard(props) {
   const [openAlerts, setOpenNotifications] = useState(false);
   const [vouchers, setVouchers] = useRecoilState(_Vouchers);
   const currentDate = new Date();
+  currentDate.setDate(currentDate.getDate() - 1)
   const [selectedValue, setSelectedValue] = useState("");
   const [badgeContent, setBadgeContent] = useState();
   const [openDeleteAlert, setOpenDeleteAlert] = useState(false);

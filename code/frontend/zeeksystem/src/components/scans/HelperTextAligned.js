@@ -64,6 +64,7 @@ export default function HelperTextAligned(props) {
       const voucher = allVouchers.find((voucher) => voucher.pk == serialNumber);
       const currentDate = new Date();
       const expiryDate = new Date(voucher.fields.dateOfExpiry);
+      expiryDate.setDate(expiryDate.getDate() + 1);
       if (currentDate > expiryDate) {
         setErrorTitle("שובר פג תוקף");
         setErrorMsg(

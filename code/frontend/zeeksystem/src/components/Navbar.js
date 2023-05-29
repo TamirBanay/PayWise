@@ -167,6 +167,8 @@ export default function MiniDrawer(props) {
   const [voucherAdd, setVoucherAdd] = React.useState(false);
   const [addVoucherSucceeded, setAddVoucherSucceeded] =
     useRecoilState(_addVoucherSucceeded);
+  const currentDate = new Date();
+  currentDate.setDate(currentDate.getDate() - 1)
 
   const fetchUserData = async () => {
     try {
@@ -424,8 +426,8 @@ export default function MiniDrawer(props) {
                       <Badge
                         badgeContent={
                           vouchers.filter(
-                            (voucher) => voucher.fields.redeemed === false
-                          ).length
+                            (voucher) => voucher.fields.redeemed === false && currentDate < new Date(voucher.fields.dateOfExpiry)
+                          ).length 
                         }
                         color="error"
                       >

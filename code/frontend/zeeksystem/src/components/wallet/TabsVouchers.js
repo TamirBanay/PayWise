@@ -163,7 +163,7 @@ export default function TabsUnderlineExample(props) {
               flexDirection: "column",
             }}
           >
-            <Typography>כל הזיכויים מומשו</Typography>
+            <Typography>  אין זיכויים</Typography>
             <BrowserNotSupportedIcon fontSize="large" sx={{ mt: 1 }} />
           </Typography>
         )
