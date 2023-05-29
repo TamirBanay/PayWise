@@ -31,11 +31,10 @@ function Home(props) {
   const [vouchers, setVouchers] = useRecoilState(_Vouchers);
   const [walletID, setWalletID] = useState();
   const currentDate = new Date();
+  currentDate.setDate(currentDate.getDate() - 1);
   const getWallet = async () => {
     try {
-      const response = await fetch(
-        `api/getVouchers/${walletID}`
-      );
+      const response = await fetch(`api/getVouchers/${walletID}`);
       const data = await response.json();
 
       const vouchersArray = JSON.parse(data.vouchers);
