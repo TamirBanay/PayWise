@@ -39,6 +39,7 @@ export default function BasicPopover(props) {
           userID={props.userID}
           handleClose={handleClose}
           getWallet={props.getWallet}
+         
         />
       </Popover>
     </div>

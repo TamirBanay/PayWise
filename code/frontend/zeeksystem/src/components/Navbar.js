@@ -33,7 +33,7 @@ import payWiseLogo from "../images/payWiseLogo.png";
 import Link from "@mui/material/Link";
 import { createTheme } from "@mui/material/styles";
 import { useRecoilState } from "recoil";
-import { _Vouchers, _Redirect } from "../services/atom";
+import { _Vouchers, _Redirect, _addVoucherSucceeded } from "../services/atom";
 import BasicPopover2 from "./scans/BasicPopover2";
 import { useHistory } from "react-router-dom";
 import LogoutIcon from "@mui/icons-material/Logout";
@@ -41,6 +41,7 @@ import AlertDialogModal from "./dashboard/AlertDialogModal";
 import { useLocation } from "react-router-dom";
 import ScanComponent from "./scans/ScanComponent";
 import { Reddit } from "@mui/icons-material";
+import AlertAddVoucher from "./scans/AlertAddVoucher";
 const theme = createTheme({
   status: {
     danger: "#e53e3e",
@@ -163,6 +164,9 @@ export default function MiniDrawer(props) {
   const [vouchers, setVouchers] = useRecoilState(_Vouchers);
   let location = useLocation();
   const [openScan, setOpenScans] = React.useState(false);
+  const [voucherAdd, setVoucherAdd] = React.useState(false);
+  const [addVoucherSucceeded, setAddVoucherSucceeded] =
+    useRecoilState(_addVoucherSucceeded);
 
   const fetchUserData = async () => {
     try {
@@ -182,9 +186,7 @@ export default function MiniDrawer(props) {
 
   const getWallet = async () => {
     try {
-      const response = await fetch(
-        `api/getVouchers/${walletID}`
-      );
+      const response = await fetch(`api/getVouchers/${walletID}`);
       const data = await response.json();
 
       const vouchersArray = JSON.parse(data.vouchers);
@@ -443,6 +445,7 @@ export default function MiniDrawer(props) {
 
       {renderAddRefundMenu}
       {openScan ? <Redirect to="/ScanVoucher" /> : ""}
+      {addVoucherSucceeded ? <AlertAddVoucher /> : ""}
       <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
         <DrawerHeader />
       </Box>

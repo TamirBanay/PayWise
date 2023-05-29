@@ -8,13 +8,15 @@ import { useHistory } from "react-router-dom";
 import AlertDialogModal from "../dashboard/AlertDialogModal";
 import { FitScreen } from "@mui/icons-material";
 import "./ScanComponent.css";
+import { _addVoucherSucceeded } from "../../services/atom";
 const ScanPage = () => {
   const history = useHistory();
   const [redirect, setRedirect] = useState(false);
   const [serialNumber, setSerialNumber] = useState();
   const [user, setUser] = useRecoilState(_User);
   const [allVouchers, setAllVouchers] = useState();
-
+  const [addVoucherSucceeded, setAddVoucherSucceeded] =
+    useRecoilState(_addVoucherSucceeded);
   const handleBackHome = () => {
     history.push("/");
   };
@@ -59,6 +61,7 @@ const ScanPage = () => {
       getAllVouchers().catch((error) => {
         console.log("error", error);
       });
+      setAddVoucherSucceeded(!addVoucherSucceeded);
       console.log("the voucher add successfully");
     }
   };
