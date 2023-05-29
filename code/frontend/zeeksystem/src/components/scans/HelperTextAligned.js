@@ -3,19 +3,21 @@ import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button"; // Import Button from Material-UI
 import { useEffect, useState } from "react";
-import { _Vouchers, _User } from "../../services/atom";
+import { _Vouchers, _User, _addVoucherSucceeded } from "../../services/atom";
 import { useRecoilState } from "recoil";
-import AlertNotification from "../AlertNotification";
 
+import AlertNotification from "../AlertNotification";
 export default function HelperTextAligned(props) {
   const [serialNumber, setSerialNumber] = useState(" ");
   const [user, setUser] = useRecoilState(_User);
   const [vouchers, setVouchers] = useRecoilState(_Vouchers);
   const [systemVouchers, setSystemVOuchers] = useState();
   const [allVouchers, setAllVouchers] = useState();
-  const [errorMsg, setErrorMsg] = useState("")
-  const [errorTitle, setErrorTitle] = useState("")
+  const [errorMsg, setErrorMsg] = useState("");
+  const [errorTitle, setErrorTitle] = useState("");
   const [voucherExist, setVoucherExist] = useState(false);
+  const [addVoucherSucceeded, setAddVoucherSucceeded] =
+    useRecoilState(_addVoucherSucceeded);
 
   const getAllVouchers = async () => {
     try {
@@ -47,13 +49,16 @@ export default function HelperTextAligned(props) {
       (voucher) => voucher.pk == serialNumber
     );
     if (!serialNumberExistsAtMock) {
-      setErrorTitle("שובר לא נמצא")
-      setErrorMsg(`מצטערים, שובר מספר: ${serialNumber} אינו קיים במערכת. אנא נסו מספר אחר`)
+      setErrorTitle("שובר לא נמצא");
+      setErrorMsg(
+        `מצטערים, שובר מספר: ${serialNumber} אינו קיים במערכת. אנא נסו מספר אחר`
+      );
       setVoucherExist(true);
-    }
-    else if (serialNumberExistsAtSystem) {
-      setErrorTitle("שובר כבר בשימוש")
-      setErrorMsg(`מצטערים, שובר מספר: ${serialNumber} נמצא כבר בשימוש. לשאלות ניתן ליצור קשר עם תמיכת PayWise`)
+    } else if (serialNumberExistsAtSystem) {
+      setErrorTitle("שובר כבר בשימוש");
+      setErrorMsg(
+        `מצטערים, שובר מספר: ${serialNumber} נמצא כבר בשימוש. לשאלות ניתן ליצור קשר עם תמיכת PayWise`
+      );
       setVoucherExist(true);
     } else {
       const voucher = allVouchers.find((voucher) => voucher.pk == serialNumber);
@@ -61,11 +66,12 @@ export default function HelperTextAligned(props) {
       const expiryDate = new Date(voucher.fields.dateOfExpiry);
       expiryDate.setDate(expiryDate.getDate() + 1);
       if (currentDate > expiryDate) {
-        setErrorTitle("שובר פג תוקף")
-        setErrorMsg(`מצטערים, שובר מספר: ${serialNumber} פג תוקף. אנא נסו מספר אחר`)
+        setErrorTitle("שובר פג תוקף");
+        setErrorMsg(
+          `מצטערים, שובר מספר: ${serialNumber} פג תוקף. אנא נסו מספר אחר`
+        );
         setVoucherExist(true);
-      }
-      else {
+      } else {
         event.preventDefault();
         await fetch("api/createVoucher/", {
           method: "POST",
@@ -84,6 +90,7 @@ export default function HelperTextAligned(props) {
           .then((response) => response.json())
           .then((data) => {
             // console.log("sucsses", data);
+            setAddVoucherSucceeded(true);
             props.getWallet();
             props.handleClose();
           });
@@ -91,45 +98,43 @@ export default function HelperTextAligned(props) {
           console.log("error", error);
         });
       }
-    };
-  }
+    }
+  };
 
+  const handleChange = (e) => {
+    setSerialNumber(e.target.value);
+  };
+  useEffect(() => {
+    getAllVouchers();
+    getSystemVouchers();
+  }, []);
 
-
-    const handleChange = (e) => {
-      setSerialNumber(e.target.value);
-    };
-    useEffect(() => {
-      getAllVouchers();
-      getSystemVouchers();
-    }, []);
-
-    return (
-      <Box
-        sx={{
-          "& > :not(style)": { m: 2 },
-        }}
-      >
-        <TextField
-          id="demo-helper-text-aligned"
-          label="הכנס מס סיריאלי"
-          onChange={handleChange}
-        />
-        <Button variant="contained" color="primary" onClick={handleSaveVoucher}>
-          שלח
-        </Button>
-        {voucherExist ? (
-          <AlertNotification
-            voucherExist={voucherExist}
-            setVoucherExist={setVoucherExist}
-            title={errorTitle}
-            mainText={errorMsg}
-            setErrorMsg={setErrorMsg}
-            setErrorTitle={setErrorTitle}
-          ></AlertNotification>
-        ) : (
-          <></>
-        )}
-      </Box>
-    );
-  }
+  return (
+    <Box
+      sx={{
+        "& > :not(style)": { m: 2 },
+      }}
+    >
+      <TextField
+        id="demo-helper-text-aligned"
+        label="הכנס מס סיריאלי"
+        onChange={handleChange}
+      />
+      <Button variant="contained" color="primary" onClick={handleSaveVoucher}>
+        שלח
+      </Button>
+      {voucherExist ? (
+        <AlertNotification
+          voucherExist={voucherExist}
+          setVoucherExist={setVoucherExist}
+          title={errorTitle}
+          mainText={errorMsg}
+          setErrorMsg={setErrorMsg}
+          setErrorTitle={setErrorTitle}
+        ></AlertNotification>
+      ) : (
+        <></>
+      )}
+    </Box>
+  );
+}
