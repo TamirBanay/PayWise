@@ -1,0 +1,710 @@
+[
+{
+  "model": "users.user",
+  "pk": 8,
+  "fields": {
+    "last_login": null,
+    "is_superuser": false,
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2023-05-30T10:40:14.212",
+    "first_name": "עוז",
+    "last_name": "בנאקוט",
+    "email": "Ozbenacot@gmail.com",
+    "password": "pbkdf2_sha256$600000$HUhULKQYTP7Yeu83ZCAMGu$okvr0rdaueRL8UoL4R+3t5biXQtf2+irbu7K12mE6SI=",
+    "gender": "male",
+    "city": "ניצנים",
+    "street": "אין",
+    "houseNumber": null,
+    "dateOfBirth": "1995-09-04",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "users.user",
+  "pk": 9,
+  "fields": {
+    "last_login": null,
+    "is_superuser": false,
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2023-05-30T11:49:57.617",
+    "first_name": "תמיר",
+    "last_name": "בנאי",
+    "email": "Banay9329@gmail.com",
+    "password": "pbkdf2_sha256$600000$gsriaFc214woAXUbSIIXjT$0eXECM+Yb5eT/7TjUHTJY2/DKylj3rATOAkDEmgllcM=",
+    "gender": "male",
+    "city": "אשקלון",
+    "street": "אורט",
+    "houseNumber": null,
+    "dateOfBirth": "1994-01-20",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "users.wallet",
+  "pk": 1008,
+  "fields": {
+    "user": 8
+  }
+},
+{
+  "model": "users.wallet",
+  "pk": 1009,
+  "fields": {
+    "user": 9
+  }
+},
+{
+  "model": "mysite.mockvouchers",
+  "pk": 104105021,
+  "fields": {
+    "storeName": "ACE",
+    "voucherCategory": "Coupon",
+    "storeType": "קמעונאות",
+    "ammount": "2677.00",
+    "dateOfAcquire": "2018-06-08T00:00:00",
+    "dateOfExpiry": "2023-06-15T00:00:00",
+    "redeemed": false
+  }
+},
+{
+  "model": "mysite.mockvouchers",
+  "pk": 106399256,
+  "fields": {
+    "storeName": "א.ל.מ",
+    "voucherCategory": "GiftCard",
+    "storeType": "אלקטרוניקה",
+    "ammount": "1550.00",
+    "dateOfAcquire": "2018-06-26T00:00:00",
+    "dateOfExpiry": "2023-06-05T00:00:00",
+    "redeemed": false
+  }
+},
+{
+  "model": "mysite.mockvouchers",
+  "pk": 132530624,
+  "fields": {
+    "storeName": "ZARA",
+    "voucherCategory": "Voucher",
+    "storeType": "אופנה",
+    "ammount": "1855.00",
+    "dateOfAcquire": "2018-06-04T00:00:00",
+    "dateOfExpiry": "2023-06-15T00:00:00",
+    "redeemed": false
+  }
+},
+{
+  "model": "mysite.mockvouchers",
+  "pk": 135691815,
+  "fields": {
+    "storeName": "IKEA",
+    "voucherCategory": "Coupon",
+    "storeType": "קמעונאות",
+    "ammount": "1986.00",
+    "dateOfAcquire": "2018-06-09T00:00:00",
+    "dateOfExpiry": "2023-06-03T00:00:00",
+    "redeemed": false
+  }
+},
+{
+  "model": "mysite.mockvouchers",
+  "pk": 141965853,
+  "fields": {
+    "storeName": "FOX",
+    "voucherCategory": "Coupon",
+    "storeType": "אופנה",
+    "ammount": "167.00",
+    "dateOfAcquire": "2018-05-30T00:00:00",
+    "dateOfExpiry": "2023-05-28T00:00:00",
+    "redeemed": false
+  }
+},
+{
+  "model": "mysite.mockvouchers",
+  "pk": 157000943,
+  "fields": {
+    "storeName": "ZARA",
+    "voucherCategory": "Coupon",
+    "storeType": "אופנה",
+    "ammount": "3643.00",
+    "dateOfAcquire": "2018-06-09T00:00:00",
+    "dateOfExpiry": "2023-05-27T00:00:00",
+    "redeemed": false
+  }
+},
+{
+  "model": "mysite.mockvouchers",
+  "pk": 161985139,
+  "fields": {
+    "storeName": "IKEA",
+    "voucherCategory": "GiftCard",
+    "storeType": "קמעונאות",
+    "ammount": "3388.00",
+    "dateOfAcquire": "2018-05-29T00:00:00",
+    "dateOfExpiry": "2023-06-14T00:00:00",
+    "redeemed": false
+  }
+},
+{
+  "model": "mysite.mockvouchers",
+  "pk": 163238914,
+  "fields": {
+    "storeName": "BUG",
+    "voucherCategory": "Coupon",
+    "storeType": "אלקטרוניקה",
+    "ammount": "2482.00",
+    "dateOfAcquire": "2018-06-26T00:00:00",
+    "dateOfExpiry": "2023-06-13T00:00:00",
+    "redeemed": false
+  }
+},
+{
+  "model": "mysite.mockvouchers",
+  "pk": 175895467,
+  "fields": {
+    "storeName": "ACE",
+    "voucherCategory": "GiftCard",
+    "storeType": "קמעונאות",
+    "ammount": "916.00",
+    "dateOfAcquire": "2018-06-25T00:00:00",
+    "dateOfExpiry": "2023-06-18T00:00:00",
+    "redeemed": false
+  }
+},
+{
+  "model": "mysite.mockvouchers",
+  "pk": 194808151,
+  "fields": {
+    "storeName": "BUG",
+    "voucherCategory": "Voucher",
+    "storeType": "אלקטרוניקה",
+    "ammount": "1179.00",
+    "dateOfAcquire": "2018-06-02T00:00:00",
+    "dateOfExpiry": "2023-06-23T00:00:00",
+    "redeemed": false
+  }
+},
+{
+  "model": "mysite.mockvouchers",
+  "pk": 204508558,
+  "fields": {
+    "storeName": "American Eagle",
+    "voucherCategory": "Coupon",
+    "storeType": "אופנה",
+    "ammount": "1601.00",
+    "dateOfAcquire": "2018-06-18T00:00:00",
+    "dateOfExpiry": "2023-06-29T00:00:00",
+    "redeemed": false
+  }
+},
+{
+  "model": "mysite.mockvouchers",
+  "pk": 217582529,
+  "fields": {
+    "storeName": "ZARA",
+    "voucherCategory": "Voucher",
+    "storeType": "אופנה",
+    "ammount": "873.00",
+    "dateOfAcquire": "2018-06-19T00:00:00",
+    "dateOfExpiry": "2023-06-20T00:00:00",
+    "redeemed": false
+  }
+},
+{
+  "model": "mysite.mockvouchers",
+  "pk": 219308609,
+  "fields": {
+    "storeName": "א.ל.מ",
+    "voucherCategory": "GiftCard",
+    "storeType": "אלקטרוניקה",
+    "ammount": "3063.00",
+    "dateOfAcquire": "2018-06-11T00:00:00",
+    "dateOfExpiry": "2023-06-23T00:00:00",
+    "redeemed": false
+  }
+},
+{
+  "model": "mysite.mockvouchers",
+  "pk": 224997312,
+  "fields": {
+    "storeName": "ZARA",
+    "voucherCategory": "Voucher",
+    "storeType": "אופנה",
+    "ammount": "3532.00",
+    "dateOfAcquire": "2018-06-29T00:00:00",
+    "dateOfExpiry": "2023-06-05T00:00:00",
+    "redeemed": false
+  }
+},
+{
+  "model": "mysite.mockvouchers",
+  "pk": 264727916,
+  "fields": {
+    "storeName": "א.ל.מ",
+    "voucherCategory": "Coupon",
+    "storeType": "אלקטרוניקה",
+    "ammount": "1667.00",
+    "dateOfAcquire": "2018-06-14T00:00:00",
+    "dateOfExpiry": "2023-06-06T00:00:00",
+    "redeemed": false
+  }
+},
+{
+  "model": "mysite.mockvouchers",
+  "pk": 294277816,
+  "fields": {
+    "storeName": "א.ל.מ",
+    "voucherCategory": "GiftCard",
+    "storeType": "אלקטרוניקה",
+    "ammount": "3381.00",
+    "dateOfAcquire": "2018-06-16T00:00:00",
+    "dateOfExpiry": "2023-06-06T00:00:00",
+    "redeemed": false
+  }
+},
+{
+  "model": "mysite.mockvouchers",
+  "pk": 304636903,
+  "fields": {
+    "storeName": "ACE",
+    "voucherCategory": "Coupon",
+    "storeType": "קמעונאות",
+    "ammount": "3468.00",
+    "dateOfAcquire": "2018-06-18T00:00:00",
+    "dateOfExpiry": "2023-06-17T00:00:00",
+    "redeemed": false
+  }
+},
+{
+  "model": "mysite.mockvouchers",
+  "pk": 309643612,
+  "fields": {
+    "storeName": "ACE",
+    "voucherCategory": "Voucher",
+    "storeType": "קמעונאות",
+    "ammount": "567.00",
+    "dateOfAcquire": "2018-06-29T00:00:00",
+    "dateOfExpiry": "2023-06-12T00:00:00",
+    "redeemed": false
+  }
+},
+{
+  "model": "mysite.mockvouchers",
+  "pk": 322835921,
+  "fields": {
+    "storeName": "ACE",
+    "voucherCategory": "Voucher",
+    "storeType": "קמעונאות",
+    "ammount": "649.00",
+    "dateOfAcquire": "2018-05-30T00:00:00",
+    "dateOfExpiry": "2023-06-20T00:00:00",
+    "redeemed": false
+  }
+},
+{
+  "model": "mysite.mockvouchers",
+  "pk": 340587017,
+  "fields": {
+    "storeName": "א.ל.מ",
+    "voucherCategory": "Voucher",
+    "storeType": "אלקטרוניקה",
+    "ammount": "112.00",
+    "dateOfAcquire": "2018-06-07T00:00:00",
+    "dateOfExpiry": "2023-06-10T00:00:00",
+    "redeemed": false
+  }
+},
+{
+  "model": "mysite.mockvouchers",
+  "pk": 376721633,
+  "fields": {
+    "storeName": "ZARA",
+    "voucherCategory": "GiftCard",
+    "storeType": "אופנה",
+    "ammount": "1752.00",
+    "dateOfAcquire": "2018-06-05T00:00:00",
+    "dateOfExpiry": "2023-06-27T00:00:00",
+    "redeemed": false
+  }
+},
+{
+  "model": "mysite.mockvouchers",
+  "pk": 383826490,
+  "fields": {
+    "storeName": "FOX",
+    "voucherCategory": "Coupon",
+    "storeType": "אופנה",
+    "ammount": "2572.00",
+    "dateOfAcquire": "2018-06-06T00:00:00",
+    "dateOfExpiry": "2023-06-07T00:00:00",
+    "redeemed": false
+  }
+},
+{
+  "model": "mysite.mockvouchers",
+  "pk": 394746445,
+  "fields": {
+    "storeName": "ZARA",
+    "voucherCategory": "Voucher",
+    "storeType": "אופנה",
+    "ammount": "2586.00",
+    "dateOfAcquire": "2018-06-05T00:00:00",
+    "dateOfExpiry": "2023-06-03T00:00:00",
+    "redeemed": false
+  }
+},
+{
+  "model": "mysite.mockvouchers",
+  "pk": 412195440,
+  "fields": {
+    "storeName": "BUG",
+    "voucherCategory": "Coupon",
+    "storeType": "אלקטרוניקה",
+    "ammount": "859.00",
+    "dateOfAcquire": "2018-05-29T00:00:00",
+    "dateOfExpiry": "2023-06-08T00:00:00",
+    "redeemed": false
+  }
+},
+{
+  "model": "mysite.mockvouchers",
+  "pk": 420004274,
+  "fields": {
+    "storeName": "ACE",
+    "voucherCategory": "GiftCard",
+    "storeType": "קמעונאות",
+    "ammount": "2260.00",
+    "dateOfAcquire": "2018-06-21T00:00:00",
+    "dateOfExpiry": "2023-05-26T00:00:00",
+    "redeemed": false
+  }
+},
+{
+  "model": "mysite.mockvouchers",
+  "pk": 424452902,
+  "fields": {
+    "storeName": "ACE",
+    "voucherCategory": "Voucher",
+    "storeType": "קמעונאות",
+    "ammount": "952.00",
+    "dateOfAcquire": "2018-05-31T00:00:00",
+    "dateOfExpiry": "2023-06-19T00:00:00",
+    "redeemed": false
+  }
+},
+{
+  "model": "mysite.mockvouchers",
+  "pk": 463878862,
+  "fields": {
+    "storeName": "BUG",
+    "voucherCategory": "Coupon",
+    "storeType": "אלקטרוניקה",
+    "ammount": "64.00",
+    "dateOfAcquire": "2018-06-24T00:00:00",
+    "dateOfExpiry": "2023-05-30T00:00:00",
+    "redeemed": false
+  }
+},
+{
+  "model": "mysite.mockvouchers",
+  "pk": 498470679,
+  "fields": {
+    "storeName": "ACE",
+    "voucherCategory": "Voucher",
+    "storeType": "קמעונאות",
+    "ammount": "2734.00",
+    "dateOfAcquire": "2018-05-31T00:00:00",
+    "dateOfExpiry": "2023-06-06T00:00:00",
+    "redeemed": false
+  }
+},
+{
+  "model": "mysite.mockvouchers",
+  "pk": 532507182,
+  "fields": {
+    "storeName": "א.ל.מ",
+    "voucherCategory": "Voucher",
+    "storeType": "אלקטרוניקה",
+    "ammount": "869.00",
+    "dateOfAcquire": "2018-06-17T00:00:00",
+    "dateOfExpiry": "2023-06-10T00:00:00",
+    "redeemed": false
+  }
+},
+{
+  "model": "mysite.mockvouchers",
+  "pk": 533289782,
+  "fields": {
+    "storeName": "FOX",
+    "voucherCategory": "Coupon",
+    "storeType": "אופנה",
+    "ammount": "564.00",
+    "dateOfAcquire": "2018-06-05T00:00:00",
+    "dateOfExpiry": "2023-06-21T00:00:00",
+    "redeemed": false
+  }
+},
+{
+  "model": "mysite.mockvouchers",
+  "pk": 559574536,
+  "fields": {
+    "storeName": "א.ל.מ",
+    "voucherCategory": "Coupon",
+    "storeType": "אלקטרוניקה",
+    "ammount": "1816.00",
+    "dateOfAcquire": "2018-06-21T00:00:00",
+    "dateOfExpiry": "2023-06-03T00:00:00",
+    "redeemed": false
+  }
+},
+{
+  "model": "mysite.mockvouchers",
+  "pk": 577625221,
+  "fields": {
+    "storeName": "ACE",
+    "voucherCategory": "Coupon",
+    "storeType": "קמעונאות",
+    "ammount": "1044.00",
+    "dateOfAcquire": "2018-06-20T00:00:00",
+    "dateOfExpiry": "2023-06-18T00:00:00",
+    "redeemed": false
+  }
+},
+{
+  "model": "mysite.mockvouchers",
+  "pk": 586799985,
+  "fields": {
+    "storeName": "ACE",
+    "voucherCategory": "GiftCard",
+    "storeType": "קמעונאות",
+    "ammount": "467.00",
+    "dateOfAcquire": "2018-06-27T00:00:00",
+    "dateOfExpiry": "2023-06-06T00:00:00",
+    "redeemed": false
+  }
+},
+{
+  "model": "mysite.mockvouchers",
+  "pk": 592446567,
+  "fields": {
+    "storeName": "ACE",
+    "voucherCategory": "GiftCard",
+    "storeType": "קמעונאות",
+    "ammount": "991.00",
+    "dateOfAcquire": "2018-06-16T00:00:00",
+    "dateOfExpiry": "2023-05-29T00:00:00",
+    "redeemed": false
+  }
+},
+{
+  "model": "mysite.mockvouchers",
+  "pk": 603144417,
+  "fields": {
+    "storeName": "American Eagle",
+    "voucherCategory": "Coupon",
+    "storeType": "אופנה",
+    "ammount": "157.00",
+    "dateOfAcquire": "2018-06-13T00:00:00",
+    "dateOfExpiry": "2023-06-06T00:00:00",
+    "redeemed": false
+  }
+},
+{
+  "model": "mysite.mockvouchers",
+  "pk": 612880222,
+  "fields": {
+    "storeName": "א.ל.מ",
+    "voucherCategory": "Voucher",
+    "storeType": "אלקטרוניקה",
+    "ammount": "2409.00",
+    "dateOfAcquire": "2018-06-07T00:00:00",
+    "dateOfExpiry": "2023-06-17T00:00:00",
+    "redeemed": false
+  }
+},
+{
+  "model": "mysite.mockvouchers",
+  "pk": 625684397,
+  "fields": {
+    "storeName": "American Eagle",
+    "voucherCategory": "Coupon",
+    "storeType": "אופנה",
+    "ammount": "1733.00",
+    "dateOfAcquire": "2018-06-10T00:00:00",
+    "dateOfExpiry": "2023-06-18T00:00:00",
+    "redeemed": false
+  }
+},
+{
+  "model": "mysite.mockvouchers",
+  "pk": 628811900,
+  "fields": {
+    "storeName": "American Eagle",
+    "voucherCategory": "Coupon",
+    "storeType": "אופנה",
+    "ammount": "2151.00",
+    "dateOfAcquire": "2018-06-27T00:00:00",
+    "dateOfExpiry": "2023-06-28T00:00:00",
+    "redeemed": false
+  }
+},
+{
+  "model": "mysite.mockvouchers",
+  "pk": 685840455,
+  "fields": {
+    "storeName": "FOX",
+    "voucherCategory": "Coupon",
+    "storeType": "אופנה",
+    "ammount": "1334.00",
+    "dateOfAcquire": "2018-06-20T00:00:00",
+    "dateOfExpiry": "2023-06-11T00:00:00",
+    "redeemed": false
+  }
+},
+{
+  "model": "mysite.mockvouchers",
+  "pk": 719248180,
+  "fields": {
+    "storeName": "ZARA",
+    "voucherCategory": "Voucher",
+    "storeType": "אופנה",
+    "ammount": "2370.00",
+    "dateOfAcquire": "2018-06-26T00:00:00",
+    "dateOfExpiry": "2023-06-17T00:00:00",
+    "redeemed": false
+  }
+},
+{
+  "model": "mysite.mockvouchers",
+  "pk": 719841214,
+  "fields": {
+    "storeName": "א.ל.מ",
+    "voucherCategory": "Coupon",
+    "storeType": "אלקטרוניקה",
+    "ammount": "2018.00",
+    "dateOfAcquire": "2018-06-12T00:00:00",
+    "dateOfExpiry": "2023-06-19T00:00:00",
+    "redeemed": false
+  }
+},
+{
+  "model": "mysite.mockvouchers",
+  "pk": 727861026,
+  "fields": {
+    "storeName": "American Eagle",
+    "voucherCategory": "GiftCard",
+    "storeType": "אופנה",
+    "ammount": "189.00",
+    "dateOfAcquire": "2018-06-01T00:00:00",
+    "dateOfExpiry": "2023-06-09T00:00:00",
+    "redeemed": false
+  }
+},
+{
+  "model": "mysite.mockvouchers",
+  "pk": 736230320,
+  "fields": {
+    "storeName": "ZARA",
+    "voucherCategory": "GiftCard",
+    "storeType": "אופנה",
+    "ammount": "1257.00",
+    "dateOfAcquire": "2018-06-11T00:00:00",
+    "dateOfExpiry": "2023-06-01T00:00:00",
+    "redeemed": false
+  }
+},
+{
+  "model": "mysite.mockvouchers",
+  "pk": 742172397,
+  "fields": {
+    "storeName": "ACE",
+    "voucherCategory": "GiftCard",
+    "storeType": "קמעונאות",
+    "ammount": "646.00",
+    "dateOfAcquire": "2018-06-18T00:00:00",
+    "dateOfExpiry": "2023-06-20T00:00:00",
+    "redeemed": false
+  }
+},
+{
+  "model": "mysite.mockvouchers",
+  "pk": 778472218,
+  "fields": {
+    "storeName": "ACE",
+    "voucherCategory": "Coupon",
+    "storeType": "קמעונאות",
+    "ammount": "3499.00",
+    "dateOfAcquire": "2018-06-01T00:00:00",
+    "dateOfExpiry": "2023-06-27T00:00:00",
+    "redeemed": false
+  }
+},
+{
+  "model": "mysite.mockvouchers",
+  "pk": 796446054,
+  "fields": {
+    "storeName": "א.ל.מ",
+    "voucherCategory": "Coupon",
+    "storeType": "אלקטרוניקה",
+    "ammount": "2380.00",
+    "dateOfAcquire": "2018-06-18T00:00:00",
+    "dateOfExpiry": "2023-06-09T00:00:00",
+    "redeemed": false
+  }
+},
+{
+  "model": "mysite.mockvouchers",
+  "pk": 798808016,
+  "fields": {
+    "storeName": "ZARA",
+    "voucherCategory": "Coupon",
+    "storeType": "אופנה",
+    "ammount": "1797.00",
+    "dateOfAcquire": "2018-06-26T00:00:00",
+    "dateOfExpiry": "2023-05-30T00:00:00",
+    "redeemed": false
+  }
+},
+{
+  "model": "mysite.mockvouchers",
+  "pk": 826179372,
+  "fields": {
+    "storeName": "BUG",
+    "voucherCategory": "Voucher",
+    "storeType": "אלקטרוניקה",
+    "ammount": "3659.00",
+    "dateOfAcquire": "2018-06-02T00:00:00",
+    "dateOfExpiry": "2023-05-25T00:00:00",
+    "redeemed": false
+  }
+},
+{
+  "model": "mysite.mockvouchers",
+  "pk": 893023616,
+  "fields": {
+    "storeName": "American Eagle",
+    "voucherCategory": "Voucher",
+    "storeType": "אופנה",
+    "ammount": "2389.00",
+    "dateOfAcquire": "2018-06-08T00:00:00",
+    "dateOfExpiry": "2023-06-25T00:00:00",
+    "redeemed": false
+  }
+},
+{
+  "model": "mysite.mockvouchers",
+  "pk": 962421074,
+  "fields": {
+    "storeName": "ACE",
+    "voucherCategory": "Voucher",
+    "storeType": "קמעונאות",
+    "ammount": "3239.00",
+    "dateOfAcquire": "2018-06-03T00:00:00",
+    "dateOfExpiry": "2023-06-08T00:00:00",
+    "redeemed": false
+  }
+}
+]

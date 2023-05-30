@@ -3,7 +3,6 @@ from django.contrib.auth.models import AbstractUser
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 
-
 class User(AbstractUser):
     first_name = models.CharField(max_length=255)
     last_name = models.CharField(max_length=255)
@@ -23,15 +22,6 @@ class User(AbstractUser):
 class Wallet(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     walletID = models.IntegerField(primary_key=True)
-
-# class PayWiseUser (models.Model):
-#     user = models.OneToOneField(User, on_delete=models.CASCADE)
-#     gender = models.CharField(max_length=30, null=True)
-#     city = models.CharField(max_length=30, null=True)
-#     street = models.CharField(max_length=30,  null=True, blank=True)
-#     houseNumber = models.CharField(max_length=30, null=True, blank=True)
-#     dateOfBirth = models.DateField(null=True, blank=True)
-
 
 @receiver(post_save, sender=User)
 def create_user_wallet_and_profile(sender, instance, created, **kwargs):
