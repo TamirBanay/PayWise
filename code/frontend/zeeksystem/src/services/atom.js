@@ -24,3 +24,8 @@ export const _Redirect = atom({
   key: "Redirect",
   default: true,
 });
+
+export const _addVoucherSucceeded = atom({
+  key: "Succeeded",
+  default: false,
+});
