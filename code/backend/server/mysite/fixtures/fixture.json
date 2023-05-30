@@ -22,10 +22,39 @@
   }
 },
 {
+  "model": "users.user",
+  "pk": 9,
+  "fields": {
+    "last_login": null,
+    "is_superuser": false,
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2023-05-30T11:49:57.617",
+    "first_name": "תמיר",
+    "last_name": "בנאי",
+    "email": "Banay9329@gmail.com",
+    "password": "pbkdf2_sha256$600000$gsriaFc214woAXUbSIIXjT$0eXECM+Yb5eT/7TjUHTJY2/DKylj3rATOAkDEmgllcM=",
+    "gender": "male",
+    "city": "אשקלון",
+    "street": "אורט",
+    "houseNumber": null,
+    "dateOfBirth": "1994-01-20",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
   "model": "users.wallet",
   "pk": 1008,
   "fields": {
     "user": 8
+  }
+},
+{
+  "model": "users.wallet",
+  "pk": 1009,
+  "fields": {
+    "user": 9
   }
 },
 {
