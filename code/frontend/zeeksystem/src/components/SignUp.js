@@ -61,11 +61,11 @@ export default function SignUp() {
       if (response.ok) {
         setRedirect(true);
       } else if (response.status === 409) {
-        alert("Email already in use");
-        throw new Error("Email already in use");
+        alert("המייל כבר בשימוש");
+        throw new Error("המייל כבר בשימוש");
       } else {
-        alert("Email already in use");
-        throw new Error("Email already in use, Unable to register user");
+        alert("המייל כבר בשימוש");
+        throw new Error("המייל כבר בשימוש, לא ניתן להירשם");
       }
     } catch (error) {
       console.error(error);
@@ -90,19 +90,20 @@ export default function SignUp() {
             display: "flex",
             flexDirection: "column",
             alignItems: "center",
+            direction: "rtl",
           }}
         >
           <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}>
             <LockOutlinedIcon />
           </Avatar>
           <Typography component="h1" variant="h5">
-            Sign up
+            הרשמה{" "}
           </Typography>
           <Box
             component="form"
             noValidate
             onSubmit={handleSubmit}
-            sx={{ mt: 3 }}
+            sx={{ mt: 3, direction: "rtl" }}
           >
             <Grid container spacing={2}>
               <Grid item xs={12} sm={6}>
@@ -112,7 +113,7 @@ export default function SignUp() {
                   required
                   fullWidth
                   id="firstName"
-                  label="First Name"
+                  label="שם פרטי"
                   autoFocus
                 />
               </Grid>
@@ -121,7 +122,7 @@ export default function SignUp() {
                   required
                   fullWidth
                   id="lastName"
-                  label="Last Name"
+                  label="שם משפחה"
                   name="lastName"
                   autoComplete="family-name"
                 />
@@ -131,9 +132,10 @@ export default function SignUp() {
                   required
                   fullWidth
                   id="email"
-                  label="Email Address"
+                  label="כתובת מייל"
                   name="email"
                   autoComplete="email"
+                  sx={{ direction: "ltr" }}
                 />
               </Grid>
               <Grid item xs={12}>
@@ -141,7 +143,7 @@ export default function SignUp() {
                   required
                   fullWidth
                   name="password"
-                  label="Password"
+                  label="סיסמא"
                   type="password"
                   id="password"
                   autoComplete="new-password"
@@ -152,7 +154,7 @@ export default function SignUp() {
                   required
                   fullWidth
                   id="city"
-                  label="city "
+                  label="עיר "
                   name="city"
                   autoComplete="city"
                 />
@@ -162,7 +164,7 @@ export default function SignUp() {
                   required
                   fullWidth
                   id="street"
-                  label="Street"
+                  label="רחוב"
                   name="street"
                   autoComplete="street"
                 />
@@ -174,7 +176,7 @@ export default function SignUp() {
                   name="date"
                   type="date"
                   defaultValue={selectedDate}
-                  helperText="date of birth"
+                  helperText="תאריך לידה"
                   inputProps={{ max: selectedDate }}
                 />
               </Grid>
@@ -184,21 +186,22 @@ export default function SignUp() {
                   row
                   aria-labelledby="demo-row-radio-buttons-group-label"
                   name="row-radio-buttons-group"
+                  sx={{ mr: "-7%" }}
                 >
                   <FormControlLabel
                     value="female"
                     control={<Radio />}
-                    label="Female"
+                    label="נקבה"
                   />
                   <FormControlLabel
                     value="male"
                     control={<Radio />}
-                    label="Male"
+                    label="זכר"
                   />
                   <FormControlLabel
                     value="other"
                     control={<Radio />}
-                    label="Other"
+                    label="אחר"
                   />
                 </RadioGroup>
               </Grid>
@@ -209,12 +212,12 @@ export default function SignUp() {
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
             >
-              Sign Up
+              הירשם{" "}
             </Button>
-            <Grid container justifyContent="flex-end">
+            <Grid container justifyContent="flex-end" sx={{ direction: "ltr" }}>
               <Grid item>
                 <Link href="/#/login" variant="body2">
-                  Already have an account? Sign in
+                  כבר יש לך משתמש? לחץ כדי להתחבר
                 </Link>
               </Grid>
             </Grid>

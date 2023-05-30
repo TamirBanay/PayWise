@@ -18,7 +18,6 @@ import { useRecoilState } from "recoil";
 import { useEffect } from "react";
 import { useHistory } from "react-router-dom";
 
-
 function Copyright(props) {
   return (
     <Typography
@@ -40,7 +39,6 @@ export default function SignInSide() {
   const [redirect, setRedirect] = useRecoilState(_Redirect);
   const history = useHistory();
 
-
   const handleSubmit = async (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
@@ -58,7 +56,7 @@ export default function SignInSide() {
 
       if (response.ok) {
         setRedirect(false);
-        history.push("/")
+        history.push("/");
       } else {
         alert("Incorrect username or password, please try again");
         throw new Error("Incorrect username or password");
@@ -103,37 +101,39 @@ export default function SignInSide() {
               <LockOutlinedIcon />
             </Avatar>
             <Typography component="h1" variant="h5">
-              Sign in
+              התחברות
             </Typography>
             <Box
               component="form"
               noValidate
               onSubmit={handleSubmit}
-              sx={{ mt: 1 }}
+              sx={{ mt: 1, direction: "rtl" }}
             >
               <TextField
                 margin="normal"
                 required
                 fullWidth
                 id="email"
-                label="Email Address"
+                label="מייל"
                 name="email"
                 autoComplete="email"
                 autoFocus
+                sx={{ direction: "ltr" }}
               />
               <TextField
                 margin="normal"
                 required
                 fullWidth
                 name="password"
-                label="Password"
+                label="סיסמא"
                 type="password"
                 id="password"
                 autoComplete="current-password"
               />
               <FormControlLabel
                 control={<Checkbox value="remember" color="primary" />}
-                label="Remember me"
+                label="זכור אותי"
+                sx={{ mr: "-2%" }}
               />
               <Button
                 type="submit"
@@ -141,17 +141,13 @@ export default function SignInSide() {
                 variant="contained"
                 sx={{ mt: 3, mb: 2 }}
               >
-                Sign In
+                התחבר{" "}
               </Button>
-              <Grid container>
-                <Grid item xs>
-                  {/* <Link href="/#" variant="body2">
-                    Forgot password?
-                  </Link> */}
-                </Grid>
+              <Grid container sx={{ direction: "ltr" }}>
+                <Grid item xs></Grid>
                 <Grid item>
                   <Link href="/#/Registration" variant="body2">
-                    {"Don't have an account? Sign Up"}
+                    {"אין לך משתמש עדיין? לחץ להרשמה"}
                   </Link>
                 </Grid>
               </Grid>
