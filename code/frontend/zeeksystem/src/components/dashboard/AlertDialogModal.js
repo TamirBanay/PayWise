@@ -9,7 +9,6 @@ import Typography from "@mui/joy/Typography";
 import LogoutIcon from "@mui/icons-material/Logout";
 import DeleteIcon from "@mui/icons-material/Delete";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
-import wazeImg from "../../images/wazeImg.ico";
 export default function AlertDialogModal(props) {
   const [open, setOpen] = React.useState(props.isOpen);
 
