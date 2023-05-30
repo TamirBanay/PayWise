@@ -3,7 +3,10 @@ import Navbar from "../components/Navbar";
 import SimplePaper from "../components/profile/SimplePaper";
 import { useTheme } from "@mui/material/styles";
 import useMediaQuery from "@mui/material/useMediaQuery";
-import ProfilePic from "../images/ProfilePic.png";
+import male from "../images/male.jpeg";
+import other from "../images/other.jpeg";
+import female from "../images/female.jpeg";
+
 import Typography from "@mui/material/Typography";
 import israel from "../images/israel.png";
 import { useEffect, useState } from "react";
@@ -90,7 +93,13 @@ function Profile(props) {
         }}
       >
         <img
-          src={ProfilePic}
+          src={
+            user.gender == "זכר"
+              ? male
+              : user.gender == "נקבה"
+              ? female
+              : other
+          }
           style={{
             width: "100px",
             height: "100px",
