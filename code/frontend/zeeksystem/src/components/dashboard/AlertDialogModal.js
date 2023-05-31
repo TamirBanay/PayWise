@@ -8,10 +8,13 @@ import WarningRoundedIcon from "@mui/icons-material/WarningRounded";
 import Typography from "@mui/joy/Typography";
 import LogoutIcon from "@mui/icons-material/Logout";
 import DeleteIcon from "@mui/icons-material/Delete";
-
+import LocationOnIcon from "@mui/icons-material/LocationOn";
 export default function AlertDialogModal(props) {
   const [open, setOpen] = React.useState(props.isOpen);
 
+  const handleGooleMapsOrWase = () => {
+    props.setGoogleMapsOrWaze(!props.googleMapsOrWaze);
+  };
   const handleCancel = () => {
     props.setOpenDeleteAlert(!props.openDeleteAlert);
     setOpen(false);
@@ -36,7 +39,16 @@ export default function AlertDialogModal(props) {
           <Typography
             id="alert-dialog-modal-title"
             component="h2"
-            startDecorator={<WarningRoundedIcon />}
+            startDecorator={
+              props.titleIcon == "navigate" ? (
+                <LocationOnIcon
+                  color={props.googleMapsOrWaze ? "error" : "primary"}
+                  onClick={handleGooleMapsOrWase}
+                />
+              ) : (
+                <WarningRoundedIcon />
+              )
+            }
           >
             {props.title}
           </Typography>
@@ -53,7 +65,15 @@ export default function AlertDialogModal(props) {
             <Button variant="plain" color="neutral" onClick={handleCancel}>
               ביטול
             </Button>
-            <Button variant="solid" color="danger" onClick={props.function}>
+            <Button
+              variant="solid"
+              color={
+                props.titleIcon == "navigate" && !props.googleMapsOrWaze
+                  ? "primary"
+                  : "danger"
+              }
+              onClick={props.function}
+            >
               {props.textButton}
             </Button>
           </Box>
