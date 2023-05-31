@@ -30,6 +30,18 @@ export default function BasicCard(props) {
   const [selectedValue, setSelectedValue] = useState("");
   const [badgeContent, setBadgeContent] = useState();
   const [openDeleteAlert, setOpenDeleteAlert] = useState(false);
+  const [moveToOtheApp, setMoveToOtheApp] = useState(false);
+  const [googleMapsOrWaze, setGoogleMapsOrWaze] = useState(true);
+
+  const handleNavigateGoogleMaps = () => {
+    window.location.href = `https://www.google.com/maps/search/?api=1&query=${props.voucher.storeName}`;
+  };
+  const handleNavigateWaze = () => {
+    window.location.href = `https://waze.com/ul?q=${props.voucher.storeName}`;
+  };
+  const handleOpenExternalApplication = () => {
+    setMoveToOtheApp(!moveToOtheApp);
+  };
 
   const handleChangeAletrBeforeDelete = () => {
     setOpenDeleteAlert(!openDeleteAlert);
@@ -285,7 +297,32 @@ export default function BasicCard(props) {
               right: "65%",
             }}
           >
-            <LocationOnIcon />
+            <LocationOnIcon onClick={handleOpenExternalApplication} />
+            {moveToOtheApp ? (
+              <AlertDialogModal
+                function={
+                  googleMapsOrWaze
+                    ? handleNavigateGoogleMaps
+                    : handleNavigateWaze
+                }
+                mainText={
+                  googleMapsOrWaze
+                    ? "לחיצה על google Maps תנתק אותך מאפליקציית - PayWise"
+                    : "לחיצה על Waze תנתק אותך מאפליקציית - PayWise"
+                }
+                title={"נווט ל - " + props.voucher.storeName}
+                variant="plain"
+                textButton={googleMapsOrWaze ? "google Maps" : "Wase"}
+                isOpen={true}
+                setOpenDeleteAlert={setMoveToOtheApp}
+                openDeleteAlert={moveToOtheApp}
+                titleIcon={"navigate"}
+                googleMapsOrWaze={googleMapsOrWaze}
+                setGoogleMapsOrWaze={setGoogleMapsOrWaze}
+              />
+            ) : (
+              ""
+            )}
           </IconButton>
 
           <IconButton

@@ -99,6 +99,8 @@ export default function ChipWithDecorators(props) {
             variant="plain"
             textButton={"המשך"}
             isOpen={openLogOut}
+            setOpenDeleteAlert={setOpenLogOut}
+            openDeleteAlert={openLogOut}
           />
           סגירת חשבון
         </Chip>
@@ -115,6 +117,8 @@ export default function ChipWithDecorators(props) {
             variant="plain"
             textButton={"התנתק"}
             isOpen={openLogOut}
+            setOpenDeleteAlert={setOpenLogOut}
+            openDeleteAlert={openLogOut}
           />
           התנתקות
         </Chip>
