@@ -305,7 +305,11 @@ export default function BasicCard(props) {
                     ? handleNavigateGoogleMaps
                     : handleNavigateWaze
                 }
-                mainText={"לחיצה על המשך תנתק אותך מאפליקציית - PayWise"}
+                mainText={
+                  googleMapsOrWaze
+                    ? "לחיצה על google Maps תנתק אותך מאפליקציית - PayWise"
+                    : "לחיצה על Waze תנתק אותך מאפליקציית - PayWise"
+                }
                 title={"נווט ל - " + props.voucher.storeName}
                 variant="plain"
                 textButton={googleMapsOrWaze ? "google Maps" : "Wase"}
