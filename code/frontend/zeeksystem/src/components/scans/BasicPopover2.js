@@ -3,6 +3,11 @@ import Popover from "@mui/material/Popover";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import HelperTextAligned from "./HelperTextAligned";
+import InsertSirialNumber from "./InsertSirialNumber";
+import { useEffect, useState } from "react";
+import { _Vouchers, _User, _addVoucherSucceeded } from "../../services/atom";
+import { useRecoilState } from "recoil";
+
 export default function BasicPopover(props) {
   const [anchorEl, setAnchorEl] = React.useState(null);
 
@@ -34,12 +39,18 @@ export default function BasicPopover(props) {
           vertical: "bottom",
           horizontal: "left",
         }}
+        sx={{ ml: "-14%" }}
       >
-        <HelperTextAligned
+        {/* <HelperTextAligned
           userID={props.userID}
           handleClose={handleClose}
           getWallet={props.getWallet}
          
+        /> */}
+        <InsertSirialNumber
+          userID={props.userID}
+          handleClose={handleClose}
+          getWallet={props.getWallet}
         />
       </Popover>
     </div>
