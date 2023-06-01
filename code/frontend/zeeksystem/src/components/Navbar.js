@@ -168,7 +168,7 @@ export default function MiniDrawer(props) {
   const [addVoucherSucceeded, setAddVoucherSucceeded] =
     useRecoilState(_addVoucherSucceeded);
   const currentDate = new Date();
-  currentDate.setDate(currentDate.getDate() - 1)
+  currentDate.setDate(currentDate.getDate() - 1);
 
   const fetchUserData = async () => {
     try {
@@ -267,7 +267,7 @@ export default function MiniDrawer(props) {
       onClose={handleAddRefundMenuClose}
     >
       <MenuItem onClick={(handleMenuClose, handleOpenScan)} href="/scanVoucher">
-        הוספה ע"י סריקה
+        <Typography color="black">הוספה ע"י סריקה</Typography>{" "}
       </MenuItem>
       <Divider
         sx={{
@@ -426,8 +426,11 @@ export default function MiniDrawer(props) {
                       <Badge
                         badgeContent={
                           vouchers.filter(
-                            (voucher) => voucher.fields.redeemed === false && currentDate < new Date(voucher.fields.dateOfExpiry)
-                          ).length 
+                            (voucher) =>
+                              voucher.fields.redeemed === false &&
+                              currentDate <
+                                new Date(voucher.fields.dateOfExpiry)
+                          ).length
                         }
                         color="error"
                       >
