@@ -1,6 +1,5 @@
 import json
 from urllib import response
-from venv import logger
 from django.forms import ValidationError
 from django.http import JsonResponse
 from django.shortcuts import get_object_or_404, render
@@ -23,7 +22,6 @@ from django.contrib.auth import authenticate, login, logout
 class DeleteAccountView(APIView):
     def delete(self, request, user_id):
         user = get_object_or_404(User, pk=user_id)
-
         # Delete user account
         user.delete()
         messages.success(
@@ -126,9 +124,7 @@ class ChangeUserDetailsView(APIView):
             user.dateOfBirth = date_of_birth
             user.save()
 
-            # Log the successful update and return the updated user data as JSON
-            logger.info(
-                f"Successfully updated user {user_id} with new data: {new_data}")
+         
             return JsonResponse({
                 "first_name": first_name,
                 "last_name": last_name,
@@ -142,16 +138,12 @@ class ChangeUserDetailsView(APIView):
 
         except User.DoesNotExist:
             # Return a 404 error response if the user with the given ID does not exist
-            logger.error(f"User with ID {user_id} does not exist.")
             return JsonResponse({"message": "User not found."}, status=404)
 
         except ValidationError as e:
             # Return a 400 error response if there is a validation error
-            logger.error(
-                f"Validation error while updating user {user_id}: {e}")
             return JsonResponse({"message": str(e)}, status=400)
 
         except Exception as e:
             # Return a 500 error response for any other unexpected errors
-            logger.error(f"Error while updating user {user_id}: {e}")
             return JsonResponse({"message": "An error occurred while updating user details."}, status=500)
