@@ -120,7 +120,7 @@ export default function InsertSirialNumber(props) {
   }, []);
 
   return (
-    <FormControl>
+    <FormControl sx={{ direction: "rtl" }}>
       <Textarea
         placeholder="הכנס מס סיריאלי"
         minRows={1}
