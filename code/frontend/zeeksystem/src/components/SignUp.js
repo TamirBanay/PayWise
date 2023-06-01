@@ -15,7 +15,7 @@ import Radio from "@mui/material/Radio";
 import RadioGroup from "@mui/material/RadioGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import { useState } from "react";
-
+import payWiseLogo from "../images/payWiseLogo.png";
 function Copyright(props) {
   return (
     <Typography
@@ -86,19 +86,15 @@ export default function SignUp() {
         <CssBaseline />
         <Box
           sx={{
-            marginTop: 8,
+            marginTop: 4,
             display: "flex",
             flexDirection: "column",
             alignItems: "center",
             direction: "rtl",
           }}
         >
-          <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}>
-            <LockOutlinedIcon />
-          </Avatar>
-          <Typography component="h1" variant="h5">
-            הרשמה{" "}
-          </Typography>
+          <img src={payWiseLogo} style={{ height: 100 }} />
+         
           <Box
             component="form"
             noValidate
@@ -187,6 +183,7 @@ export default function SignUp() {
                   aria-labelledby="demo-row-radio-buttons-group-label"
                   name="row-radio-buttons-group"
                   sx={{ mr: "-7%" }}
+                  defaultValue={"other"}
                 >
                   <FormControlLabel
                     value="female"
