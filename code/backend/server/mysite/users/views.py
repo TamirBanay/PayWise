@@ -22,7 +22,6 @@ from django.contrib.auth import authenticate, login, logout
 class DeleteAccountView(APIView):
     def delete(self, request, user_id):
         user = get_object_or_404(User, pk=user_id)
-
         # Delete user account
         user.delete()
         messages.success(
@@ -125,9 +124,7 @@ class ChangeUserDetailsView(APIView):
             user.dateOfBirth = date_of_birth
             user.save()
 
-            # Log the successful update and return the updated user data as JSON
-            logger.info(
-                f"Successfully updated user {user_id} with new data: {new_data}")
+         
             return JsonResponse({
                 "first_name": first_name,
                 "last_name": last_name,

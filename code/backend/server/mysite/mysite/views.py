@@ -1,5 +1,5 @@
 import json
-from venv import logger
+# from venv import logger
 from django.forms import ValidationError
 from django.http import HttpResponseRedirect
 from django.shortcuts import get_object_or_404, render
@@ -57,8 +57,8 @@ class ChangeVoucheralert(APIView):
              voucher.save()
              
              
-             logger.info(
-                f"Successfully updated user {voucher_id} with new data: {new_data}")
+            #  logger.info(
+                # f"Successfully updated user {voucher_id} with new data: {new_data}")
              return JsonResponse({
                 "daysBeforeAlert": daysBeforeAlert,
                
@@ -66,18 +66,18 @@ class ChangeVoucheralert(APIView):
              
         except Vouchers.DoesNotExist:
             # Return a 404 error response if the user with the given ID does not exist
-            logger.error(f"User with ID {voucher_id} does not exist.")
+            # logger.error(f"User with ID {voucher_id} does not exist.")
             return JsonResponse({"message": "User not found."}, status=404)
 
         except ValidationError as e:
             # Return a 400 error response if there is a validation error
-            logger.error(
-                f"Validation error while updating user {voucher_id}: {e}")
+            # logger.error(
+                # f"Validation error while updating user {voucher_id}: {e}")
             return JsonResponse({"message": str(e)}, status=400)
 
         except Exception as e:
             # Return a 500 error response for any other unexpected errors
-            logger.error(f"Error while updating user {voucher_id}: {e}")
+            # logger.error(f"Error while updating user {voucher_id}: {e}")
             return JsonResponse({"message": "An error occurred while updating user details."}, status=500)
     
             
