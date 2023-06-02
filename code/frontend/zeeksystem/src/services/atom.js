@@ -29,3 +29,7 @@ export const _addVoucherSucceeded = atom({
   key: "Succeeded",
   default: false,
 });
+export const _addMenu = atom({
+  key: "addMenu",
+  default: null,
+});
