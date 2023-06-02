@@ -46,7 +46,8 @@ INSTALLED_APPS = [
     'corsheaders',
     'mysite',
     'users',
-    'notifications'
+    'notifications',
+    'django_dump_load_utf8'
 ]
 
 
