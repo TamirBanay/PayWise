@@ -18,16 +18,19 @@ from django.urls import path, include
 from mysite.views import CreateVoucherView, voucher_redeemed,ChangeVoucheralert
 from mysite.models import Vouchers
 from . import views
+from django.conf import settings
+
+api_prefix = settings.API_PREFIX
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('api/', include('users.urls')),
-    path('api/createVoucher/', CreateVoucherView.as_view()),
-    path('api/getVouchers/<int:walletID>', views.get_vouchers),
-    path('api/getVouchers/', views.get_all_vouchers),
-    path('api/getAllVouchers/', views.get_MOCK_vouchers),
-    path('api/deletVouchers/<int:voucher_id>', views.delete_voucher),
-    path('api/voucher_redeemed/<int:voucher_id>/', views.voucher_redeemed),
-    path('api/change_days_before_alert/<int:voucher_id>', ChangeVoucheralert.as_view()),
+    path(f'{api_prefix}', include('users.urls')),
+    path(f'{api_prefix}createVoucher/', CreateVoucherView.as_view()),
+    path(f'{api_prefix}getVouchers/<int:walletID>', views.get_vouchers),
+    path(f'{api_prefix}getVouchers/', views.get_all_vouchers),
+    path(f'{api_prefix}getAllVouchers/', views.get_MOCK_vouchers),
+    path(f'{api_prefix}deletVouchers/<int:voucher_id>', views.delete_voucher),
+    path(f'{api_prefix}voucher_redeemed/<int:voucher_id>/', views.voucher_redeemed),
+    path(f'{api_prefix}change_days_before_alert/<int:voucher_id>', ChangeVoucheralert.as_view()),
 
 ]

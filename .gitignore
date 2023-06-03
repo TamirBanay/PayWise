@@ -1,8 +1,12 @@
 
 **/__pycache__
+code/backend/env.
 /code/backend/env
 /venv
+code/backend/server/mysite/.env
+
 .idea
+build/releases
 
 # dependencies
 /node_modules
