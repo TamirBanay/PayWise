@@ -33,7 +33,12 @@ import payWiseLogo from "../images/payWiseLogo.png";
 import Link from "@mui/material/Link";
 import { createTheme } from "@mui/material/styles";
 import { useRecoilState } from "recoil";
-import { _Vouchers, _Redirect, _addVoucherSucceeded } from "../services/atom";
+import {
+  _Vouchers,
+  _Redirect,
+  _addVoucherSucceeded,
+  _addMenu,
+} from "../services/atom";
 import BasicPopover2 from "./scans/BasicPopover2";
 import { useHistory } from "react-router-dom";
 import LogoutIcon from "@mui/icons-material/Logout";
@@ -83,7 +88,6 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 }));
 
 const drawerWidth = 240;
-// const location = useLocation();
 
 const openedMixin = (theme) => ({
   width: drawerWidth,
@@ -156,7 +160,8 @@ export default function MiniDrawer(props) {
   const [open, setOpen] = React.useState(false);
   const menuId = "primary-search-account-menu";
   const [anchorEl, setAnchorEl] = React.useState(null);
-  const [anchorAddRedundMenu, setAnchorAddRedundMenu] = React.useState(null);
+  const [anchorAddRedundMenu, setAnchorAddRedundMenu] =
+    useRecoilState(_addMenu);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
   const mobileMenuId = "primary-search-account-menu-mobile";
   const AddRefundisMenuOpen = Boolean(anchorAddRedundMenu);
@@ -257,10 +262,11 @@ export default function MiniDrawer(props) {
         vertical: "bottom",
         horizontal: "center",
       }}
+      sx={{ mt: "8%" }}
       id={menuId}
       keepMounted
       transformOrigin={{
-        vertical: "top",
+        vertical: "bottom",
         horizontal: "left",
       }}
       open={AddRefundisMenuOpen}
@@ -303,7 +309,9 @@ export default function MiniDrawer(props) {
       <CssBaseline />
       <AppBar position="fixed" open={open}>
         <Toolbar>
-          <IconButton
+          {/* to open the MiniDrawer open the commant of the IconButton*/}
+
+          {/* <IconButton
             color="inherit"
             aria-label="open drawer"
             onClick={handleDrawerOpen}
@@ -314,8 +322,23 @@ export default function MiniDrawer(props) {
             }}
           >
             <MenuIcon />
-          </IconButton>
-          <Typography variant="h6" noWrap component="div"></Typography>
+          </IconButton> */}
+
+          {location.pathname == "/" ? (
+            <Typography variant="subtitle1" noWrap component="div">
+              בית
+            </Typography>
+          ) : location.pathname == "/profile" ? (
+            <Typography variant="subtitle1" noWrap component="div">
+              חשבון{" "}
+            </Typography>
+          ) : location.pathname == "/wallet" ? (
+            <Typography variant="subtitle1" noWrap component="div">
+              ארנק{" "}
+            </Typography>
+          ) : (
+            ""
+          )}
 
           <Box sx={{ flexGrow: 1 }} />
           <Box sx={{ display: { xs: "none", md: "flex" } }}>
@@ -356,8 +379,8 @@ export default function MiniDrawer(props) {
               aria-label="show more"
               aria-controls={mobileMenuId}
               aria-haspopup="true"
-              onClick={handleAddRedundMenuOpen}
               color="inherit"
+              onClick={handleAddRedundMenuOpen}
             >
               <AddRoundedIcon size="large" />
             </IconButton>

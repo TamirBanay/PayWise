@@ -21,7 +21,7 @@ export default function EllipsisList(props) {
   const amount = props.voucher.ammount.toString().split(".00");
   const color = "#00E396";
   return (
-    <Box sx={{ width: 320, direction: "rtl" }}>
+    <Box sx={{ width: "87%", direction: "rtl" }}>
       <List
         aria-labelledby="ellipsis-list-demo"
         sx={{ "--ListItemDecorator-size": "56px" }}

@@ -28,9 +28,7 @@ export default function IconTabs() {
 
   const getWallet = async () => {
     try {
-      const response = await fetch(
-        `api/getVouchers/${walletID}`
-      );
+      const response = await fetch(`api/getVouchers/${walletID}`);
       const data = await response.json();
 
       const vouchersArray = JSON.parse(data.vouchers);
@@ -95,7 +93,7 @@ export default function IconTabs() {
     setValue(newValue);
   };
   const currentDate = new Date();
-  currentDate.setDate(currentDate.getDate() - 1)
+  currentDate.setDate(currentDate.getDate() - 1);
   // const expiryDate = new Date(voucher.fields.dateOfExpiry);
 
   return (
@@ -127,11 +125,11 @@ export default function IconTabs() {
       <p></p>
 
       {openAllUsedVouchers ? (
-        <Button sx={{ marginLeft: 33 }} onClick={handlleOpenAllUsedVouchers}>
+        <Button sx={{ ml: "68%" }} onClick={handlleOpenAllUsedVouchers}>
           הצג הכל
         </Button>
       ) : (
-        <Button sx={{ marginLeft: 32 }} onClick={handlleOpenAllUsedVouchers}>
+        <Button sx={{ ml: "66%" }} onClick={handlleOpenAllUsedVouchers}>
           הצג פחות
         </Button>
       )}
@@ -165,7 +163,7 @@ export default function IconTabs() {
               flexDirection: "column",
             }}
           >
-            <Typography>אין זיכויים</Typography>
+            <Typography>אין זיכויים פעילים</Typography>
             <BrowserNotSupportedIcon fontSize="large" sx={{ mt: 1 }} />
           </Typography>
         )
@@ -195,7 +193,7 @@ export default function IconTabs() {
               flexDirection: "column",
             }}
           >
-            <Typography>אין זיכויים</Typography>
+            <Typography>אין זיכויים שמומשו</Typography>
             <BrowserNotSupportedIcon fontSize="large" sx={{ mt: 1 }} />
           </Typography>
         )
@@ -232,7 +230,7 @@ export default function IconTabs() {
               flexDirection: "column",
             }}
           >
-            <Typography>אין זיכויים</Typography>
+            <Typography> אין זיכויים פגי תוקף</Typography>
             <BrowserNotSupportedIcon fontSize="large" sx={{ mt: 1 }} />
           </Typography>
         )

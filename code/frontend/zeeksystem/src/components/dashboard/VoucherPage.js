@@ -144,8 +144,7 @@ export default function BasicCard(props) {
             {props.voucher.storeName}
           </Typography>
           <Typography level="body2">
-            {" "}
-            {props.voucher.dateOfExpiry.slice(0, 10)}
+            בתוקף עד: {props.voucher.dateOfExpiry.slice(0, 10)}
           </Typography>
           <IconButton
             aria-label="bookmark Bahamas Islands"
@@ -176,6 +175,45 @@ export default function BasicCard(props) {
             )}
           </IconButton>
 
+          <IconButton
+            aria-label="bookmark Bahamas Islands"
+            variant="plain"
+            color="neutral"
+            size="sm"
+            sx={{
+              position: "absolute",
+              top: "0.5rem",
+              width: "10%",
+              right: "65%",
+            }}
+          >
+            <LocationOnIcon onClick={handleOpenExternalApplication} />
+            {moveToOtheApp ? (
+              <AlertDialogModal
+                function={
+                  googleMapsOrWaze
+                    ? handleNavigateGoogleMaps
+                    : handleNavigateWaze
+                }
+                mainText={
+                  googleMapsOrWaze
+                    ? "לחיצה על google Maps תנתק אותך מאפליקציית - PayWise"
+                    : "לחיצה על Waze תנתק אותך מאפליקציית - PayWise"
+                }
+                title={"נווט ל - " + props.voucher.storeName}
+                variant="plain"
+                textButton={googleMapsOrWaze ? "google Maps" : "Wase"}
+                isOpen={true}
+                setOpenDeleteAlert={setMoveToOtheApp}
+                openDeleteAlert={moveToOtheApp}
+                titleIcon={"navigate"}
+                googleMapsOrWaze={googleMapsOrWaze}
+                setGoogleMapsOrWaze={setGoogleMapsOrWaze}
+              />
+            ) : (
+              ""
+            )}
+          </IconButton>
           <IconButton
             aria-label="bookmark Bahamas Islands"
             variant="plain"
@@ -255,7 +293,7 @@ export default function BasicCard(props) {
           </Typography>
           <Typography level="body2">
             {" "}
-            {props.voucher.dateOfExpiry.slice(0, 10)}
+            בתוקף עד: {props.voucher.dateOfExpiry.slice(0, 10)}
           </Typography>
           <IconButton
             aria-label="bookmark Bahamas Islands"

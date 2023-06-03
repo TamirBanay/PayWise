@@ -94,11 +94,7 @@ function Profile(props) {
       >
         <img
           src={
-            user.gender == "זכר"
-              ? male
-              : user.gender == "נקבה"
-              ? female
-              : other
+            user.gender == "זכר" ? male : user.gender == "נקבה" ? female : other
           }
           style={{
             width: "100px",
@@ -112,7 +108,7 @@ function Profile(props) {
 
       <div
         style={{
-          marginLeft: isMobile ? "-35px" : "1100px",
+          marginLeft: "-35px",
           marginTop: "-25px",
         }}
       >

@@ -49,14 +49,11 @@ export default function FormPropsTextFields(props) {
 
   const updateUserDetails = async (user_id, data) => {
     try {
-      const response = await fetch(
-        `api/changeDetails/${user_id}`,
-        {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(data),
-        }
-      );
+      const response = await fetch(`api/changeDetails/${user_id}`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data),
+      });
 
       if (response.ok) {
         const user = await response.json();
@@ -119,10 +116,11 @@ export default function FormPropsTextFields(props) {
     <Box
       component="form"
       sx={{
+        // bgcolor: "#000",
         "& .MuiTextField-root": { m: 1, width: "25ch" },
         direction: "rtl",
-        marginRight: 9,
-        paddingBottom: 5,
+        mr: "20%",
+        // paddingBottom: 5,
       }}
       noValidate
       autoComplete="off"
@@ -135,8 +133,8 @@ export default function FormPropsTextFields(props) {
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
-          width: 300,
-          marginTop: 10,
+          width: "90%",
+          marginTop: "3%",
         }}
       >
         <TextField id="first-name" label="שם" defaultValue={user.first_name} />
