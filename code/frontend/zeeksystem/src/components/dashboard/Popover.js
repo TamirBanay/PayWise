@@ -90,12 +90,14 @@ export default function BasicPopover(props) {
             open={open}
             anchorEl={anchorEl}
             onClose={handleClose}
+            // sx={}
             anchorOrigin={{
               vertical: "top",
-              horizontal: "left",
+              horizontal: "center",
             }}
             style={{
-              transform: "translateX(-9px)", // adjust this value to move the Popover more to the left
+              transform: "translateX(-9px)",
+              // adjust this value to move the Popover more to the left
             }}
           >
             <VoucherPage

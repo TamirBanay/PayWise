@@ -122,10 +122,11 @@ export default function SignInSide() {
                 required
                 fullWidth
                 name="password"
-                label="סיסמא"
+                label="סיסמה"
                 type="password"
                 id="password"
                 autoComplete="current-password"
+                sx={{ direction: "ltr" }}
               />
               <FormControlLabel
                 control={<Checkbox value="remember" color="primary" />}
