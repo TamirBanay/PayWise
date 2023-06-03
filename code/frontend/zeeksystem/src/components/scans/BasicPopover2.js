@@ -39,7 +39,7 @@ export default function BasicPopover(props) {
           vertical: "bottom",
           horizontal: "left",
         }}
-        sx={{ ml: "-14%" }}
+        sx={{ ml: "-10", width: "100%" }}
       >
         <InsertSirialNumber
           userID={props.userID}

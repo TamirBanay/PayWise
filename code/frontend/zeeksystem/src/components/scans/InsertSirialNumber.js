@@ -142,7 +142,9 @@ export default function InsertSirialNumber(props) {
               sx={{ "--ListItemDecorator-size": "24px" }}
             ></Menu>
 
-            <Button sx={{ m: "auto" }} onClick={handleSaveVoucher}>
+            <Button
+              onClick={handleSaveVoucher}
+            >
               שלח
             </Button>
 
