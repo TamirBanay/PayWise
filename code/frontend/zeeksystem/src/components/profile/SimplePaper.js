@@ -15,9 +15,9 @@ export default function SimplePaper() {
         "& > :not(style)": {
           m: 1,
           width: "100%",
-          height: isMobile ? 150 : 170,
-          marginLeft: isMobile ? "1px" : "40px",
-          marginTop: isMobile ? "-5px" : "-20px",
+          height: 150,
+          ml: "0%",
+          mt: "0%",
         },
       }}
     >
