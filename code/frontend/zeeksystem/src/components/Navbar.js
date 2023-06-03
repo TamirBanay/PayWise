@@ -33,7 +33,12 @@ import payWiseLogo from "../images/payWiseLogo.png";
 import Link from "@mui/material/Link";
 import { createTheme } from "@mui/material/styles";
 import { useRecoilState } from "recoil";
-import { _Vouchers, _Redirect, _addVoucherSucceeded } from "../services/atom";
+import {
+  _Vouchers,
+  _Redirect,
+  _addVoucherSucceeded,
+  _addMenu,
+} from "../services/atom";
 import BasicPopover2 from "./scans/BasicPopover2";
 import { useHistory } from "react-router-dom";
 import LogoutIcon from "@mui/icons-material/Logout";
@@ -156,7 +161,8 @@ export default function MiniDrawer(props) {
   const [open, setOpen] = React.useState(false);
   const menuId = "primary-search-account-menu";
   const [anchorEl, setAnchorEl] = React.useState(null);
-  const [anchorAddRedundMenu, setAnchorAddRedundMenu] = React.useState(null);
+  const [anchorAddRedundMenu, setAnchorAddRedundMenu] =
+    useRecoilState(_addMenu);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
   const mobileMenuId = "primary-search-account-menu-mobile";
   const AddRefundisMenuOpen = Boolean(anchorAddRedundMenu);
@@ -169,6 +175,7 @@ export default function MiniDrawer(props) {
     useRecoilState(_addVoucherSucceeded);
   const currentDate = new Date();
   currentDate.setDate(currentDate.getDate() - 1);
+  // const [plusPosition, setPlusPosition] = React.useState(null);
 
   const fetchUserData = async () => {
     try {
@@ -260,7 +267,7 @@ export default function MiniDrawer(props) {
       id={menuId}
       keepMounted
       transformOrigin={{
-        vertical: "top",
+        vertical: "bottom",
         horizontal: "left",
       }}
       open={AddRefundisMenuOpen}
@@ -356,8 +363,8 @@ export default function MiniDrawer(props) {
               aria-label="show more"
               aria-controls={mobileMenuId}
               aria-haspopup="true"
-              onClick={handleAddRedundMenuOpen}
               color="inherit"
+              onClick={handleAddRedundMenuOpen}
             >
               <AddRoundedIcon size="large" />
             </IconButton>

@@ -5,7 +5,8 @@ import useMediaQuery from "@mui/material/useMediaQuery";
 import { useTheme } from "@mui/material/styles";
 import ChartPie from "../components/dashboard/ChartPie";
 import Divider from "@mui/material/Divider";
-import EllipsisList from "../components/dashboard/EllipsisList";
+import Box from "@mui/material/Box";
+import AddRoundedIcon from "@mui/icons-material/AddRounded";
 import {
   _Vouchers,
   first_name,
@@ -13,12 +14,17 @@ import {
   user_email,
   _User,
   _Redirect,
+  _addMenu,
 } from "../services/atom";
 import { useRecoilState } from "recoil";
 import Popover from "../components/dashboard/Popover";
 import { useHistory } from "react-router-dom";
+import payWiseLogo from "../images/payWiseLogo.png";
+import Typography from "@mui/joy/Typography";
 
 function Home(props) {
+  const [anchorAddRedundMenu, setAnchorAddRedundMenu] =
+    useRecoilState(_addMenu);
   const [firstName, setFirstName] = useRecoilState(first_name);
   const [lastName, setLastName] = useRecoilState(last_name);
   const [usrEmail, setUsrEmail] = useRecoilState(user_email);
@@ -31,6 +37,7 @@ function Home(props) {
   const [vouchers, setVouchers] = useRecoilState(_Vouchers);
   const [walletID, setWalletID] = useState();
   const currentDate = new Date();
+
   currentDate.setDate(currentDate.getDate() - 1);
   const getWallet = async () => {
     try {
@@ -103,36 +110,64 @@ function Home(props) {
     setOnClickVoucher(!onClickVoucher);
   };
 
+  const walletLength = vouchers.filter(
+    (voucher) =>
+      currentDate < new Date(voucher.fields.dateOfExpiry) &&
+      voucher.fields.redeemed == false
+  ).length;
+
   return (
     <div>
-      <Navbar logOut={logOut} userID={userID} getWallet={getWallet} />
-      <ChartPie />
-      <p></p>
+      <Navbar
+        logOut={logOut}
+        walletLength={walletLength}
+        userID={userID}
+        getWallet={getWallet}
+      />
+      {walletLength <= 0 ? (
+        <div>
+          <img
+            src={payWiseLogo}
+            style={{ width: "80%", marginLeft: "5%", marginTop: "20%" }}
+          />
+          <Typography sx={{ ml: "10%", mt: "10% " }} level="h5" mb={2}>
+            <AddRoundedIcon color="primary" fontSize="large" />
+            כדי להוסיף זיכוי לחץ על{" "}
+          </Typography>
+          <Typography sx={{ ml: "33%" }} level="h5" mb={2}>
+            בראש המסך
+          </Typography>
+        </div>
+      ) : (
+        <div>
+          {" "}
+          <ChartPie />
+          <p></p>
+          <div>
+            <Divider orientation="horizontal" sx={{ marginRight: 5 }}>
+              זיכויים בארנק
+            </Divider>
 
-      <div>
-        <Divider orientation="horizontal" sx={{ marginRight: 5 }}>
-          זיכויים קרובים
-        </Divider>
-
-        {/* <EllipsisList /> */}
-
-        {onClickVoucher
-          ? vouchers.length > 0 &&
-            vouchers
-              .filter(
-                (voucher) => currentDate < new Date(voucher.fields.dateOfExpiry)
-              )
-              .map((voucher) => (
-                <Popover
-                  voucher={voucher.fields}
-                  key={voucher.pk}
-                  vID={voucher.pk}
-                  openVoucher={handleOpenVoucher}
-                  getWallet={getWallet}
-                />
-              ))
-          : ""}
-      </div>
+            {onClickVoucher
+              ? vouchers.length > 0 &&
+                vouchers
+                  .filter(
+                    (voucher) =>
+                      currentDate < new Date(voucher.fields.dateOfExpiry)
+                  )
+                  .map((voucher) => (
+                    <Popover
+                      voucher={voucher.fields}
+                      key={voucher.pk}
+                      vID={voucher.pk}
+                      openVoucher={handleOpenVoucher}
+                      getWallet={getWallet}
+                    />
+                  ))
+              : ""}
+          </div>{" "}
+        </div>
+      )}
     </div>
   );
 }

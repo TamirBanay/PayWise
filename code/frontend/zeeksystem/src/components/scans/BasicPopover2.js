@@ -41,12 +41,6 @@ export default function BasicPopover(props) {
         }}
         sx={{ ml: "-14%" }}
       >
-        {/* <HelperTextAligned
-          userID={props.userID}
-          handleClose={handleClose}
-          getWallet={props.getWallet}
-         
-        /> */}
         <InsertSirialNumber
           userID={props.userID}
           handleClose={handleClose}
