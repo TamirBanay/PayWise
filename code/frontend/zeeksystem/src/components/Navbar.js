@@ -88,7 +88,6 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 }));
 
 const drawerWidth = 240;
-// const location = useLocation();
 
 const openedMixin = (theme) => ({
   width: drawerWidth,
@@ -175,7 +174,6 @@ export default function MiniDrawer(props) {
     useRecoilState(_addVoucherSucceeded);
   const currentDate = new Date();
   currentDate.setDate(currentDate.getDate() - 1);
-  // const [plusPosition, setPlusPosition] = React.useState(null);
 
   const fetchUserData = async () => {
     try {
@@ -264,6 +262,7 @@ export default function MiniDrawer(props) {
         vertical: "bottom",
         horizontal: "center",
       }}
+      sx={{ mt: "8%" }}
       id={menuId}
       keepMounted
       transformOrigin={{
@@ -310,7 +309,9 @@ export default function MiniDrawer(props) {
       <CssBaseline />
       <AppBar position="fixed" open={open}>
         <Toolbar>
-          <IconButton
+          {/* to open the MiniDrawer open the commant of the IconButton*/}
+
+          {/* <IconButton
             color="inherit"
             aria-label="open drawer"
             onClick={handleDrawerOpen}
@@ -321,8 +322,23 @@ export default function MiniDrawer(props) {
             }}
           >
             <MenuIcon />
-          </IconButton>
-          <Typography variant="h6" noWrap component="div"></Typography>
+          </IconButton> */}
+
+          {location.pathname == "/" ? (
+            <Typography variant="subtitle1" noWrap component="div">
+              בית
+            </Typography>
+          ) : location.pathname == "/profile" ? (
+            <Typography variant="subtitle1" noWrap component="div">
+              חשבון{" "}
+            </Typography>
+          ) : location.pathname == "/wallet" ? (
+            <Typography variant="subtitle1" noWrap component="div">
+              ארנק{" "}
+            </Typography>
+          ) : (
+            ""
+          )}
 
           <Box sx={{ flexGrow: 1 }} />
           <Box sx={{ display: { xs: "none", md: "flex" } }}>

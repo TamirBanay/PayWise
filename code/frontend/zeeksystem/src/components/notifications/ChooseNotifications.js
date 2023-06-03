@@ -7,7 +7,6 @@ import Divider from "@mui/joy/Divider";
 function CheckboxGroup(props) {
   const [vouchers, setVouchers] = useRecoilState(_Vouchers);
 
-
   return (
     <Box>
       <Divider
@@ -22,7 +21,7 @@ function CheckboxGroup(props) {
       <Typography id="sandwich-group" level="body2" fontWeight="lg" mb={1}>
         בחר מתי להתחיל לקבל התראות יומיות
       </Typography>
-      <Box role="group" aria-labelledby="sandwich-group">
+      <Box role="group" aria-labelledby="sandwich-group" sx={{ mr: "-9%" }}>
         <List size="sm">
           <ListItem sx={{ mt: -2 }}>
             <Checkbox

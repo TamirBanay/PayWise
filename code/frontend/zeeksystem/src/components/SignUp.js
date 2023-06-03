@@ -94,7 +94,7 @@ export default function SignUp() {
           }}
         >
           <img src={payWiseLogo} style={{ height: 100 }} />
-         
+
           <Box
             component="form"
             noValidate
@@ -139,7 +139,7 @@ export default function SignUp() {
                   required
                   fullWidth
                   name="password"
-                  label="סיסמא"
+                  label="סיסמה"
                   type="password"
                   id="password"
                   autoComplete="new-password"
@@ -183,20 +183,20 @@ export default function SignUp() {
                   aria-labelledby="demo-row-radio-buttons-group-label"
                   name="row-radio-buttons-group"
                   sx={{ mr: "-7%" }}
-                  defaultValue={"other"}
+                  defaultValue={"אחר"}
                 >
                   <FormControlLabel
-                    value="female"
+                    value="נקבה"
                     control={<Radio />}
                     label="נקבה"
                   />
                   <FormControlLabel
-                    value="male"
+                    value="זכר"
                     control={<Radio />}
                     label="זכר"
                   />
                   <FormControlLabel
-                    value="other"
+                    value="אחר"
                     control={<Radio />}
                     label="אחר"
                   />
