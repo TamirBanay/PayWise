@@ -5,12 +5,8 @@ import useMediaQuery from "@mui/material/useMediaQuery";
 import { useTheme } from "@mui/material/styles";
 import ChartPie from "../components/dashboard/ChartPie";
 import Divider from "@mui/material/Divider";
-import EllipsisList from "../components/dashboard/EllipsisList";
 import Box from "@mui/material/Box";
 import AddRoundedIcon from "@mui/icons-material/AddRounded";
-import InfoOutlined from "@mui/icons-material/InfoOutlined";
-import IconButton from "@mui/material/IconButton";
-import PlusButtonDial from "../components/dashboard/PlusButtonDial";
 import {
   _Vouchers,
   first_name,
@@ -41,6 +37,7 @@ function Home(props) {
   const [vouchers, setVouchers] = useRecoilState(_Vouchers);
   const [walletID, setWalletID] = useState();
   const currentDate = new Date();
+
   currentDate.setDate(currentDate.getDate() - 1);
   const getWallet = async () => {
     try {
@@ -113,9 +110,6 @@ function Home(props) {
     setOnClickVoucher(!onClickVoucher);
   };
 
-  const handleAddRedundMenuOpen = (event) => {
-    setAnchorAddRedundMenu(event.currentTarget);
-  };
   const walletLength = vouchers.filter(
     (voucher) =>
       currentDate < new Date(voucher.fields.dateOfExpiry) &&
@@ -136,13 +130,13 @@ function Home(props) {
             src={payWiseLogo}
             style={{ width: "80%", marginLeft: "5%", marginTop: "20%" }}
           />
-          <Typography sx={{ ml: "17%", mt: "10% " }} level="h5" mb={2}>
-            <IconButton onClick={handleAddRedundMenuOpen} sx={{ mb: "2%" }}>
-              <AddRoundedIcon color="primary" fontSize="large" />
-            </IconButton>
+          <Typography sx={{ ml: "10%", mt: "10% " }} level="h5" mb={2}>
+            <AddRoundedIcon color="primary" fontSize="large" />
             כדי להוסיף זיכוי לחץ על{" "}
           </Typography>
-          {/* <PlusButtonDial /> */}
+          <Typography sx={{ ml: "33%" }} level="h5" mb={2}>
+            בראש המסך
+          </Typography>
         </div>
       ) : (
         <div>

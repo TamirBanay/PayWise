@@ -145,6 +145,7 @@ export default function InsertSirialNumber(props) {
             <Button sx={{ ml: "auto" }} onClick={handleSaveVoucher}>
               שלח
             </Button>
+      
             {voucherExist ? (
               <AlertNotification
                 voucherExist={voucherExist}
