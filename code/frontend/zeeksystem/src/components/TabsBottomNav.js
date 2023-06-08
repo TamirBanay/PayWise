@@ -27,49 +27,57 @@ export default function TabsBottomNav() {
   };
 
   return (
-    <Tabs
-      value={value}
-      onChange={handleChange}
-      variant="fullWidth"
-      sx={{
-        position: "fixed",
-        bottom: 0,
-        left: 0,
-        width: "100%",
+    <div style={{ paddingBottom: "104px" }}>
+      <Tabs
+        value={value}
+        onChange={handleChange}
+        variant="fullWidth"
+        sx={{
+          direction: "rtl",
+          position: "fixed",
+          bottom: 0,
+          left: 0,
+          width: "100%",
 
-        zIndex: 999,
-        bgcolor: "#fff",
-        "& .MuiTabs-indicator": {
-          top: 0,
-        },
-      }}
-    >
-      <Tab value={"home"} icon={<HomeOutlinedIcon />} label="בית" href="/#/" />
-      <Tab
-        value={"profile"}
-        icon={<Person2OutlinedIcon />}
-        label="פרופיל"
-        href="/#/profile"
-      />
-      <Tab
-        value={"wallet"}
-        icon={
-          <Badge
-            badgeContent={
-              vouchers.filter(
-                (voucher) =>
-                  voucher.fields.redeemed === false &&
-                  currentDate < new Date(voucher.fields.dateOfExpiry)
-              ).length
-            }
-            color="error"
-          >
-            <AccountBalanceWalletIcon />
-          </Badge>
-        }
-        label="ארנק"
-        href="/#/wallet"
-      />
-    </Tabs>
+          zIndex: 999,
+          bgcolor: "#fff",
+          "& .MuiTabs-indicator": {
+            top: 0,
+          },
+        }}
+      >
+        <Tab
+          value={"home"}
+          icon={<HomeOutlinedIcon />}
+          label="בית"
+          href="/#/"
+        />
+        <Tab
+          value={"profile"}
+          icon={<Person2OutlinedIcon />}
+          label="פרופיל"
+          href="/#/profile"
+        />
+        <Tab
+          value={"wallet"}
+          icon={
+            <Badge
+              badgeContent={
+                vouchers.filter(
+                  (voucher) =>
+                    voucher.fields.redeemed === false &&
+                    currentDate < new Date(voucher.fields.dateOfExpiry)
+                ).length
+              }
+              color="error"
+            >
+              <AccountBalanceWalletIcon />
+            </Badge>
+          }
+          label="ארנק"
+          href="/#/wallet"
+        />
+      </Tabs>
+    </div>
   );
 }

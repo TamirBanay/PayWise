@@ -312,7 +312,6 @@ export default function MiniDrawer(props) {
         open={open}
         color="primary"
         sx={{
-          // bgcolor: location.pathname == "/profile" ? "#27374D" : "#000",
           height: location.pathname == "/profile" ? "370%" : "7%",
           position: location.pathname == "/profile" ? "static" : "",
         }}
@@ -326,69 +325,7 @@ export default function MiniDrawer(props) {
               : "ארנק"}
           </Typography>
 
-          {/* to open the MiniDrawer open the commant of the IconButton*/}
-
-          {/* <IconButton
-            color="inherit"
-            aria-label="open drawer"
-            onClick={handleDrawerOpen}
-            edge="start"
-            sx={{
-              marginLeft: 5,
-              ...(open && { display: "none" }),
-            }}
-          >
-            <MenuIcon />
-          </IconButton> */}
-
-          {/* {location.pathname == "/" ? (
-            <Typography variant="subtitle1" noWrap component="div">
-              בית
-            </Typography>
-          ) : location.pathname == "/profile" ? (
-            <Typography variant="subtitle1" noWrap component="div">
-              חשבון{" "}
-            </Typography>
-          ) : location.pathname == "/wallet" ? (
-            <Typography variant="subtitle1" noWrap component="div">
-              ארנק{" "}
-            </Typography>
-          ) : (
-            ""
-          )} */}
-
           <Box sx={{ flexGrow: 1 }} />
-          {/* <Box sx={{ display: { xs: "none", md: "flex" } }}>
-            <IconButton
-              size="large"
-              edge="end"
-              aria-label="account of current user"
-              aria-controls={menuId}
-              aria-haspopup="true"
-              onClick={handleAddRedundMenuOpen}
-              color="inherit"
-            >
-              <AddRoundedIcon />
-            </IconButton>
-
-            <IconButton size="large" color="inherit">
-              <Badge badgeContent={4} color="error">
-                <AccountBalanceWalletOutlinedIcon />
-              </Badge>
-            </IconButton>
-
-            <IconButton
-              size="large"
-              edge="end"
-              aria-label="account of current user"
-              aria-controls={menuId}
-              aria-haspopup="true"
-              onClick={handleProfileMenuOpen}
-              color="inherit"
-            >
-              <AccountCircle />
-            </IconButton>
-          </Box> */}
 
           <Box sx={{ display: { xs: "flex", md: "none" } }}>
             <IconButton
@@ -408,85 +345,6 @@ export default function MiniDrawer(props) {
           </Link>
         </Toolbar>
       </AppBar>
-
-      {/* <Drawer anchor="right" variant="permanent" open={open}>
-        <DrawerHeader onClick={handleDrawerClose}>
-          <IconButton>
-            {theme.direction === "ltr" ? (
-              <ChevronRightIcon />
-            ) : (
-              <ChevronLeftIcon />
-            )}
-          </IconButton>
-        </DrawerHeader>
-        <Divider />
-        <List>
-          {["בית", "פרופיל", "הארנק שלי"].map((text, index) => (
-            <ListItem key={text} disablePadding sx={{ display: "block" }}>
-              <ListItemButton
-                sx={{
-                  minHeight: 48,
-                  justifyContent: open ? "initial" : "center",
-                  px: 2.5,
-                  direction: "ltr",
-                  "& .MuiListItemIcon-root": {
-                    minWidth: 0,
-                    mr: open ? 3 : "auto",
-                    justifyContent: "center",
-                  },
-                  "& .MuiListItemText-root": {
-                    textAlign: "right",
-                    opacity: open ? 1 : 0,
-                  },
-                }}
-              >
-                <ListItemIcon
-                  sx={{
-                    minWidth: 0,
-                    mr: open ? 3 : "auto",
-                    justifyContent: "center",
-                  }}
-                >
-                  {index === 0 ? (
-                    <Link href="/#/" color="#1C74BC">
-                      <HomeIcon />
-                    </Link>
-                  ) : (
-                    ""
-                  )}
-                  {index === 1 ? (
-                    <Link href="/#/profile" color="#1C74BC">
-                      <Person2Icon />
-                    </Link>
-                  ) : (
-                    ""
-                  )}
-                  {index === 2 ? (
-                    <Link href="/#/wallet" color="#1C74BC">
-                      <Badge
-                        badgeContent={
-                          vouchers.filter(
-                            (voucher) =>
-                              voucher.fields.redeemed === false &&
-                              currentDate <
-                                new Date(voucher.fields.dateOfExpiry)
-                          ).length
-                        }
-                        color="error"
-                      >
-                        <AccountBalanceWalletIcon />
-                      </Badge>
-                    </Link>
-                  ) : (
-                    ""
-                  )}
-                </ListItemIcon>
-                <ListItemText primary={text} sx={{ opacity: open ? 1 : 0 }} />
-              </ListItemButton>
-            </ListItem>
-          ))}
-        </List>
-      </Drawer> */}
 
       {renderAddRefundMenu}
       {openScan ? <Redirect to="/ScanVoucher" /> : ""}

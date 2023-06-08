@@ -17,12 +17,26 @@ export default function EllipsisList(props) {
         aria-labelledby="ellipsis-list-demo"
         sx={{ "--ListItemDecorator-size": "56px" }}
       >
+        <Avatar
+          sx={{
+            position: "absolute",
+            left: "100%",
+            mt: "3%",
+            boxShadow: "0px 0px 3px  ",
+          }}
+          src={props.img}
+        />
+
         <ListItem onClick={props.handleClick}>
           <ListItemContent>
             <Typography level="h6" sx={{ width: "50%" }}>
+              {" "}
               {props.voucher.storeName}
             </Typography>
-            <Typography sx={{ mr: 30, mt: -3 }} level="h6">
+            <Typography
+              sx={{ mr: "80%", mt: -3, textAlign: "left" }}
+              level="h6"
+            >
               {" "}
               ₪{amount}
             </Typography>
@@ -31,9 +45,7 @@ export default function EllipsisList(props) {
             </Typography>
           </ListItemContent>
         </ListItem>
-        <Divider
-          sx={{ borderBottom: "0.5px solid black", height: 1, left: 6 }}
-        />
+        <Divider sx={{ borderBottom: "0.5px solid black", right: "3%" }} />
       </List>
     </Box>
   );

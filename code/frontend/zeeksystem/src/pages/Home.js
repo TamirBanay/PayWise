@@ -144,7 +144,7 @@ function Home(props) {
           <p></p>
           <div>
             <Divider sx={{ borderBottom: "1.5px solid black" }} />
-            <br />
+            {/* <br /> */}
 
             {onClickVoucher
               ? vouchers.length > 0 &&
@@ -167,7 +167,7 @@ function Home(props) {
         </div>
       )}
       <BasicSpeedDial userID={userID} getWallet={getWallet} />
-      <div style={{ position: "fixed" }}>
+      <div style={{ paddingBottom: "0.5%" }}>
         <TabsBottomNav />
       </div>
     </div>
