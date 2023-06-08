@@ -102,8 +102,14 @@ export default function IconTabs() {
         value={value}
         onChange={handleChange}
         aria-label="icon tabs example"
-        sx={{ direction: "rtl", width: "85%" }}
         variant="fullWidth"
+        sx={{
+          direction: "rtl",
+          "& .MuiTabs-indicator": {
+            // backgroundColor: "#526D82",
+            // top: 0,
+          },
+        }}
       >
         <Tab
           icon={<SellIcon color="primary" />}

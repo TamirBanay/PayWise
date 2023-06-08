@@ -13,11 +13,8 @@ export default function SimplePaper() {
         display: "flex",
         flexWrap: "wrap",
         "& > :not(style)": {
-          m: 1,
           width: "100%",
           height: 150,
-          ml: "0%",
-          mt: "0%",
         },
       }}
     >

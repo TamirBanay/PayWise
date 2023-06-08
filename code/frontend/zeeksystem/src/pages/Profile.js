@@ -6,7 +6,7 @@ import useMediaQuery from "@mui/material/useMediaQuery";
 import male from "../images/male.jpeg";
 import other from "../images/other.jpeg";
 import female from "../images/female.jpeg";
-
+import TabsBottomNav from "../components/TabsBottomNav";
 import Typography from "@mui/material/Typography";
 import israel from "../images/israel.png";
 import { useEffect, useState } from "react";
@@ -80,7 +80,7 @@ function Profile(props) {
   return (
     <div>
       <Navbar />
-      <SimplePaper />
+      {/* <SimplePaper /> */}
 
       <div
         style={{
@@ -88,8 +88,8 @@ function Profile(props) {
           justifyContent: "center",
           alignItems: "center",
           height: "200px",
-          marginTop: "-115px",
-          marginLeft: isMobile ? "110px" : "1100px",
+          marginTop: "10%",
+          marginLeft: "45%",
         }}
       >
         <img
@@ -108,7 +108,7 @@ function Profile(props) {
 
       <div
         style={{
-          marginLeft: "-35px",
+          marginLeft: "10%",
           marginTop: "-25px",
         }}
       >
@@ -119,9 +119,9 @@ function Profile(props) {
         >
           {user.first_name} {user.last_name}
         </Typography>
-
-        <Divider sx={{ borderBottom: "1.5px solid black", height: 20 }} />
       </div>
+      <Divider sx={{ borderBottom: "1.5px solid black", height: 20 }} />
+
       <TabsProfile
         updateDetails={handlleChangeDetailsUser}
         handlleShowPersonalDetails={handlleShowPersonalDetails}
@@ -145,6 +145,7 @@ function Profile(props) {
         {" "}
         {messegeToSuccess ? "הפרטים עודכנו בהצלחה " : ""}
       </div>
+      <TabsBottomNav />
     </div>
   );
 }

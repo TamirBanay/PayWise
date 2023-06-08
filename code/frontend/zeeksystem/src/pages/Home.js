@@ -21,7 +21,8 @@ import Popover from "../components/dashboard/Popover";
 import { useHistory } from "react-router-dom";
 import payWiseLogo from "../images/payWiseLogo.png";
 import Typography from "@mui/joy/Typography";
-
+import TabsBottomNav from "../components/TabsBottomNav";
+import BasicSpeedDial from "../components/dashboard/BasicSpeedDial";
 function Home(props) {
   const [anchorAddRedundMenu, setAnchorAddRedundMenu] =
     useRecoilState(_addMenu);
@@ -36,6 +37,7 @@ function Home(props) {
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
   const [vouchers, setVouchers] = useRecoilState(_Vouchers);
   const [walletID, setWalletID] = useState();
+
   const currentDate = new Date();
 
   currentDate.setDate(currentDate.getDate() - 1);
@@ -128,14 +130,11 @@ function Home(props) {
         <div>
           <img
             src={payWiseLogo}
-            style={{ width: "80%", marginLeft: "5%", marginTop: "20%" }}
+            style={{ width: "80%", marginLeft: "10%", marginTop: "20%" }}
           />
-          <Typography sx={{ ml: "10%", mt: "10% " }} level="h5" mb={2}>
+          <Typography sx={{ ml: "15%", mt: "10% " }} level="h5" mb={2}>
             <AddRoundedIcon color="primary" fontSize="large" />
             כדי להוסיף זיכוי לחץ על{" "}
-          </Typography>
-          <Typography sx={{ ml: "33%" }} level="h5" mb={2}>
-            בראש המסך
           </Typography>
         </div>
       ) : (
@@ -144,9 +143,8 @@ function Home(props) {
           <ChartPie />
           <p></p>
           <div>
-            <Divider orientation="horizontal" sx={{ marginRight: 5 }}>
-              זיכויים בארנק
-            </Divider>
+            <Divider sx={{ borderBottom: "1.5px solid black" }} />
+            <br />
 
             {onClickVoucher
               ? vouchers.length > 0 &&
@@ -168,6 +166,10 @@ function Home(props) {
           </div>{" "}
         </div>
       )}
+      <BasicSpeedDial userID={userID} getWallet={getWallet} />
+      <div style={{ position: "fixed" }}>
+        <TabsBottomNav />
+      </div>
     </div>
   );
 }

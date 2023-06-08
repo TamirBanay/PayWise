@@ -307,8 +307,25 @@ export default function MiniDrawer(props) {
       }}
     >
       <CssBaseline />
-      <AppBar position="fixed" open={open}>
+      <AppBar
+        position="fixed"
+        open={open}
+        color="primary"
+        sx={{
+          // bgcolor: location.pathname == "/profile" ? "#27374D" : "#000",
+          height: location.pathname == "/profile" ? "370%" : "7%",
+          position: location.pathname == "/profile" ? "static" : "",
+        }}
+      >
         <Toolbar>
+          <Typography>
+            {location.pathname == "/"
+              ? "בית"
+              : location.pathname == "/profile"
+              ? "פרופיל"
+              : "ארנק"}
+          </Typography>
+
           {/* to open the MiniDrawer open the commant of the IconButton*/}
 
           {/* <IconButton
@@ -324,7 +341,7 @@ export default function MiniDrawer(props) {
             <MenuIcon />
           </IconButton> */}
 
-          {location.pathname == "/" ? (
+          {/* {location.pathname == "/" ? (
             <Typography variant="subtitle1" noWrap component="div">
               בית
             </Typography>
@@ -338,10 +355,10 @@ export default function MiniDrawer(props) {
             </Typography>
           ) : (
             ""
-          )}
+          )} */}
 
           <Box sx={{ flexGrow: 1 }} />
-          <Box sx={{ display: { xs: "none", md: "flex" } }}>
+          {/* <Box sx={{ display: { xs: "none", md: "flex" } }}>
             <IconButton
               size="large"
               edge="end"
@@ -371,7 +388,7 @@ export default function MiniDrawer(props) {
             >
               <AccountCircle />
             </IconButton>
-          </Box>
+          </Box> */}
 
           <Box sx={{ display: { xs: "flex", md: "none" } }}>
             <IconButton
@@ -382,7 +399,7 @@ export default function MiniDrawer(props) {
               color="inherit"
               onClick={handleAddRedundMenuOpen}
             >
-              <AddRoundedIcon size="large" />
+              <AddRoundedIcon size="large" color="#000" />
             </IconButton>
           </Box>
 
@@ -392,7 +409,7 @@ export default function MiniDrawer(props) {
         </Toolbar>
       </AppBar>
 
-      <Drawer anchor="right" variant="permanent" open={open}>
+      {/* <Drawer anchor="right" variant="permanent" open={open}>
         <DrawerHeader onClick={handleDrawerClose}>
           <IconButton>
             {theme.direction === "ltr" ? (
@@ -469,7 +486,7 @@ export default function MiniDrawer(props) {
             </ListItem>
           ))}
         </List>
-      </Drawer>
+      </Drawer> */}
 
       {renderAddRefundMenu}
       {openScan ? <Redirect to="/ScanVoucher" /> : ""}

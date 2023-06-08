@@ -33,3 +33,7 @@ export const _addMenu = atom({
   key: "addMenu",
   default: null,
 });
+export const _tabsValue = atom({
+  key: "_tabsValue",
+  default: "home",
+});

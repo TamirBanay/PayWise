@@ -14,7 +14,6 @@ const Dashboard = () => {
   const currentDate = new Date();
   currentDate.setDate(currentDate.getDate() - 1);
 
-
   const totalAmount = vouchers.reduce((total, voucher) => {
     if (
       !voucher.fields.redeemed &&
@@ -94,7 +93,8 @@ const Dashboard = () => {
                 color: "#263238",
               },
               align: "center",
-              text: "₪ " + totalAmount + " :סכום הזיכויים ",
+              // marginTop: "100px",
+              text: totalAmount + "₪",
             },
 
             responsive: [
@@ -102,8 +102,8 @@ const Dashboard = () => {
                 breakpoint: 480,
                 options: {
                   chart: {
-                    width: 350,
-                    height: 300,
+                    width: "100%",
+                    height: "200%",
                   },
                   legend: {
                     position: "bottom",

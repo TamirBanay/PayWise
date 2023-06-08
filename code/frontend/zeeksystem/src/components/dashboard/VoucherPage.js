@@ -350,7 +350,7 @@ export default function BasicCard(props) {
                 }
                 title={"נווט ל - " + props.voucher.storeName}
                 variant="plain"
-                textButton={googleMapsOrWaze ? "google Maps" : "Wase"}
+                textButton={googleMapsOrWaze ? "google Maps" : "Waze"}
                 isOpen={true}
                 setOpenDeleteAlert={setMoveToOtheApp}
                 openDeleteAlert={moveToOtheApp}

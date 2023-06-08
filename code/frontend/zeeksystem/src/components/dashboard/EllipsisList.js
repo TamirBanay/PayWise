@@ -10,18 +10,9 @@ import Divider from "@mui/joy/Divider";
 import Badge from "@mui/joy/Badge";
 
 export default function EllipsisList(props) {
-  const hendleDelete = async (event) => {
-    event.preventDefault();
-    await fetch(`api/deletVouchers/${props.vID}`, {
-      method: "DELETE",
-      headers: { "Content-Type": "application/json" },
-    });
-    props.getWallet();
-  };
   const amount = props.voucher.ammount.toString().split(".00");
-  const color = "#00E396";
   return (
-    <Box sx={{ width: "87%", direction: "rtl" }}>
+    <Box sx={{ width: "87%", direction: "rtl", position: "static" }}>
       <List
         aria-labelledby="ellipsis-list-demo"
         sx={{ "--ListItemDecorator-size": "56px" }}
@@ -29,20 +20,6 @@ export default function EllipsisList(props) {
         <ListItem onClick={props.handleClick}>
           <ListItemContent>
             <Typography level="h6" sx={{ width: "50%" }}>
-              {" "}
-              {/* <Badge
-                size="sm"
-                sx={{ ml: 2 }}
-                color={
-                  props.voucher.storeType === "קמעונאות"
-                    ? "success"
-                    : props.voucher.storeType === "אופנה"
-                    ? "warning"
-                    : props.voucher.storeType === "אלקטרוניקה"
-                    ? "primary"
-                    : ""
-                }
-              /> */}
               {props.voucher.storeName}
             </Typography>
             <Typography sx={{ mr: 30, mt: -3 }} level="h6">
