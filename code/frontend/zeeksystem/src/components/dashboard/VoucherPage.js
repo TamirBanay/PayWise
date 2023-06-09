@@ -287,7 +287,7 @@ export default function BasicCard(props) {
               </Typography>
             ) : currentDate > new Date(props.voucher.dateOfExpiry) &&
               props.voucher.redeemed == false ? (
-              <Typography sx={{ mr: "auto" }}>
+              <Typography sx={{ mr: "auto", mt: "auto" }}>
                 <ClearIcon color="error" fontSize="large" />
               </Typography>
             ) : (
@@ -310,11 +310,12 @@ export default function BasicCard(props) {
           sx={{ width: 320, borderRadius: 20, direction: "rtl" }}
         >
           <Avatar
+            size="lg"
             sx={{
               position: "fixed",
               boxShadow: "0.5px 0.5px 3px 0px  ",
               "& .MuiAvatar-img	": {
-                height: "90%",
+                // height: "90%",
               },
             }}
             onClick={handleOpenWebApp}
@@ -336,13 +337,13 @@ export default function BasicCard(props) {
             ""
           )}
 
-          <Typography level="h2" fontSize="md" sx={{ mr: "20%" }}>
+          <Typography level="h2" fontSize="md" sx={{ mr: "22%" }}>
             {props.voucher.storeName}
           </Typography>
           <Typography
             fontSize="md"
             fontWeight="lg"
-            sx={{ direction: "rtl", mr: "20%" }}
+            sx={{ direction: "rtl", mr: "22%" }}
           >
             <Typography fontSize="md" fontWeight="lg">
               סכום: ₪{amount}
@@ -353,13 +354,13 @@ export default function BasicCard(props) {
               borderBottom: "0.5px solid black",
               right: "3%",
               pb: "1%",
-              pt: "2%",
+              pt: "5%",
             }}
           />
 
           <Typography
             level="body2"
-            sx={{ width: "50%", position: "fixed", mt: "13%", pt: "2%" }}
+            sx={{ width: "50%", position: "fixed", mt: "17%", pt: "2%" }}
           >
             {" "}
             בתוקף עד: {props.voucher.dateOfExpiry.slice(0, 10)}
@@ -455,19 +456,19 @@ export default function BasicCard(props) {
 
           <Box sx={{ display: "flex", borderRadius: 10 }}>
             <div>
-              <Typography fontSize="sm" fontWeight="sm" sx={{ mt: "20%" }}>
+              <Typography fontSize="sm" fontWeight="sm" sx={{ mt: "30%" }}>
                 מס' שובר: {props.vID}
               </Typography>
             </div>
             {/* if im in wallet page and the voucher is redeemed show v icon or if the voucher expiry show X*/}
             {location.pathname == "/wallet" &&
             props.voucher.redeemed == true ? (
-              <Typography sx={{ mr: "auto" }}>
+              <Typography sx={{ mr: "auto", mt: "auto" }}>
                 <DoneIcon color="success" fontSize="large" />
               </Typography>
             ) : currentDate > new Date(props.voucher.dateOfExpiry) &&
               props.voucher.redeemed == false ? (
-              <Typography sx={{ mr: "auto" }}>
+              <Typography sx={{ mr: "auto", mt: "auto" }}>
                 <ClearIcon color="error" fontSize="large" />
               </Typography>
             ) : (

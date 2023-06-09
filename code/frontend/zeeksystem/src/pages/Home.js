@@ -143,10 +143,12 @@ function Home(props) {
         <div style={{ filter: voucherIsOpen ? "blur(4px)" : "" }}>
           {" "}
           <ChartPie />
-          <p></p>
+          {/* <p></p> */}
           <div>
-            <Divider sx={{ borderBottom: "1.5px solid black" }} />
-            {/* <br /> */}
+            <Divider sx={{ borderBottom: "1.0px solid black" }} />
+            <div style={{ paddingTop: "2%" }}></div>
+
+            {/* <p /> */}
 
             {onClickVoucher
               ? vouchers.length > 0 &&

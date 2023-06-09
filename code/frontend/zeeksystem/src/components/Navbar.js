@@ -336,7 +336,7 @@ export default function MiniDrawer(props) {
               color="inherit"
               onClick={handleAddRedundMenuOpen}
             >
-              <AddRoundedIcon size="large" color="#000" />
+              {/* <AddRoundedIcon size="large" color="#000" /> */}
             </IconButton>
           </Box>
 

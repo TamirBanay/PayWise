@@ -19,6 +19,8 @@ import InfoIcon from "@mui/icons-material/Info";
 import TabsProfile from "../components/profile/TabsProfile";
 import EditIcon from "@mui/icons-material/Edit";
 import PersonalDetails from "../components/profile/PersonalDetails";
+import BasicSpeedDial from "../components/dashboard/BasicSpeedDial";
+
 import {
   _Vouchers,
   first_name,
@@ -34,6 +36,24 @@ function Profile(props) {
   const [messegeToSuccess, setMessegeToSuccess] = useState(false);
   const [user_id, setUserId] = useState();
   const [showPersonalDetails, setShowPersonalDetails] = useState(false);
+  const [vouchers, setVouchers] = useRecoilState(_Vouchers);
+  const [walletID, setWalletID] = useState();
+
+  const getWallet = async () => {
+    try {
+      const response = await fetch(`api/getVouchers/${walletID}`);
+      const data = await response.json();
+
+      const vouchersArray = JSON.parse(data.vouchers);
+      const matchingVouchers = vouchersArray.filter(
+        (voucher) => voucher.fields.walletID === walletID
+      );
+
+      setVouchers(matchingVouchers);
+    } catch (error) {
+      console.error("Error retrieving vouchers:", error);
+    }
+  };
 
   const fetchUserData = async () => {
     try {
@@ -44,6 +64,8 @@ function Profile(props) {
 
       if (response.ok) {
         const content = await response.json();
+        setWalletID(content.id + 1000); // Update walletID based on fetched user data
+
         setUserId(content.id);
         setUser(content);
       } else {
@@ -88,7 +110,7 @@ function Profile(props) {
           alignItems: "center",
           height: "200px",
           marginTop: "10%",
-          marginLeft: "45%",
+          marginLeft: "5%",
         }}
       >
         <img
@@ -99,7 +121,7 @@ function Profile(props) {
             width: "100px",
             height: "100px",
             borderRadius: "50%",
-            border: "3px solid white",
+            border: "5px solid white",
             position: "absolute",
           }}
         />
@@ -114,7 +136,7 @@ function Profile(props) {
         <Typography
           align="center"
           variant="h5"
-          style={{ color: "#23476", marginLeft: 130 }}
+          style={{ color: "#23476", marginLeft: "-7%" }}
         >
           {user.first_name} {user.last_name}
         </Typography>
@@ -125,7 +147,7 @@ function Profile(props) {
         updateDetails={handlleChangeDetailsUser}
         handlleShowPersonalDetails={handlleShowPersonalDetails}
       />
-      <Divider sx={{ borderBottom: "1.5px solid black", height: 20 }} />
+      {/* <Divider sx={{ borderBottom: "1.5px solid black", height: 20 }} /> */}
 
       {editProfileDetails ? (
         <UpdateUserDetails
@@ -144,6 +166,8 @@ function Profile(props) {
         {" "}
         {messegeToSuccess ? "הפרטים עודכנו בהצלחה " : ""}
       </div>
+      <BasicSpeedDial userID={user_id} getWallet={getWallet} />
+
       <TabsBottomNav />
     </div>
   );

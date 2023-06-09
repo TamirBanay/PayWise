@@ -116,10 +116,7 @@ export default function IconTabs() {
         variant="fullWidth"
         sx={{
           direction: "rtl",
-          "& .MuiTabs-indicator": {
-            // backgroundColor: "#526D82",
-            // top: 0,
-          },
+          "& .MuiTabs-indicator": {},
         }}
       >
         <Tab
@@ -141,15 +138,6 @@ export default function IconTabs() {
       <p></p>
       <p></p>
 
-      {openAllUsedVouchers ? (
-        <Button sx={{ ml: "82%" }} onClick={handlleOpenAllUsedVouchers}>
-          הצג הכל
-        </Button>
-      ) : (
-        <Button sx={{ ml: "80%" }} onClick={handlleOpenAllUsedVouchers}>
-          הצג פחות
-        </Button>
-      )}
       {value == "notUsedVouchers" ? (
         vouchers.filter(
           (voucher) =>
@@ -251,13 +239,6 @@ export default function IconTabs() {
             <BrowserNotSupportedIcon fontSize="large" sx={{ mt: 1 }} />
           </Typography>
         )
-      ) : (
-        ""
-      )}
-      {openAllUsedVouchers && walletLength > 3 ? (
-        <Typography level="h4" sx={{ textAlign: "right", mr: "15%" }}>
-          ...
-        </Typography>
       ) : (
         ""
       )}

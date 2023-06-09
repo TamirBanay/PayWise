@@ -70,6 +70,7 @@ export default function AlertDialogModal(props) {
             <Button variant="plain" color="neutral" onClick={handleCancel}>
               ביטול
             </Button>
+
             <Button
               variant="solid"
               color={
