@@ -70,7 +70,7 @@ export default function TabsBottomNav() {
               }
               color="error"
             >
-              <AccountBalanceWalletIcon />
+              <WalletOutlinedIcon />
             </Badge>
           }
           label="ארנק"
