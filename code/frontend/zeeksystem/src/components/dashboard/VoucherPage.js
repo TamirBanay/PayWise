@@ -34,6 +34,7 @@ export default function BasicCard(props) {
   const [openDeleteAlert, setOpenDeleteAlert] = useState(false);
   const [moveToOtheApp, setMoveToOtheApp] = useState(false);
   const [googleMapsOrWaze, setGoogleMapsOrWaze] = useState(true);
+  const [moveToWebPage, setMoveToWebPage] = useState(false);
 
   const handleNavigateGoogleMaps = () => {
     window.location.href = `https://www.google.com/maps/search/?api=1&query=${props.voucher.storeName}`;
@@ -58,7 +59,10 @@ export default function BasicCard(props) {
 
     // window.location.href = `https://www.google.com/maps/search/?api=1&query=${props.voucher.storeName}`;
   };
-
+  const handleOpenWebApp = () => {
+    setMoveToWebPage(!moveToWebPage);
+    console.log(moveToWebPage);
+  };
   const handleOpenExternalApplication = () => {
     setMoveToOtheApp(!moveToOtheApp);
   };
@@ -316,9 +320,24 @@ export default function BasicCard(props) {
                 height: "90%",
               },
             }}
-            onClick={handleMoveToStoreWeb}
+            onClick={handleOpenWebApp}
             src={props.img}
           />
+          {moveToWebPage ? (
+            <AlertDialogModal
+              function={handleOpenWebApp}
+              mainText={"עבור לעמוד הבית של " + props.voucher.storeName}
+              title={"התנתקות מ - payWise"}
+              variant="plain"
+              textButton={"עבור"}
+              isOpen={moveToWebPage}
+              openDeleteAlert={moveToWebPage}
+              setOpenDeleteAlert={setMoveToWebPage}
+            />
+          ) : (
+            ""
+          )}
+
           <Typography level="h2" fontSize="md" sx={{ mr: "20%" }}>
             {props.voucher.storeName}
           </Typography>

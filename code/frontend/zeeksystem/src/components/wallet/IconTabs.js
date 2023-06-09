@@ -95,7 +95,11 @@ export default function IconTabs() {
   const currentDate = new Date();
   currentDate.setDate(currentDate.getDate() - 1);
   // const expiryDate = new Date(voucher.fields.dateOfExpiry);
-
+  const walletLength = vouchers.filter(
+    (voucher) =>
+      currentDate < new Date(voucher.fields.dateOfExpiry) &&
+      voucher.fields.redeemed == false
+  ).length;
   return (
     <div>
       <Tabs
@@ -131,11 +135,11 @@ export default function IconTabs() {
       <p></p>
 
       {openAllUsedVouchers ? (
-        <Button sx={{ ml: "68%" }} onClick={handlleOpenAllUsedVouchers}>
+        <Button sx={{ ml: "82%" }} onClick={handlleOpenAllUsedVouchers}>
           הצג הכל
         </Button>
       ) : (
-        <Button sx={{ ml: "66%" }} onClick={handlleOpenAllUsedVouchers}>
+        <Button sx={{ ml: "80%" }} onClick={handlleOpenAllUsedVouchers}>
           הצג פחות
         </Button>
       )}
@@ -240,6 +244,13 @@ export default function IconTabs() {
             <BrowserNotSupportedIcon fontSize="large" sx={{ mt: 1 }} />
           </Typography>
         )
+      ) : (
+        ""
+      )}
+      {openAllUsedVouchers ? (
+        <Typography level="h4" sx={{ textAlign: "right", mr: "15%" }}>
+          ...
+        </Typography>
       ) : (
         ""
       )}
