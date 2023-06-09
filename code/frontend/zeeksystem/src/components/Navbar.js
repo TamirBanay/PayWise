@@ -327,7 +327,7 @@ export default function MiniDrawer(props) {
 
           <Box sx={{ flexGrow: 1 }} />
 
-          <Box sx={{ display: { xs: "flex", md: "none" } }}>
+          {/* <Box sx={{ display: { xs: "flex", md: "none" } }}>
             <IconButton
               size="large"
               aria-label="show more"
@@ -336,9 +336,9 @@ export default function MiniDrawer(props) {
               color="inherit"
               onClick={handleAddRedundMenuOpen}
             >
-              {/* <AddRoundedIcon size="large" color="#000" /> */}
+              <AddRoundedIcon size="large" color="#000" />
             </IconButton>
-          </Box>
+          </Box> */}
 
           <Link href="/#/" variant="body2">
             <img src={payWiseLogo} alt="PayWise Logo" style={{ height: 50 }} />
