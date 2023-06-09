@@ -23,6 +23,7 @@ import payWiseLogo from "../images/payWiseLogo.png";
 import Typography from "@mui/joy/Typography";
 import TabsBottomNav from "../components/TabsBottomNav";
 import BasicSpeedDial from "../components/dashboard/BasicSpeedDial";
+
 function Home(props) {
   const [anchorAddRedundMenu, setAnchorAddRedundMenu] =
     useRecoilState(_addMenu);

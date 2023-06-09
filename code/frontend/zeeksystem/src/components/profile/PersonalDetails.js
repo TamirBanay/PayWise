@@ -43,8 +43,9 @@ export default function InsetDividers() {
     <List
       sx={{
         width: "80%",
-        maxWidth: 360,
-        bgcolor: "background.paper",
+        // maxWidth: 360,
+        // bgcolor: "background.paper",
+        left: "7%",
       }}
     >
       <ListItem>
@@ -55,7 +56,11 @@ export default function InsetDividers() {
         />
         שם מלא: {user.first_name} {user.last_name}
       </ListItem>
-      <Divider variant="inset" component="li" />
+      <Divider
+        variant="inset"
+        component="li"
+        sx={{ width: "90%", ml: "10%" }}
+      />
       <ListItem>
         <ListItemText
           sx={{
@@ -64,8 +69,11 @@ export default function InsetDividers() {
         />
         {user.email} :Email
       </ListItem>
-      <Divider variant="inset" component="li" />
-
+      <Divider
+        variant="inset"
+        component="li"
+        sx={{ width: "90%", ml: "10%" }}
+      />
       <ListItem>
         <ListItemText
           sx={{
@@ -74,8 +82,11 @@ export default function InsetDividers() {
         />
         תאריך לידה: {user.dateOfBirth}
       </ListItem>
-
-      <Divider variant="inset" component="li" />
+      <Divider
+        variant="inset"
+        component="li"
+        sx={{ width: "90%", ml: "10%" }}
+      />{" "}
       <ListItem>
         <ListItemText
           sx={{
@@ -84,8 +95,11 @@ export default function InsetDividers() {
         />
         מין: {user.gender}
       </ListItem>
-      <Divider variant="inset" component="li" />
-
+      <Divider
+        variant="inset"
+        component="li"
+        sx={{ width: "90%", ml: "10%" }}
+      />
       <ListItem>
         <ListItemText
           sx={{
@@ -94,7 +108,11 @@ export default function InsetDividers() {
         />
         עיר מגורים: {user.city}
       </ListItem>
-      <Divider variant="inset" component="li" />
+      <Divider
+        variant="inset"
+        component="li"
+        sx={{ width: "90%", ml: "10%" }}
+      />{" "}
       <ListItem>
         <ListItemText
           sx={{
@@ -103,7 +121,11 @@ export default function InsetDividers() {
         />
         רחוב: {user.street}
       </ListItem>
-      <Divider variant="inset" component="li" />
+      <Divider
+        variant="inset"
+        component="li"
+        sx={{ width: "90%", ml: "10%" }}
+      />{" "}
       <ListItem>
         <ListItemText
           sx={{
@@ -112,7 +134,11 @@ export default function InsetDividers() {
         />
         מס' בית: {user.houseNumber}
       </ListItem>
-      <Divider variant="inset" component="li" />
+      <Divider
+        variant="inset"
+        component="li"
+        sx={{ width: "90%", ml: "10%" }}
+      />{" "}
       <ListItem>
         <ListItemText
           sx={{

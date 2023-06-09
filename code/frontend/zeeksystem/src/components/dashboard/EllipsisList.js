@@ -22,7 +22,10 @@ export default function EllipsisList(props) {
             position: "absolute",
             left: "100%",
             mt: "3%",
-            boxShadow: "0px 0px 3px  ",
+            boxShadow: "0.5px 0.5px 3px 0px  ",
+            "& .MuiAvatar-img	": {
+              // height: "90%",
+            },
           }}
           src={props.img}
         />
@@ -34,7 +37,7 @@ export default function EllipsisList(props) {
               {props.voucher.storeName}
             </Typography>
             <Typography
-              sx={{ mr: "80%", mt: -3, textAlign: "left" }}
+              sx={{ mr: "80%", mt: -3, textAlign: "left", width: "15%" }}
               level="h6"
             >
               {" "}

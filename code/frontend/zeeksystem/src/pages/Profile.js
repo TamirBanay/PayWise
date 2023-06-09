@@ -80,7 +80,6 @@ function Profile(props) {
   return (
     <div>
       <Navbar />
-      {/* <SimplePaper /> */}
 
       <div
         style={{
