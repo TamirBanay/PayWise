@@ -146,7 +146,9 @@ function Home(props) {
           {/* <p></p> */}
           <div>
             <Divider sx={{ borderBottom: "1.0px solid black" }} />
-            <p />
+            <div style={{ paddingTop: "2%" }}></div>
+
+            {/* <p /> */}
 
             {onClickVoucher
               ? vouchers.length > 0 &&

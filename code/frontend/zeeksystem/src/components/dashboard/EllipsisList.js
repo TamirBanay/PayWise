@@ -31,7 +31,7 @@ export default function EllipsisList(props) {
 
         <ListItem onClick={props.handleClick}>
           <ListItemContent>
-            <Typography level="h6" sx={{ width: "50%", mr: "3%" }}>
+            <Typography level="h6" sx={{ width: "50%", mr: "4%" }}>
               {" "}
               {props.voucher.storeName}
             </Typography>
@@ -44,7 +44,7 @@ export default function EllipsisList(props) {
             </Typography>
             <Typography
               level="body2"
-              sx={{ mr: "3%", mt: "-2%", width: "40%" }}
+              sx={{ mr: "4%", mt: "-2%", width: "40%" }}
             >
               {props.voucher.dateOfExpiry.slice(0, 10)}
             </Typography>
