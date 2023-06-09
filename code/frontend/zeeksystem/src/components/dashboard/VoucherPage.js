@@ -287,7 +287,7 @@ export default function BasicCard(props) {
               </Typography>
             ) : currentDate > new Date(props.voucher.dateOfExpiry) &&
               props.voucher.redeemed == false ? (
-              <Typography sx={{ mr: "auto" }}>
+              <Typography sx={{ mr: "auto", mt: "auto" }}>
                 <ClearIcon color="error" fontSize="large" />
               </Typography>
             ) : (
@@ -468,7 +468,7 @@ export default function BasicCard(props) {
               </Typography>
             ) : currentDate > new Date(props.voucher.dateOfExpiry) &&
               props.voucher.redeemed == false ? (
-              <Typography sx={{ mr: "auto" }}>
+              <Typography sx={{ mr: "auto", mt: "auto" }}>
                 <ClearIcon color="error" fontSize="large" />
               </Typography>
             ) : (
