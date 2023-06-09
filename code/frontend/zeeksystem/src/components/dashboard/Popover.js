@@ -16,9 +16,13 @@ import store from "../../images/store.jpg";
 import { useEffect, useState } from "react";
 import EllipsisList from "../dashboard/EllipsisList";
 import NotificationsIcon from "@mui/icons-material/Notifications";
+import { _voucherIsOpen } from "../../services/atom";
+import { useRecoilState } from "recoil";
+
 export default function BasicPopover(props) {
   const location = useLocation();
   const { pathname } = location;
+  const [voucherIsOpen, setVoucherIsOpen] = useRecoilState(_voucherIsOpen);
 
   const [anchorEl, setAnchorEl] = React.useState(false);
 
@@ -33,10 +37,12 @@ export default function BasicPopover(props) {
 
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
+    setVoucherIsOpen(true);
   };
   const handleClose = () => {
     setAnchorEl(null);
     props.getWallet();
+    setVoucherIsOpen(false);
   };
 
   const open = Boolean(anchorEl);
@@ -85,14 +91,15 @@ export default function BasicPopover(props) {
           <Popover
             id={id}
             open={open}
+            onClick={props.handleCardVoucher}
             anchorEl={anchorEl}
             onClose={handleClose}
             PaperProps={{
-              sx: { borderRadius: 5, ml: "5%" }, // Apply the borderRadius style to the Paper component
+              sx: { borderRadius: 5 }, // Apply the borderRadius style to the Paper component
             }}
             anchorOrigin={{
               vertical: "top",
-              horizontal: "right",
+              horizontal: "center",
             }}
             style={{
               transform: "translateX(-9px)",

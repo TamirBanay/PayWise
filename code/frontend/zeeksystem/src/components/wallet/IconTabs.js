@@ -9,7 +9,13 @@ import AccessTimeIcon from "@mui/icons-material/AccessTime";
 import SellIcon from "@mui/icons-material/Sell";
 import { useRecoilState } from "recoil";
 import { useEffect, useState } from "react";
-import { _Vouchers, _User, first_name, last_name } from "../../services/atom";
+import {
+  _Vouchers,
+  _User,
+  first_name,
+  last_name,
+  _voucherIsOpen,
+} from "../../services/atom";
 import Typography from "@mui/joy/Typography";
 import BrowserNotSupportedIcon from "@mui/icons-material/BrowserNotSupported";
 import Popover from "../dashboard/Popover";
@@ -25,6 +31,7 @@ export default function IconTabs() {
   const [openAllUsedVouchers, setOpenAllUsedVouchers] = useState(true);
   const [openAllNotUsedVouchers, setOpenAllNotUsedVouchers] = useState(false);
   const [user, setUser] = useRecoilState(_User);
+  const [voucherIsOpen, setVoucherIsOpen] = useRecoilState(_voucherIsOpen);
 
   const getWallet = async () => {
     try {
@@ -101,7 +108,7 @@ export default function IconTabs() {
       voucher.fields.redeemed == false
   ).length;
   return (
-    <div>
+    <div style={{ filter: voucherIsOpen ? "blur(4px)" : "" }}>
       <Tabs
         value={value}
         onChange={handleChange}
@@ -247,7 +254,7 @@ export default function IconTabs() {
       ) : (
         ""
       )}
-      {openAllUsedVouchers ? (
+      {openAllUsedVouchers && walletLength > 3 ? (
         <Typography level="h4" sx={{ textAlign: "right", mr: "15%" }}>
           ...
         </Typography>

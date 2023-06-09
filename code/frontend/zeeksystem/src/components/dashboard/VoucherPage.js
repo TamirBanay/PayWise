@@ -35,7 +35,7 @@ export default function BasicCard(props) {
   const [moveToOtheApp, setMoveToOtheApp] = useState(false);
   const [googleMapsOrWaze, setGoogleMapsOrWaze] = useState(true);
   const [moveToWebPage, setMoveToWebPage] = useState(false);
-
+  const amount = props.voucher.ammount.toString().split(".00");
   const handleNavigateGoogleMaps = () => {
     window.location.href = `https://www.google.com/maps/search/?api=1&query=${props.voucher.storeName}`;
   };
@@ -164,7 +164,7 @@ export default function BasicCard(props) {
           <Typography level="h2" fontSize="md" sx={{ mb: 0.5 }}>
             {props.voucher.storeName}
           </Typography>
-          <Typography level="body2">
+          <Typography level="body2" sx={{ pb: "2%" }}>
             בתוקף עד: {props.voucher.dateOfExpiry.slice(0, 10)}
           </Typography>
           <IconButton
@@ -271,7 +271,7 @@ export default function BasicCard(props) {
               >
                 מחיר: {"  "}
                 <Typography fontSize="md" fontWeight="lg">
-                  {props.voucher.ammount} ₪
+                  {amount} ₪
                 </Typography>
               </Typography>
 
@@ -345,7 +345,7 @@ export default function BasicCard(props) {
             sx={{ direction: "rtl", mr: "20%" }}
           >
             <Typography fontSize="md" fontWeight="lg">
-              {props.voucher.ammount} ₪
+              סכום: ₪{amount}
             </Typography>
           </Typography>
           <Divider

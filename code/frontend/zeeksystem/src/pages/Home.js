@@ -23,7 +23,7 @@ import payWiseLogo from "../images/payWiseLogo.png";
 import Typography from "@mui/joy/Typography";
 import TabsBottomNav from "../components/TabsBottomNav";
 import BasicSpeedDial from "../components/dashboard/BasicSpeedDial";
-
+import { _voucherIsOpen } from "../services/atom";
 function Home(props) {
   const [anchorAddRedundMenu, setAnchorAddRedundMenu] =
     useRecoilState(_addMenu);
@@ -38,7 +38,7 @@ function Home(props) {
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
   const [vouchers, setVouchers] = useRecoilState(_Vouchers);
   const [walletID, setWalletID] = useState();
-
+  const [voucherIsOpen, setVoucherIsOpen] = useRecoilState(_voucherIsOpen);
   const currentDate = new Date();
 
   currentDate.setDate(currentDate.getDate() - 1);
@@ -98,7 +98,6 @@ function Home(props) {
   useEffect(() => {
     fetchUserData();
   }, []);
-
   useEffect(() => {
     if (walletID) {
       // Only call getVoucher if walletID is truthy
@@ -111,14 +110,16 @@ function Home(props) {
   const [onClickVoucher, setOnClickVoucher] = useState(true);
   const handleOpenVoucher = () => {
     setOnClickVoucher(!onClickVoucher);
+    // setVoucherIsOpen(voucherIsOpen);
   };
-
+  const handleCardVoucher = () => {
+    setVoucherIsOpen(!voucherIsOpen);
+  };
   const walletLength = vouchers.filter(
     (voucher) =>
       currentDate < new Date(voucher.fields.dateOfExpiry) &&
       voucher.fields.redeemed == false
   ).length;
-
   return (
     <div>
       <Navbar
@@ -139,7 +140,7 @@ function Home(props) {
           </Typography>
         </div>
       ) : (
-        <div>
+        <div style={{ filter: voucherIsOpen ? "blur(4px)" : "" }}>
           {" "}
           <ChartPie />
           <p></p>

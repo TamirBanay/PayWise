@@ -135,6 +135,7 @@ export default function FormPropsTextFields(props) {
           alignItems: "center",
           width: "90%",
           marginTop: "3%",
+          marginRight: "-8%",
         }}
       >
         <TextField id="first-name" label="שם" defaultValue={user.first_name} />

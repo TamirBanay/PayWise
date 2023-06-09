@@ -37,3 +37,7 @@ export const _tabsValue = atom({
   key: "_tabsValue",
   default: "home",
 });
+export const _voucherIsOpen = atom({
+  key: "_voucherIsOpen",
+  default: false,
+});
