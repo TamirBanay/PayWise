@@ -79,7 +79,10 @@ const Dashboard = () => {
   return (
     <div>
       <div>
-        <Typography sx={{ position: "absolute", ml: "44%", mt: "25%" }}>
+        <Typography
+          variant="h5"
+          sx={{ position: "absolute", ml: "41%", mt: "25%" }}
+        >
           ₪{totalAmount}
         </Typography>
         <Chart

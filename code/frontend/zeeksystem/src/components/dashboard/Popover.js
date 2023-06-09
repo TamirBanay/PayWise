@@ -33,6 +33,7 @@ export default function BasicPopover(props) {
       headers: { "Content-Type": "application/json" },
     });
     props.getWallet();
+    setVoucherIsOpen(!voucherIsOpen);
   };
 
   const handleClick = (event) => {
