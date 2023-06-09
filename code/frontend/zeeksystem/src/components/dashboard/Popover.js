@@ -1,8 +1,5 @@
 import * as React from "react";
 import Popover from "@mui/material/Popover";
-import Typography from "@mui/material/Typography";
-import Button from "@mui/material/Button";
-import Voucher from "./Voucher";
 import VoucherPage from "./VoucherPage";
 import { useLocation } from "react-router-dom";
 import fashionDef from "../../images/fashion.jpg";
@@ -10,18 +7,22 @@ import retailDef from "../../images/retail.jpg";
 import electronicsDef from "../../images/electronics.jpg";
 import zara from "../../images/zara.png";
 import fox from "../../images/fox.jpg";
-import AmericanEagle from "../../images/AmericanEagle.jpg";
+import AmericanEagle from "../../images/AmericanEagle.png";
 import bug from "../../images/bug.jpg";
 import alam from "../../images/alam.jpg";
 import ikea from "../../images/ikea.jpg";
-import ace from "../../images/ACE.jpg";
+import ace from "../../images/ACE.png";
 import store from "../../images/store.jpg";
 import { useEffect, useState } from "react";
 import EllipsisList from "../dashboard/EllipsisList";
 import NotificationsIcon from "@mui/icons-material/Notifications";
+import { _voucherIsOpen } from "../../services/atom";
+import { useRecoilState } from "recoil";
+
 export default function BasicPopover(props) {
   const location = useLocation();
   const { pathname } = location;
+  const [voucherIsOpen, setVoucherIsOpen] = useRecoilState(_voucherIsOpen);
 
   const [anchorEl, setAnchorEl] = React.useState(false);
 
@@ -36,10 +37,12 @@ export default function BasicPopover(props) {
 
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
+    setVoucherIsOpen(true);
   };
   const handleClose = () => {
     setAnchorEl(null);
     props.getWallet();
+    setVoucherIsOpen(false);
   };
 
   const open = Boolean(anchorEl);
@@ -88,9 +91,12 @@ export default function BasicPopover(props) {
           <Popover
             id={id}
             open={open}
+            onClick={props.handleCardVoucher}
             anchorEl={anchorEl}
             onClose={handleClose}
-            // sx={}
+            PaperProps={{
+              sx: { borderRadius: 5 }, // Apply the borderRadius style to the Paper component
+            }}
             anchorOrigin={{
               vertical: "top",
               horizontal: "center",

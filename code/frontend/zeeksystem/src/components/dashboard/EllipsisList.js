@@ -10,42 +10,36 @@ import Divider from "@mui/joy/Divider";
 import Badge from "@mui/joy/Badge";
 
 export default function EllipsisList(props) {
-  const hendleDelete = async (event) => {
-    event.preventDefault();
-    await fetch(`api/deletVouchers/${props.vID}`, {
-      method: "DELETE",
-      headers: { "Content-Type": "application/json" },
-    });
-    props.getWallet();
-  };
   const amount = props.voucher.ammount.toString().split(".00");
-  const color = "#00E396";
   return (
-    <Box sx={{ width: "87%", direction: "rtl" }}>
+    <Box sx={{ width: "87%", direction: "rtl", position: "static" }}>
       <List
         aria-labelledby="ellipsis-list-demo"
         sx={{ "--ListItemDecorator-size": "56px" }}
       >
+        <Avatar
+          sx={{
+            position: "absolute",
+            left: "100%",
+            mt: "3%",
+            boxShadow: "0.5px 0.5px 3px 0px  ",
+            "& .MuiAvatar-img	": {
+              // height: "90%",
+            },
+          }}
+          src={props.img}
+        />
+
         <ListItem onClick={props.handleClick}>
           <ListItemContent>
             <Typography level="h6" sx={{ width: "50%" }}>
               {" "}
-              {/* <Badge
-                size="sm"
-                sx={{ ml: 2 }}
-                color={
-                  props.voucher.storeType === "קמעונאות"
-                    ? "success"
-                    : props.voucher.storeType === "אופנה"
-                    ? "warning"
-                    : props.voucher.storeType === "אלקטרוניקה"
-                    ? "primary"
-                    : ""
-                }
-              /> */}
               {props.voucher.storeName}
             </Typography>
-            <Typography sx={{ mr: 30, mt: -3 }} level="h6">
+            <Typography
+              sx={{ mr: "80%", mt: -3, textAlign: "left", width: "15%" }}
+              level="h6"
+            >
               {" "}
               ₪{amount}
             </Typography>
@@ -54,9 +48,7 @@ export default function EllipsisList(props) {
             </Typography>
           </ListItemContent>
         </ListItem>
-        <Divider
-          sx={{ borderBottom: "0.5px solid black", height: 1, left: 6 }}
-        />
+        <Divider sx={{ borderBottom: "0.5px solid black", right: "3%" }} />
       </List>
     </Box>
   );

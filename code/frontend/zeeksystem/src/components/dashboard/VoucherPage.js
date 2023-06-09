@@ -20,6 +20,8 @@ import Badge from "@mui/material/Badge";
 import ClearIcon from "@mui/icons-material/Clear";
 import AlertDialogModal from "./AlertDialogModal";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
+import Avatar from "@mui/joy/Avatar";
+
 export default function BasicCard(props) {
   const location = useLocation();
   const { pathname } = location;
@@ -32,12 +34,31 @@ export default function BasicCard(props) {
   const [openDeleteAlert, setOpenDeleteAlert] = useState(false);
   const [moveToOtheApp, setMoveToOtheApp] = useState(false);
   const [googleMapsOrWaze, setGoogleMapsOrWaze] = useState(true);
-
+  const [moveToWebPage, setMoveToWebPage] = useState(false);
+  const amount = props.voucher.ammount.toString().split(".00");
   const handleNavigateGoogleMaps = () => {
     window.location.href = `https://www.google.com/maps/search/?api=1&query=${props.voucher.storeName}`;
   };
   const handleNavigateWaze = () => {
     window.location.href = `https://waze.com/ul?q=${props.voucher.storeName}`;
+  };
+  const handleMoveToStoreWeb = () => {
+    if (props.voucher.storeName == "ZARA") {
+      window.location.href = `https://www.zara.com/il/`;
+    } else if (props.voucher.storeName == "ACE") {
+      window.location.href = `https://www.ace.co.il/`;
+    } else if (props.voucher.storeName == "א.ל.מ") {
+      window.location.href = `https://www.alm.co.il/`;
+    } else if (props.voucher.storeName == "American Eagle") {
+      window.location.href = `https://aeo.co.il/il_he/`;
+    } else if (props.voucher.storeName == "FOX") {
+      window.location.href = `https://www.foxgroup.co.il/`;
+    } else if (props.voucher.storeName == "BUG") {
+      window.location.href = `https://www.bug.co.il/`;
+    }
+  };
+  const handleOpenWebApp = () => {
+    setMoveToWebPage(!moveToWebPage);
   };
   const handleOpenExternalApplication = () => {
     setMoveToOtheApp(!moveToOtheApp);
@@ -138,12 +159,12 @@ export default function BasicCard(props) {
       {openAlerts ? (
         <Card
           variant="outlined"
-          sx={{ width: 320, borderRadius: 5, direction: "rtl" }}
+          sx={{ width: 320, borderRadius: 20, direction: "rtl" }}
         >
           <Typography level="h2" fontSize="md" sx={{ mb: 0.5 }}>
             {props.voucher.storeName}
           </Typography>
-          <Typography level="body2">
+          <Typography level="body2" sx={{ pb: "2%" }}>
             בתוקף עד: {props.voucher.dateOfExpiry.slice(0, 10)}
           </Typography>
           <IconButton
@@ -250,7 +271,7 @@ export default function BasicCard(props) {
               >
                 מחיר: {"  "}
                 <Typography fontSize="md" fontWeight="lg">
-                  {props.voucher.ammount} ₪
+                  {amount} ₪
                 </Typography>
               </Typography>
 
@@ -286,12 +307,60 @@ export default function BasicCard(props) {
       ) : (
         <Card
           variant="outlined"
-          sx={{ width: 320, borderRadius: 5, direction: "rtl" }}
+          sx={{ width: 320, borderRadius: 20, direction: "rtl" }}
         >
-          <Typography level="h2" fontSize="md" sx={{ mb: 0.5 }}>
+          <Avatar
+            sx={{
+              position: "fixed",
+              boxShadow: "0.5px 0.5px 3px 0px  ",
+              "& .MuiAvatar-img	": {
+                height: "90%",
+              },
+            }}
+            onClick={handleOpenWebApp}
+            src={props.img}
+          />
+          {moveToWebPage ? (
+            <AlertDialogModal
+              function={handleMoveToStoreWeb}
+              mainText={"עבור לעמוד הבית של " + props.voucher.storeName}
+              title={"התנתקות מ - payWise"}
+              variant="plain"
+              textButton={"עבור"}
+              isOpen={moveToWebPage}
+              openDeleteAlert={moveToWebPage}
+              setOpenDeleteAlert={setMoveToWebPage}
+              titleIcon={"web"}
+            />
+          ) : (
+            ""
+          )}
+
+          <Typography level="h2" fontSize="md" sx={{ mr: "20%" }}>
             {props.voucher.storeName}
           </Typography>
-          <Typography level="body2">
+          <Typography
+            fontSize="md"
+            fontWeight="lg"
+            sx={{ direction: "rtl", mr: "20%" }}
+          >
+            <Typography fontSize="md" fontWeight="lg">
+              סכום: ₪{amount}
+            </Typography>
+          </Typography>
+          <Divider
+            sx={{
+              borderBottom: "0.5px solid black",
+              right: "3%",
+              pb: "1%",
+              pt: "2%",
+            }}
+          />
+
+          <Typography
+            level="body2"
+            sx={{ width: "50%", position: "fixed", mt: "13%", pt: "2%" }}
+          >
             {" "}
             בתוקף עד: {props.voucher.dateOfExpiry.slice(0, 10)}
           </Typography>
@@ -350,7 +419,7 @@ export default function BasicCard(props) {
                 }
                 title={"נווט ל - " + props.voucher.storeName}
                 variant="plain"
-                textButton={googleMapsOrWaze ? "google Maps" : "Wase"}
+                textButton={googleMapsOrWaze ? "google Maps" : "Waze"}
                 isOpen={true}
                 setOpenDeleteAlert={setMoveToOtheApp}
                 openDeleteAlert={moveToOtheApp}
@@ -384,24 +453,9 @@ export default function BasicCard(props) {
             )}
           </IconButton>
 
-          <AspectRatio minHeight="120px" maxHeight="200px" sx={{ my: 2 }}>
-            <img src={props.img} srcSet={props.img} loading="lazy" alt="" />
-          </AspectRatio>
-
-          <Box sx={{ display: "flex" }}>
+          <Box sx={{ display: "flex", borderRadius: 10 }}>
             <div>
-              <Typography
-                fontSize="md"
-                fontWeight="lg"
-                sx={{ direction: "rtl" }}
-              >
-                מחיר: {"  "}
-                <Typography fontSize="md" fontWeight="lg">
-                  {props.voucher.ammount} ₪
-                </Typography>
-              </Typography>
-
-              <Typography fontSize="sm" fontWeight="sm">
+              <Typography fontSize="sm" fontWeight="sm" sx={{ mt: "20%" }}>
                 מס' שובר: {props.vID}
               </Typography>
             </div>
@@ -422,7 +476,12 @@ export default function BasicCard(props) {
                 size="sm"
                 color="primary"
                 aria-label="Explore Bahamas Islands"
-                sx={{ mr: "auto", fontWeight: 600 }}
+                sx={{
+                  mt: "4%",
+                  width: "20%",
+                  fontWeight: 600,
+                  mr: "auto",
+                }}
                 onClick={handlleRedeemdVoucher}
               >
                 מימוש

@@ -6,6 +6,7 @@ import Divider from "@mui/joy/Divider";
 import { useLocation } from "react-router-dom";
 import { useRecoilValue } from "recoil";
 import { _Vouchers } from "../../services/atom";
+import Typography from "@mui/material/Typography";
 
 const Dashboard = () => {
   let location = useLocation();
@@ -13,7 +14,6 @@ const Dashboard = () => {
   const [labels, setLabels] = useState([]);
   const currentDate = new Date();
   currentDate.setDate(currentDate.getDate() - 1);
-
 
   const totalAmount = vouchers.reduce((total, voucher) => {
     if (
@@ -79,6 +79,9 @@ const Dashboard = () => {
   return (
     <div>
       <div>
+        <Typography sx={{ position: "absolute", ml: "44%", mt: "25%" }}>
+          ₪{totalAmount}
+        </Typography>
         <Chart
           type="donut"
           series={seriesData}
@@ -94,7 +97,6 @@ const Dashboard = () => {
                 color: "#263238",
               },
               align: "center",
-              text: "₪ " + totalAmount + " :סכום הזיכויים ",
             },
 
             responsive: [
@@ -102,8 +104,8 @@ const Dashboard = () => {
                 breakpoint: 480,
                 options: {
                   chart: {
-                    width: 350,
-                    height: 300,
+                    width: "100%",
+                    height: "200%",
                   },
                   legend: {
                     position: "bottom",

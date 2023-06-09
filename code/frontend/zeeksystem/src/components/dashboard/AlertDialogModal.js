@@ -9,6 +9,7 @@ import Typography from "@mui/joy/Typography";
 import LogoutIcon from "@mui/icons-material/Logout";
 import DeleteIcon from "@mui/icons-material/Delete";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
+import LanguageIcon from "@mui/icons-material/Language";
 export default function AlertDialogModal(props) {
   const [open, setOpen] = React.useState(props.isOpen);
 
@@ -25,6 +26,8 @@ export default function AlertDialogModal(props) {
         <DeleteIcon onClick={() => setOpen(true)} sx={{ marginLeft: 1 }} />
       ) : props.icon == 2 ? (
         <LogoutIcon onClick={() => setOpen(true)} sx={{ marginLeft: 1 }} />
+      ) : props.icon == 3 ? (
+        <LanguageIcon onClick={() => setOpen(true)} sx={{ marginLeft: 1 }} />
       ) : (
         ""
       )}
@@ -45,6 +48,8 @@ export default function AlertDialogModal(props) {
                   color={props.googleMapsOrWaze ? "error" : "primary"}
                   onClick={handleGooleMapsOrWase}
                 />
+              ) : props.titleIcon == "web" ? (
+                <LanguageIcon />
               ) : (
                 <WarningRoundedIcon />
               )

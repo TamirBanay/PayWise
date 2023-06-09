@@ -9,7 +9,13 @@ import AccessTimeIcon from "@mui/icons-material/AccessTime";
 import SellIcon from "@mui/icons-material/Sell";
 import { useRecoilState } from "recoil";
 import { useEffect, useState } from "react";
-import { _Vouchers, _User, first_name, last_name } from "../../services/atom";
+import {
+  _Vouchers,
+  _User,
+  first_name,
+  last_name,
+  _voucherIsOpen,
+} from "../../services/atom";
 import Typography from "@mui/joy/Typography";
 import BrowserNotSupportedIcon from "@mui/icons-material/BrowserNotSupported";
 import Popover from "../dashboard/Popover";
@@ -25,6 +31,7 @@ export default function IconTabs() {
   const [openAllUsedVouchers, setOpenAllUsedVouchers] = useState(true);
   const [openAllNotUsedVouchers, setOpenAllNotUsedVouchers] = useState(false);
   const [user, setUser] = useRecoilState(_User);
+  const [voucherIsOpen, setVoucherIsOpen] = useRecoilState(_voucherIsOpen);
 
   const getWallet = async () => {
     try {
@@ -95,15 +102,25 @@ export default function IconTabs() {
   const currentDate = new Date();
   currentDate.setDate(currentDate.getDate() - 1);
   // const expiryDate = new Date(voucher.fields.dateOfExpiry);
-
+  const walletLength = vouchers.filter(
+    (voucher) =>
+      currentDate < new Date(voucher.fields.dateOfExpiry) &&
+      voucher.fields.redeemed == false
+  ).length;
   return (
-    <div>
+    <div style={{ filter: voucherIsOpen ? "blur(4px)" : "" }}>
       <Tabs
         value={value}
         onChange={handleChange}
         aria-label="icon tabs example"
-        sx={{ direction: "rtl", width: "85%" }}
         variant="fullWidth"
+        sx={{
+          direction: "rtl",
+          "& .MuiTabs-indicator": {
+            // backgroundColor: "#526D82",
+            // top: 0,
+          },
+        }}
       >
         <Tab
           icon={<SellIcon color="primary" />}
@@ -125,11 +142,11 @@ export default function IconTabs() {
       <p></p>
 
       {openAllUsedVouchers ? (
-        <Button sx={{ ml: "68%" }} onClick={handlleOpenAllUsedVouchers}>
+        <Button sx={{ ml: "82%" }} onClick={handlleOpenAllUsedVouchers}>
           הצג הכל
         </Button>
       ) : (
-        <Button sx={{ ml: "66%" }} onClick={handlleOpenAllUsedVouchers}>
+        <Button sx={{ ml: "80%" }} onClick={handlleOpenAllUsedVouchers}>
           הצג פחות
         </Button>
       )}
@@ -234,6 +251,13 @@ export default function IconTabs() {
             <BrowserNotSupportedIcon fontSize="large" sx={{ mt: 1 }} />
           </Typography>
         )
+      ) : (
+        ""
+      )}
+      {openAllUsedVouchers && walletLength > 3 ? (
+        <Typography level="h4" sx={{ textAlign: "right", mr: "15%" }}>
+          ...
+        </Typography>
       ) : (
         ""
       )}
