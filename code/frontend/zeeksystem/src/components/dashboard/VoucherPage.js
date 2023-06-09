@@ -56,12 +56,9 @@ export default function BasicCard(props) {
     } else if (props.voucher.storeName == "BUG") {
       window.location.href = `https://www.bug.co.il/`;
     }
-
-    // window.location.href = `https://www.google.com/maps/search/?api=1&query=${props.voucher.storeName}`;
   };
   const handleOpenWebApp = () => {
     setMoveToWebPage(!moveToWebPage);
-    console.log(moveToWebPage);
   };
   const handleOpenExternalApplication = () => {
     setMoveToOtheApp(!moveToOtheApp);
@@ -325,7 +322,7 @@ export default function BasicCard(props) {
           />
           {moveToWebPage ? (
             <AlertDialogModal
-              function={handleOpenWebApp}
+              function={handleMoveToStoreWeb}
               mainText={"עבור לעמוד הבית של " + props.voucher.storeName}
               title={"התנתקות מ - payWise"}
               variant="plain"
@@ -333,6 +330,7 @@ export default function BasicCard(props) {
               isOpen={moveToWebPage}
               openDeleteAlert={moveToWebPage}
               setOpenDeleteAlert={setMoveToWebPage}
+              titleIcon={"web"}
             />
           ) : (
             ""
