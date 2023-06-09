@@ -44,7 +44,7 @@ export default function EllipsisList(props) {
             </Typography>
             <Typography
               level="body2"
-              sx={{ mr: "3%", mt: "-2%", width: "25%" }}
+              sx={{ mr: "3%", mt: "-2%", width: "40%" }}
             >
               {props.voucher.dateOfExpiry.slice(0, 10)}
             </Typography>
