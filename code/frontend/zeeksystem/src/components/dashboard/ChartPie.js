@@ -83,12 +83,13 @@ const Dashboard = () => {
           variant="h6"
           fontWeight={"sm"}
           sx={{
+            textAlign: "center",
             position: "absolute",
             ml: "42%",
             mt: "15%",
-            "&.MuiTypography-h6	": {
-              fontWeight: "bold",
-            },
+            // "&.MuiTypography-h6	": {
+            //   fontWeight: "",
+            // },
           }}
         >
           ₪{totalAmount}

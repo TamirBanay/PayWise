@@ -341,7 +341,11 @@ export default function MiniDrawer(props) {
           </Box> */}
 
           <Link href="/#/" variant="body2">
-            <img src={payWiseLogo} alt="PayWise Logo" style={{ height: 50 }} />
+            <img
+              src={payWiseLogo}
+              alt="PayWise Logo"
+              style={{ height: 40, width: 40 }}
+            />
           </Link>
         </Toolbar>
       </AppBar>

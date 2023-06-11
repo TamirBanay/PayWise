@@ -39,8 +39,17 @@ export default function EllipsisList(props) {
               {props.voucher.storeName}
             </Typography>
             <Typography
-              sx={{ mr: "80%", mt: "-7%", textAlign: "left", width: "15%" }}
+              sx={{
+                mr: "80%",
+                mt: "-7%",
+                textAlign: "left",
+                width: "15%",
+                "&.MuiTypography-h6	": {
+                  // fontWeight: "bold",
+                },
+              }}
               level="h6"
+              fontWeight="sm"
             >
               {" "}
               ₪{amount}
@@ -59,6 +68,7 @@ export default function EllipsisList(props) {
             </Typography>
           </ListItemContent>
         </ListItem>
+        <div style={{ paddingBottom: "4%" }}></div>
         <Divider sx={{ borderBottom: "0.5px solid black", right: "8%" }} />
       </List>
     </Box>

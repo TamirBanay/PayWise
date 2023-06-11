@@ -153,21 +153,21 @@ function Home(props) {
       />
       {walletLength <= 0 ? (
         <div>
-          <img
-            src={payWiseLogo}
-            style={{ width: "80%", marginLeft: "10%", marginTop: "20%" }}
-          />
-          <Typography sx={{ ml: "15%", mt: "10% " }} level="h5" mb={2}>
-            <AddRoundedIcon color="primary" fontSize="large" />
-            כדי להוסיף זיכוי לחץ על{" "}
+          <Typography sx={{ ml: "25%", mt: "40% " }} level="h5" mb={2}>
+            {/* <AddRoundedIcon color="primary" fontSize="large" /> */}
+            לחץ כדי להוסיף זיכוי{" "}
           </Typography>
+          <BasicSpeedDial
+            userID={userID}
+            getWallet={getWallet}
+            walletLength={walletLength}
+          />
         </div>
       ) : (
         <div
         // style={{ filter: voucherIsOpen ? "blur(4px)" : "" }}
         >
           <ChartPie />
-
           <div style={{ height: "50%", overflowY: "scroll" }}>
             {/* <Divider sx={{ borderBottom: "1.0px solid black" }} /> */}
             {/* <div style={{ height: "30%", overflowY: "scroll" }}></div> */}
@@ -193,9 +193,13 @@ function Home(props) {
               : ""}
             {/* <BottomSheetVoucher /> */}
           </div>
+          <BasicSpeedDial
+            userID={userID}
+            getWallet={getWallet}
+            walletLength={walletLength}
+          />{" "}
         </div>
       )}
-      <BasicSpeedDial userID={userID} getWallet={getWallet} />
       <TabsBottomNav />
     </div>
   );
