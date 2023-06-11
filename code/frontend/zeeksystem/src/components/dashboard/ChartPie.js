@@ -80,8 +80,16 @@ const Dashboard = () => {
     <div>
       <div>
         <Typography
-          variant="h5"
-          sx={{ position: "absolute", ml: "41%", mt: "25%" }}
+          variant="h6"
+          fontWeight={"sm"}
+          sx={{
+            position: "absolute",
+            ml: "42%",
+            mt: "15%",
+            "&.MuiTypography-h6	": {
+              fontWeight: "bold",
+            },
+          }}
         >
           ₪{totalAmount}
         </Typography>
@@ -94,13 +102,16 @@ const Dashboard = () => {
             },
             labels: label,
             title: {
-              style: {
-                fontSize: "18px",
-                fontWeight: "0.5rem",
-                color: "#263238",
-              },
               align: "center",
             },
+            colors: [
+              "#CCD5E6",
+              "#A3B5D4",
+              "#668DC2",
+              "#4774AB",
+              "#3A6190",
+              "#33567F",
+            ], // Set the colors property to your custom colors
 
             responsive: [
               {
@@ -108,7 +119,7 @@ const Dashboard = () => {
                 options: {
                   chart: {
                     width: "100%",
-                    height: "200%",
+                    height: "150%",
                   },
                   legend: {
                     position: "bottom",
