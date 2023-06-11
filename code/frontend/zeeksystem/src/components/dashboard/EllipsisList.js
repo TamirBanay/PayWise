@@ -22,7 +22,7 @@ export default function EllipsisList(props) {
           sx={{
             position: "absolute",
             left: "97%",
-            mt: "3%",
+            // mt: "1%",
             boxShadow: "0px 0px 3px 0px  ",
             "& .MuiAvatar-circular	": {},
           }}
@@ -31,12 +31,15 @@ export default function EllipsisList(props) {
 
         <ListItem onClick={props.handleClick}>
           <ListItemContent>
-            <Typography level="h6" sx={{ width: "50%", mr: "4%" }}>
+            <Typography
+              level="h6"
+              sx={{ width: "50%", textAlign: "right", mr: "5%", mt: "-3%" }}
+            >
               {" "}
               {props.voucher.storeName}
             </Typography>
             <Typography
-              sx={{ mr: "80%", mt: -3, textAlign: "left", width: "15%" }}
+              sx={{ mr: "80%", mt: "-7%", textAlign: "left", width: "15%" }}
               level="h6"
             >
               {" "}
@@ -44,15 +47,19 @@ export default function EllipsisList(props) {
             </Typography>
             <Typography
               level="body2"
-              sx={{ mr: "4%", mt: "-2%", width: "40%" }}
+              sx={{
+                mt: "-2%",
+                mb: "0%",
+                mr: "5%",
+                width: "40%",
+                textAlign: "right",
+              }}
             >
               {props.voucher.dateOfExpiry.slice(0, 10)}
             </Typography>
           </ListItemContent>
         </ListItem>
-        <Divider
-          sx={{ borderBottom: "0.5px solid black", right: "3%", mt: "4%" }}
-        />
+        <Divider sx={{ borderBottom: "0.5px solid black", right: "8%" }} />
       </List>
     </Box>
   );
