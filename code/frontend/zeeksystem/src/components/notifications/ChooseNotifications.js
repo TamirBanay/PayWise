@@ -8,20 +8,30 @@ function CheckboxGroup(props) {
   const [vouchers, setVouchers] = useRecoilState(_Vouchers);
 
   return (
-    <Box>
-      <Divider
+    <Box sx={{ width: "90%" }}>
+      {/* <Divider
         sx={{
           borderBottom: "0.5px solid black",
           height: 1,
-          left: "5%",
-          width: "110%",
+          // left: "10%",
+          width: "100%",
         }}
-      />
+      /> */}
       <p></p>
-      <Typography id="sandwich-group" level="body2" fontWeight="lg" mb={1}>
+      <Typography
+        sx={{ direction: "rtl" }}
+        id="sandwich-group"
+        level="body2"
+        fontWeight="lg"
+        mb={1}
+      >
         בחר מתי להתחיל לקבל התראות יומיות
       </Typography>
-      <Box role="group" aria-labelledby="sandwich-group" sx={{ mr: "-9%" }}>
+      <Box
+        role="group"
+        aria-labelledby="sandwich-group"
+        sx={{ mr: "-9%", direction: "rtl" }}
+      >
         <List size="sm">
           <ListItem sx={{ mt: -2 }}>
             <Checkbox
@@ -58,14 +68,14 @@ function CheckboxGroup(props) {
         </List>
       </Box>
 
-      <Divider
+      {/* <Divider
         sx={{
           borderBottom: "0.5px solid black",
           height: 1,
-          left: "5%",
-          width: "110%",
+          // left: "5%",
+          // width: "100%",
         }}
-      />
+      /> */}
       <p></p>
     </Box>
   );

@@ -161,10 +161,14 @@ export default function BasicCard(props) {
         // variant="outlined"
         // sx={{ width: 320, borderRadius: 20, direction: "rtl" }}
         >
-          <Typography level="h2" fontSize="md" sx={{ mb: 0.5 }}>
+          <Typography
+            level="h2"
+            fontSize="md"
+            sx={{ mb: 0.5, direction: "rtl", pt: "2%" }}
+          >
             {props.voucher.storeName}
           </Typography>
-          <Typography level="body2" sx={{ pb: "2%" }}>
+          <Typography level="body2" sx={{ pb: "2%", direction: "rtl" }}>
             בתוקף עד: {props.voucher.dateOfExpiry.slice(0, 10)}
           </Typography>
           <IconButton
@@ -262,15 +266,19 @@ export default function BasicCard(props) {
             setSelectedValue={setSelectedValue}
             selectedValue={selectedValue}
           />
-          <Box sx={{ display: "flex" }}>
+          <Box sx={{ display: "flex", direction: "rtl" }}>
             <div>
               <Typography
                 fontSize="md"
                 fontWeight="lg"
                 sx={{ direction: "rtl" }}
               >
-                מחיר: {"  "}
-                <Typography fontSize="md" fontWeight="lg">
+                {"  "}
+                <Typography
+                  fontSize="md"
+                  fontWeight="lg"
+                  sx={{ direction: "rtl", ml: "20%" }}
+                >
                   {amount} ₪
                 </Typography>
               </Typography>
@@ -293,10 +301,10 @@ export default function BasicCard(props) {
             ) : (
               <Button
                 variant="solid"
-                size="sm"
+                size="lg"
                 color="primary"
                 aria-label="Explore Bahamas Islands"
-                sx={{ mr: "auto", fontWeight: 600 }}
+                sx={{ mr: "auto", fontWeight: 500, borderRadius: "25px" }}
                 onClick={handleChangeAlert}
               >
                 הגדר
@@ -307,8 +315,6 @@ export default function BasicCard(props) {
       ) : (
         /* /////////////////////////////////////////////////// */
         <div
-        // variant="outlined"
-        // sx={{ width: 320, borderRadius: 20, direction: "rtl" }}
         >
           <Avatar
             // variant="square"
