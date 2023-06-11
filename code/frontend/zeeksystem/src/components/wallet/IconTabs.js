@@ -21,6 +21,7 @@ import BrowserNotSupportedIcon from "@mui/icons-material/BrowserNotSupported";
 import Popover from "../dashboard/Popover";
 import { Button } from "@mui/material";
 import CreditScoreIcon from "@mui/icons-material/CreditScore";
+import BottomSheetVoucher from "../dashboard/BottomSheetVoucher";
 export default function IconTabs() {
   const [value, setValue] = React.useState("notUsedVouchers");
   const [openUsedVouchers, setOpenUsedVouchers] = React.useState(false);
@@ -108,7 +109,9 @@ export default function IconTabs() {
       voucher.fields.redeemed == false
   ).length;
   return (
-    <div style={{ filter: voucherIsOpen ? "blur(4px)" : "" }}>
+    <div
+    //  style={{ filter: voucherIsOpen ? "blur(4px)" : "" }}
+    >
       <Tabs
         value={value}
         onChange={handleChange}
@@ -120,17 +123,29 @@ export default function IconTabs() {
         }}
       >
         <Tab
-          icon={<SellIcon color="primary" />}
+          icon={<SellIcon color="action" />}
           aria-label="notUsedVouchers"
           value={"notUsedVouchers"}
         />
         <Tab
-          icon={<AccessTimeIcon color="error" />}
+          icon={<AccessTimeIcon color="action" />}
           aria-label="expiredVouchers"
           value={"expiredVouchers"}
         />
+
         <Tab
-          icon={<CreditScoreIcon color="success" />}
+          icon={
+            <CreditScoreIcon
+              color="action"
+              sx={{
+                mt: "20%",
+                "&.MuiIcon-colorAction	": {
+                  color: "#fff",
+                  bgcolor: "#fff",
+                },
+              }}
+            />
+          }
           aria-label="redeemedVouchers"
           value={"redeemedVouchers"}
         />
@@ -152,7 +167,7 @@ export default function IconTabs() {
             )
             .slice(0, !openAllUsedVouchers ? vouchers.length : 3) // limit to 3 vouchers if openAllUsedVouchers is not true
             .map((voucher) => (
-              <Popover
+              <BottomSheetVoucher
                 voucher={voucher.fields}
                 key={voucher.pk}
                 vID={voucher.pk}
@@ -182,7 +197,7 @@ export default function IconTabs() {
             .filter((voucher) => voucher.fields.redeemed === true)
             .slice(0, openAllUsedVouchers ? 3 : vouchers.length)
             .map((voucher) => (
-              <Popover
+              <BottomSheetVoucher
                 voucher={voucher.fields}
                 key={voucher.pk}
                 vID={voucher.pk}
@@ -219,7 +234,7 @@ export default function IconTabs() {
             )
             .slice(0, !openAllUsedVouchers ? vouchers.length : 3) // limit to 3 vouchers if openAllUsedVouchers is not true
             .map((voucher) => (
-              <Popover
+              <BottomSheetVoucher
                 voucher={voucher.fields}
                 key={voucher.pk}
                 vID={voucher.pk}

@@ -24,6 +24,7 @@ import Typography from "@mui/joy/Typography";
 import TabsBottomNav from "../components/TabsBottomNav";
 import BasicSpeedDial from "../components/dashboard/BasicSpeedDial";
 import { _voucherIsOpen } from "../services/atom";
+import BottomSheetVoucher from "../components/dashboard/BottomSheetVoucher";
 function Home(props) {
   const [anchorAddRedundMenu, setAnchorAddRedundMenu] =
     useRecoilState(_addMenu);
@@ -140,12 +141,14 @@ function Home(props) {
           </Typography>
         </div>
       ) : (
-        <div style={{ filter: voucherIsOpen ? "blur(4px)" : "" }}>
+        <div
+        // style={{ filter: voucherIsOpen ? "blur(4px)" : "" }}
+        >
           {" "}
           <ChartPie />
           {/* <p></p> */}
           <div>
-            <Divider sx={{ borderBottom: "1.0px solid black" }} />
+            {/* <Divider sx={{ borderBottom: "1.0px solid black" }} /> */}
             <div style={{ paddingTop: "2%" }}></div>
 
             {/* <p /> */}
@@ -158,7 +161,7 @@ function Home(props) {
                       currentDate < new Date(voucher.fields.dateOfExpiry)
                   )
                   .map((voucher) => (
-                    <Popover
+                    <BottomSheetVoucher
                       voucher={voucher.fields}
                       key={voucher.pk}
                       vID={voucher.pk}
@@ -167,7 +170,8 @@ function Home(props) {
                     />
                   ))
               : ""}
-          </div>{" "}
+            {/* <BottomSheetVoucher /> */}
+          </div>
         </div>
       )}
       <BasicSpeedDial userID={userID} getWallet={getWallet} />
