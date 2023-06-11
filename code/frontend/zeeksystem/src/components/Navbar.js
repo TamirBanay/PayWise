@@ -29,7 +29,7 @@ import AccountBalanceWalletIcon from "@mui/icons-material/AccountBalanceWallet";
 import { BrowserRouter as NavLink, Redirect } from "react-router-dom";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import AddRoundedIcon from "@mui/icons-material/AddRounded";
-import payWiseLogo from "../images/payWiseLogo.png";
+import payWiseLogoNoTitle from "../images/payWiseLogoNoTitle.png";
 import Link from "@mui/material/Link";
 import { createTheme } from "@mui/material/styles";
 import { useRecoilState } from "recoil";
@@ -343,7 +343,7 @@ export default function MiniDrawer(props) {
 
           <Link href="/#/" variant="body2">
             <img
-              src={payWiseLogo}
+              src={payWiseLogoNoTitle}
               alt="PayWise Logo"
               style={{ height: 40, width: 40 }}
             />
