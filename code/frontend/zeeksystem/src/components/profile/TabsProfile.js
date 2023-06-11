@@ -71,26 +71,26 @@ export default function ChipWithDecorators(props) {
   };
   return (
     <div>
-      <Box sx={{ gap: 0, marginTop: 3, direction: "rtl", mr: "10%" }}>
+      <Box sx={{ gap: 0, marginTop: 1, direction: "rtl", mr: "5%" }}>
         <Chip
-          variant="plain"
-          startDecorator={<InfoIcon color="#DDE6ED" />}
+          variant=""
+          startDecorator={<InfoIcon />}
           onClick={props.handlleShowPersonalDetails}
         >
           פרטים אישיים
         </Chip>
       </Box>
-      <Box sx={{ gap: 0, marginTop: 3, direction: "rtl", mr: "10%" }}>
+      <Box sx={{ gap: 0, marginTop: 1, direction: "rtl", mr: "5%" }}>
         <Chip
           onClick={props.updateDetails}
-          variant="plain"
+          variant=""
           startDecorator={<EditIcon />}
         >
           עריכת פרטים אישיים
         </Chip>
       </Box>
-      <Box sx={{ gap: 0, marginTop: 3, direction: "rtl", mr: "10%" }}>
-        <Chip variant="plain">
+      <Box sx={{ gap: 0, marginTop: 1, direction: "rtl", mr: "5%" }}>
+        <Chip variant="">
           <AlertDialogModal
             function={handleDeleteUser}
             icon={1}
@@ -108,13 +108,12 @@ export default function ChipWithDecorators(props) {
       <Box
         sx={{
           gap: 0,
-          marginTop: 3,
+          marginTop: 1,
           direction: "rtl",
-          mr: "10%",
-          color: "#000",
+          mr: "5%",
         }}
       >
-        <Chip variant="plain">
+        <Chip variant="">
           <AlertDialogModal
             icon={2}
             function={handlelogout}

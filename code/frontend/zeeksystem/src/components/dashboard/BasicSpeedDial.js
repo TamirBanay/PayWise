@@ -21,7 +21,6 @@ export default function BasicSpeedDial(props) {
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
-
   const handleClose = () => {
     setAnchorEl(null);
   };
@@ -50,8 +49,8 @@ export default function BasicSpeedDial(props) {
         transform: "translateZ(0px)",
         flexGrow: 1,
         position: "fixed",
-        bottom: "-2%",
-        left: "7%",
+        bottom: props.walletLength <= 0 ? "25%" : "-5%",
+        left: props.walletLength <= 0 ? "40%" : "5%",
       }}
     >
       <Popover
@@ -71,7 +70,11 @@ export default function BasicSpeedDial(props) {
           getWallet={props.getWallet}
         />
       </Popover>
-      <SpeedDial ariaLabel="SpeedDial basic example" icon={<SpeedDialIcon />}>
+      <SpeedDial
+        ariaLabel="SpeedDial basic example"
+        icon={<SpeedDialIcon />}
+        direction={props.walletLength <= 0 ? "down" : "up"}
+      >
         {actions.map((action) => (
           <SpeedDialAction
             key={action.name}

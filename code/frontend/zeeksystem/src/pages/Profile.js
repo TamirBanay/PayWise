@@ -108,7 +108,7 @@ function Profile(props) {
           display: "flex",
           justifyContent: "center",
           alignItems: "center",
-          height: "200px",
+          height: "150px",
           marginTop: "10%",
           marginLeft: "5%",
         }}
@@ -130,7 +130,7 @@ function Profile(props) {
       <div
         style={{
           marginLeft: "10%",
-          marginTop: "-25px",
+          marginTop: "-20px",
         }}
       >
         <Typography
@@ -141,8 +141,7 @@ function Profile(props) {
           {user.first_name} {user.last_name}
         </Typography>
       </div>
-      <Divider sx={{ borderBottom: "1.5px solid black", height: 20 }} />
-
+      <div style={{ paddingTop: "8%" }}></div>
       <TabsProfile
         updateDetails={handlleChangeDetailsUser}
         handlleShowPersonalDetails={handlleShowPersonalDetails}
@@ -166,7 +165,6 @@ function Profile(props) {
         {" "}
         {messegeToSuccess ? "הפרטים עודכנו בהצלחה " : ""}
       </div>
-      <BasicSpeedDial userID={user_id} getWallet={getWallet} />
 
       <TabsBottomNav />
     </div>

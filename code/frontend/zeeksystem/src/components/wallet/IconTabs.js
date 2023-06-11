@@ -165,7 +165,6 @@ export default function IconTabs() {
                 voucher.fields.redeemed === false &&
                 currentDate < new Date(voucher.fields.dateOfExpiry)
             )
-            .slice(0, !openAllUsedVouchers ? vouchers.length : 3) // limit to 3 vouchers if openAllUsedVouchers is not true
             .map((voucher) => (
               <BottomSheetVoucher
                 voucher={voucher.fields}

@@ -348,11 +348,7 @@ export default function BasicCard(props) {
           >
             {props.voucher.storeName}
           </Typography>
-          {/* <Typography
-            fontSize="md"
-            fontWeight="lg"
-            sx={{ direction: "rtl", mr: "25%", textAlign: "right" }}
-          > */}
+
           <Typography
             level="body2"
             fontSize="lg"
@@ -368,7 +364,6 @@ export default function BasicCard(props) {
           >
             ₪{amount}
           </Typography>
-
 
           <Typography
             fontSize="md"

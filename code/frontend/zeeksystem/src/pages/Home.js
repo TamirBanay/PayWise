@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { Redirect } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import useMediaQuery from "@mui/material/useMediaQuery";
@@ -25,6 +25,7 @@ import TabsBottomNav from "../components/TabsBottomNav";
 import BasicSpeedDial from "../components/dashboard/BasicSpeedDial";
 import { _voucherIsOpen } from "../services/atom";
 import BottomSheetVoucher from "../components/dashboard/BottomSheetVoucher";
+
 function Home(props) {
   const [anchorAddRedundMenu, setAnchorAddRedundMenu] =
     useRecoilState(_addMenu);
@@ -42,6 +43,27 @@ function Home(props) {
   const [voucherIsOpen, setVoucherIsOpen] = useRecoilState(_voucherIsOpen);
   const currentDate = new Date();
 
+  const [scrollDirection, setScrollDirection] = useState("down");
+  const prevScrollY = useRef(0);
+
+  const handleScroll = () => {
+    const currentScrollY = window.scrollY;
+
+    if (currentScrollY < prevScrollY.current) {
+      setScrollDirection("up");
+    } else {
+      setScrollDirection("down");
+    }
+
+    prevScrollY.current = currentScrollY;
+  };
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
   currentDate.setDate(currentDate.getDate() - 1);
   const getWallet = async () => {
     try {
@@ -131,25 +153,24 @@ function Home(props) {
       />
       {walletLength <= 0 ? (
         <div>
-          <img
-            src={payWiseLogo}
-            style={{ width: "80%", marginLeft: "10%", marginTop: "20%" }}
-          />
-          <Typography sx={{ ml: "15%", mt: "10% " }} level="h5" mb={2}>
-            <AddRoundedIcon color="primary" fontSize="large" />
-            כדי להוסיף זיכוי לחץ על{" "}
+          <Typography sx={{ ml: "25%", mt: "40% " }} level="h5" mb={2}>
+            {/* <AddRoundedIcon color="primary" fontSize="large" /> */}
+            לחץ כדי להוסיף זיכוי{" "}
           </Typography>
+          <BasicSpeedDial
+            userID={userID}
+            getWallet={getWallet}
+            walletLength={walletLength}
+          />
         </div>
       ) : (
         <div
         // style={{ filter: voucherIsOpen ? "blur(4px)" : "" }}
         >
-          {" "}
           <ChartPie />
-          {/* <p></p> */}
-          <div>
+          <div style={{ height: "50%", overflowY: "scroll" }}>
             {/* <Divider sx={{ borderBottom: "1.0px solid black" }} /> */}
-            <div style={{ paddingTop: "2%" }}></div>
+            {/* <div style={{ height: "30%", overflowY: "scroll" }}></div> */}
 
             {/* <p /> */}
 
@@ -172,12 +193,14 @@ function Home(props) {
               : ""}
             {/* <BottomSheetVoucher /> */}
           </div>
+          <BasicSpeedDial
+            userID={userID}
+            getWallet={getWallet}
+            walletLength={walletLength}
+          />{" "}
         </div>
       )}
-      <BasicSpeedDial userID={userID} getWallet={getWallet} />
-      <div style={{ paddingBottom: "0.5%" }}>
-        <TabsBottomNav />
-      </div>
+      <TabsBottomNav />
     </div>
   );
 }
