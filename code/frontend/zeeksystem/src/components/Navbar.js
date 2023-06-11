@@ -298,7 +298,7 @@ export default function MiniDrawer(props) {
         direction: "rtl",
         height:
           location.pathname == "/profile"
-            ? 50
+            ? 40
             : location.pathname == "/"
             ? 100
             : location.pathname == "/wallet"
@@ -312,6 +312,7 @@ export default function MiniDrawer(props) {
         open={open}
         color="primary"
         sx={{
+          boxShadow: "0px 0px 0px 0px",
           height: location.pathname == "/profile" ? "370%" : "7%",
           position: location.pathname == "/profile" ? "static" : "",
         }}
