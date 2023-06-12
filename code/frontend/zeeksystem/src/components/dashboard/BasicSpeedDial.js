@@ -62,7 +62,7 @@ export default function BasicSpeedDial(props) {
           vertical: "bottom",
           horizontal: "left",
         }}
-        sx={{ ml: "10%", width: "100%" }}
+        sx={{ ml: props.walletLength <= 0 ? "-13%" : "10%", width: "100%" }}
       >
         <InsertSirialNumber
           userID={props.userID}
