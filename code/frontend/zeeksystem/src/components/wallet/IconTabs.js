@@ -33,7 +33,7 @@ export default function IconTabs() {
   const [openAllNotUsedVouchers, setOpenAllNotUsedVouchers] = useState(false);
   const [user, setUser] = useRecoilState(_User);
   const [voucherIsOpen, setVoucherIsOpen] = useRecoilState(_voucherIsOpen);
-
+  const color = "red";
   const getWallet = async () => {
     try {
       const response = await fetch(`api/getVouchers/${walletID}`);
@@ -115,20 +115,25 @@ export default function IconTabs() {
       <Tabs
         value={value}
         onChange={handleChange}
-        aria-label="icon tabs example"
+        // aria-label="icon tabs example"
         variant="fullWidth"
+        textColor="#000"
+        TabIndicatorProps={{
+          title: "indicator",
+          sx: { backgroundColor: "white" },
+        }}
         sx={{
+          mt: "5%",
           direction: "rtl",
-          "& .MuiTabs-indicator": {},
         }}
       >
         <Tab
-          icon={<SellIcon color="action" />}
+          icon={<SellIcon sx={{ color: "#fff" }} />}
           aria-label="notUsedVouchers"
           value={"notUsedVouchers"}
         />
         <Tab
-          icon={<AccessTimeIcon color="action" />}
+          icon={<AccessTimeIcon sx={{ color: "#fff" }} />}
           aria-label="expiredVouchers"
           value={"expiredVouchers"}
         />
@@ -136,13 +141,10 @@ export default function IconTabs() {
         <Tab
           icon={
             <CreditScoreIcon
-              color="action"
               sx={{
-                mt: "20%",
-                "&.MuiIcon-colorAction	": {
-                  color: "#fff",
-                  bgcolor: "#fff",
-                },
+                // mt: "20%",
+                color: "#fff",
+                "&.MuiIcon-colorAction	": {},
               }}
             />
           }
