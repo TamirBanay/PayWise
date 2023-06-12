@@ -314,8 +314,7 @@ export default function BasicCard(props) {
         </div>
       ) : (
         /* /////////////////////////////////////////////////// */
-        <div
-        >
+        <div>
           <Avatar
             // variant="square"
             size="lg"
@@ -349,7 +348,13 @@ export default function BasicCard(props) {
 
           <Typography
             level="h3"
-            sx={{ mt: "8%", ml: "7%", textAlign: "right", width: "70%" }}
+            sx={{
+              mt: "8%",
+              ml: "1%",
+              textAlign: "right",
+              width: "70%",
+              position: "absolute",
+            }}
             fontWeight="sm"
           >
             {props.voucher.storeName}
@@ -362,7 +367,8 @@ export default function BasicCard(props) {
             sx={{
               width: "20%",
               position: "fixed",
-              mt: "-10%",
+              mt: "8%",
+              // mt: "-10%",
               "&.MuiTypography-body2	": {
                 fontSize: "30px",
               },
@@ -378,7 +384,7 @@ export default function BasicCard(props) {
             sx={{
               width: "50%",
               position: "fixed",
-              mt: "2%",
+              mt: "20%",
               ml: "21%",
               textAlign: "right",
             }}
@@ -391,7 +397,7 @@ export default function BasicCard(props) {
             fontSize="md"
             fontWeight="sm"
             sx={{
-              mt: "9%",
+              mt: "28%",
               ml: "21%",
               textAlign: "right",
               width: "50%",
@@ -514,7 +520,7 @@ export default function BasicCard(props) {
                 sx={{
                   borderRadius: 25,
                   height: "50px",
-                  mt: "62%",
+                  mt: "80%",
                   width: "90%",
                   fontWeight: 600,
                   ml: "5%",
