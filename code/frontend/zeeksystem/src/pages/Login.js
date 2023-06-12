@@ -126,7 +126,12 @@ export default function SignInSide() {
                 type="password"
                 id="password"
                 autoComplete="current-password"
-                sx={{ direction: "ltr" }}
+                sx={{
+                  // direction: "ltr",
+                  "&.MuiTextField-root": {
+                    dir: "rtl",
+                  },
+                }}
               />
               <FormControlLabel
                 control={<Checkbox value="remember" color="primary" />}

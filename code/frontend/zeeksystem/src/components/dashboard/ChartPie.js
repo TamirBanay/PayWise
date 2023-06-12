@@ -95,12 +95,14 @@ const Dashboard = () => {
           ₪{totalAmount}
         </Typography>
         <Chart
+          dir="rtl"
           type="donut"
           series={seriesData}
           options={{
             dataLabels: {
               enabled: false,
             },
+
             labels: label,
             title: {
               align: "center",
