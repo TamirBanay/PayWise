@@ -117,12 +117,12 @@ export default function IconTabs() {
         onChange={handleChange}
         // aria-label="icon tabs example"
         variant="fullWidth"
-        textColor="#000"
         TabIndicatorProps={{
           title: "indicator",
           sx: { backgroundColor: "white" },
         }}
         sx={{
+          // position: "fixed",
           mt: "5%",
           direction: "rtl",
         }}
@@ -144,7 +144,7 @@ export default function IconTabs() {
               sx={{
                 // mt: "20%",
                 color: "#fff",
-                "&.MuiIcon-colorAction	": {},
+                // "&.MuiIcon-colorAction	": {},
               }}
             />
           }

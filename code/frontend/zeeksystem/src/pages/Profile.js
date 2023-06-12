@@ -109,7 +109,7 @@ function Profile(props) {
           justifyContent: "center",
           alignItems: "center",
           height: "150px",
-          marginTop: "10%",
+          marginTop: "7%",
           marginLeft: "5%",
         }}
       >
