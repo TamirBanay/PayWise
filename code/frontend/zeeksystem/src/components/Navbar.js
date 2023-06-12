@@ -308,38 +308,22 @@ export default function MiniDrawer(props) {
     >
       <CssBaseline />
       <AppBar
-        position="fixed"
+        position={location.pathname == "/wallet" ? "" : "fixed"}
         open={open}
         color="primary"
         sx={{
           boxShadow: "0px 0px 0px 0px",
-          height: location.pathname == "/profile" ? "370%" : "7%",
+          height:
+            location.pathname == "/profile"
+              ? "370%"
+              : location.pathname == "/wallet"
+              ? "200%"
+              : "7%",
           position: location.pathname == "/profile" ? "static" : "",
         }}
       >
         <Toolbar>
-          <Typography>
-            {location.pathname == "/"
-              ? "בית"
-              : location.pathname == "/profile"
-              ? "פרופיל"
-              : "ארנק"}
-          </Typography>
-
           <Box sx={{ flexGrow: 1 }} />
-
-          {/* <Box sx={{ display: { xs: "flex", md: "none" } }}>
-            <IconButton
-              size="large"
-              aria-label="show more"
-              aria-controls={mobileMenuId}
-              aria-haspopup="true"
-              color="inherit"
-              onClick={handleAddRedundMenuOpen}
-            >
-              <AddRoundedIcon size="large" color="#000" />
-            </IconButton>
-          </Box> */}
 
           <Link href="/#/" variant="body2">
             <img

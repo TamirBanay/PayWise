@@ -33,7 +33,6 @@ export default function TabsBottomNav() {
         onChange={handleChange}
         variant="fullWidth"
         sx={{
-          // pt: "2%",
           pb: "2%",
           direction: "rtl",
           position: "fixed",
@@ -42,7 +41,6 @@ export default function TabsBottomNav() {
           width: "100%",
           zIndex: 999,
           bgcolor: "#F8F8F8	",
-
           "& .MuiTabs-indicator": {
             top: 0,
           },
