@@ -48,13 +48,13 @@ export default function TabsBottomNav() {
       >
         <Tab
           value={"home"}
-          icon={<HomeOutlinedIcon />}
+          icon={<HomeOutlinedIcon sx={{ mt: "5%" }} />}
           label="בית"
           href="/#/"
         />
         <Tab
           value={"profile"}
-          icon={<Person2OutlinedIcon />}
+          icon={<Person2OutlinedIcon sx={{ mt: "5%" }} />}
           label="פרופיל"
           href="/#/profile"
         />
@@ -62,6 +62,7 @@ export default function TabsBottomNav() {
           value={"wallet"}
           icon={
             <Badge
+              sx={{ mt: "5%" }}
               badgeContent={
                 vouchers.filter(
                   (voucher) =>

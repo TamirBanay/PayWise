@@ -49,8 +49,8 @@ export default function BasicSpeedDial(props) {
         transform: "translateZ(0px)",
         flexGrow: 1,
         position: "fixed",
-        bottom: props.walletLength <= 0 ? "25%" : "-5%",
-        left: props.walletLength <= 0 ? "40%" : "5%",
+        bottom: props.walletLength <= 0 ? "25%" : "-4%",
+        left: props.walletLength <= 0 ? "40%" : "4%",
       }}
     >
       <Popover
@@ -62,7 +62,7 @@ export default function BasicSpeedDial(props) {
           vertical: "bottom",
           horizontal: "left",
         }}
-        sx={{ ml: "-10", width: "100%" }}
+        sx={{ ml: "10%", width: "100%" }}
       >
         <InsertSirialNumber
           userID={props.userID}
