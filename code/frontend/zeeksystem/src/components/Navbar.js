@@ -308,18 +308,19 @@ export default function MiniDrawer(props) {
     >
       <CssBaseline />
       <AppBar
-        position={location.pathname == "/wallet" ? "" : "fixed"}
+        // position={location.pathname == "/wallet" ? "" : "fixed"}
         open={open}
         color="primary"
         sx={{
           boxShadow: "0px 0px 0px 0px",
           height:
             location.pathname == "/profile"
-              ? "370%"
+              ? "360%"
               : location.pathname == "/wallet"
-              ? "200%"
-              : "7%",
-          position: location.pathname == "/profile" ? "static" : "",
+              ? "199%"
+              : "55%",
+          position:
+            location.pathname == "/profile" || "/wallet" ? "static" : "",
         }}
       >
         <Toolbar>
