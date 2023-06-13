@@ -71,25 +71,25 @@ export default function ChipWithDecorators(props) {
   };
   return (
     <div>
-      <Box sx={{ gap: 0, marginTop: 1, direction: "rtl", mr: "5%" }}>
+      <Box sx={{ gap: 0, marginTop: 1, direction: "rtl", mr: "3%" }}>
         <Chip
           variant=""
           startDecorator={<InfoIcon />}
           onClick={props.handlleShowPersonalDetails}
         >
-          פרטים אישיים
+          &nbsp;פרטים אישיים
         </Chip>
       </Box>
-      <Box sx={{ gap: 0, marginTop: 1, direction: "rtl", mr: "5%" }}>
+      <Box sx={{ gap: 0, marginTop: 2, direction: "rtl", mr: "3%" }}>
         <Chip
           onClick={props.updateDetails}
           variant=""
           startDecorator={<EditIcon />}
         >
-          עריכת פרטים אישיים
+          &nbsp;עריכת פרטים אישיים
         </Chip>
       </Box>
-      <Box sx={{ gap: 0, marginTop: 1, direction: "rtl", mr: "5%" }}>
+      <Box sx={{ gap: 0, marginTop: 2, direction: "rtl", mr: "3%" }}>
         <Chip variant="">
           <AlertDialogModal
             function={handleDeleteUser}
@@ -102,15 +102,15 @@ export default function ChipWithDecorators(props) {
             setOpenDeleteAlert={setOpenLogOut}
             openDeleteAlert={openLogOut}
           />
-          סגירת חשבון
+          &nbsp;סגירת חשבון
         </Chip>
       </Box>
       <Box
         sx={{
           gap: 0,
-          marginTop: 1,
+          marginTop: 2,
           direction: "rtl",
-          mr: "5%",
+          mr: "3%",
         }}
       >
         <Chip variant="">
@@ -125,7 +125,7 @@ export default function ChipWithDecorators(props) {
             setOpenDeleteAlert={setOpenLogOut}
             openDeleteAlert={openLogOut}
           />
-          התנתקות
+          &nbsp;התנתקות
         </Chip>
       </Box>
     </div>

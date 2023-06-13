@@ -123,7 +123,7 @@ export default function IconTabs() {
         }}
         sx={{
           // position: "fixed",
-          mt: "5%",
+          mt: "1%",
           direction: "rtl",
         }}
       >
