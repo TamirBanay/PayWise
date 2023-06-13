@@ -317,7 +317,7 @@ export default function MiniDrawer(props) {
             location.pathname == "/profile"
               ? "360%"
               : location.pathname == "/wallet"
-              ? "199%"
+              ? "180%"
               : "55%",
           position:
             location.pathname == "/profile" || "/wallet" ? "static" : "",

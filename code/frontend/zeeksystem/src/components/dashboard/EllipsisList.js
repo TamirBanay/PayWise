@@ -40,8 +40,8 @@ export default function EllipsisList(props) {
             </Typography>
             <Typography
               sx={{
-                mr: "80%",
-                mt: "-7%",
+                mr: "84.5%",
+                mt: "-8%",
                 textAlign: "left",
                 width: "15%",
                 "&.MuiTypography-h6	": {
@@ -57,7 +57,7 @@ export default function EllipsisList(props) {
             <Typography
               level="body2"
               sx={{
-                mt: "-2%",
+                mt: "0%",
                 mb: "0%",
                 mr: "5%",
                 width: "40%",
@@ -68,7 +68,7 @@ export default function EllipsisList(props) {
             </Typography>
           </ListItemContent>
         </ListItem>
-        <div style={{ paddingBottom: "4%" }}></div>
+        <div style={{ paddingBottom: "2%" }}></div>
         <Divider sx={{ borderBottom: "0.5px solid black", right: "8%" }} />
       </List>
     </Box>

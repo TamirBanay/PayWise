@@ -98,7 +98,7 @@ export default function SignInSide() {
               alignItems: "center",
             }}
           >
-            <img src={payWiseLogo} style={{ height: 100 }} />
+            <img src={payWiseLogo} style={{ height: "80%", width: "80%" }} />
 
             <Box
               component="form"
