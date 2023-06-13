@@ -41,6 +41,7 @@ export default function TabsBottomNav() {
           width: "100%",
           zIndex: 999,
           bgcolor: "#F8F8F8	",
+
           "& .MuiTabs-indicator": {
             top: 0,
           },

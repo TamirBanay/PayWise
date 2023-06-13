@@ -10,7 +10,7 @@ import BookmarkAdd from "@mui/icons-material/BookmarkAddOutlined";
 import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import DoneIcon from "@mui/icons-material/Done";
-import Divider from "@mui/joy/Divider";
+import Divider from "@mui/material/Divider";
 import NotificationsIcon from "@mui/icons-material/Notifications";
 import ChooseNotifications from "../notifications/ChooseNotifications";
 import NotificationsOffIcon from "@mui/icons-material/NotificationsOff";
@@ -404,8 +404,17 @@ export default function BasicCard(props) {
           >
             מס' שובר: {props.vID}
           </Typography>
-          <Divider sx={{ borderBottom: "0.5px solid black", right: "8%" }} />
-
+          <Divider
+            sx={{
+              width: "100%",
+              // height: "2px",
+              border: "solid 0.5px",
+              position: "fixed",
+              mt: "33%",
+              ml: "-4%",
+            }}
+            variant="fullWidth"
+          />
           <IconButton
             aria-label="bookmark Bahamas Islands"
             variant="plain"
@@ -415,7 +424,7 @@ export default function BasicCard(props) {
               position: "absolute",
               top: "64%",
               width: "30%",
-              left: "66%",
+              left: "67%",
             }}
           >
             מחיקת זיכוי&nbsp;&nbsp;
@@ -442,7 +451,7 @@ export default function BasicCard(props) {
             sx={{
               position: "absolute",
               top: "40%",
-              left: "78.5%",
+              left: "79%",
             }}
           >
             נווט&nbsp;&nbsp;

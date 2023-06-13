@@ -86,10 +86,7 @@ const Dashboard = () => {
             textAlign: "center",
             position: "absolute",
             ml: "42%",
-            mt: "15%",
-            // "&.MuiTypography-h6	": {
-            //   fontWeight: "",
-            // },
+            mt: "16%",
           }}
         >
           ₪{totalAmount}
