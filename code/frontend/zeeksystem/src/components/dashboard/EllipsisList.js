@@ -2,12 +2,8 @@ import * as React from "react";
 import Avatar from "@mui/joy/Avatar";
 import Box from "@mui/joy/Box";
 import List from "@mui/joy/List";
-import ListItem from "@mui/joy/ListItem";
-import ListItemContent from "@mui/joy/ListItemContent";
-import ListItemDecorator from "@mui/joy/ListItemDecorator";
 import Typography from "@mui/joy/Typography";
 import Divider from "@mui/joy/Divider";
-import Badge from "@mui/joy/Badge";
 import Grid from "@mui/material/Grid";
 
 export default function EllipsisList(props) {
@@ -19,7 +15,6 @@ export default function EllipsisList(props) {
         xs={11}
         direction="column-reverse"
         justifyContent="space-between"
-        // alignItems="flex-end"
       >
         <Box sx={{ direction: "rtl" }}>
           <List

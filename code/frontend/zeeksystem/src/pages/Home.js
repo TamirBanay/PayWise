@@ -146,47 +146,28 @@ function Home(props) {
       voucher.fields.redeemed == false
   ).length;
   return (
-    <Grid container>
-      <Grid item xs={12} sm={12} md={12} lg={12}>
-        <Navbar
-          logOut={logOut}
-          walletLength={walletLength}
-          userID={userID}
-          getWallet={getWallet}
-        />
-      </Grid>
+    <div>
+      <Navbar
+        logOut={logOut}
+        walletLength={walletLength}
+        userID={userID}
+        getWallet={getWallet}
+      />
       {walletLength <= 0 ? (
-        <Grid container xs={12} sm={12} md={12} lg={12}>
-          <Grid item xs={12} sm={12} md={12} lg={12}>
-            <Typography level="h5" mb={2} sx={{ textAlign: "center" }}>
-              {/* <AddRoundedIcon color="primary" fontSize="large" /> */}
-              לחץ כדי להוסיף זיכוי{" "}
-            </Typography>
-          </Grid>
-          <Grid
-            item
-            justifyContent="center"
-            alignItems="center"
-            xs={12}
-            sm={12}
-            md={12}
-            lg={12}
-          >
-            <BasicSpeedDial
-              userID={userID}
-              getWallet={getWallet}
-              walletLength={walletLength}
-            />
-          </Grid>
-        </Grid>
+        <div>
+          <Typography level="h5" mb={2} sx={{ textAlign: "center" }}>
+            לחץ כדי להוסיף זיכוי{" "}
+          </Typography>
+
+          <BasicSpeedDial
+            userID={userID}
+            getWallet={getWallet}
+            walletLength={walletLength}
+          />
+        </div>
       ) : (
-        <Grid container>
-          <Grid item xs={12} sm={12} md={12} lg={12}>
-            <ChartPie />
-          </Grid>
-          {/* <Divider sx={{ borderBottom: "1.0px solid black" }} /> */}
-          {/* <div style={{ height: "30%", overflowY: "scroll" }}></div> */}
-          {/* <p /> */}
+        <div>
+          <ChartPie />
           {onClickVoucher
             ? vouchers.length > 0 &&
               vouchers
@@ -195,38 +176,26 @@ function Home(props) {
                     currentDate < new Date(voucher.fields.dateOfExpiry)
                 )
                 .map((voucher) => (
-                  <Grid item xs={12} sm={12} md={12} lg={12}>
-                    <BottomSheetVoucher
-                      voucher={voucher.fields}
-                      key={voucher.pk}
-                      vID={voucher.pk}
-                      openVoucher={handleOpenVoucher}
-                      getWallet={getWallet}
-                    />
-                  </Grid>
+                  <BottomSheetVoucher
+                    voucher={voucher.fields}
+                    key={voucher.pk}
+                    vID={voucher.pk}
+                    openVoucher={handleOpenVoucher}
+                    getWallet={getWallet}
+                  />
                 ))
             : ""}
-          {/* <BottomSheetVoucher /> */}
           <Grid container>
-            <Grid
-              item
-              xs={4}
-              sm={12}
-              md={12}
-              lg={12}
-              sx={{ alignSelf: "flex-end" }}
-            >
-              <BasicSpeedDial
-                userID={userID}
-                getWallet={getWallet}
-                walletLength={walletLength}
-              />{" "}
-            </Grid>
+            <BasicSpeedDial
+              userID={userID}
+              getWallet={getWallet}
+              walletLength={walletLength}
+            />
           </Grid>
-        </Grid>
+        </div>
       )}
       <TabsBottomNav />
-    </Grid>
+    </div>
   );
 }
 
