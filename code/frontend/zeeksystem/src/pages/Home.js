@@ -7,6 +7,8 @@ import ChartPie from "../components/dashboard/ChartPie";
 import Divider from "@mui/material/Divider";
 import Box from "@mui/material/Box";
 import AddRoundedIcon from "@mui/icons-material/AddRounded";
+import Grid from "@mui/material/Grid";
+
 import {
   _Vouchers,
   first_name,
@@ -144,44 +146,56 @@ function Home(props) {
       voucher.fields.redeemed == false
   ).length;
   return (
-    <div>
-      <Navbar
-        logOut={logOut}
-        walletLength={walletLength}
-        userID={userID}
-        getWallet={getWallet}
-      />
+    <Grid container>
+      <Grid item xs={12} sm={12} md={12} lg={12}>
+        <Navbar
+          logOut={logOut}
+          walletLength={walletLength}
+          userID={userID}
+          getWallet={getWallet}
+        />
+      </Grid>
       {walletLength <= 0 ? (
-        <div>
-          <Typography sx={{ ml: "25%", mt: "40% " }} level="h5" mb={2}>
-            {/* <AddRoundedIcon color="primary" fontSize="large" /> */}
-            לחץ כדי להוסיף זיכוי{" "}
-          </Typography>
-          <BasicSpeedDial
-            userID={userID}
-            getWallet={getWallet}
-            walletLength={walletLength}
-          />
-        </div>
+        <Grid container xs={12} sm={12} md={12} lg={12}>
+          <Grid item xs={12} sm={12} md={12} lg={12}>
+            <Typography level="h5" mb={2} sx={{ textAlign: "center" }}>
+              {/* <AddRoundedIcon color="primary" fontSize="large" /> */}
+              לחץ כדי להוסיף זיכוי{" "}
+            </Typography>
+          </Grid>
+          <Grid
+            item
+            justifyContent="center"
+            alignItems="center"
+            xs={12}
+            sm={12}
+            md={12}
+            lg={12}
+          >
+            <BasicSpeedDial
+              userID={userID}
+              getWallet={getWallet}
+              walletLength={walletLength}
+            />
+          </Grid>
+        </Grid>
       ) : (
-        <div
-        // style={{ filter: voucherIsOpen ? "blur(4px)" : "" }}
-        >
-          <ChartPie />
-          <div style={{ height: "50%", overflowY: "scroll" }}>
-            {/* <Divider sx={{ borderBottom: "1.0px solid black" }} /> */}
-            {/* <div style={{ height: "30%", overflowY: "scroll" }}></div> */}
-
-            {/* <p /> */}
-
-            {onClickVoucher
-              ? vouchers.length > 0 &&
-                vouchers
-                  .filter(
-                    (voucher) =>
-                      currentDate < new Date(voucher.fields.dateOfExpiry)
-                  )
-                  .map((voucher) => (
+        <Grid container>
+          <Grid item xs={12} sm={12} md={12} lg={12}>
+            <ChartPie />
+          </Grid>
+          {/* <Divider sx={{ borderBottom: "1.0px solid black" }} /> */}
+          {/* <div style={{ height: "30%", overflowY: "scroll" }}></div> */}
+          {/* <p /> */}
+          {onClickVoucher
+            ? vouchers.length > 0 &&
+              vouchers
+                .filter(
+                  (voucher) =>
+                    currentDate < new Date(voucher.fields.dateOfExpiry)
+                )
+                .map((voucher) => (
+                  <Grid item xs={12} sm={12} md={12} lg={12}>
                     <BottomSheetVoucher
                       voucher={voucher.fields}
                       key={voucher.pk}
@@ -189,19 +203,30 @@ function Home(props) {
                       openVoucher={handleOpenVoucher}
                       getWallet={getWallet}
                     />
-                  ))
-              : ""}
-            {/* <BottomSheetVoucher /> */}
-          </div>
-          <BasicSpeedDial
-            userID={userID}
-            getWallet={getWallet}
-            walletLength={walletLength}
-          />{" "}
-        </div>
+                  </Grid>
+                ))
+            : ""}
+          {/* <BottomSheetVoucher /> */}
+          <Grid container>
+            <Grid
+              item
+              xs={4}
+              sm={12}
+              md={12}
+              lg={12}
+              sx={{ alignSelf: "flex-end" }}
+            >
+              <BasicSpeedDial
+                userID={userID}
+                getWallet={getWallet}
+                walletLength={walletLength}
+              />{" "}
+            </Grid>
+          </Grid>
+        </Grid>
       )}
       <TabsBottomNav />
-    </div>
+    </Grid>
   );
 }
 

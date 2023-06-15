@@ -12,6 +12,7 @@ import CreateOutlinedIcon from "@mui/icons-material/CreateOutlined";
 import ScanVoucher from "../../pages/ScanVoucher";
 import InsertSirialNumber from "../scans/InsertSirialNumber";
 import Popover from "@mui/material/Popover";
+import Grid from "@mui/material/Grid";
 
 export default function BasicSpeedDial(props) {
   const [openInsertSerialNumber, setOpenInsertSerialNumber] =
@@ -48,9 +49,9 @@ export default function BasicSpeedDial(props) {
         height: 320,
         transform: "translateZ(0px)",
         flexGrow: 1,
-        position: "fixed",
-        bottom: props.walletLength <= 0 ? "25%" : "-4%",
-        left: props.walletLength <= 0 ? "40%" : "4%",
+        // position: "fixed",
+        // bottom: props.walletLength <= 0 ? "25%" : "-4%",
+        // left: props.walletLength <= 0 ? "40%" : "4%",
       }}
     >
       <Popover
