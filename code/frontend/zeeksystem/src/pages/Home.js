@@ -7,6 +7,8 @@ import ChartPie from "../components/dashboard/ChartPie";
 import Divider from "@mui/material/Divider";
 import Box from "@mui/material/Box";
 import AddRoundedIcon from "@mui/icons-material/AddRounded";
+import Grid from "@mui/material/Grid";
+
 import {
   _Vouchers,
   first_name,
@@ -153,10 +155,10 @@ function Home(props) {
       />
       {walletLength <= 0 ? (
         <div>
-          <Typography sx={{ ml: "25%", mt: "40% " }} level="h5" mb={2}>
-            {/* <AddRoundedIcon color="primary" fontSize="large" /> */}
+          <Typography level="h5" mb={2} sx={{ textAlign: "center" }}>
             לחץ כדי להוסיף זיכוי{" "}
           </Typography>
+
           <BasicSpeedDial
             userID={userID}
             getWallet={getWallet}
@@ -164,40 +166,33 @@ function Home(props) {
           />
         </div>
       ) : (
-        <div
-        // style={{ filter: voucherIsOpen ? "blur(4px)" : "" }}
-        >
+        <div>
           <ChartPie />
-          <div style={{ height: "50%", overflowY: "scroll" }}>
-            {/* <Divider sx={{ borderBottom: "1.0px solid black" }} /> */}
-            {/* <div style={{ height: "30%", overflowY: "scroll" }}></div> */}
-
-            {/* <p /> */}
-
-            {onClickVoucher
-              ? vouchers.length > 0 &&
-                vouchers
-                  .filter(
-                    (voucher) =>
-                      currentDate < new Date(voucher.fields.dateOfExpiry)
-                  )
-                  .map((voucher) => (
-                    <BottomSheetVoucher
-                      voucher={voucher.fields}
-                      key={voucher.pk}
-                      vID={voucher.pk}
-                      openVoucher={handleOpenVoucher}
-                      getWallet={getWallet}
-                    />
-                  ))
-              : ""}
-            {/* <BottomSheetVoucher /> */}
-          </div>
-          <BasicSpeedDial
-            userID={userID}
-            getWallet={getWallet}
-            walletLength={walletLength}
-          />{" "}
+          {onClickVoucher
+            ? vouchers.length > 0 &&
+              vouchers
+                .filter(
+                  (voucher) =>
+                    voucher.fields.redeemed === false &&
+                    currentDate < new Date(voucher.fields.dateOfExpiry)
+                )
+                .map((voucher) => (
+                  <BottomSheetVoucher
+                    voucher={voucher.fields}
+                    key={voucher.pk}
+                    vID={voucher.pk}
+                    openVoucher={handleOpenVoucher}
+                    getWallet={getWallet}
+                  />
+                ))
+            : ""}
+          <Grid container>
+            <BasicSpeedDial
+              userID={userID}
+              getWallet={getWallet}
+              walletLength={walletLength}
+            />
+          </Grid>
         </div>
       )}
       <TabsBottomNav />
