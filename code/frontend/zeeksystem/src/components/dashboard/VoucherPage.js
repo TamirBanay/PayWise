@@ -21,6 +21,7 @@ import ClearIcon from "@mui/icons-material/Clear";
 import AlertDialogModal from "./AlertDialogModal";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
 import Avatar from "@mui/joy/Avatar";
+import Grid from "@mui/material/Grid";
 
 export default function BasicCard(props) {
   const location = useLocation();
@@ -157,9 +158,10 @@ export default function BasicCard(props) {
     <div>
       {/* if the alert page is open */}
       {openAlerts ? (
-        <div
-        // variant="outlined"
-        // sx={{ width: 320, borderRadius: 20, direction: "rtl" }}
+        <Grid
+          container
+          // variant="outlined"
+          // sx={{ width: 320, borderRadius: 20, direction: "rtl" }}
         >
           <Typography
             level="h2"
@@ -311,25 +313,27 @@ export default function BasicCard(props) {
               </Button>
             )}
           </Box>
-        </div>
+        </Grid>
       ) : (
         /* /////////////////////////////////////////////////// */
-        <div>
-          <Avatar
-            // variant="square"
-            size="lg"
-            sx={{
-              left: "80%",
-              top: "9%",
-              position: "absolute",
-              boxShadow: "0.5px 0.5px 3px 0px  ",
-              "& .MuiAvatar-img	": {
-                // height: "90%",
-              },
-            }}
-            onClick={handleOpenWebApp}
-            src={props.img}
-          />
+        <Grid
+          container
+          direction="row-reverse"
+          justifyContent="space-between"
+          alignItems="flex-end"
+        >
+          <Grid item>
+            <Avatar
+              // variant="square"
+              size="lg"
+              sx={{
+                // position: "absolute",
+                boxShadow: "0.5px 0.5px 3px 0px  ",
+              }}
+              onClick={handleOpenWebApp}
+              src={props.img}
+            />
+          </Grid>
           {moveToWebPage ? (
             <AlertDialogModal
               function={handleMoveToStoreWeb}
@@ -345,7 +349,7 @@ export default function BasicCard(props) {
           ) : (
             ""
           )}
-          <Typography
+          {/* <Typography
             level="h4"
             sx={{
               mt: "8%",
@@ -356,8 +360,8 @@ export default function BasicCard(props) {
             }}
           >
             {props.voucher.storeName}
-          </Typography>
-          <Typography
+          </Typography> */}
+          {/* <Typography
             level="body2"
             fontSize="sm"
             // fontWeight="sm"
@@ -373,8 +377,8 @@ export default function BasicCard(props) {
             }}
           >
             ₪{amount}
-          </Typography>
-          <Typography
+          </Typography> */}
+          {/* <Typography
             fontSize="md"
             fontWeight="sm"
             level="body2"
@@ -388,9 +392,9 @@ export default function BasicCard(props) {
           >
             {" "}
             בתוקף עד: {props.voucher.dateOfExpiry.slice(0, 10)}
-          </Typography>
+          </Typography> */}
 
-          <Typography
+          {/* <Typography
             level="body2"
             fontSize="md"
             fontWeight="sm"
@@ -403,8 +407,8 @@ export default function BasicCard(props) {
             }}
           >
             מס' שובר: {props.vID}
-          </Typography>
-          <Divider
+          </Typography> */}
+          {/* <Divider
             sx={{
               width: "100%",
               // height: "2px",
@@ -414,8 +418,8 @@ export default function BasicCard(props) {
               ml: "-4%",
             }}
             variant="fullWidth"
-          />
-          <IconButton
+          /> */}
+          {/* <IconButton
             aria-label="bookmark Bahamas Islands"
             variant="plain"
             color="neutral"
@@ -443,8 +447,8 @@ export default function BasicCard(props) {
             ) : (
               ""
             )}
-          </IconButton>
-          <IconButton
+          </IconButton> */}
+          {/* <IconButton
             variant="plain"
             color="neutral"
             size="md"
@@ -481,8 +485,8 @@ export default function BasicCard(props) {
             ) : (
               ""
             )}
-          </IconButton>
-          <IconButton
+          </IconButton> */}
+          {/* <IconButton
             aria-label="bookmark Bahamas Islands"
             variant="plain"
             color="neutral"
@@ -502,13 +506,37 @@ export default function BasicCard(props) {
                 <NotificationsIcon onClick={handleOpenAlerts} />
               </Badge>
             )}
-          </IconButton>
+          </IconButton> */}
           <Box sx={{ display: "flex", borderRadius: 10 }}>
             <div></div>
             {/* if im in wallet page and the voucher is redeemed show v icon or if the voucher expiry show X*/}
-            {location.pathname == "/wallet" &&
-            props.voucher.redeemed == true ? (
-              <Button
+            {
+              location.pathname == "/wallet" && props.voucher.redeemed == true
+                ? {
+                    /* <Button
+                variant="contained"
+                disabled
+                size="sm"
+                color="#B3B3B3"
+                aria-label="Explore Bahamas Islands"
+                sx={{
+                  height: "50px",
+                  // mt: "80%",
+                  // width: "90%",
+                  fontWeight: 600,
+                  fontSize: "16px",
+                  // ml: "5%",
+                  bgcolor: "#E6E6E6",
+                }}
+                onClick={handlleRedeemdVoucher}
+              >
+                מימוש
+              </Button> */
+                  }
+                : currentDate > new Date(props.voucher.dateOfExpiry) &&
+                  props.voucher.redeemed == false
+                ? {
+                    /* <Button
                 variant="contained"
                 disabled
                 size="sm"
@@ -526,30 +554,10 @@ export default function BasicCard(props) {
                 onClick={handlleRedeemdVoucher}
               >
                 מימוש
-              </Button>
-            ) : currentDate > new Date(props.voucher.dateOfExpiry) &&
-              props.voucher.redeemed == false ? (
-              <Button
-                variant="contained"
-                disabled
-                size="sm"
-                color="#B3B3B3"
-                aria-label="Explore Bahamas Islands"
-                sx={{
-                  height: "50px",
-                  mt: "80%",
-                  width: "90%",
-                  fontWeight: 600,
-                  fontSize: "16px",
-                  ml: "5%",
-                  bgcolor: "#E6E6E6",
-                }}
-                onClick={handlleRedeemdVoucher}
-              >
-                מימוש
-              </Button>
-            ) : (
-              <Button
+              </Button> */
+                  }
+                : ""
+              /* <Button
                 variant="solid"
                 size="sm"
                 color="primary"
@@ -565,10 +573,10 @@ export default function BasicCard(props) {
                 onClick={handlleRedeemdVoucher}
               >
                 מימוש
-              </Button>
-            )}
+              </Button> */
+            }
           </Box>
-        </div>
+        </Grid>
       )}
     </div>
   );
