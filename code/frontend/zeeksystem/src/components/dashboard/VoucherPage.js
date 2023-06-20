@@ -161,7 +161,7 @@ export default function BasicCard(props) {
         <Grid
           container
           // variant="outlined"
-          // sx={{ width: 320, borderRadius: 20, direction: "rtl" }}
+          sx={{ width: "90%", borderRadius: 20, direction: "rtl" }}
         >
           <Typography
             level="h2"
@@ -317,14 +317,15 @@ export default function BasicCard(props) {
       ) : (
         /* /////////////////////////////////////////////////// */
         <Grid
+          sx={{ marginTop: "8px" }}
           container
           direction="row-reverse"
-          justifyContent="space-between"
+          // justifyContent="space-between"
           alignItems="flex-end"
+          spacing={2}
         >
-          <Grid item>
+          <Grid item alignSelf="start">
             <Avatar
-              // variant="square"
               size="lg"
               sx={{
                 // position: "absolute",
@@ -334,6 +335,217 @@ export default function BasicCard(props) {
               src={props.img}
             />
           </Grid>
+
+          <Grid item alignSelf="start" sx={{ width: "50%" }}>
+            <Typography level="h4" textAlign="end">
+              {props.voucher.storeName}
+            </Typography>
+            <Typography
+              fontSize="md"
+              fontWeight="sm"
+              level="body2"
+              sx={{
+                textAlign: "right",
+              }}
+            >
+              {" "}
+              בתוקף עד: {props.voucher.dateOfExpiry.slice(0, 10)}
+            </Typography>{" "}
+            <Typography
+              level="body2"
+              fontSize="md"
+              fontWeight="sm"
+              sx={{
+                // mt: "22%",
+                // ml: "21%",
+                textAlign: "right",
+                // width: "50%",
+                // position: "absolute",
+              }}
+            >
+              מס' שובר: {props.vID}
+            </Typography>
+          </Grid>
+
+          <Grid item alignSelf="start" sx={{ width: "30%" }} alignItems="start">
+            <Typography
+              level="body2"
+              fontSize="sm"
+              // fontWeight="sm"
+
+              sx={{
+                "&.MuiTypography-body2	": {
+                  fontSize: "24px",
+                  color: "#000",
+                },
+              }}
+            >
+              ₪{amount}
+            </Typography>{" "}
+          </Grid>
+
+          <Grid item sx={{ width: "100%" }}>
+            <Divider
+              sx={{
+                border: "solid 0.1px",
+              }}
+              variant="fullWidth"
+            />
+          </Grid>
+          <Grid
+            container
+            direction="column"
+            alignItems="flex-end"
+            spacing={1}
+            sx={{ marginTop: "8px" }}
+          >
+            <Grid item>
+              <IconButton variant="plain" color="neutral" size="md">
+                נווט&nbsp;
+                <LocationOnIcon onClick={handleOpenExternalApplication} />
+                {moveToOtheApp ? (
+                  <AlertDialogModal
+                    function={
+                      googleMapsOrWaze
+                        ? handleNavigateGoogleMaps
+                        : handleNavigateWaze
+                    }
+                    mainText={
+                      googleMapsOrWaze
+                        ? "לחיצה על google Maps תנתק אותך מאפליקציית - PayWise"
+                        : "לחיצה על Waze תנתק אותך מאפליקציית - PayWise"
+                    }
+                    title={"נווט ל - " + props.voucher.storeName}
+                    variant="plain"
+                    textButton={googleMapsOrWaze ? "google Maps" : "Waze"}
+                    isOpen={true}
+                    setOpenDeleteAlert={setMoveToOtheApp}
+                    openDeleteAlert={moveToOtheApp}
+                    titleIcon={"navigate"}
+                    googleMapsOrWaze={googleMapsOrWaze}
+                    setGoogleMapsOrWaze={setGoogleMapsOrWaze}
+                  />
+                ) : (
+                  ""
+                )}
+              </IconButton>
+            </Grid>
+
+            <Grid item>
+              <IconButton
+                aria-label="bookmark Bahamas Islands"
+                variant="plain"
+                color="neutral"
+                size="sm"
+              >
+                הגדרת התראות &nbsp;
+                {selectedValue == "ללא התראות" ? (
+                  <NotificationsOffIcon onClick={handleOpenAlerts} />
+                ) : (
+                  <Badge badgeContent={badgeContent} color="primary">
+                    <NotificationsIcon onClick={handleOpenAlerts} />
+                  </Badge>
+                )}
+              </IconButton>
+            </Grid>
+            <Grid item>
+              <IconButton
+                aria-label="bookmark Bahamas Islands"
+                variant="plain"
+                color="neutral"
+                size="sm"
+              >
+                מחיקת זיכוי&nbsp;&nbsp;
+                <DeleteForeverIcon onClick={handleChangeAletrBeforeDelete} />
+                {openDeleteAlert ? (
+                  <AlertDialogModal
+                    function={props.delete}
+                    mainText={"האם למחוק את זיכוי?"}
+                    title={"מחיקת זיכוי"}
+                    variant="plain"
+                    textButton={"מחק"}
+                    isOpen={openDeleteAlert}
+                    openDeleteAlert={openDeleteAlert}
+                    setOpenDeleteAlert={setOpenDeleteAlert}
+                  />
+                ) : (
+                  ""
+                )}
+              </IconButton>{" "}
+            </Grid>
+          </Grid>
+
+          <Grid
+            container
+            direction="column"
+            justifyContent="flex-end"
+            // alignItems="stretch"
+            sx={{ width: "90%" }}
+          >
+            {/* if im in wallet page and the voucher is redeemed show v icon or if the voucher expiry show X*/}
+            {location.pathname == "/wallet" &&
+            props.voucher.redeemed == true ? (
+              <Grid item sx={{ mt: "28px" }}>
+                <Button
+                  variant="contained"
+                  disabled
+                  size="lg"
+                  color="#B3B3B3"
+                  aria-label="Explore Bahamas Islands"
+                  sx={{
+                    height: "50px",
+                    width: "93%",
+                    fontSize: "16px",
+                    bgcolor: "#E6E6E6",
+                  }}
+                  onClick={handlleRedeemdVoucher}
+                >
+                  מימוש
+                </Button>
+              </Grid>
+            ) : currentDate > new Date(props.voucher.dateOfExpiry) &&
+              props.voucher.redeemed == false ? (
+              <Grid item sx={{ mt: "28px" }}>
+                {" "}
+                <Button
+                  variant="contained"
+                  disabled
+                  size="sm"
+                  color="#B3B3B3"
+                  aria-label="Explore Bahamas Islands"
+                  sx={{
+                    height: "50px",
+                    width: "93%",
+                    fontWeight: 600,
+                    fontSize: "16px",
+                    bgcolor: "#E6E6E6",
+                  }}
+                  onClick={handlleRedeemdVoucher}
+                >
+                  מימוש
+                </Button>
+              </Grid>
+            ) : (
+              <Grid item sx={{ mt: "28px" }}>
+                <Button
+                  variant="solid"
+                  size="sm"
+                  color="primary"
+                  aria-label="Explore Bahamas Islands"
+                  sx={{
+                    height: "50px",
+                    width: "93%",
+                    fontWeight: 600,
+                    fontSize: "16px",
+                  }}
+                  onClick={handlleRedeemdVoucher}
+                >
+                  מימוש
+                </Button>
+              </Grid>
+            )}
+          </Grid>
+
           {moveToWebPage ? (
             <AlertDialogModal
               function={handleMoveToStoreWeb}
@@ -349,233 +561,6 @@ export default function BasicCard(props) {
           ) : (
             ""
           )}
-          {/* <Typography
-            level="h4"
-            sx={{
-              mt: "8%",
-              ml: "1%",
-              textAlign: "right",
-              width: "70%",
-              position: "absolute",
-            }}
-          >
-            {props.voucher.storeName}
-          </Typography> */}
-          {/* <Typography
-            level="body2"
-            fontSize="sm"
-            // fontWeight="sm"
-            sx={{
-              width: "20%",
-              position: "fixed",
-              mt: "8%",
-              ml: "3%",
-              "&.MuiTypography-body2	": {
-                fontSize: "24px",
-                color: "#000",
-              },
-            }}
-          >
-            ₪{amount}
-          </Typography> */}
-          {/* <Typography
-            fontSize="md"
-            fontWeight="sm"
-            level="body2"
-            sx={{
-              width: "50%",
-              position: "fixed",
-              mt: "17%",
-              ml: "21%",
-              textAlign: "right",
-            }}
-          >
-            {" "}
-            בתוקף עד: {props.voucher.dateOfExpiry.slice(0, 10)}
-          </Typography> */}
-
-          {/* <Typography
-            level="body2"
-            fontSize="md"
-            fontWeight="sm"
-            sx={{
-              mt: "22%",
-              ml: "21%",
-              textAlign: "right",
-              width: "50%",
-              position: "absolute",
-            }}
-          >
-            מס' שובר: {props.vID}
-          </Typography> */}
-          {/* <Divider
-            sx={{
-              width: "100%",
-              // height: "2px",
-              border: "solid 0.5px",
-              position: "fixed",
-              mt: "33%",
-              ml: "-4%",
-            }}
-            variant="fullWidth"
-          /> */}
-          {/* <IconButton
-            aria-label="bookmark Bahamas Islands"
-            variant="plain"
-            color="neutral"
-            size="sm"
-            sx={{
-              position: "absolute",
-              top: "64%",
-              width: "30%",
-              left: "67%",
-            }}
-          >
-            מחיקת זיכוי&nbsp;&nbsp;
-            <DeleteForeverIcon onClick={handleChangeAletrBeforeDelete} />
-            {openDeleteAlert ? (
-              <AlertDialogModal
-                function={props.delete}
-                mainText={"האם למחוק את זיכוי?"}
-                title={"מחיקת זיכוי"}
-                variant="plain"
-                textButton={"מחק"}
-                isOpen={openDeleteAlert}
-                openDeleteAlert={openDeleteAlert}
-                setOpenDeleteAlert={setOpenDeleteAlert}
-              />
-            ) : (
-              ""
-            )}
-          </IconButton> */}
-          {/* <IconButton
-            variant="plain"
-            color="neutral"
-            size="md"
-            sx={{
-              position: "absolute",
-              top: "40%",
-              left: "79%",
-            }}
-          >
-            נווט&nbsp;&nbsp;
-            <LocationOnIcon onClick={handleOpenExternalApplication} />
-            {moveToOtheApp ? (
-              <AlertDialogModal
-                function={
-                  googleMapsOrWaze
-                    ? handleNavigateGoogleMaps
-                    : handleNavigateWaze
-                }
-                mainText={
-                  googleMapsOrWaze
-                    ? "לחיצה על google Maps תנתק אותך מאפליקציית - PayWise"
-                    : "לחיצה על Waze תנתק אותך מאפליקציית - PayWise"
-                }
-                title={"נווט ל - " + props.voucher.storeName}
-                variant="plain"
-                textButton={googleMapsOrWaze ? "google Maps" : "Waze"}
-                isOpen={true}
-                setOpenDeleteAlert={setMoveToOtheApp}
-                openDeleteAlert={moveToOtheApp}
-                titleIcon={"navigate"}
-                googleMapsOrWaze={googleMapsOrWaze}
-                setGoogleMapsOrWaze={setGoogleMapsOrWaze}
-              />
-            ) : (
-              ""
-            )}
-          </IconButton> */}
-          {/* <IconButton
-            aria-label="bookmark Bahamas Islands"
-            variant="plain"
-            color="neutral"
-            size="sm"
-            sx={{
-              position: "absolute",
-              top: "52%",
-              // width: "10%",
-              left: "62%",
-            }}
-          >
-            הגדרת התראות &nbsp;
-            {selectedValue == "ללא התראות" ? (
-              <NotificationsOffIcon onClick={handleOpenAlerts} />
-            ) : (
-              <Badge badgeContent={badgeContent} color="primary">
-                <NotificationsIcon onClick={handleOpenAlerts} />
-              </Badge>
-            )}
-          </IconButton> */}
-          <Box sx={{ display: "flex", borderRadius: 10 }}>
-            <div></div>
-            {/* if im in wallet page and the voucher is redeemed show v icon or if the voucher expiry show X*/}
-            {
-              location.pathname == "/wallet" && props.voucher.redeemed == true
-                ? {
-                    /* <Button
-                variant="contained"
-                disabled
-                size="sm"
-                color="#B3B3B3"
-                aria-label="Explore Bahamas Islands"
-                sx={{
-                  height: "50px",
-                  // mt: "80%",
-                  // width: "90%",
-                  fontWeight: 600,
-                  fontSize: "16px",
-                  // ml: "5%",
-                  bgcolor: "#E6E6E6",
-                }}
-                onClick={handlleRedeemdVoucher}
-              >
-                מימוש
-              </Button> */
-                  }
-                : currentDate > new Date(props.voucher.dateOfExpiry) &&
-                  props.voucher.redeemed == false
-                ? {
-                    /* <Button
-                variant="contained"
-                disabled
-                size="sm"
-                color="#B3B3B3"
-                aria-label="Explore Bahamas Islands"
-                sx={{
-                  height: "50px",
-                  mt: "80%",
-                  width: "90%",
-                  fontWeight: 600,
-                  fontSize: "16px",
-                  ml: "5%",
-                  bgcolor: "#E6E6E6",
-                }}
-                onClick={handlleRedeemdVoucher}
-              >
-                מימוש
-              </Button> */
-                  }
-                : ""
-              /* <Button
-                variant="solid"
-                size="sm"
-                color="primary"
-                aria-label="Explore Bahamas Islands"
-                sx={{
-                  height: "50px",
-                  mt: "80%",
-                  width: "90%",
-                  fontWeight: 600,
-                  fontSize: "16px",
-                  ml: "5%",
-                }}
-                onClick={handlleRedeemdVoucher}
-              >
-                מימוש
-              </Button> */
-            }
-          </Box>
         </Grid>
       )}
     </div>

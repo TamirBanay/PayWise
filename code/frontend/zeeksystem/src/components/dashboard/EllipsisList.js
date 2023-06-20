@@ -12,9 +12,9 @@ export default function EllipsisList(props) {
     <Grid>
       <Grid
         container
-        xs={11}
         direction="column-reverse"
         justifyContent="space-between"
+        spacing={-3}
       >
         <Box sx={{ direction: "rtl" }}>
           <List
@@ -39,10 +39,7 @@ export default function EllipsisList(props) {
                 <Typography
                   level="h6"
                   sx={{
-                    // width: "50%",
                     textAlign: "right",
-                    // mr: "5%",
-                    // mt: "-3%",
                   }}
                 >
                   {" "}
@@ -55,21 +52,12 @@ export default function EllipsisList(props) {
                   </Typography>
                 </Grid>
               </Grid>
-              <Grid
-                item
-                // textAlign="right"
-                alignSelf="center"
-                sx={{ width: "20%" }}
-              >
+              <Grid item alignSelf="center" sx={{ width: "20%" }}>
                 <Typography
                   sx={{
-                    // mr: "84.5%",
-                    // mt: "-8%",
                     textAlign: "left",
                     width: "100%",
-                    "&.MuiTypography-h6	": {
-                      // fontWeight: "bold",
-                    },
+                    "&.MuiTypography-h6	": {},
                   }}
                   level="h6"
                   fontWeight="sm"
