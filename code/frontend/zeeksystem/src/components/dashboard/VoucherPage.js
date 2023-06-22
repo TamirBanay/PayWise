@@ -22,7 +22,7 @@ import AlertDialogModal from "./AlertDialogModal";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
 import Avatar from "@mui/joy/Avatar";
 import Grid from "@mui/material/Grid";
-
+import ArrowBackIosNewOutlinedIcon from "@mui/icons-material/ArrowBackIosNewOutlined";
 export default function BasicCard(props) {
   const location = useLocation();
   const { pathname } = location;
@@ -160,159 +160,88 @@ export default function BasicCard(props) {
       {openAlerts ? (
         <Grid
           container
+          direction="row"
+          justifyContent="space-between"
           // variant="outlined"
           sx={{ width: "90%", borderRadius: 20, direction: "rtl" }}
         >
-          <Typography
-            level="h2"
-            fontSize="md"
-            sx={{ mb: 0.5, direction: "rtl", pt: "2%" }}
-          >
-            {props.voucher.storeName}
-          </Typography>
-          <Typography level="body2" sx={{ pb: "2%", direction: "rtl" }}>
-            בתוקף עד: {props.voucher.dateOfExpiry.slice(0, 10)}
-          </Typography>
-          <IconButton
-            aria-label="bookmark Bahamas Islands"
-            variant="plain"
-            color="neutral"
-            size="sm"
-            sx={{
-              position: "absolute",
-              top: "0.5rem",
-              width: "10%",
-              right: "88%",
-            }}
-          >
-            <DeleteForeverIcon onClick={handleChangeAletrBeforeDelete} />
-            {openDeleteAlert ? (
-              <AlertDialogModal
-                function={props.delete}
-                mainText={"האם למחוק את זיכוי?"}
-                title={"מחיקת זיכוי"}
-                variant="plain"
-                textButton={"מחק"}
-                openDeleteAlert={openDeleteAlert}
-                setOpenDeleteAlert={setOpenDeleteAlert}
-                isOpen={openDeleteAlert}
-              />
-            ) : (
-              ""
-            )}
-          </IconButton>
-
-          <IconButton
-            aria-label="bookmark Bahamas Islands"
-            variant="plain"
-            color="neutral"
-            size="sm"
-            sx={{
-              position: "absolute",
-              top: "0.5rem",
-              width: "10%",
-              right: "65%",
-            }}
-          >
-            <LocationOnIcon onClick={handleOpenExternalApplication} />
-            {moveToOtheApp ? (
-              <AlertDialogModal
-                function={
-                  googleMapsOrWaze
-                    ? handleNavigateGoogleMaps
-                    : handleNavigateWaze
-                }
-                mainText={
-                  googleMapsOrWaze
-                    ? "לחיצה על google Maps תנתק אותך מאפליקציית - PayWise"
-                    : "לחיצה על Waze תנתק אותך מאפליקציית - PayWise"
-                }
-                title={"נווט ל - " + props.voucher.storeName}
-                variant="plain"
-                textButton={googleMapsOrWaze ? "google Maps" : "Wase"}
-                isOpen={true}
-                setOpenDeleteAlert={setMoveToOtheApp}
-                openDeleteAlert={moveToOtheApp}
-                titleIcon={"navigate"}
-                googleMapsOrWaze={googleMapsOrWaze}
-                setGoogleMapsOrWaze={setGoogleMapsOrWaze}
-              />
-            ) : (
-              ""
-            )}
-          </IconButton>
-          <IconButton
-            aria-label="bookmark Bahamas Islands"
-            variant="plain"
-            color="neutral"
-            size="sm"
-            sx={{
-              position: "absolute",
-              top: "0.5rem",
-              width: "10%",
-              right: "77%",
-            }}
-          >
-            {/* if the daysBeforeAlert == 0 show not notifications icon, else show notification icon whit badge*/}
-            {selectedValue == "ללא התראות" ? (
-              <NotificationsOffIcon onClick={handleOpenAlerts} />
-            ) : (
-              <Badge badgeContent={badgeContent} color="primary">
-                <NotificationsIcon onClick={handleOpenAlerts} />
-              </Badge>
-            )}
-          </IconButton>
-
+          <Grid item sx={{ marginTop: "22px" }}>
+            <Typography level="h2" fontSize="lg">
+              {props.voucher.storeName}
+            </Typography>{" "}
+            <Typography level="body2">
+              בתוקף עד: {props.voucher.dateOfExpiry.slice(0, 10)}
+            </Typography>
+          </Grid>
+          <Grid item mt="22px">
+            {" "}
+            <IconButton
+              aria-label="bookmark Bahamas Islands"
+              variant="plain"
+              color="neutral"
+              size="sm"
+            >
+              <ArrowBackIosNewOutlinedIcon onClick={handleOpenAlerts} />
+            </IconButton>
+          </Grid>
           <ChooseNotifications
             handleChange={handleChange}
             setSelectedValue={setSelectedValue}
             selectedValue={selectedValue}
           />
-          <Box sx={{ display: "flex", direction: "rtl" }}>
-            <div>
-              <Typography
-                fontSize="md"
-                fontWeight="lg"
-                sx={{ direction: "rtl" }}
-              >
-                {"  "}
-                <Typography
-                  fontSize="md"
-                  fontWeight="lg"
-                  sx={{ direction: "rtl", ml: "20%" }}
-                >
-                  {amount} ₪
-                </Typography>
-              </Typography>
-
-              <Typography fontSize="sm" fontWeight="sm">
-                מס' שובר: {props.vID}
-              </Typography>
-            </div>
-            {/* if im in wallet page and the voucher is redeemed show v icon  or if the voucher expiry show X icon*/}
+          <Grid item width="90%">
             {location.pathname == "/wallet" &&
             props.voucher.redeemed == true ? (
-              <Typography sx={{ mr: "auto" }}>
-                <DoneIcon color="success" fontSize="large" />
-              </Typography>
+              <Button
+                variant="contained"
+                disabled
+                size="lg"
+                color="#B3B3B3"
+                aria-label="Explore Bahamas Islands"
+                sx={{
+                  height: "50px",
+                  width: "93%",
+                  fontSize: "16px",
+                  bgcolor: "#E6E6E6",
+                }}
+              >
+                הגדר
+              </Button>
             ) : currentDate > new Date(props.voucher.dateOfExpiry) &&
               props.voucher.redeemed == false ? (
-              <Typography sx={{ mr: "auto", mt: "auto" }}>
-                <ClearIcon color="error" fontSize="large" />
-              </Typography>
+              <Button
+                variant="contained"
+                disabled
+                size="lg"
+                color="#B3B3B3"
+                aria-label="Explore Bahamas Islands"
+                sx={{
+                  height: "50px",
+                  width: "93%",
+                  fontSize: "16px",
+                  bgcolor: "#E6E6E6",
+                }}
+              >
+                הגדר
+              </Button>
             ) : (
               <Button
                 variant="solid"
                 size="lg"
                 color="primary"
                 aria-label="Explore Bahamas Islands"
-                sx={{ mr: "auto", fontWeight: 500, borderRadius: "25px" }}
+                sx={{
+                  height: "50px",
+                  width: "93%",
+                  fontWeight: 600,
+                  fontSize: "16px",
+                }}
                 onClick={handleChangeAlert}
               >
                 הגדר
               </Button>
             )}
-          </Box>
+          </Grid>
         </Grid>
       ) : (
         /* /////////////////////////////////////////////////// */
@@ -337,11 +266,11 @@ export default function BasicCard(props) {
           </Grid>
 
           <Grid item alignSelf="start" sx={{ width: "50%" }}>
-            <Typography level="h4" textAlign="end">
+            <Typography level="h5" textAlign="end">
               {props.voucher.storeName}
             </Typography>
             <Typography
-              fontSize="md"
+              fontSize="sm"
               fontWeight="sm"
               level="body2"
               sx={{
@@ -353,7 +282,7 @@ export default function BasicCard(props) {
             </Typography>{" "}
             <Typography
               level="body2"
-              fontSize="md"
+              fontSize="sm"
               fontWeight="sm"
               sx={{
                 // mt: "22%",
@@ -375,7 +304,7 @@ export default function BasicCard(props) {
 
               sx={{
                 "&.MuiTypography-body2	": {
-                  fontSize: "24px",
+                  fontSize: "20px",
                   color: "#000",
                 },
               }}

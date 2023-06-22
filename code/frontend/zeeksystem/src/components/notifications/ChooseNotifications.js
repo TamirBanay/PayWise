@@ -9,14 +9,6 @@ function CheckboxGroup(props) {
 
   return (
     <Box sx={{ width: "90%" }}>
-      {/* <Divider
-        sx={{
-          borderBottom: "0.5px solid black",
-          height: 1,
-          // left: "10%",
-          width: "100%",
-        }}
-      /> */}
       <p></p>
       <Typography
         sx={{ direction: "rtl" }}
@@ -68,15 +60,7 @@ function CheckboxGroup(props) {
         </List>
       </Box>
 
-      {/* <Divider
-        sx={{
-          borderBottom: "0.5px solid black",
-          height: 1,
-          // left: "5%",
-          // width: "100%",
-        }}
-      /> */}
-      <p></p>
+    
     </Box>
   );
 }
