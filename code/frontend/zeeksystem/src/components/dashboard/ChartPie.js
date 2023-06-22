@@ -78,20 +78,18 @@ const Dashboard = () => {
   const isMobileMs = useMediaQuery(theme.breakpoints.down("sm"));
 
   return (
-    <Grid container>
+    <Grid container direction="column">
       <Grid
         item
         xs={12}
         sm={12}
         md={12}
         lg={12}
-        justifyContent="center"
-        alignItems="center"
-        textAlign="center"
+        position="absolute"
+        alignSelf="center"
+        sx={{ mt: "17%" }}
       >
-        <Typography variant="h6" fontWeight={"sm"}>
-          ₪{totalAmount}
-        </Typography>
+        <Typography variant="h6">₪{totalAmount}</Typography>
       </Grid>
       <Grid
         item

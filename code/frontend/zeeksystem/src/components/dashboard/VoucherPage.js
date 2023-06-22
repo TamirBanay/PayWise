@@ -285,11 +285,7 @@ export default function BasicCard(props) {
               fontSize="sm"
               fontWeight="sm"
               sx={{
-                // mt: "22%",
-                // ml: "21%",
                 textAlign: "right",
-                // width: "50%",
-                // position: "absolute",
               }}
             >
               מס' שובר: {props.vID}
