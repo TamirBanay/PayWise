@@ -7,6 +7,7 @@ import { useLocation } from "react-router-dom";
 import { useRecoilValue } from "recoil";
 import { _Vouchers } from "../../services/atom";
 import Typography from "@mui/material/Typography";
+import Grid from "@mui/material/Grid";
 
 const Dashboard = () => {
   let location = useLocation();
@@ -77,20 +78,29 @@ const Dashboard = () => {
   const isMobileMs = useMediaQuery(theme.breakpoints.down("sm"));
 
   return (
-    <div>
-      <div>
-        <Typography
-          variant="h6"
-          fontWeight={"sm"}
-          sx={{
-            textAlign: "center",
-            position: "absolute",
-            ml: "42%",
-            mt: "16%",
-          }}
-        >
-          ₪{totalAmount}
-        </Typography>
+    <Grid container direction="column">
+      <Grid
+        item
+        xs={12}
+        sm={12}
+        md={12}
+        lg={12}
+        position="absolute"
+        alignSelf="center"
+        sx={{ mt: "17%" }}
+      >
+        <Typography variant="h6">₪{totalAmount}</Typography>
+      </Grid>
+      <Grid
+        item
+        xs={12}
+        sm={12}
+        md={12}
+        lg={12}
+        justifyContent="center"
+        alignItems="center"
+        textAlign="center"
+      >
         <Chart
           dir="rtl"
           type="donut"
@@ -130,8 +140,8 @@ const Dashboard = () => {
             noData: { text: "Empty wallet" },
           }}
         />
-      </div>
-    </div>
+      </Grid>
+    </Grid>
   );
 };
 

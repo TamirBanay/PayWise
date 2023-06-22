@@ -12,6 +12,7 @@ import CreateOutlinedIcon from "@mui/icons-material/CreateOutlined";
 import ScanVoucher from "../../pages/ScanVoucher";
 import InsertSirialNumber from "../scans/InsertSirialNumber";
 import Popover from "@mui/material/Popover";
+import Grid from "@mui/material/Grid";
 
 export default function BasicSpeedDial(props) {
   const [openInsertSerialNumber, setOpenInsertSerialNumber] =
@@ -43,57 +44,68 @@ export default function BasicSpeedDial(props) {
   ];
 
   return (
-    <Box
-      sx={{
-        height: 320,
-        transform: "translateZ(0px)",
-        flexGrow: 1,
-        position: "fixed",
-        bottom: props.walletLength <= 0 ? "25%" : "-4%",
-        left: props.walletLength <= 0 ? "40%" : "4%",
-      }}
-    >
-      <Popover
-        id={id}
-        open={open}
-        anchorEl={anchorEl}
-        onClose={handleClose}
-        anchorOrigin={{
-          vertical: "bottom",
-          horizontal: "left",
+    <div>
+      <Box
+        sx={{
+          height: 320,
+          transform: "translateZ(0px)",
+          flexGrow: 1,
+          position: "fixed",
+          bottom: props.walletLength <= 0 ? "" : "-4%",
+          left: props.walletLength <= 0 ? "40%" : "4%",
         }}
-        sx={{ ml: props.walletLength <= 0 ? "-13%" : "10%", width: "100%" }}
       >
-        <InsertSirialNumber
-          userID={props.userID}
-          handleClose={handleClose}
-          getWallet={props.getWallet}
-        />
-      </Popover>
-      <SpeedDial
-        ariaLabel="SpeedDial basic example"
-        icon={<SpeedDialIcon />}
-        direction={props.walletLength <= 0 ? "down" : "up"}
-      >
-        {actions.map((action) => (
-          <SpeedDialAction
-            key={action.name}
-            icon={action.icon}
-            tooltipTitle={action.name}
-          />
-        ))}
-        {openInsertSerialNumber ? (
-          <Popover id={id} open={open} anchorEl={anchorEl}>
-            <InsertSirialNumber
-              userID={props.userID}
-              handleClose={handleClose}
-              getWallet={props.getWallet}
-            />
-          </Popover>
-        ) : (
-          ""
-        )}
-      </SpeedDial>
-    </Box>
+        <Grid container>
+          <Grid item xs={12} sm={12} md={12} lg={12}>
+            <Popover
+              id={id}
+              open={open}
+              anchorEl={anchorEl}
+              onClose={handleClose}
+              anchorOrigin={{
+                vertical: "bottom",
+                horizontal: "left",
+              }}
+              // sx={{ ml: props.walletLength <= 0 ? "-13%" : "10%", width: "100%" }}
+            >
+              <InsertSirialNumber
+                userID={props.userID}
+                handleClose={handleClose}
+                getWallet={props.getWallet}
+              />
+            </Popover>
+          </Grid>
+        </Grid>
+
+        <Grid container>
+          <Grid item xs={12} sm={12} md={12} lg={12}>
+            <SpeedDial
+              ariaLabel="SpeedDial basic example"
+              icon={<SpeedDialIcon />}
+              direction={props.walletLength <= 0 ? "down" : "up"}
+            >
+              {actions.map((action) => (
+                <SpeedDialAction
+                  key={action.name}
+                  icon={action.icon}
+                  tooltipTitle={action.name}
+                />
+              ))}
+              {openInsertSerialNumber ? (
+                <Popover id={id} open={open} anchorEl={anchorEl}>
+                  <InsertSirialNumber
+                    userID={props.userID}
+                    handleClose={handleClose}
+                    getWallet={props.getWallet}
+                  />
+                </Popover>
+              ) : (
+                ""
+              )}
+            </SpeedDial>
+          </Grid>
+        </Grid>
+      </Box>
+    </div>
   );
 }

@@ -28,6 +28,8 @@ import EllipsisList from "../dashboard/EllipsisList";
 import NotificationsIcon from "@mui/icons-material/Notifications";
 import { _voucherIsOpen } from "../../services/atom";
 import { useRecoilState } from "recoil";
+import Grid from "@mui/material/Grid";
+
 const drawerBleeding = 56;
 
 const Root = styled("div")(({ theme }) => ({
@@ -111,6 +113,7 @@ function BottomSheetVoucher(props) {
     window !== undefined ? () => window().document.body : undefined;
 
   return (
+    
     <Root>
       {/* <CssBaseline /> */}
       <Global

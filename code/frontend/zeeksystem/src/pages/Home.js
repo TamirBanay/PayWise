@@ -173,8 +173,8 @@ function Home(props) {
               vouchers
                 .filter(
                   (voucher) =>
-                    voucher.fields.redeemed === false &&
-                    currentDate < new Date(voucher.fields.dateOfExpiry)
+                    currentDate < new Date(voucher.fields.dateOfExpiry) &&
+                    voucher.fields.redeemed === false
                 )
                 .map((voucher) => (
                   <BottomSheetVoucher

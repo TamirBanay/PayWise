@@ -20,6 +20,7 @@ import TabsProfile from "../components/profile/TabsProfile";
 import EditIcon from "@mui/icons-material/Edit";
 import PersonalDetails from "../components/profile/PersonalDetails";
 import BasicSpeedDial from "../components/dashboard/BasicSpeedDial";
+import Grid from "@mui/material/Grid";
 
 import {
   _Vouchers,
@@ -102,46 +103,52 @@ function Profile(props) {
   return (
     <div>
       <Navbar />
+      <br />
+      <br />
 
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          height: "150px",
-          marginTop: "7%",
-          marginLeft: "5%",
-        }}
+      <Grid
+        container
+        direction="row"
+        alignItems="center"
+        justifyContent="center"
+        // style={{
+        //   // display: "flex",
+        //   // justifyContent: "center",
+        //   // alignItems: "center",
+        //   // height: "150px",
+        //   // marginTop: "7%",
+        //   // marginLeft: "5%",
+        // }}
       >
-        <img
-          src={
-            user.gender == "זכר" ? male : user.gender == "נקבה" ? female : other
-          }
-          style={{
-            width: "100px",
-            height: "100px",
-            borderRadius: "50%",
-            border: "5px solid white",
-            position: "absolute",
-          }}
-        />
-      </div>
+        <Grid item>
+          <img
+            src={
+              user.gender == "זכר"
+                ? male
+                : user.gender == "נקבה"
+                ? female
+                : other
+            }
+            style={{
+              width: "100px",
+              height: "100px",
+              borderRadius: "50%",
+              border: "5px solid white",
+              //   position: "absolute",
+            }}
+          />
+          <Typography
+            align="center"
+            variant="h5"
+            // style={{ color: "#23476", marginLeft: "-7%" }}
+          >
+            {user.first_name} {user.last_name}
+          </Typography>
+        </Grid>
+      </Grid>
 
-      <div
-        style={{
-          marginLeft: "10%",
-          marginTop: "-20px",
-        }}
-      >
-        <Typography
-          align="center"
-          variant="h5"
-          style={{ color: "#23476", marginLeft: "-7%" }}
-        >
-          {user.first_name} {user.last_name}
-        </Typography>
-      </div>
-      <div style={{ paddingTop: "8%" }}></div>
+      <br />
+
       <TabsProfile
         updateDetails={handlleChangeDetailsUser}
         handlleShowPersonalDetails={handlleShowPersonalDetails}

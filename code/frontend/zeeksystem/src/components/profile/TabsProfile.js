@@ -7,12 +7,12 @@ import InfoIcon from "@mui/icons-material/Info";
 import DeleteIcon from "@mui/icons-material/Delete";
 import LogoutIcon from "@mui/icons-material/Logout";
 import EditIcon from "@mui/icons-material/Edit";
-
 import { _Vouchers, _Redirect } from "../../services/atom";
 import { useRecoilState } from "recoil";
 import AlertDialogModal from "../dashboard/AlertDialogModal";
 import { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
+import Grid from "@mui/material/Grid";
 
 import { _User } from "../../services/atom";
 
@@ -71,63 +71,77 @@ export default function ChipWithDecorators(props) {
   };
   return (
     <div>
-      <Box sx={{ gap: 0, marginTop: 1, direction: "rtl", mr: "3%" }}>
-        <Chip
-          variant=""
-          startDecorator={<InfoIcon />}
-          onClick={props.handlleShowPersonalDetails}
-        >
-          &nbsp;פרטים אישיים
-        </Chip>
-      </Box>
-      <Box sx={{ gap: 0, marginTop: 2, direction: "rtl", mr: "3%" }}>
-        <Chip
-          onClick={props.updateDetails}
-          variant=""
-          startDecorator={<EditIcon />}
-        >
-          &nbsp;עריכת פרטים אישיים
-        </Chip>
-      </Box>
-      <Box sx={{ gap: 0, marginTop: 2, direction: "rtl", mr: "3%" }}>
-        <Chip variant="">
-          <AlertDialogModal
-            function={handleDeleteUser}
-            icon={1}
-            mainText={"לחיצה על המשך תמחק את כל הזיכויים והנתונים שלך"}
-            title={"מחיקת חשבון"}
-            variant="plain"
-            textButton={"המשך"}
-            isOpen={openLogOut}
-            setOpenDeleteAlert={setOpenLogOut}
-            openDeleteAlert={openLogOut}
-          />
-          &nbsp;סגירת חשבון
-        </Chip>
-      </Box>
-      <Box
-        sx={{
-          gap: 0,
-          marginTop: 2,
-          direction: "rtl",
-          mr: "3%",
-        }}
+      <Grid
+        spacing={1.5}
+        container
+        direction="column"
+        justifyContent="space-between"
+        alignItems="flex-end"
       >
-        <Chip variant="">
-          <AlertDialogModal
-            icon={2}
-            function={handlelogout}
-            mainText={"האם ברצונך להתנתק מהחשבון?"}
-            title={"התנתקות"}
-            variant="plain"
-            textButton={"התנתק"}
-            isOpen={openLogOut}
-            setOpenDeleteAlert={setOpenLogOut}
-            openDeleteAlert={openLogOut}
-          />
-          &nbsp;התנתקות
-        </Chip>
-      </Box>
+        <Grid item>
+          <Box sx={{ gap: 0, direction: "rtl" }}>
+            <Chip
+              variant=""
+              startDecorator={<InfoIcon />}
+              onClick={props.handlleShowPersonalDetails}
+            >
+              &nbsp;פרטים אישיים
+            </Chip>
+          </Box>
+        </Grid>
+        <Grid item>
+          <Box sx={{ gap: 0, direction: "rtl" }}>
+            <Chip
+              onClick={props.updateDetails}
+              variant=""
+              startDecorator={<EditIcon />}
+            >
+              &nbsp;עריכת פרטים אישיים
+            </Chip>
+          </Box>
+        </Grid>
+        <Grid item>
+          <Box sx={{ gap: 0, direction: "rtl" }}>
+            <Chip variant="">
+              <AlertDialogModal
+                function={handleDeleteUser}
+                icon={1}
+                mainText={"לחיצה על המשך תמחק את כל הזיכויים והנתונים שלך"}
+                title={"מחיקת חשבון"}
+                variant="plain"
+                textButton={"המשך"}
+                isOpen={openLogOut}
+                setOpenDeleteAlert={setOpenLogOut}
+                openDeleteAlert={openLogOut}
+              />
+              &nbsp;סגירת חשבון
+            </Chip>
+          </Box>
+        </Grid>
+        <Grid item>
+          <Box
+            sx={{
+              gap: 0,
+              direction: "rtl",
+            }}
+          >
+            <Chip variant="">
+              <AlertDialogModal
+                icon={2}
+                function={handlelogout}
+                mainText={"האם ברצונך להתנתק מהחשבון?"}
+                title={"התנתקות"}
+                variant="plain"
+                textButton={"התנתק"}
+                isOpen={openLogOut}
+                setOpenDeleteAlert={setOpenLogOut}
+                openDeleteAlert={openLogOut}
+              />
+              &nbsp;התנתקות
+            </Chip>
+          </Box>
+        </Grid>
+      </Grid>
     </div>
   );
 }
