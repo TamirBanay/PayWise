@@ -93,7 +93,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'zeekSchema',
         'USER': 'PayWise_db_root',
-        'PASSWORD': os.environ.get("dbPassword"),
+        'PASSWORD': "password",
         'HOST': 'localhost',   # Or an IP Address that your DB is hosted on
         'PORT': '3306',
     },
@@ -156,7 +156,7 @@ EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_HOST_USER = 'paywise.reminder@gmail.com'
-EMAIL_HOST_PASSWORD =os.environ.get("payWiseMailPassword")
+EMAIL_HOST_PASSWORD ="vsyhaywfhoipnhqh"
 EMAIL_USE_TLS = True
 # ...
 
