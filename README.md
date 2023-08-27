@@ -1,4 +1,4 @@
-# PayWise Digital Wallet
+# PayWise - Digital Wallet
 
 payWise is a digital wallet application developed for my computer science degree's final project. The application's main purpose is to centralize refunds, vouchers, and discounts for users. With payWise, users can conveniently manage and keep track of their available benefits.
 
