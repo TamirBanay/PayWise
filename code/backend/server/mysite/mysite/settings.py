@@ -26,7 +26,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-f%hd-lm9hqql@@-lw%9bms_qu4#q=escyt32d45ahd(o($oct('
+
+#####################################################
+SECRET_KEY = '**********'
+#####################################################
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -155,8 +158,10 @@ CORS_ALLOW_CREDENTIALS = True
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
-EMAIL_HOST_USER = 'paywise.reminder@gmail.com'
-EMAIL_HOST_PASSWORD ="vsyhaywfhoipnhqh"
+#####################################################
+EMAIL_HOST_USER = '********'
+EMAIL_HOST_PASSWORD ="********"
+#####################################################
 EMAIL_USE_TLS = True
 # ...
 
