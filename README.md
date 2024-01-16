@@ -1,4 +1,4 @@
-## **PayWise - Your Ultimate Digital Wallet**
+## **PayWise - Your Ultimate Digital Wallet (Mobile App)**
 
 **Introduction:**
 
